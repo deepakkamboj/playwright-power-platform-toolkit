@@ -1,0 +1,51 @@
+name: Pull Request Validation
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18, 20]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Build library
+        run: npm run build
+
+      - name: Verify build output
+        run: |
+          test -d lib || exit 1
+          test -f lib/index.js || exit 1
+          test -f lib/index.d.ts || exit 1
+          test -f lib/pages/PowerAppsPage.js || exit 1
+          test -f lib/utils/ApiTestHelper.js || exit 1
+          test -f lib/utils/AccessibilityTestHelper.js || exit 1
+          test -f lib/utils/ApiRecorder.js || exit 1
+          test -f lib/utils/TestLogger.js || exit 1
+          echo "✅ Library build output verified"
+
+      - name: Check TypeScript compilation
+        run: npx tsc --noEmit
+
+      - name: Verify package can be created
+        run: npm pack --dry-run

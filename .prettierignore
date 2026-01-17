@@ -1,0 +1,32 @@
+# Dependencies
+node_modules
+package-lock.json
+
+# Build output
+lib
+dist
+build
+*.tsbuildinfo
+
+# Test results
+test-results
+playwright-report
+pa-test-results
+
+# Coverage
+coverage
+
+# Environment
+.env
+.env.local
+
+# Authentication
+.playwright-ms-auth
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db

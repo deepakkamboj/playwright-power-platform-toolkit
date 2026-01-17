@@ -1,0 +1,39 @@
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# Build output
+lib/
+dist/
+
+# Test results and reports
+pa-test-results/
+ai-reports/
+artifacts/
+html-report/
+
+# Screenshots and media
+screenshots/
+
+# Authentication
+.playwright-ms-auth/
+
+# Certificates
+cert/
+certs/
+certificates/
+*.pfx
+*.pem
+*.key
+*.crt
+
+# Temporary test scripts
+test-*.js
+test-*.mjs
+test-*.ts
+!tests/**
