@@ -59,7 +59,7 @@ export function hasValidAuth(email?: string): boolean {
  */
 export function clearAuthState(email?: string): void {
   const storagePath = getStorageStatePath(email);
-  
+
   if (fs.existsSync(storagePath)) {
     fs.unlinkSync(storagePath);
     console.log(`✅ Cleared authentication state: ${storagePath}`);
@@ -77,7 +77,7 @@ export function clearAuthState(email?: string): void {
 
 /**
  * Authenticate to Microsoft using playwright-ms-auth
- * 
+ *
  * @param url - URL to authenticate to (e.g., Power Apps maker portal)
  * @param headless - Whether to run browser in headless mode
  */
@@ -119,7 +119,7 @@ export async function getAuthState(): Promise<{ storageState: string }> {
   if (!fs.existsSync(storagePath)) {
     throw new Error(
       `Authentication state not found at ${storagePath}. ` +
-      'Please run authentication first: npm run auth'
+        'Please run authentication first: npm run auth'
     );
   }
 
@@ -132,7 +132,7 @@ export async function getAuthState(): Promise<{ storageState: string }> {
 export function validateAuthConfig(): void {
   const config = loadConfigFromEnv();
   const credentialType = config.credentialType || 'password';
-  
+
   const missing: string[] = [];
 
   // Required for all auth types
@@ -158,7 +158,7 @@ export function validateAuthConfig(): void {
   if (missing.length > 0) {
     throw new Error(
       `Missing required environment variables: ${missing.join(', ')}. ` +
-      'Please check your .env file.'
+        'Please check your .env file.'
     );
   }
 }

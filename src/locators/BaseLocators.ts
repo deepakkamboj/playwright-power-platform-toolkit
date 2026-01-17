@@ -32,7 +32,22 @@ export abstract class BaseLocators {
    * @returns Playwright Locator
    */
   protected getByRole(
-    role: 'button' | 'link' | 'textbox' | 'heading' | 'menuitem' | 'grid' | 'row' | 'cell' | 'dialog' | 'navigation' | 'searchbox' | 'switch' | 'rowheader' | 'gridcell' | 'menubar',
+    role:
+      | 'button'
+      | 'link'
+      | 'textbox'
+      | 'heading'
+      | 'menuitem'
+      | 'grid'
+      | 'row'
+      | 'cell'
+      | 'dialog'
+      | 'navigation'
+      | 'searchbox'
+      | 'switch'
+      | 'rowheader'
+      | 'gridcell'
+      | 'menubar',
     options?: { name?: string | RegExp; exact?: boolean; includeHidden?: boolean }
   ): Locator {
     return this.page.getByRole(role, options);

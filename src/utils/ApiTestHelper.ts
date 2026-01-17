@@ -98,13 +98,16 @@ export class ApiTestHelper {
   /**
    * Get Dataverse table records
    */
-  async getDataverseRecords(tableName: string, options?: {
-    select?: string[];
-    filter?: string;
-    top?: number;
-  }): Promise<APIResponse> {
+  async getDataverseRecords(
+    tableName: string,
+    options?: {
+      select?: string[];
+      filter?: string;
+      top?: number;
+    }
+  ): Promise<APIResponse> {
     const params: Record<string, string> = {};
-    
+
     if (options?.select) {
       params['$select'] = options.select.join(',');
     }
@@ -128,7 +131,11 @@ export class ApiTestHelper {
   /**
    * Update Dataverse record
    */
-  async updateDataverseRecord(tableName: string, recordId: string, data: any): Promise<APIResponse> {
+  async updateDataverseRecord(
+    tableName: string,
+    recordId: string,
+    data: any
+  ): Promise<APIResponse> {
     const endpoint = `${PowerAppsApiEndpoints.Dataverse.Records(tableName)}(${recordId})`;
     return await this.patch(endpoint, data);
   }
@@ -148,7 +155,7 @@ export class ApiTestHelper {
     const responseBody = await response.json();
     // Basic schema validation - can be extended with ajv or joi
     expect(responseBody).toBeDefined();
-    
+
     if (schema.required) {
       schema.required.forEach((field: string) => {
         expect(responseBody).toHaveProperty(field);
@@ -166,7 +173,7 @@ export class ApiTestHelper {
     const startTime = Date.now();
     const response = await apiCall();
     const duration = Date.now() - startTime;
-    
+
     return { response, duration };
   }
 
@@ -199,7 +206,10 @@ export class ApiAssertions {
   /**
    * Assert response has expected headers
    */
-  static async assertHeaders(response: APIResponse, headers: Record<string, string>): Promise<void> {
+  static async assertHeaders(
+    response: APIResponse,
+    headers: Record<string, string>
+  ): Promise<void> {
     const responseHeaders = response.headers();
     Object.entries(headers).forEach(([key, value]) => {
       expect(responseHeaders[key.toLowerCase()]).toBe(value);

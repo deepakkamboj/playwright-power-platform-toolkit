@@ -21,7 +21,7 @@ export enum Team {
  * Create a team annotation for a test
  * @param team - The team responsible for the test
  * @returns Annotation object for Playwright test
- * 
+ *
  * @example
  * ```typescript
  * test('My test', teamAnnotation(Team.Frontend), async ({ page }) => {
@@ -71,22 +71,24 @@ export function customAnnotation(type: string, description: string) {
  * Combine multiple annotations
  * @param annotations - Array of annotation objects
  * @returns Combined annotation object
- * 
+ *
  * @example
  * ```typescript
- * test('My test', 
+ * test('My test',
  *   combineAnnotations([
  *     teamAnnotation(Team.Frontend),
  *     priorityAnnotation('P0')
- *   ]), 
+ *   ]),
  *   async ({ page }) => {
  *     // test code
  *   }
  * );
  * ```
  */
-export function combineAnnotations(annotations: Array<{ annotation: { type: string; description: string } }>) {
+export function combineAnnotations(
+  annotations: Array<{ annotation: { type: string; description: string } }>
+) {
   return {
-    annotation: annotations.map(a => a.annotation),
+    annotation: annotations.map((a) => a.annotation),
   };
 }

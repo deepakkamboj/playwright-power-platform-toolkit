@@ -81,9 +81,12 @@ export class AccessibilityTestHelper {
   /**
    * Scan specific element for accessibility issues
    */
-  async scanElement(selector: string, options?: {
-    wcagLevel?: WCAGLevel;
-  }): Promise<any> {
+  async scanElement(
+    selector: string,
+    options?: {
+      wcagLevel?: WCAGLevel;
+    }
+  ): Promise<any> {
     let builder = new AxeBuilder({ page: this.page }).include(selector);
 
     if (options?.wcagLevel) {
@@ -164,17 +167,14 @@ export class AccessibilityTestHelper {
       .include(selector)
       .withRules([AccessibilityRules.ColorContrast])
       .analyze();
-    
+
     expect(results.violations).toHaveLength(0);
   }
 
   /**
    * Test keyboard shortcuts
    */
-  async testKeyboardShortcut(
-    keys: string,
-    expectedAction: () => Promise<void>
-  ): Promise<void> {
+  async testKeyboardShortcut(keys: string, expectedAction: () => Promise<void>): Promise<void> {
     await this.page.keyboard.press(keys);
     await expectedAction();
   }
@@ -186,7 +186,7 @@ export class AccessibilityTestHelper {
     const results = await new AxeBuilder({ page: this.page })
       .withRules([AccessibilityRules.HeadingOrder])
       .analyze();
-    
+
     expect(results.violations).toHaveLength(0);
   }
 
@@ -197,7 +197,7 @@ export class AccessibilityTestHelper {
     const results = await new AxeBuilder({ page: this.page })
       .withRules([AccessibilityRules.ImageAlt])
       .analyze();
-    
+
     expect(results.violations).toHaveLength(0);
   }
 
@@ -208,7 +208,7 @@ export class AccessibilityTestHelper {
     const results = await new AxeBuilder({ page: this.page })
       .withRules([AccessibilityRules.LabelAssociation])
       .analyze();
-    
+
     expect(results.violations).toHaveLength(0);
   }
 
@@ -217,7 +217,7 @@ export class AccessibilityTestHelper {
    */
   generateReport(results: any): string {
     let report = '=== Accessibility Test Report ===\n\n';
-    
+
     report += `Total Violations: ${results.violations.length}\n`;
     report += `Passes: ${results.passes.length}\n`;
     report += `Incomplete: ${results.incomplete.length}\n\n`;
@@ -280,8 +280,9 @@ export class AccessibilityAssertions {
     const ariaLabel = await locator.getAttribute('aria-label');
     const ariaLabelledBy = await locator.getAttribute('aria-labelledby');
     const textContent = await locator.textContent();
-    
-    const hasAccessibleText = ariaLabel || ariaLabelledBy || (textContent && textContent.trim().length > 0);
+
+    const hasAccessibleText =
+      ariaLabel || ariaLabelledBy || (textContent && textContent.trim().length > 0);
     expect(hasAccessibleText).toBeTruthy();
   }
 }
