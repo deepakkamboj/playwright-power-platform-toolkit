@@ -1,8 +1,16 @@
-# Playwright Power Platform Toolkit
+<div align="center">
+  <h1><strong>Playwright Power Platform Toolkit</strong></h1>
 
-**Enterprise Test Automation Framework for Microsoft Power Platform**
+[![Build Status](https://github.com/deepakkamboj/playwright-power-platform-toolkit/actions/workflows/ci.yml/badge.svg)](https://github.com/deepakkamboj/playwright-power-platform-toolkit/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/playwright-power-platform-toolkit.svg)](https://www.npmjs.com/package/playwright-power-platform-toolkit)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9%2B-blue)](https://www.typescriptlang.org/)
+[![Playwright](https://img.shields.io/badge/Playwright-1.57%2B-green)](https://playwright.dev/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js](https://img.shields.io/badge/Node.js-18%2B-green)](https://nodejs.org/)
 
-A production-ready, comprehensive testing framework library for Power Platform applications built on Playwright. Supports Canvas Apps, Model-Driven Apps, and Power Platform services with robust authentication, API testing, accessibility testing, and intelligent reporting capabilities.
+  <p><strong>Enterprise Test Automation Framework for Microsoft Power Platform</strong></p>
+  <p>A production-ready, comprehensive testing framework library for Power Platform applications built on Playwright. Supports Canvas Apps, Model-Driven Apps, and Power Platform services with robust authentication, API testing, accessibility testing, and intelligent reporting capabilities.</p>
+</div>
 
 ## 🏗️ Architecture
 
