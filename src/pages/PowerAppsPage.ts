@@ -59,10 +59,11 @@ export class PowerAppsPage {
   /**
    * Navigate to Power Apps home page
    * Power Apps will redirect to: /environments/{environmentId}/home
+   * @param baseUrl - Optional base URL to navigate to. If not provided, uses ConfigHelper.getBaseUrl()
    */
-  async navigateToHome(): Promise<void> {
+  async navigateToHome(baseUrl?: string): Promise<void> {
     //const url = ConfigHelper.buildUrl('/home');
-    const url = ConfigHelper.getBaseUrl();
+    const url = baseUrl || ConfigHelper.getBaseUrl();
     await navigateToUrl(this.page, url);
     await this.waitForHomePageLoad();
   }
@@ -71,9 +72,10 @@ export class PowerAppsPage {
    * Navigate to Apps page
    * First tries menu navigation, falls back to URL navigation
    * URL: /environments/{environmentId}/apps
+   * @param baseUrl - Optional base URL to navigate to. If not provided, uses ConfigHelper base URL
    */
-  async navigateToApps(): Promise<void> {
-    await this.navigateToHome();
+  async navigateToApps(baseUrl?: string): Promise<void> {
+    await this.navigateToHome(baseUrl);
 
     try {
       // Try clicking the Apps menu item
@@ -89,7 +91,7 @@ export class PowerAppsPage {
     }
 
     // Fallback to URL navigation
-    const appsUrl = ConfigHelper.buildUrl('/apps');
+    const appsUrl = baseUrl ? `${baseUrl}/apps` : ConfigHelper.buildUrl('/apps');
     await navigateToUrl(this.page, appsUrl);
     await this.waitForAppsPageLoad();
   }
@@ -98,9 +100,10 @@ export class PowerAppsPage {
    * Navigate to Solutions page
    * First tries menu navigation, falls back to URL navigation
    * URL: /environments/{environmentId}/solutions
+   * @param baseUrl - Optional base URL to navigate to. If not provided, uses ConfigHelper base URL
    */
-  async navigateToSolutions(): Promise<void> {
-    await this.navigateToHome();
+  async navigateToSolutions(baseUrl?: string): Promise<void> {
+    await this.navigateToHome(baseUrl);
 
     try {
       // Try clicking the Solutions menu item
@@ -118,7 +121,7 @@ export class PowerAppsPage {
     }
 
     // Fallback to URL navigation
-    const solutionsUrl = ConfigHelper.buildUrl('/solutions');
+    const solutionsUrl = baseUrl ? `${baseUrl}/solutions` : ConfigHelper.buildUrl('/solutions');
     await navigateToUrl(this.page, solutionsUrl);
     await this.waitForSolutionsPageLoad();
   }
