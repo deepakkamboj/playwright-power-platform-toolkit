@@ -107,9 +107,11 @@ export class PowerAppsPage {
 
     try {
       // Try clicking the Solutions menu item
+      // Use partial match for the aria-label
       const solutionsMenuItem = this.page.getByRole('menuitem', {
-        name: 'Solutions, press right arrow',
+        name: /Solutions.*press right arrow/i, // ✅ Regex pattern for flexibility - "Solutions, press right arrow to navigate more options"
       });
+
       if (await solutionsMenuItem.isVisible({ timeout: TimeOut.OptionalElementTimeout })) {
         await solutionsMenuItem.click();
         TestLogger.debug('Navigated to Solutions page using menu');
