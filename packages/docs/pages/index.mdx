@@ -1,0 +1,181 @@
+---
+title: Home
+---
+
+import { Cards, Card } from '../components/Cards';
+import { Features, Feature } from '../components/Features';
+import {
+  BookOpen,
+  Palette,
+  BarChart3,
+  Lock,
+  FileText,
+  Rocket,
+  Building2,
+  BookMarked,
+  Bug,
+  GitPullRequest,
+  Shield,
+  Zap,
+  Package,
+  CircleCheck,
+  BookCheck,
+  Target,
+  Boxes,
+  Plug,
+  Eye,
+  Video,
+} from 'lucide-react';
+
+# Playwright Power Platform Toolkit
+
+<strong>Enterprise Test Automation Framework for Microsoft Power Platform</strong>
+
+A production-ready, comprehensive testing framework library for Power Platform applications built on
+Playwright. Supports Canvas Apps, Model-Driven Apps, and Power Platform services with robust
+authentication, API testing, accessibility testing, and intelligent reporting capabilities.
+
+## Features
+
+<Features>
+  <Feature icon={<BookOpen />} title="Type-Safe">
+    Written in TypeScript with full type definitions
+  </Feature>
+  <Feature icon={<Rocket />} title="Easy to Use">
+    Intuitive API for common Power Platform interactions
+  </Feature>
+  <Feature icon={<Lock />} title="Authentication">
+    Built-in Microsoft authentication support
+  </Feature>
+  <Feature icon={<BarChart3 />} title="Modular">
+    Use only what you need
+  </Feature>
+  <Feature icon={<Palette />} title="Test-Ready">
+    Works seamlessly with Playwright Test
+  </Feature>
+  <Feature icon={<FileText />} title="Well-Documented">
+    Comprehensive guides and API documentation
+  </Feature>
+</Features>
+
+## Quick Start
+
+```bash
+npm install playwright-power-platform-toolkit @playwright/test
+```
+
+```typescript
+import { test } from '@playwright/test';
+import { AppProvider, AppType, AppLaunchMode } from 'playwright-power-platform-toolkit';
+
+test('my first power apps test', async ({ page }) => {
+  const provider = new AppProvider(page);
+
+  await provider.launch({
+    app: { id: 'your-app-id' },
+    type: AppType.Canvas,
+    mode: AppLaunchMode.Play,
+  });
+
+  await provider.click({ name: 'SubmitButton' });
+});
+```
+
+## Documentation
+
+<Cards>
+  <Card icon={<BookOpen />} title="Getting Started" href="/guide/getting-started">
+    Learn the basics and set up your first Power Platform test
+  </Card>
+  <Card icon={<Palette />} title="Canvas Apps" href="/guide/canvas-apps">
+    Test Canvas Apps with intuitive controls and interactions
+  </Card>
+  <Card icon={<BarChart3 />} title="Model-Driven Apps" href="/guide/model-driven-apps">
+    Automate Model-Driven Apps with entity forms and grids
+  </Card>
+  <Card icon={<Lock />} title="Authentication" href="/guide/authentication">
+    Handle Microsoft authentication and user sessions
+  </Card>
+  <Card icon={<FileText />} title="API Reference" href="/reference">
+    Complete API documentation for all classes and methods
+  </Card>
+  <Card icon={<Rocket />} title="Advanced Usage" href="/guide/advanced-usage">
+    Advanced patterns, best practices, and optimization tips
+  </Card>
+</Cards>
+
+## Why Playwright Power Platform Toolkit?
+
+### Traditional Approach ❌
+
+```typescript
+// Complex, brittle selectors
+await page.locator('[data-control-name="Button1_1"]').click();
+await page.locator('input[aria-label="Text input"]').fill('value');
+```
+
+### With This Toolkit ✅
+
+```typescript
+// Simple, maintainable code
+await provider.click({ name: 'SubmitButton' });
+await provider.fill({ name: 'TextInputName' }, 'value');
+```
+
+## Key Capabilities
+
+<Features>
+  <Feature icon={<Target />} title="Page Object Models">
+    Pre-built page objects for Power Apps Portal, Canvas Apps, and Model-Driven Apps with robust
+    locators
+  </Feature>
+  <Feature icon={<Boxes />} title="Factory & Provider Patterns">
+    AppLauncherFactory and AppProvider for clean, maintainable test architecture
+  </Feature>
+  <Feature icon={<Plug />} title="API Testing">
+    Built-in utilities for testing Power Platform APIs with authentication and validation helpers
+  </Feature>
+  <Feature icon={<Eye />} title="Accessibility Testing">
+    WCAG compliance validation using Axe-core integration
+  </Feature>
+  <Feature icon={<Video />} title="API Recording">
+    Record and replay API interactions for debugging and test generation
+  </Feature>
+  <Feature icon={<BarChart3 />} title="Test Logging">
+    Structured logging with colored output for better test visibility
+  </Feature>
+</Features>
+
+## Project Status
+
+This project is actively maintained and used in production environments. Contributions are welcome!
+
+## Resources
+
+<Cards cols={3}>
+  <Card icon={<Building2 />} title="Architecture" href="/architecture">
+    Understand the design patterns and architecture
+  </Card>
+  <Card
+    icon={<Bug />}
+    title="Report Issues"
+    href="https://github.com/deepakkamboj/playwright-power-platform-toolkit/issues"
+  >
+    Found a bug? Let us know on GitHub
+  </Card>
+  <Card
+    icon={<GitPullRequest />}
+    title="Contribute"
+    href="https://github.com/deepakkamboj/playwright-power-platform-toolkit/pulls"
+  >
+    Help improve the toolkit with pull requests
+  </Card>
+</Cards>
+
+## License
+
+MIT © [Deepak Kamboj](https://github.com/deepakkamboj)
+
+---
+
+**GitHub**: [deepakkamboj/playwright-power-platform](https://github.com/deepakkamboj/playwright-power-platform)

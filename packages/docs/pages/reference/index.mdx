@@ -1,0 +1,201 @@
+---
+title: API Reference
+---
+
+# API Reference
+
+Complete API documentation for the Playwright Power Platform Toolkit.
+
+## Overview
+
+The toolkit provides comprehensive testing capabilities for Power Platform applications including Canvas Apps and Model-Driven Apps.
+
+## Key Features
+
+### 🎯 Core Framework
+
+- **Factory Pattern** - AppLauncherFactory for creating app launchers
+- **Provider Pattern** - AppProvider for managing app lifecycle
+- **Page Objects** - Structured page models for Canvas and Model-Driven apps
+
+### 🧪 Testing Capabilities
+
+- **UI Testing** - Comprehensive page object models
+- **API Testing** - Built-in API utilities and authentication
+- **API Recording** - Record and replay API interactions
+- **Accessibility Testing** - WCAG compliance validation
+- **Authentication** - Microsoft OAuth with token management
+
+## API Documentation
+
+The complete API documentation is automatically generated from TypeScript source code.
+
+## Main Components
+
+### Core Classes
+
+- **[AppProvider](/reference/classes/AppProvider)** - Manages app lifecycle and provides high-level testing interface
+- **[AppLauncherFactory](/reference/classes/AppLauncherFactory)** - Creates appropriate app launchers based on app type
+- **[PowerAppsPage](/reference/classes/PowerAppsPage)** - Base page for all Power Apps operations
+- **[CanvasAppPage](/reference/classes/CanvasAppPage)** - Canvas App specific testing capabilities
+- **[ModelDrivenAppPage](/reference/classes/ModelDrivenAppPage)** - Model-Driven App specific testing capabilities
+
+### API Testing
+
+- **[ApiRecorder](/reference/classes/ApiRecorder)** - Record API calls during test execution
+- **[ApiTestHelper](/reference/classes/ApiTestHelper)** - Helper utilities for API testing
+- **[extractTokenFromStorage](/reference/functions/extractTokenFromStorage)** - Extract authentication tokens
+- **[createAuthenticatedApiContext](/reference/functions/createAuthenticatedApiContext)** - Create authenticated API contexts
+- **[validateApiResponse](/reference/functions/validateApiResponse)** - Validate API responses
+- **[pollOperationStatus](/reference/functions/pollOperationStatus)** - Poll long-running operations
+
+### Authentication & Configuration
+
+- **[ConfigHelper](/reference/classes/ConfigHelper)** - Configuration and environment management
+- **[storageStatePath](/reference/functions/storageStatePath)** - Get storage state file path
+- **[getStorageStatePath](/reference/functions/getStorageStatePath)** - Get user-specific storage state path
+- **[checkStorageStateExpiration](/reference/functions/checkStorageStateExpiration)** - Check token expiration
+- **[checkEnvironmentVariables](/reference/functions/checkEnvironmentVariables)** - Validate required environment variables
+
+### Accessibility Testing
+
+- **[AccessibilityTestHelper](/reference/classes/AccessibilityTestHelper)** - WCAG compliance testing
+- **[AccessibilityAssertions](/reference/classes/AccessibilityAssertions)** - Accessibility test assertions
+
+### Utilities
+
+- **[TestLogger](/reference/classes/TestLogger)** - Structured test logging
+- **[App Helpers](/reference/functions/generateUniqueAppName)** - Utility functions for app testing
+- **[Element Helpers](/reference/functions/waitForElement)** - DOM interaction utilities
+
+## Documentation Sections
+
+### By Category
+
+- **[Classes](/reference#classes)** - All class APIs with methods and properties
+- **[Interfaces](/reference#interfaces)** - TypeScript interfaces and types
+- **[Enumerations](/reference#enumerations)** - Enum types (AppType, TimeOut, etc.)
+- **[Functions](/reference#functions)** - Standalone utility functions
+- **[Variables](/reference#variables)** - Exported constants and variables
+
+### By Feature
+
+#### UI Testing
+
+- [PowerAppsPage](/reference/classes/PowerAppsPage) - Navigation and common operations
+- [CanvasAppPage](/reference/classes/CanvasAppPage) - Canvas-specific testing
+- [ModelDrivenAppPage](/reference/classes/ModelDrivenAppPage) - Model-Driven testing
+
+#### API Testing
+
+- [ApiRecorder](/reference/classes/ApiRecorder) - Record API interactions
+- [API Functions](/reference/functions/extractTokenFromStorage) - API utilities
+- [API Interfaces](/reference/interfaces/ApiRecorderOptions) - API types
+
+#### Test Infrastructure
+
+- [Locators](/reference/variables/CanvasAppLocators) - Element locators
+- [Configuration](/reference/classes/ConfigHelper) - Environment config
+- [Authentication](/reference/functions/storageStatePath) - Auth helpers
+
+## Quick Start Examples
+
+### Basic Test
+
+```typescript
+import { AppProvider, AppType, AppLaunchMode } from 'playwright-power-platform-toolkit';
+
+test('Launch Canvas app', async ({ page }) => {
+  const provider = new AppProvider(page);
+
+  await provider.launch({
+    app: { id: 'your-app-id' },
+    type: AppType.Canvas,
+    mode: AppLaunchMode.Play,
+  });
+
+  await provider.click({ name: 'SubmitButton' });
+});
+```
+
+### API Testing
+
+```typescript
+import {
+  extractTokenFromStorage,
+  createAuthenticatedApiContext,
+  validateApiResponse,
+} from 'playwright-power-platform-toolkit';
+
+test('Get apps via API', async () => {
+  const token = extractTokenFromStorage();
+  const apiContext = await createAuthenticatedApiContext(token);
+
+  const response = await apiContext.get('/providers/Microsoft.PowerApps/apps');
+  const validation = await validateApiResponse(response);
+
+  expect(validation.success).toBe(true);
+  await apiContext.dispose();
+});
+```
+
+### API Recording
+
+```typescript
+import { ApiRecorder } from 'playwright-power-platform-toolkit';
+
+test('Record API calls', async ({ page }) => {
+  const recorder = new ApiRecorder(page, {
+    urlFilter: /api\.powerapps\.com/,
+  });
+
+  await recorder.startRecording();
+  // ... perform actions ...
+  await recorder.stopRecording();
+
+  await recorder.saveToFile('recording.json');
+  await recorder.saveTestCode('generated-test.spec.ts');
+});
+```
+
+## TypeScript Support
+
+All exports include full TypeScript type definitions:
+
+```typescript
+import type {
+  AppMetadata,
+  LaunchAppConfig,
+  ApiRecorderOptions,
+  RecordedApiCall,
+  QueryOptions,
+} from 'playwright-power-platform-toolkit';
+```
+
+## Regenerate Documentation
+
+To regenerate the API documentation after code changes:
+
+```bash
+cd packages/playwright-power-platform-toolkit
+npm run docs
+```
+
+This will update all documentation in `packages/docs/pages/reference/`.
+
+## Related Documentation
+
+- [Getting Started Guide](/guide/getting-started)
+- [Canvas Apps Guide](/guide/canvas-apps)
+- [Model-Driven Apps Guide](/guide/model-driven-apps)
+- [Authentication Guide](/guide/authentication)
+- [Architecture Overview](/architecture)
+
+## Source Code
+
+Browse the source code on [GitHub](https://github.com/deepakkamboj/playwright-power-platform-toolkit).
+
+## Support
+
+- **Issues**: [GitHub Issues](https://github.com/deepakkamboj/playwright-power-platform-toolkit/issues)
+- **Author**: Deepak Kamboj (deepakkamboj@gmail.com)

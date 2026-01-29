@@ -6,20 +6,22 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9%2B-blue)](https://www.typescriptlang.org/)
 [![Playwright](https://img.shields.io/badge/Playwright-1.57%2B-green)](https://playwright.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js](https://img.shields.io/badge/Node.js-18%2B-green)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-20%2B-green)](https://nodejs.org/)
 
   <p><strong>Enterprise Test Automation Framework for Microsoft Power Platform</strong></p>
   <p>A production-ready, comprehensive testing framework library for Power Platform applications built on Playwright. Supports Canvas Apps, Model-Driven Apps, and Power Platform services with robust authentication, API testing, accessibility testing, and intelligent reporting capabilities.</p>
 </div>
 
+---
+
 ## 🏗️ Architecture
 
-This project follows a clean separation between the **Enterprise Test Automation Framework** (this library) and **Consumer Test Infrastructure** (your test projects).
+This monorepo contains the **Enterprise Test Automation Framework** library and example **Consumer Test Infrastructure** demonstrating best practices.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                     Consumer Test Infrastructure                         │
-│                          (Your Test Projects)                            │
+│                    (e2e-tests/ - Your Test Projects)                     │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                          │
 │  ┌──────────────┐   ┌────────────────────────────────────┐             │
@@ -43,7 +45,7 @@ This project follows a clean separation between the **Enterprise Test Automation
                                   ▼
 ┌─────────────────────────────────────────────────────────────────────────┐
 │      Enterprise Test Automation Framework (This Library)                │
-│              playwright-power-platform-toolkit                           │
+│              playwright-power-platform-toolkit/                          │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                          │
 │  ┌──────────────────────┐  ┌──────────────────────┐  ┌────────────────┐│
@@ -83,18 +85,29 @@ This project follows a clean separation between the **Enterprise Test Automation
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
+---
+
 ## 📦 What's Included
+
+This monorepo contains:
+
+- **[packages/playwright-power-platform-toolkit/](packages/playwright-power-platform-toolkit/)** - The core library
+- **[packages/e2e-tests/](packages/e2e-tests/)** - Example test infrastructure
+- **[packages/docs/](packages/docs/)** - Documentation site
 
 ### Core Components
 
 #### Page Object Model
+
 - **PowerAppsPage**: Full POM for Power Apps Maker Portal
+- **CanvasAppPage**: Canvas app-specific page interactions
+- **ModelDrivenAppPage**: Model-Driven app-specific page interactions
 - **Locators Repository**: Maintainable selector management
-- **Object Repository**: Constants and locators organized by page
 - **Utilities**: Common helper functions for page interactions
 - **Auth Helper**: Microsoft authentication integration
 
 #### API Testing
+
 - **REST API Testing**: Full HTTP methods support (GET, POST, PATCH, DELETE)
 - **Endpoints**: Pre-defined Power Platform API endpoints
 - **Assertions**: Validation helpers for API responses
@@ -102,18 +115,23 @@ This project follows a clean separation between the **Enterprise Test Automation
 - **Dataverse**: Dataverse-specific API utilities
 
 #### Accessibility Testing
+
 - **WCAG Rules**: Complete WCAG 2.0/2.1 compliance testing
 - **Axe-Core Integration**: Industry-standard accessibility engine
 - **Assertions**: Accessibility-specific validation
 - **Violations Reporting**: Detailed accessibility reports
 
 ### Authentication
+
 Powered by `playwright-ms-auth`:
+
 - Certificate-based authentication
 - Password-based authentication
 - Automatic token refresh
 - Storage state management
 - Azure KeyVault integration
+
+---
 
 ## 🚀 Features
 
@@ -127,8 +145,13 @@ Powered by `playwright-ms-auth`:
 - ✅ **TypeScript Support**: Full type definitions
 - ✅ **Path Aliases**: Clean imports (@pages, @locators, @utils, @auth)
 - ✅ **Best Practices**: Follows Playwright recommended patterns
+- ✅ **Monorepo Structure**: Rush-based package management
+
+---
 
 ## 📦 Installation
+
+### Using the Published Package
 
 ```bash
 npm install playwright-power-platform-toolkit --save-dev
@@ -140,6 +163,29 @@ npm install playwright-power-platform-toolkit --save-dev
 npm install @playwright/test playwright-ms-auth @axe-core/playwright dotenv --save-dev
 ```
 
+### Developing from Source
+
+```bash
+# Clone the repository
+git clone https://github.com/deepakkamboj/playwright-power-platform.git
+cd playwright-power-platform
+
+# Install Node.js version
+nvm install
+nvm use
+
+# Install Rush
+npm install -g @microsoft/rush
+
+# Install dependencies
+rush install
+
+# Build all packages
+rush build
+```
+
+---
+
 ## 🎯 Quick Start
 
 ### 1. Import Components
@@ -147,6 +193,8 @@ npm install @playwright/test playwright-ms-auth @axe-core/playwright dotenv --sa
 ```typescript
 import {
   PowerAppsPage,
+  CanvasAppPage,
+  ModelDrivenAppPage,
   ApiTestHelper,
   AccessibilityTestHelper,
   ConfigHelper,
@@ -197,118 +245,91 @@ test('Check WCAG compliance', async ({ page }) => {
 });
 ```
 
-## 📚 API Reference
+---
 
-### PowerAppsPage
+## 📚 Documentation
 
-**Navigation:**
-- `navigateToHome()` - Navigate to Maker home
-- `navigateToApps()` - Navigate to Apps page
-- `navigateToSolutions()` - Navigate to Solutions page
+For comprehensive documentation, see:
 
-**Wait Methods:**
-- `waitForHomePageLoad()` - Wait for home page load
-- `waitForAppsPageLoad()` - Wait for Apps page load
-- `waitForSolutionsPageLoad()` - Wait for Solutions page load
+- **[packages/playwright-power-platform-toolkit/README.md](packages/playwright-power-platform-toolkit/README.md)** - Library documentation
+- **[packages/playwright-power-platform-toolkit/docs/](packages/playwright-power-platform-toolkit/docs/)** - Detailed guides
+- **[packages/e2e-tests/README.md](packages/e2e-tests/README.md)** - Example test infrastructure
+- **[CLAUDE.md](CLAUDE.md)** - Complete project overview for AI assistants
+- **[PIPELINE-SETUP.md](PIPELINE-SETUP.md)** - CI/CD pipeline setup guide
 
-**App Management:**
-- `createApp(appType)` - Create new app
-- `findApp(appName)` - Find app by name
-- `deleteApp(appType, appName)` - Delete app
+### Online Documentation
 
-**Utilities:**
-- `dismissTeachingBubble()` - Dismiss teaching bubbles
+Visit the documentation site at: **https://deepakkamboj.github.io/playwright-power-platform-toolkit/** (deployed from `packages/docs/`)
 
-### ApiTestHelper
+---
 
-**HTTP Methods:**
-- `get(endpoint, options?)` - GET request
-- `post(endpoint, data?, options?)` - POST request
-- `patch(endpoint, data?, options?)` - PATCH request
-- `delete(endpoint, options?)` - DELETE request
+## 🧪 Example Test Project
 
-**Validation:**
-- `validateStatusCode(response, code)` - Validate HTTP status
-- `validateResponseTime(response, maxMs)` - Validate response time
-- `validateJsonResponse(response)` - Validate JSON response
+The [`packages/e2e-tests/`](packages/e2e-tests/) directory contains a complete example of how to use this library in your test project. The example includes:
 
-**Dataverse:**
-- `getDataverseRecords(table, options?)` - Query Dataverse
-- `createDataverseRecord(table, data)` - Create record
-- `updateDataverseRecord(table, id, data)` - Update record
-- `deleteDataverseRecord(table, id)` - Delete record
+- **Test fixtures** with auto-injection of library utilities
+- **Global setup/teardown** hooks for test lifecycle management
+- **Environment-based test filtering** (local, dev, test, staging, prod)
+- **Pre-configured test types** (smoke, nightly, API, accessibility, E2E)
+- **Complete playwright.config.ts** with all optimizations
 
-### AccessibilityTestHelper
+```bash
+cd packages/e2e-tests
+npm install
+npm run auth:headful
+npm test
+```
 
-**Scanning:**
-- `scanPage(options?)` - Scan entire page
-- `scanElement(selector, options?)` - Scan specific element
+The example project demonstrates best practices for organizing tests, using fixtures, and structuring a consumer test infrastructure that leverages this library.
 
-**Assertions:**
-- `assertNoViolations(results)` - Assert zero violations
-- `assertNoCriticalViolations(results)` - Allow minor issues
+---
 
-**Keyboard Testing:**
-- `testKeyboardNavigation(elements[])` - Test keyboard access
-- `testTabOrder(selectors[])` - Test tab sequence
+## 🏗️ Monorepo Structure
 
-**ARIA:**
-- `assertAriaLabel(locator, expected)` - Check ARIA label
-- `checkColorContrast(selector)` - Validate contrast
+This project uses Rush for monorepo management:
 
-**Reporting:**
-- `generateReport(results)` - Generate text report
-- `saveReport(results, path)` - Save report to file
+```
+playwright-power-platform/
+├── packages/
+│   ├── playwright-power-platform-toolkit/  # Main library package
+│   │   ├── src/                            # Library source code
+│   │   ├── dist/                           # Compiled output
+│   │   └── docs/                           # Documentation
+│   ├── e2e-tests/                          # Example tests
+│   │   ├── tests/                          # Test files
+│   │   └── scripts/                        # Helper scripts
+│   └── docs/                               # Documentation site
+├── common/                                 # Rush configuration
+├── .github/workflows/                      # CI/CD pipelines
+└── rush.json                               # Rush configuration
+```
 
-### ConfigHelper
+### Rush Commands
 
-**Configuration:**
-- `getInstance()` - Get singleton instance
-- `getPowerAppsBaseUrl()` - Get base URL
-- `getAuthEmail()` - Get auth email
-- `getTenantId()` - Get tenant ID
-- `getBapApiUrl()` - Get BAP API URL
-- `getAuthToken()` - Extract auth token
-- `checkStorageStateExpiration()` - Check token validity
+```bash
+# Install all dependencies
+rush install
 
-### TestLogger
+# Build all packages
+rush build
 
-**Logging:**
-- `info(message)` - Info message (cyan)
-- `success(message)` - Success message (green)
-- `error(message, error?)` - Error message (red)
-- `warning(message)` - Warning message (yellow)
-- `debug(message)` - Debug message (gray)
-- `step(num, message)` - Step message (numbered)
+# Rebuild all packages
+rush rebuild
 
-### ApiRecorder
+# Update dependencies
+rush update
 
-**Recording:**
-- `startRecording()` - Start recording APIs
-- `stopRecording()` - Stop recording
-- `saveToFile(path)` - Save to JSON
-- `getStatistics()` - Get recording stats
+# Lint all packages
+rush lint
 
-**Options:**
-- `urlFilter` - Filter by URL pattern
-- `resourceTypes` - Filter by type (xhr, fetch)
+# Format code
+npm run format
 
-### Utilities
+# Check formatting
+npm run format:check
+```
 
-**CommonUtils:**
-- `TimeOut` - Timeout constants
-- `waitForCondition()` - Wait for condition
-- `scrollToElement()` - Scroll to element
-- `randomAlphaNumeric()` - Generate random string
-- `delay()` - Async delay
-- `retryWithBackoff()` - Retry with exponential backoff
-
-**Colors:**
-- `colors.fgCyan` - Cyan text
-- `colors.fgGreen` - Green text
-- `colors.fgYellow` - Yellow text
-- `colors.fgRed` - Red text
-- `colors.reset` - Reset color
+---
 
 ## 🔐 Authentication
 
@@ -319,11 +340,8 @@ This library uses `playwright-ms-auth` for Microsoft authentication.
 ```env
 MS_AUTH_EMAIL=user@domain.com
 MS_AUTH_CREDENTIAL_TYPE=certificate
-MS_AUTH_CLIENT_ID=your-client-id
-MS_AUTH_CERTIFICATE_PATH=./cert.pem
-MS_AUTH_CERTIFICATE_KEY_PATH=./key.pem
-MS_AUTH_CERTIFICATE_THUMBPRINT=thumbprint
-AZURE_TENANT_ID=tenant-id
+MS_CERTIFICATE_PATH=./cert.pfx
+MS_CERTIFICATE_PASSWORD=YourPassword
 ```
 
 ### Password Authentication
@@ -332,105 +350,98 @@ AZURE_TENANT_ID=tenant-id
 MS_AUTH_EMAIL=user@domain.com
 MS_AUTH_CREDENTIAL_TYPE=password
 MS_USER_PASSWORD=password
-AZURE_TENANT_ID=tenant-id
 ```
 
-## 📖 Documentation
+See [PIPELINE-SETUP.md](PIPELINE-SETUP.md) for complete authentication setup instructions.
 
-For comprehensive documentation, see:
+---
 
-- **[docs/QUICKSTART.md](docs/QUICKSTART.md)** - Getting started guide
-- **[docs/QUICK-REFERENCE.md](docs/QUICK-REFERENCE.md)** - Code snippets & cheat sheet
-- **[docs/API-ACCESSIBILITY-GUIDE.md](docs/API-ACCESSIBILITY-GUIDE.md)** - Advanced features
-- **[docs/FIXTURES-GUIDE.md](docs/FIXTURES-GUIDE.md)** - Test fixtures guide
-- **[CLAUDE.md](CLAUDE.md)** - Complete project overview for AI assistants
+## 🚀 CI/CD Pipelines
 
-## 🧪 Example Test Project
+This repository includes GitHub Actions workflows:
 
-See the `e2e-tests/` directory for a complete example of how to use this library in your test project. The example includes:
+- **[ci.yml](.github/workflows/ci.yml)** - Continuous Integration (runs on every push)
+- **[pr.yml](.github/workflows/pr.yml)** - Pull Request validation
+- **[playwright-tests.yml](.github/workflows/playwright-tests.yml)** - E2E tests (nightly/manual)
+- **[publish-npm.yml](.github/workflows/publish-npm.yml)** - NPM publishing
+- **[deploy-docs.yml](.github/workflows/deploy-docs.yml)** - Documentation deployment
 
-- **Test fixtures** with auto-injection of library utilities
-- **Global setup/teardown** hooks for test lifecycle management
-- **Environment-based test filtering** (local, dev, test, staging, prod)
-- **Pre-configured test types** (smoke, nightly, API, accessibility, E2E)
-- **Complete playwright.config.ts** with all optimizations
+See [.github/workflows/README.md](.github/workflows/README.md) for detailed pipeline documentation.
 
-```bash
-cd e2e-tests
-npm install
-npm run auth:headful
-npm test
-```
-
-The example project demonstrates best practices for organizing tests, using fixtures, and structuring a consumer test infrastructure that leverages this library.
-
-## 🏗️ Building the Library
-
-```bash
-# Build TypeScript to lib/
-npm run build
-
-# Build and watch
-npm run build:watch
-
-# Clean build artifacts
-npm run clean
-```
+---
 
 ## 🤝 Contributing
 
 ### Development Workflow
 
 1. **Clone the repository**
+
    ```bash
-   git clone https://github.com/deepakkamboj/playwright-power-platform-toolkit.git
-   cd playwright-power-platform-toolkit
+   git clone https://github.com/deepakkamboj/playwright-power-platform.git
+   cd playwright-power-platform
    ```
 
-2. **Install library dependencies**
+2. **Install dependencies**
+
    ```bash
-   npm install
+   nvm use
+   npm install -g @microsoft/rush
+   rush install
    ```
 
 3. **Make changes to library source**
-   - Edit files in `src/` directory
+   - Edit files in `packages/playwright-power-platform-toolkit/src/` directory
    - Update exports in `src/index.ts` if adding new features
 
 4. **Build the library**
+
    ```bash
-   npm run build
+   rush build
    ```
-   This compiles TypeScript to JavaScript in the `lib/` directory.
 
 5. **Test your changes**
+
    ```bash
-   cd e2e-tests
-   npm install          # Installs the library from parent directory
-   npm run auth:headful # Authenticate (first time only)
-   npm test             # Run all tests
+   cd packages/e2e-tests
+   npm run auth:headful  # Authenticate (first time only)
+   npm test              # Run all tests
    ```
 
-6. **Verify and document**
-   - Check `src/index.ts` exports are correct
-   - Update documentation if adding new features
-   - Run `npm run format` to format code
+6. **Format and lint**
 
-### Important Notes
+   ```bash
+   npm run format        # Format all code
+   rush lint             # Lint all packages
+   ```
 
-- **Library code**: Located in `src/`, compiled to `lib/`
-- **Test code**: Located in `e2e-tests/`
-- **Build command**: Only run `npm run build` in the root directory
-- **e2e-tests**: Consumes the built library, doesn't need its own build
+7. **Submit pull request**
+   - Create a feature branch
+   - Make your changes
+   - Push and create a PR
+
+### Project Structure
+
+- **Library code**: `packages/playwright-power-platform-toolkit/src/`
+- **Test code**: `packages/e2e-tests/tests/`
+- **Documentation**: `packages/docs/` and `packages/playwright-power-platform-toolkit/docs/`
+- **Build output**: `packages/playwright-power-platform-toolkit/dist/`
+
+---
 
 ## 📝 License
 
 MIT
+
+---
 
 ## 🔗 Related Projects
 
 - [Playwright](https://playwright.dev/) - Browser automation framework
 - [playwright-ms-auth](https://github.com/deepakkamboj/playwright-ms-auth) - Microsoft authentication
 - [playwright-ai-reporter](https://github.com/deepakkamboj/playwright-ai-reporter) - AI-powered reporting
+- [Rush](https://rushjs.io/) - Monorepo management tool
+
+---
 
 ## 💡 Tips
 
@@ -442,14 +453,33 @@ MIT
 6. **Check accessibility**: Run AccessibilityTestHelper early and often
 7. **Record APIs**: Use ApiRecorder to understand application behavior
 8. **Use colored logging**: TestLogger helps debug issues faster
+9. **Follow the example**: See `packages/e2e-tests/` for best practices
+10. **Use Rush commands**: Leverage Rush for efficient monorepo management
+
+---
 
 ## 🐛 Troubleshooting
 
+### Build Issues
+
+```bash
+# Clean and rebuild
+rush rebuild
+
+# Update dependencies
+rush update
+
+# Check Rush version
+rush --version
+```
+
 ### Import Issues
 
-Make sure the library is properly installed:
+Make sure the library is properly built:
+
 ```bash
-npm install playwright-power-platform-toolkit
+cd packages/playwright-power-platform-toolkit
+npm run build
 ```
 
 ### Authentication Fails
@@ -457,16 +487,56 @@ npm install playwright-power-platform-toolkit
 - Verify credentials in `.env`
 - Check certificate/password is correct
 - Ensure MFA is handled if required
+- See [PIPELINE-SETUP.md](PIPELINE-SETUP.md) for detailed setup
 
 ### TypeScript Errors
 
 - Ensure `@playwright/test` peer dependency is installed
 - Check TypeScript version compatibility
-- Verify path aliases in your `tsconfig.json`
+- Run `rush build` to ensure all packages are built
+
+---
 
 ## 📞 Support
 
 For issues and questions:
-- Open an issue on GitHub
-- Check the documentation
-- Review example tests in `e2e-tests/`
+
+- Open an issue on [GitHub](https://github.com/deepakkamboj/playwright-power-platform-toolkit/issues)
+- Check the [documentation](packages/playwright-power-platform-toolkit/docs/)
+- Review [example tests](packages/e2e-tests/)
+- Read [CLAUDE.md](CLAUDE.md) for complete project overview
+
+---
+
+## 📊 Project Stats
+
+- **Packages**: 3 (toolkit, e2e-tests, docs)
+- **Build System**: Rush
+- **CI/CD**: GitHub Actions
+- **Test Runner**: Playwright
+- **Language**: TypeScript
+- **Node Version**: 20.16.0
+
+---
+
+## 🎯 Roadmap
+
+- [ ] Add support for Power Automate testing
+- [ ] Expand Dataverse API utilities
+- [ ] Add visual regression testing
+- [ ] Create VSCode extension
+- [ ] Add performance testing utilities
+- [ ] Expand documentation with more examples
+
+---
+
+## 📧 Contact
+
+**Deepak Kamboj**
+
+- Email: deepakkamboj@gmail.com
+- GitHub: [@deepakkamboj](https://github.com/deepakkamboj)
+
+---
+
+**⭐ Star this repository if you find it helpful!**

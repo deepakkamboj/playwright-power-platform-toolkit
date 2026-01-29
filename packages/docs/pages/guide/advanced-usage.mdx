@@ -1,0 +1,469 @@
+# Advanced Usage
+
+This guide covers advanced patterns, performance optimization, and best practices for testing Power Platform applications.
+
+> **Note:** This guide assumes you're familiar with basic testing patterns. Review the [Getting Started](/guide/getting-started) guide if you're new to the toolkit.
+
+## Custom Page Objects
+
+Extend the base page objects for app-specific functionality:
+
+```typescript
+import { CanvasAppPage } from 'playwright-power-platform-toolkit';
+import { Page } from '@playwright/test';
+
+export class MyCustomAppPage extends CanvasAppPage {
+  constructor(page: Page) {
+    super(page);
+  }
+
+  // Custom methods for your app
+  async submitOrder(orderData: OrderData) {
+    await this.fillTextInput('TextInputCustomerName', orderData.customerName);
+    await this.fillTextInput('TextInputQuantity', orderData.quantity.toString());
+    await this.clickControl('ButtonSubmitOrder');
+    await this.waitForSuccessMessage();
+  }
+
+  async waitForSuccessMessage() {
+    const successMsg = await this.getControlText('LabelSuccess');
+    return successMsg.includes('Success');
+  }
+}
+
+// Usage
+test('submit order with custom page object', async ({ page }) => {
+  const myApp = new MyCustomAppPage(page);
+  await myApp.navigateTo('https://apps.powerapps.com/play/...');
+  await myApp.submitOrder({
+    customerName: 'John Doe',
+    quantity: 5,
+  });
+});
+```
+
+## Test Fixtures
+
+> **Tip:** Test fixtures reduce boilerplate code and make tests more maintainable by encapsulating common setup logic.
+
+Create reusable test fixtures for common setup:
+
+```typescript
+import { test as base, Page } from '@playwright/test';
+import { AppProvider, CanvasAppPage } from 'playwright-power-platform-toolkit';
+
+type PowerAppFixtures = {
+  canvasApp: CanvasAppPage;
+  appProvider: AppProvider;
+};
+
+export const test = base.extend<PowerAppFixtures>({
+  appProvider: async ({ page }, use) => {
+    const provider = new AppProvider(page);
+    await use(provider);
+  },
+
+  canvasApp: async ({ appProvider }, use) => {
+    const app = await appProvider.launchApp({
+      appUrl: process.env.CANVAS_APP_URL!,
+      appType: 'canvas',
+    });
+    await app.waitForAppToLoad();
+    await use(app);
+  },
+});
+
+// Use in tests
+test('my test', async ({ canvasApp }) => {
+  // App is already launched and ready
+  await canvasApp.clickControl('ButtonStart');
+});
+```
+
+## Parameterized Tests
+
+Run the same test with different data:
+
+```typescript
+const testData = [
+  { name: 'Test 1', input: 'value1', expected: 'result1' },
+  { name: 'Test 2', input: 'value2', expected: 'result2' },
+  { name: 'Test 3', input: 'value3', expected: 'result3' },
+];
+
+for (const data of testData) {
+  test(data.name, async ({ page }) => {
+    const appProvider = new AppProvider(page);
+    const app = await appProvider.launchApp({
+      appUrl: process.env.CANVAS_APP_URL!,
+      appType: 'canvas',
+    });
+
+    await app.fillTextInput('TextInputData', data.input);
+    await app.clickControl('ButtonSubmit');
+
+    const result = await app.getControlText('LabelResult');
+    expect(result).toBe(data.expected);
+  });
+}
+```
+
+## Performance Optimization
+
+> **Important:** Performance optimization can significantly reduce test execution time, especially for large test suites.
+
+### Parallel Execution
+
+Run tests in parallel for faster execution:
+
+```typescript
+// playwright.config.ts
+export default defineConfig({
+  workers: 4, // Run 4 tests in parallel
+  fullyParallel: true,
+});
+```
+
+### Selective Test Execution
+
+Use tags to run specific tests:
+
+```typescript
+test('critical path @smoke', async ({ canvasApp }) => {
+  // Critical smoke test
+});
+
+test('detailed validation @regression', async ({ canvasApp }) => {
+  // Detailed regression test
+});
+
+// Run only smoke tests
+// npx playwright test --grep @smoke
+```
+
+### Reuse Browser Context
+
+```typescript
+import { chromium, Browser, BrowserContext } from '@playwright/test';
+
+let browser: Browser;
+let context: BrowserContext;
+
+test.beforeAll(async () => {
+  browser = await chromium.launch();
+  context = await browser.newContext({
+    storageState: 'playwright/.auth/user.json',
+  });
+});
+
+test.afterAll(async () => {
+  await context.close();
+  await browser.close();
+});
+
+test('test 1', async () => {
+  const page = await context.newPage();
+  // Test code...
+  await page.close();
+});
+
+test('test 2', async () => {
+  const page = await context.newPage();
+  // Test code...
+  await page.close();
+});
+```
+
+## Visual Testing
+
+> **Tip:** Visual regression testing helps catch UI changes that functional tests might miss.
+
+Capture and compare screenshots:
+
+```typescript
+test('visual regression test', async ({ page, canvasApp }) => {
+  await canvasApp.navigateToScreen('HomeScreen');
+
+  // Take screenshot
+  await expect(page).toHaveScreenshot('home-screen.png', {
+    maxDiffPixels: 100, // Allow small differences
+  });
+});
+```
+
+## Accessibility Testing
+
+> **Best Practice:** Accessibility testing ensures your applications are usable by everyone, including people with disabilities.
+
+Test for accessibility issues:
+
+```typescript
+import { test } from '@playwright/test';
+import { injectAxe, checkA11y } from 'axe-playwright';
+
+test('accessibility test', async ({ page, canvasApp }) => {
+  // Inject Axe
+  await injectAxe(page);
+
+  // Run accessibility checks
+  await checkA11y(page, null, {
+    detailedReport: true,
+    detailedReportOptions: {
+      html: true,
+    },
+  });
+});
+```
+
+## API Integration
+
+> **Advanced Pattern:** Combining UI and API testing provides comprehensive test coverage and faster execution for data setup/teardown.
+
+Test API endpoints alongside UI:
+
+```typescript
+import { test, request } from '@playwright/test';
+
+test('combined UI and API test', async ({ page }) => {
+  // Create API context
+  const apiContext = await request.newContext({
+    baseURL: 'https://yourorg.api.crm.dynamics.com',
+    extraHTTPHeaders: {
+      Authorization: `Bearer ${process.env.API_TOKEN}`,
+    },
+  });
+
+  // Create record via API
+  const response = await apiContext.post('/api/data/v9.2/accounts', {
+    data: {
+      name: 'Test Account',
+      telephone1: '555-0100',
+    },
+  });
+
+  const account = await response.json();
+
+  // Verify in UI
+  const appProvider = new AppProvider(page);
+  const modelApp = await appProvider.launchApp({
+    appUrl: process.env.MODEL_DRIVEN_APP_URL!,
+    appType: 'model-driven',
+  });
+
+  await modelApp.navigateToEntity('Accounts');
+  await modelApp.searchInGrid(account.accountid);
+
+  const accountName = await modelApp.getGridCellValue(0, 'name');
+  expect(accountName).toBe('Test Account');
+
+  // Cleanup via API
+  await apiContext.delete(`/api/data/v9.2/accounts(${account.accountid})`);
+});
+```
+
+## Error Handling
+
+Graceful error handling and recovery:
+
+```typescript
+test('handle errors gracefully', async ({ page, canvasApp }) => {
+  try {
+    await canvasApp.clickControl('ButtonSubmit');
+
+    // Check for error dialog
+    const hasError = await page
+      .locator('[data-automation-id="error-dialog"]')
+      .isVisible()
+      .catch(() => false);
+
+    if (hasError) {
+      // Handle error
+      const errorMessage = await page.locator('[data-automation-id="error-message"]').textContent();
+      console.log('Error occurred:', errorMessage);
+
+      // Close error dialog
+      await page.locator('[data-automation-id="error-dialog-close"]').click();
+
+      // Retry operation
+      await canvasApp.clickControl('ButtonSubmit');
+    }
+  } catch (error) {
+    // Take screenshot for debugging
+    await page.screenshot({ path: 'error-state.png', fullPage: true });
+
+    // Log page content
+    const html = await page.content();
+    console.log('Page HTML:', html);
+
+    throw error;
+  }
+});
+```
+
+## Test Data Management
+
+### Database Seeding
+
+```typescript
+import { test } from '@playwright/test';
+import { seedTestData, cleanupTestData } from './helpers/data-seeder';
+
+test.beforeEach(async () => {
+  await seedTestData({
+    accounts: 5,
+    contacts: 10,
+  });
+});
+
+test.afterEach(async () => {
+  await cleanupTestData();
+});
+
+test('test with seeded data', async ({ modelApp }) => {
+  // Test with pre-seeded data
+});
+```
+
+### Test Data Isolation
+
+```typescript
+test('isolated test data', async ({ modelApp }) => {
+  // Use unique identifiers
+  const testId = `test-${Date.now()}`;
+  const accountName = `Account-${testId}`;
+
+  await modelApp.createAccount({ name: accountName });
+
+  // Test with isolated data
+  await modelApp.searchInGrid(accountName);
+
+  // Cleanup
+  await modelApp.deleteRecordByName(accountName);
+});
+```
+
+## Retry Logic
+
+Handle flaky tests with custom retry logic:
+
+```typescript
+async function retryOperation<T>(
+  operation: () => Promise<T>,
+  maxRetries = 3,
+  delayMs = 1000
+): Promise<T> {
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      return await operation();
+    } catch (error) {
+      if (i === maxRetries - 1) throw error;
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+    }
+  }
+  throw new Error('Max retries exceeded');
+}
+
+test('test with retry', async ({ canvasApp }) => {
+  await retryOperation(async () => {
+    await canvasApp.clickControl('ButtonSubmit');
+    const success = await canvasApp.getControlText('LabelSuccess');
+    if (!success.includes('Success')) {
+      throw new Error('Operation not successful');
+    }
+  });
+});
+```
+
+## Debugging
+
+### Debug Mode
+
+Run tests in debug mode:
+
+```bash
+# Run with headed browser and slow motion
+npx playwright test --headed --debug
+
+# Run specific test with UI
+npx playwright test my-test.spec.ts --ui
+```
+
+### Playwright Inspector
+
+```typescript
+test('debug test', async ({ page }) => {
+  // Add breakpoint
+  await page.pause();
+
+  // Test continues after manual resume
+});
+```
+
+### Trace Viewer
+
+```typescript
+// playwright.config.ts
+export default defineConfig({
+  use: {
+    trace: 'on-first-retry', // Record trace on first retry
+  },
+});
+
+// View trace
+// npx playwright show-trace trace.zip
+```
+
+## CI/CD Best Practices
+
+> **Scalability:** These patterns help scale your test suite for enterprise-level testing.
+
+### Sharding
+
+Split tests across multiple machines:
+
+```bash
+# Machine 1
+npx playwright test --shard=1/3
+
+# Machine 2
+npx playwright test --shard=2/3
+
+# Machine 3
+npx playwright test --shard=3/3
+```
+
+### Docker Integration
+
+```dockerfile
+FROM mcr.microsoft.com/playwright:v1.57.0-jammy
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci
+
+COPY . .
+
+CMD ["npx", "playwright", "test"]
+```
+
+### Test Reporting
+
+```typescript
+// playwright.config.ts
+export default defineConfig({
+  reporter: [
+    ['html', { outputFolder: 'playwright-report' }],
+    ['json', { outputFile: 'test-results.json' }],
+    ['junit', { outputFile: 'test-results.xml' }],
+  ],
+});
+```
+
+## Next Steps
+
+- [API Reference](/reference) - Complete API documentation
+- [Architecture Overview](/architecture/overview) - Understand the toolkit's design
+- [Quick Reference](/architecture/quick-reference) - Quick reference card for common tasks
+- [Example Tests](https://github.com/deepakkamboj/playwright-power-platform-toolkit/tree/main/packages/e2e-tests/tests) - Real-world test examples
+- [Playwright Documentation](https://playwright.dev/) - Learn more about Playwright

@@ -1,32 +1,43 @@
 # Dependencies
-node_modules
+node_modules/
 package-lock.json
+pnpm-lock.yaml
+yarn.lock
 
-# Build output
-lib
-dist
-build
+# Build outputs
+dist/
+build/
+out/
 *.tsbuildinfo
 
-# Test results
-test-results
-playwright-report
-pa-test-results
-
 # Coverage
-coverage
-
-# Environment
-.env
-.env.local
-
-# Authentication
-.playwright-ms-auth
+coverage/
 
 # Logs
 *.log
 npm-debug.log*
 
-# OS
+# Test results
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+
+# Common config
+common/config/rush/
+
+# Temp
+.temp/
+temp/
+
+# OS files
 .DS_Store
 Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Misc
+*.min.js
+*.min.css

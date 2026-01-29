@@ -1,0 +1,381 @@
+# Testing Model-Driven Apps
+
+This guide covers testing Model-Driven Apps (Dynamics 365), including entity navigation, form interactions, and grid operations.
+
+> **Note:** Model-Driven Apps are data-driven applications built on Dataverse (formerly Common Data Service). They follow a standardized structure making them easier to test consistently.
+
+## Model-Driven App Architecture
+
+Model-Driven Apps are built on the Common Data Service (Dataverse) and follow a structured approach with entities, forms, views, and business logic.
+
+## Basic Interactions
+
+### Launching a Model-Driven App
+
+```typescript
+import { test } from '@playwright/test';
+import { AppProvider } from 'playwright-power-platform-toolkit';
+
+test('model-driven app test', async ({ page }) => {
+  const appProvider = new AppProvider(page);
+  const modelApp = await appProvider.launchApp({
+    appUrl: 'https://yourorg.crm.dynamics.com/main.aspx?appid=...',
+    appType: 'model-driven'
+  });
+
+  await modelApp.waitForAppToLoad();
+});
+```
+
+## Navigation
+
+### Navigating to Entities
+
+```typescript
+// Navigate to an entity (table)
+await modelApp.navigateToEntity('Accounts');
+await modelApp.navigateToEntity('Contacts');
+await modelApp.navigateToEntity('Opportunities');
+```
+
+### Using the Site Map
+
+```typescript
+// Click a navigation item in the site map
+await modelApp.clickNavItem('Sales');
+await modelApp.clickNavItem('Accounts');
+```
+
+## Working with Forms
+
+> **Tip:** Model-Driven Apps use form fields identified by their logical (schema) names, not display labels.
+
+### Creating Records
+
+```typescript
+test('create new account', async ({ page }) => {
+  const appProvider = new AppProvider(page);
+  const modelApp = await appProvider.launchApp({
+    appUrl: process.env.MODEL_DRIVEN_APP_URL!,
+    appType: 'model-driven'
+  });
+
+  // Navigate to Accounts
+  await modelApp.navigateToEntity('Accounts');
+
+  // Click New button
+  await modelApp.clickNewButton();
+
+  // Fill form fields
+  await modelApp.fillFormField('name', 'Contoso Ltd');
+  await modelApp.fillFormField('telephone1', '555-0100');
+  await modelApp.fillFormField('emailaddress1', 'info@contoso.com');
+
+  // Save the record
+  await modelApp.saveRecord();
+
+  // Verify
+  const accountName = await modelApp.getFieldValue('name');
+  expect(accountName).toBe('Contoso Ltd');
+});
+```
+
+### Editing Records
+
+```typescript
+test('edit existing record', async ({ page }) => {
+  const appProvider = new AppProvider(page);
+  const modelApp = await appProvider.launchApp({
+    appUrl: process.env.MODEL_DRIVEN_APP_URL!,
+    appType: 'model-driven'
+  });
+
+  // Open a record
+  await modelApp.navigateToEntity('Accounts');
+  await modelApp.openRecordByName('Contoso Ltd');
+
+  // Edit fields
+  await modelApp.fillFormField('telephone1', '555-0200');
+  await modelApp.fillFormField('websiteurl', 'https://contoso.com');
+
+  // Save changes
+  await modelApp.saveRecord();
+
+  // Verify changes
+  const phone = await modelApp.getFieldValue('telephone1');
+  expect(phone).toBe('555-0200');
+});
+```
+
+### Reading Field Values
+
+```typescript
+// Get field value
+const accountName = await modelApp.getFieldValue('name');
+const email = await modelApp.getFieldValue('emailaddress1');
+
+// Get lookup field
+const primaryContact = await modelApp.getLookupFieldValue('primarycontactid');
+
+// Get option set (dropdown) value
+const accountType = await modelApp.getOptionSetValue('accountcategorycode');
+```
+
+### Setting Field Values
+
+```typescript
+// Set text field
+await modelApp.fillFormField('name', 'New Name');
+
+// Set lookup field
+await modelApp.setLookupField('primarycontactid', 'John Doe');
+
+// Set option set
+await modelApp.setOptionSet('industrycode', 'Technology');
+
+// Set date field
+await modelApp.setDateField('createdon', '2024-01-15');
+```
+
+## Working with Grids (Views)
+
+### Searching and Filtering
+
+```typescript
+// Search in grid
+await modelApp.searchInGrid('Contoso');
+
+// Apply a view
+await modelApp.selectView('Active Accounts');
+
+// Filter grid
+await modelApp.filterGrid('City', 'Seattle');
+```
+
+### Selecting Records
+
+```typescript
+// Select a record in grid
+await modelApp.selectRecordInGrid(0); // Select first record
+
+// Select multiple records
+await modelApp.selectRecordInGrid(0);
+await modelApp.selectRecordInGrid(1);
+await modelApp.selectRecordInGrid(2);
+
+// Open a record
+await modelApp.openRecordInGrid(0);
+```
+
+## Business Process Flows
+
+```typescript
+// Move to next stage in business process flow
+await modelApp.moveToNextStage();
+
+// Set field in business process flow
+await modelApp.setBPFField('estimatedvalue', '100000');
+
+// Complete a stage
+await modelApp.completeStage();
+```
+
+## Subgrids and Related Records
+
+```typescript
+// Work with subgrid
+await modelApp.clickSubgridRow('Contacts', 0);
+
+// Add record to subgrid
+await modelApp.addToSubgrid('Contacts');
+await modelApp.fillFormField('firstname', 'John');
+await modelApp.fillFormField('lastname', 'Doe');
+await modelApp.saveRecord();
+```
+
+## Commands and Ribbons
+
+```typescript
+// Click ribbon button
+await modelApp.clickCommand('Deactivate');
+await modelApp.clickCommand('Email a Link');
+await modelApp.clickCommand('Assign');
+
+// Click more commands
+await modelApp.clickMoreCommands();
+await modelApp.clickCommand('Share');
+```
+
+## Advanced Scenarios
+
+### Testing Business Logic
+
+```typescript
+test('test calculated field', async ({ page }) => {
+  const appProvider = new AppProvider(page);
+  const modelApp = await appProvider.launchApp({
+    appUrl: process.env.MODEL_DRIVEN_APP_URL!,
+    appType: 'model-driven'
+  });
+
+  await modelApp.navigateToEntity('Opportunities');
+  await modelApp.clickNewButton();
+
+  // Fill fields that trigger calculation
+  await modelApp.fillFormField('name', 'Big Deal');
+  await modelApp.fillFormField('estimatedvalue', '1000000');
+  await modelApp.setOptionSet('closeprobability', '75');
+
+  // Wait for calculated field to update
+  await page.waitForTimeout(2000);
+
+  // Verify calculated field
+  const weightedRevenue = await modelApp.getFieldValue('weightedrevenue');
+  expect(weightedRevenue).toBe('750000');
+});
+```
+
+### Testing Validations
+
+```typescript
+test('test required field validation', async ({ page }) => {
+  const appProvider = new AppProvider(page);
+  const modelApp = await appProvider.launchApp({
+    appUrl: process.env.MODEL_DRIVEN_APP_URL!,
+    appType: 'model-driven'
+  });
+
+  await modelApp.navigateToEntity('Accounts');
+  await modelApp.clickNewButton();
+
+  // Try to save without required field
+  await modelApp.saveRecord();
+
+  // Verify error message
+  const hasError = await modelApp.hasFieldError('name');
+  expect(hasError).toBe(true);
+
+  const errorMessage = await modelApp.getFieldErrorMessage('name');
+  expect(errorMessage).toContain('required');
+});
+```
+
+### Testing Relationships
+
+```typescript
+test('test related records', async ({ page }) => {
+  const appProvider = new AppProvider(page);
+  const modelApp = await appProvider.launchApp({
+    appUrl: process.env.MODEL_DRIVEN_APP_URL!,
+    appType: 'model-driven'
+  });
+
+  // Create parent record
+  await modelApp.navigateToEntity('Accounts');
+  await modelApp.clickNewButton();
+  await modelApp.fillFormField('name', 'Parent Account');
+  await modelApp.saveRecord();
+
+  // Create related contact
+  await modelApp.clickTab('Contacts');
+  await modelApp.addToSubgrid('Contacts');
+  await modelApp.fillFormField('firstname', 'John');
+  await modelApp.fillFormField('lastname', 'Doe');
+  await modelApp.saveRecord();
+
+  // Verify relationship
+  await modelApp.navigateBack();
+  const contactCount = await modelApp.getSubgridCount('Contacts');
+  expect(contactCount).toBe(1);
+});
+```
+
+## Custom Locators
+
+For advanced scenarios, use custom locators:
+
+```typescript
+import {
+  getModelDrivenDataAutomationId,
+  getModelDrivenFormField,
+  getModelDrivenTablePage
+} from 'playwright-power-platform-toolkit';
+
+// Get a form field
+const nameField = page.locator(getModelDrivenFormField('name'));
+
+// Get a specific table page
+const accountsPage = page.locator(getModelDrivenTablePage('account'));
+
+// Get element by automation ID
+const saveButton = page.locator(getModelDrivenDataAutomationId('save-button'));
+```
+
+## Best Practices
+
+> **Important:** Following these best practices ensures your tests are reliable and maintainable.
+
+### 1. Wait for Save Operations
+
+Always wait for save operations to complete:
+
+```typescript
+await modelApp.saveRecord();
+await page.waitForLoadState('networkidle');
+```
+
+### 2. Handle Duplicate Detection
+
+```typescript
+// Handle duplicate detection dialog
+await modelApp.saveRecord();
+
+if (await modelApp.hasDuplicateWarning()) {
+  await modelApp.ignoreDuplicateAndSave();
+}
+```
+
+### 3. Use Proper Selectors
+
+> **Warning:** Always use logical field names (schema names) rather than display names. Display names can change based on language or customization.
+
+```typescript
+// Good - uses logical name
+await modelApp.fillFormField('name', 'Contoso');
+
+// Avoid - uses display name (not reliable)
+await modelApp.fillFormField('Account Name', 'Contoso');
+```
+
+### 4. Clean Up Test Data
+
+```typescript
+test.afterEach(async ({ page }) => {
+  // Delete test records
+  await modelApp.deleteRecord();
+});
+```
+
+## Debugging Tips
+
+### Inspecting the DOM
+
+Use browser DevTools to find the correct selectors for Model-Driven App elements.
+
+### Logging
+
+```typescript
+// Log current record ID
+const recordId = await page.url().match(/id=([^&]+)/)?.[1];
+console.log('Record ID:', recordId);
+
+// Log field values
+const values = await modelApp.getAllFieldValues();
+console.log('Form values:', values);
+```
+
+## Next Steps
+
+- [Authentication](/guide/authentication) - Set up authentication for your tests
+- [Advanced Usage](/guide/advanced-usage) - Explore advanced patterns and optimization
+- [API Reference](/reference) - Complete API documentation

@@ -1,0 +1,25 @@
+# CODEOWNERS file for playwright-power-platform
+# This file defines code ownership for automatic review requests
+
+# Default owner for everything in the repo
+* @deepakkamboj
+
+# Core library package
+/packages/playwright-power-platform-toolkit/ @deepakkamboj
+
+# Documentation
+/packages/docs/ @deepakkamboj
+/README.md @deepakkamboj
+/CLAUDE.md @deepakkamboj
+/PIPELINE-SETUP.md @deepakkamboj
+/PUBLISHING.md @deepakkamboj
+
+# GitHub workflows and CI/CD
+/.github/ @deepakkamboj
+
+# Rush configuration
+/common/config/ @deepakkamboj
+/rush.json @deepakkamboj
+
+# Example tests (optional - can add specific reviewers if needed)
+/packages/e2e-tests/ @deepakkamboj

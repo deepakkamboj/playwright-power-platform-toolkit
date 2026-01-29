@@ -1,0 +1,58 @@
+{
+  "name": "playwright-power-platform-toolkit",
+  "version": "0.0.4",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Toolkit for automating and testing Power Platform applications with Playwright",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "author": "Deepak Kamboj <deepakkamboj@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deepakkamboj/playwright-power-platform.git",
+    "directory": "packages/playwright-power-platform-toolkit"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "clean": "rimraf dist",
+    "docs": "typedoc",
+    "docs:watch": "typedoc --watch",
+    "docs:serve": "typedoc --watch --preserveWatchOutput"
+  },
+  "keywords": [
+    "playwright",
+    "power-platform",
+    "power-apps",
+    "dynamics-365",
+    "testing",
+    "automation"
+  ],
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^25.0.3",
+    "dotenv": "^16.4.7",
+    "playwright-core": "^1.57.0",
+    "prettier": "^3.7.4",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.16",
+    "tsx": "^4.21.0",
+    "typedoc": "^0.28.0",
+    "typedoc-plugin-markdown": "^4.9.0",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "@playwright/test": "^1.57.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "playwright-ms-auth": "^0.0.14"
+  }
+}
