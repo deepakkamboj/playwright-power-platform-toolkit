@@ -53,7 +53,7 @@ jobs:
       MS_AUTH_CREDENTIAL_TYPE: certificate
 
       # Power Apps URLs
-      POWER_APPS_BASE_URL: https://make.powerapps.com
+      POWER_APPS_BASE_URL: https://make.test.powerapps.com
       BAP_API_URL: https://api.bap.microsoft.com
 
       # Test app IDs (optional)
