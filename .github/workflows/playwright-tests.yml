@@ -135,17 +135,23 @@ jobs:
           MS_AUTH_CERTIFICATE_PASSWORD: ${{ env.MS_AUTH_CERTIFICATE_PASSWORD }}
           POWER_APPS_BASE_URL: ${{ env.POWER_APPS_BASE_URL }}
           BAP_API_URL: ${{ env.BAP_API_URL }}
+          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          AUTH_ENDPOINT: https://login.microsoftonline.com
         continue-on-error: false
 
       - name: Verify authentication
         run: |
           cd packages/e2e-tests
-          if [ -f ~/.playwright-ms-auth/state-*.json ]; then
+          # Check both home directory and local directory for auth state
+          if [ -f ~/.playwright-ms-auth/state-*.json ] || [ -f .playwright-ms-auth/state-*.json ]; then
             echo "✅ Authentication successful - storage state file created"
-            ls -lh ~/.playwright-ms-auth/state-*.json
+            ls -lh ~/.playwright-ms-auth/state-*.json 2>/dev/null || ls -lh .playwright-ms-auth/state-*.json
           else
             echo "❌ Authentication failed - no storage state file found"
-            ls -la ~/.playwright-ms-auth/ || echo "Directory does not exist"
+            echo "Checking home directory:"
+            ls -la ~/.playwright-ms-auth/ 2>/dev/null || echo "~/.playwright-ms-auth/ does not exist"
+            echo "Checking local directory:"
+            ls -la .playwright-ms-auth/ 2>/dev/null || echo ".playwright-ms-auth/ does not exist"
             exit 1
           fi
 
@@ -223,6 +229,7 @@ jobs:
         run: |
           rm -f ~/.auth/certificate.pfx
           rm -f ~/.playwright-ms-auth/state-*.json
+          rm -f packages/e2e-tests/.playwright-ms-auth/state-*.json
           echo "✅ Sensitive files cleaned up"
 
   merge-reports:

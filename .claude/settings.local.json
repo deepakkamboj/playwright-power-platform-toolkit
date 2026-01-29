@@ -34,7 +34,8 @@
       "Bash(if [ -d \"cert\" ])",
       "Bash(then ls -la cert/)",
       "Bash(else echo \"cert folder not found in current directory\")",
-      "Bash(fi)"
+      "Bash(fi)",
+      "Bash(npm run auth:*)"
     ]
   }
 }
