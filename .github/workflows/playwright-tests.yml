@@ -130,6 +130,7 @@ jobs:
         env:
           MS_AUTH_EMAIL: ${{ secrets.MS_AUTH_EMAIL }}
           MS_AUTH_CREDENTIAL_TYPE: certificate
+          MS_AUTH_CREDENTIAL_PROVIDER: local-file
           MS_AUTH_LOCAL_FILE_PATH: ${{ env.MS_AUTH_LOCAL_FILE_PATH }}
           MS_AUTH_CERTIFICATE_PASSWORD: ${{ env.MS_AUTH_CERTIFICATE_PASSWORD }}
           POWER_APPS_BASE_URL: ${{ env.POWER_APPS_BASE_URL }}
