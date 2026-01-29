@@ -1,0 +1,425 @@
+# Authentication
+
+This guide covers authentication strategies for testing Power Platform applications with Playwright.
+
+> **Important:** Proper authentication setup is critical for automated testing. This guide covers multiple authentication strategies for different scenarios.
+
+## Overview
+
+Power Platform applications use Microsoft 365 authentication. This toolkit provides helpers for authenticating with Microsoft accounts.
+
+## Authentication Helper
+
+The toolkit uses `playwright-ms-auth` for Microsoft authentication.
+
+```typescript
+import { MsAuthHelper } from 'playwright-power-platform-toolkit';
+```
+
+## Basic Authentication Setup
+
+### Using Environment Variables
+
+> **Warning:** Never commit credentials to source control. Always use environment variables or secrets management.
+
+The most common approach is to use environment variables for credentials.
+
+Create a `.env` file:
+
+```env
+MS_USERNAME=your.email@domain.com
+MS_PASSWORD=your-password
+MS_TENANT_ID=your-tenant-id
+```
+
+> **Security:** Add `.env` to your `.gitignore` file to prevent accidental commits.
+
+### Authenticating Before Tests
+
+```typescript
+import { test } from '@playwright/test';
+import { MsAuthHelper, AppProvider } from 'playwright-power-platform-toolkit';
+
+test('authenticated test', async ({ page }) => {
+  // Authenticate
+  const authHelper = new MsAuthHelper(page);
+  await authHelper.login({
+    username: process.env.MS_USERNAME!,
+    password: process.env.MS_PASSWORD!
+  });
+
+  // Launch app (already authenticated)
+  const appProvider = new AppProvider(page);
+  const app = await appProvider.launchApp({
+    appUrl: process.env.CANVAS_APP_URL!,
+    appType: 'canvas'
+  });
+
+  // Test code...
+});
+```
+
+## Reusing Authentication State
+
+> **Tip:** Reusing authentication state can significantly speed up your test suite by avoiding repeated logins.
+
+For faster test execution, reuse authentication state across tests.
+
+### Setup Authentication Once
+
+Create a setup script `tests/setup/auth.setup.ts`:
+
+```typescript
+import { test as setup } from '@playwright/test';
+import { MsAuthHelper } from 'playwright-power-platform-toolkit';
+
+const authFile = 'playwright/.auth/user.json';
+
+setup('authenticate', async ({ page }) => {
+  const authHelper = new MsAuthHelper(page);
+
+  await authHelper.login({
+    username: process.env.MS_USERNAME!,
+    password: process.env.MS_PASSWORD!
+  });
+
+  // Save authentication state
+  await page.context().storageState({ path: authFile });
+});
+```
+
+### Configure Playwright to Use Saved State
+
+Update `playwright.config.ts`:
+
+```typescript
+import { defineConfig } from '@playwright/test';
+
+export default defineConfig({
+  projects: [
+    {
+      name: 'setup',
+      testMatch: /.*\.setup\.ts/,
+    },
+    {
+      name: 'chromium',
+      dependencies: ['setup'],
+      use: {
+        storageState: 'playwright/.auth/user.json',
+      },
+    },
+  ],
+});
+```
+
+### Using Saved State in Tests
+
+```typescript
+import { test } from '@playwright/test';
+import { AppProvider } from 'playwright-power-platform-toolkit';
+
+test('authenticated test with saved state', async ({ page }) => {
+  // No need to authenticate - using saved state
+  const appProvider = new AppProvider(page);
+  const app = await appProvider.launchApp({
+    appUrl: process.env.CANVAS_APP_URL!,
+    appType: 'canvas'
+  });
+
+  // Test code...
+});
+```
+
+## Multi-Factor Authentication (MFA)
+
+### Interactive MFA
+
+For accounts with MFA, you may need to authenticate interactively:
+
+```typescript
+test('interactive MFA authentication', async ({ page }) => {
+  const authHelper = new MsAuthHelper(page);
+
+  await authHelper.login({
+    username: process.env.MS_USERNAME!,
+    password: process.env.MS_PASSWORD!,
+    waitForManualMfa: true, // Wait for user to complete MFA
+    mfaTimeout: 60000 // 60 seconds to complete MFA
+  });
+
+  // Continue with test...
+});
+```
+
+### SMS/App-based MFA
+
+```typescript
+test('SMS MFA authentication', async ({ page }) => {
+  const authHelper = new MsAuthHelper(page);
+
+  await authHelper.login({
+    username: process.env.MS_USERNAME!,
+    password: process.env.MS_PASSWORD!,
+    mfaCode: process.env.MS_MFA_CODE // One-time code from SMS/app
+  });
+
+  // Continue with test...
+});
+```
+
+## Service Principal Authentication
+
+> **Recommended for CI/CD:** Service principals are the recommended authentication method for automated pipelines.
+
+For CI/CD pipelines, use service principal authentication.
+
+### Setting Up Service Principal
+
+1. Register an Azure AD application
+2. Grant it appropriate permissions to Power Platform
+3. Create a client secret
+4. Note the Application (Client) ID and Tenant ID
+
+### Using Service Principal
+
+```typescript
+import { test } from '@playwright/test';
+import { MsAuthHelper } from 'playwright-power-platform-toolkit';
+
+test('service principal auth', async ({ page }) => {
+  const authHelper = new MsAuthHelper(page);
+
+  await authHelper.loginWithServicePrincipal({
+    tenantId: process.env.MS_TENANT_ID!,
+    clientId: process.env.MS_CLIENT_ID!,
+    clientSecret: process.env.MS_CLIENT_SECRET!
+  });
+
+  // Continue with test...
+});
+```
+
+### Environment Variables for Service Principal
+
+```env
+MS_TENANT_ID=your-tenant-id
+MS_CLIENT_ID=your-client-id
+MS_CLIENT_SECRET=your-client-secret
+```
+
+## CI/CD Integration
+
+### GitHub Actions
+
+```yaml
+name: E2E Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run tests
+        env:
+          MS_USERNAME: ${{ secrets.MS_USERNAME }}
+          MS_PASSWORD: ${{ secrets.MS_PASSWORD }}
+          CANVAS_APP_URL: ${{ secrets.CANVAS_APP_URL }}
+        run: npx playwright test
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-report
+          path: playwright-report/
+```
+
+### Azure DevOps
+
+```yaml
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '18.x'
+    displayName: 'Install Node.js'
+
+  - script: |
+      npm ci
+      npx playwright install --with-deps
+    displayName: 'Install dependencies'
+
+  - script: npx playwright test
+    displayName: 'Run Playwright tests'
+    env:
+      MS_USERNAME: $(MS_USERNAME)
+      MS_PASSWORD: $(MS_PASSWORD)
+      CANVAS_APP_URL: $(CANVAS_APP_URL)
+
+  - task: PublishTestResults@2
+    displayName: 'Publish test results'
+    condition: always()
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/test-results/*.xml'
+```
+
+## Best Practices
+
+### 1. Never Commit Credentials
+
+Always use environment variables or secrets management:
+
+```typescript
+// Good
+const username = process.env.MS_USERNAME;
+
+// Bad - NEVER do this
+const username = 'user@example.com';
+const password = 'password123';
+```
+
+### 2. Use Dedicated Test Accounts
+
+> **Best Practice:** Always use dedicated test accounts separate from production accounts.
+
+Create dedicated test accounts for automation:
+- Separate from production accounts
+- No MFA (for easier automation)
+- Limited permissions (security best practice)
+
+### 3. Rotate Credentials Regularly
+
+For CI/CD:
+- Rotate client secrets regularly
+- Use Azure Key Vault or similar for secret management
+- Monitor for unusual authentication activity
+
+### 4. Handle Authentication Failures Gracefully
+
+```typescript
+test('handle auth failure', async ({ page }) => {
+  const authHelper = new MsAuthHelper(page);
+
+  try {
+    await authHelper.login({
+      username: process.env.MS_USERNAME!,
+      password: process.env.MS_PASSWORD!
+    });
+  } catch (error) {
+    console.error('Authentication failed:', error);
+    // Take screenshot for debugging
+    await page.screenshot({ path: 'auth-failure.png' });
+    throw error;
+  }
+});
+```
+
+### 5. Separate Authentication from Test Logic
+
+```typescript
+// Create a test fixture
+import { test as base } from '@playwright/test';
+import { AppProvider } from 'playwright-power-platform-toolkit';
+
+type Fixtures = {
+  authenticatedPage: Page;
+  appProvider: AppProvider;
+};
+
+export const test = base.extend<Fixtures>({
+  authenticatedPage: async ({ page }, use) => {
+    // Authenticate once per test
+    const authHelper = new MsAuthHelper(page);
+    await authHelper.login({
+      username: process.env.MS_USERNAME!,
+      password: process.env.MS_PASSWORD!
+    });
+    await use(page);
+  },
+
+  appProvider: async ({ authenticatedPage }, use) => {
+    const provider = new AppProvider(authenticatedPage);
+    await use(provider);
+  }
+});
+
+// Use in tests
+test('my test', async ({ appProvider }) => {
+  const app = await appProvider.launchApp({...});
+  // Test code...
+});
+```
+
+## Troubleshooting
+
+### Authentication Timeout
+
+Increase timeout if authentication is slow:
+
+```typescript
+await authHelper.login({
+  username: process.env.MS_USERNAME!,
+  password: process.env.MS_PASSWORD!,
+  timeout: 60000 // 60 seconds
+});
+```
+
+### Conditional Access Policies
+
+If your organization uses conditional access:
+- Whitelist CI/CD IP addresses
+- Use device-based authentication
+- Configure trusted locations
+
+### Session Expiration
+
+If sessions expire during long test runs:
+
+```typescript
+test('long running test', async ({ page }) => {
+  // Re-authenticate if session expires
+  const authHelper = new MsAuthHelper(page);
+
+  async function ensureAuthenticated() {
+    const isAuthenticated = await authHelper.isAuthenticated();
+    if (!isAuthenticated) {
+      await authHelper.login({...});
+    }
+  }
+
+  await ensureAuthenticated();
+
+  // Test code...
+
+  // Re-check authentication after long operation
+  await page.waitForTimeout(300000); // 5 minutes
+  await ensureAuthenticated();
+});
+```
+
+## Next Steps
+
+- [Advanced Usage](/guide/advanced-usage) - Explore advanced patterns and optimization
+- [API Reference](/reference) - Complete API documentation
+- [Canvas Apps Guide](/guide/canvas-apps) - Start testing Canvas Apps
+- [Model-Driven Apps Guide](/guide/model-driven-apps) - Start testing Model-Driven Apps

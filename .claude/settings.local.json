@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(test:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run docs:*)",
+      "Bash(rush update)",
+      "Bash(npx typedoc:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(npm run dev)",
+      "Bash(curl:*)",
+      "Bash(find:*)",
+      "Bash(for file in COMPLETE-SETUP-SUMMARY.md FINAL-SETUP-SUMMARY.md UTILITIES-MIGRATION-SUMMARY.md)",
+      "Bash(do sed -i 's/@playwright-power-platform\\\\/toolkit/playwright-power-platform-toolkit/g' \"$file\")",
+      "Bash(done)",
+      "Bash(npm run build:*)",
+      "Bash(npm run format:*)",
+      "Bash(node:*)",
+      "Bash(npx prettier:*)",
+      "Bash(git -C \"e:\\\\git\\\\playwright-power-platform\" status --short)",
+      "Bash(taskkill:*)",
+      "Bash(timeout /t 2 /nobreak)",
+      "Bash(rush build)",
+      "Bash(npm outdated:*)",
+      "WebFetch(domain:lucide.dev)",
+      "Bash(timeout /t 10 /nobreak)",
+      "Bash(ping:*)"
+    ]
+  }
+}

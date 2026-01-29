@@ -1,0 +1,146 @@
+name: Pull Request
+
+on:
+  pull_request:
+    branches: [main, develop]
+    types: [opened, synchronize, reopened]
+
+jobs:
+  validate:
+    name: Validate PR
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Rush
+        run: npm install -g @microsoft/rush
+
+      - name: Install dependencies
+        run: |
+          rush update
+          rush install
+
+      - name: Run format check
+        run: npm run format:check
+
+      - name: Run linting
+        run: rush lint
+
+      - name: Build all packages
+        run: rush build
+
+      - name: Check for changes
+        id: changes
+        run: |
+          echo "modified_files=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | wc -l)" >> $GITHUB_OUTPUT
+
+      - name: PR summary
+        if: always()
+        run: |
+          echo "## 🔍 Pull Request Validation" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### PR Details" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch**: ${{ github.head_ref }} → ${{ github.base_ref }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Author**: @${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Modified files**: ${{ steps.changes.outputs.modified_files }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Validation Results" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ All validation checks passed" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "- ✅ Code formatting" >> $GITHUB_STEP_SUMMARY
+            echo "- ✅ Linting" >> $GITHUB_STEP_SUMMARY
+            echo "- ✅ Build" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ Some validation checks failed" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Please fix the issues and push again." >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "💡 **Note**: Playwright tests are not run automatically. Use the [Playwright Tests workflow](../../actions/workflows/playwright-tests.yml) to run tests manually." >> $GITHUB_STEP_SUMMARY
+
+  size-check:
+    name: Check Package Sizes
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Rush
+        run: npm install -g @microsoft/rush
+
+      - name: Install dependencies
+        run: |
+          rush update
+          rush install
+
+      - name: Build packages
+        run: rush build
+
+      - name: Check package sizes
+        run: |
+          echo "## 📦 Package Sizes" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Built Packages" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ -d "packages/playwright-power-platform-toolkit/dist" ]; then
+            toolkit_size=$(du -sh packages/playwright-power-platform-toolkit/dist | cut -f1)
+            echo "- **playwright-power-platform-toolkit**: \`$toolkit_size\`" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ -d "packages/docs/.next" ]; then
+            docs_size=$(du -sh packages/docs/.next | cut -f1)
+            echo "- **docs**: \`$docs_size\`" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  dependency-check:
+    name: Check Dependencies
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Rush
+        run: npm install -g @microsoft/rush
+
+      - name: Check for dependency updates
+        run: |
+          rush update --full
+
+          if git diff --quiet; then
+            echo "✅ No dependency changes needed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "## 📦 Dependency Updates Available" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "There are dependency updates available. Run \`rush update\` locally." >> $GITHUB_STEP_SUMMARY
+          fi

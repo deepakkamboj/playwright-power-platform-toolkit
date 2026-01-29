@@ -1,0 +1,39 @@
+{
+  "name": "@playwright-power-platform/e2e-tests",
+  "version": "0.0.1",
+  "description": "End-to-end tests for Power Platform applications",
+  "private": true,
+  "license": "MIT",
+  "author": "Deepak Kamboj <deepakkamboj@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deepakkamboj/playwright-power-platform.git",
+    "directory": "packages/e2e-tests"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "auth": "tsx scripts/authenticate.ts",
+    "auth:headful": "tsx scripts/authenticate.ts --headful",
+    "record:apis": "tsx scripts/record-apis.ts",
+    "record:apis:headful": "tsx scripts/record-apis.ts --headful",
+    "test": "playwright test",
+    "test:headful": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\""
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^25.0.3",
+    "dotenv": "^16.4.7",
+    "playwright-ai-reporter": "^0.0.7",
+    "prettier": "^3.7.4",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "playwright-power-platform-toolkit": "workspace:*"
+  }
+}

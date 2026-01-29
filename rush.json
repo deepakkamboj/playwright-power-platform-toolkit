@@ -1,0 +1,54 @@
+{
+  "rushVersion": "5.128.1",
+
+  "pnpmVersion": "10.28.1",
+  "pnpmOptions": {
+    "strictPeerDependencies": true,
+    "useWorkspaces": true
+  },
+
+  "nodeSupportedVersionRange": ">=20.12.1 <21.0.0",
+
+  "ensureConsistentVersions": true,
+
+  "gitPolicy": {
+    "allowedEmailRegExps": [".*"],
+    "sampleEmail": "deepakkamboj@gmail.com",
+
+    "changeLogUpdateCommitMessage": "Update Change Logs [skip ci]",
+    "versionBumpCommitMessage": "Apply Package Updates [skip ci]"
+  },
+
+  "repository": {
+    "url": "https://github.com/deepakkamboj/playwright-power-platform.git",
+    "defaultBranch": "main",
+    "defaultRemote": "origin"
+  },
+
+  "eventHooks": {
+    "preRushInstall": [],
+    "postRushInstall": [],
+    "preRushBuild": [],
+    "postRushBuild": []
+  },
+
+  "telemetryEnabled": true,
+
+  "projects": [
+    {
+      "packageName": "playwright-power-platform-toolkit",
+      "projectFolder": "packages/playwright-power-platform-toolkit",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@playwright-power-platform/e2e-tests",
+      "projectFolder": "packages/e2e-tests",
+      "shouldPublish": false
+    },
+    {
+      "packageName": "@playwright-power-platform/docs",
+      "projectFolder": "packages/docs",
+      "shouldPublish": false
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+# Testing Canvas Apps
+
+This guide covers testing Canvas Apps in detail, including control interactions, navigation, and best practices.
+
+> **Note:** Canvas Apps are low-code applications with a visual interface. Each control has a unique name that you'll use in your tests.
+
+## Canvas App Architecture
+
+Canvas Apps are built with controls (buttons, text inputs, galleries, etc.) that have unique names. The toolkit provides methods to interact with these controls by name.
+
+## Basic Interactions
+
+### Launching a Canvas App
+
+> **Tip:** Always wait for the app to fully load before interacting with controls to avoid timing issues.
+
+```typescript
+import { test } from '@playwright/test';
+import { AppProvider } from 'playwright-power-platform-toolkit';
+
+test('canvas app test', async ({ page }) => {
+  const appProvider = new AppProvider(page);
+  const canvasApp = await appProvider.launchApp({
+    appUrl: 'https://apps.powerapps.com/play/...',
+    appType: 'canvas'
+  });
+
+  await canvasApp.waitForAppToLoad();
+});
+```
+
+### Clicking Controls
+
+```typescript
+// Click a button by its name
+await canvasApp.clickControl('ButtonSubmit');
+
+// Click with custom options
+await canvasApp.clickControl('ButtonSave', { timeout: 5000 });
+```
+
+### Working with Text Inputs
+
+```typescript
+// Fill a text input
+await canvasApp.fillTextInput('TextInputName', 'John Doe');
+
+// Clear and fill
+await canvasApp.fillTextInput('TextInputEmail', 'john@example.com', { clear: true });
+
+// Get text input value
+const name = await canvasApp.getTextInputValue('TextInputName');
+```
+
+### Reading Control Text
+
+```typescript
+// Get text from a label
+const labelText = await canvasApp.getControlText('LabelWelcome');
+
+// Get text from a button
+const buttonText = await canvasApp.getControlText('ButtonSubmit');
+```
+
+## Working with Screens
+
+Canvas Apps are organized into screens. You can navigate between screens and verify which screen is active.
+
+```typescript
+// Navigate to a specific screen
+await canvasApp.navigateToScreen('DetailsScreen');
+
+// Verify current screen
+const isOnScreen = await canvasApp.isOnScreen('HomeScreen');
+expect(isOnScreen).toBe(true);
+```
+
+## Working with Galleries
+
+Galleries display lists of items in Canvas Apps.
+
+```typescript
+// Get gallery items
+const items = await canvasApp.getGalleryItems('GalleryProducts');
+
+// Click an item in a gallery
+await canvasApp.clickGalleryItem('GalleryProducts', 2); // Click the 3rd item (0-indexed)
+
+// Get gallery item count
+const count = await canvasApp.getGalleryItemCount('GalleryProducts');
+```
+
+## Custom Locators
+
+For advanced scenarios, you can use custom locators:
+
+```typescript
+import { getCanvasControlByName, getCanvasDataTestId } from 'playwright-power-platform-toolkit';
+
+// Get a control by name
+const button = page.locator(getCanvasControlByName('ButtonSubmit'));
+
+// Get a control by data-testid (if you've added custom attributes)
+const input = page.locator(getCanvasDataTestId('user-email'));
+
+// Get a screen by name
+const screen = page.locator(getCanvasScreenByName('HomeScreen'));
+```
+
+## Best Practices
+
+> **Important:** Following these best practices will make your tests more reliable and maintainable.
+
+### 1. Use Meaningful Control Names
+
+When building Canvas Apps, use descriptive names for controls:
+
+```typescript
+// Good
+await canvasApp.clickControl('ButtonSubmitOrder');
+await canvasApp.fillTextInput('TextInputCustomerEmail', email);
+
+// Avoid
+await canvasApp.clickControl('Button1');
+await canvasApp.fillTextInput('TextInput3', email);
+```
+
+### 2. Wait for App Load
+
+Always wait for the app to fully load before interacting:
+
+```typescript
+const canvasApp = await appProvider.launchApp({
+  appUrl: appUrl,
+  appType: 'canvas'
+});
+
+// Wait for app to load
+await canvasApp.waitForAppToLoad();
+
+// Now safe to interact
+await canvasApp.clickControl('ButtonStart');
+```
+
+### 3. Handle Dynamic Content
+
+For controls that appear conditionally:
+
+```typescript
+// Wait for a control to appear
+await page.waitForSelector(getCanvasControlByName('ButtonNext'), {
+  state: 'visible',
+  timeout: 10000
+});
+
+// Check if a control exists before interacting
+const isVisible = await canvasApp.isControlVisible('ButtonOptional');
+if (isVisible) {
+  await canvasApp.clickControl('ButtonOptional');
+}
+```
+
+### 4. Use Data-Driven Tests
+
+Create reusable test data:
+
+```typescript
+const testCases = [
+  { name: 'John Doe', email: 'john@example.com' },
+  { name: 'Jane Smith', email: 'jane@example.com' },
+];
+
+for (const testCase of testCases) {
+  test(`submit form for ${testCase.name}`, async ({ page }) => {
+    // Test implementation
+  });
+}
+```
+
+## Advanced Scenarios
+
+### Testing Complex Forms
+
+```typescript
+test('complex form submission', async ({ page }) => {
+  const appProvider = new AppProvider(page);
+  const canvasApp = await appProvider.launchApp({
+    appUrl: process.env.CANVAS_APP_URL!,
+    appType: 'canvas'
+  });
+
+  await canvasApp.waitForAppToLoad();
+
+  // Fill multiple fields
+  await canvasApp.fillTextInput('TextInputFirstName', 'John');
+  await canvasApp.fillTextInput('TextInputLastName', 'Doe');
+  await canvasApp.fillTextInput('TextInputEmail', 'john.doe@example.com');
+
+  // Select from dropdown
+  await canvasApp.clickControl('DropdownCountry');
+  await canvasApp.clickControl('DropdownCountryItem_USA');
+
+  // Check checkbox
+  await canvasApp.clickControl('CheckboxAgreeToTerms');
+
+  // Submit
+  await canvasApp.clickControl('ButtonSubmit');
+
+  // Verify success message
+  const successMessage = await canvasApp.getControlText('LabelSuccess');
+  expect(successMessage).toContain('Successfully submitted');
+});
+```
+
+### Testing Navigation Flow
+
+```typescript
+test('multi-screen navigation', async ({ page }) => {
+  const appProvider = new AppProvider(page);
+  const canvasApp = await appProvider.launchApp({
+    appUrl: process.env.CANVAS_APP_URL!,
+    appType: 'canvas'
+  });
+
+  await canvasApp.waitForAppToLoad();
+
+  // Start on home screen
+  expect(await canvasApp.isOnScreen('HomeScreen')).toBe(true);
+
+  // Navigate to products
+  await canvasApp.clickControl('ButtonViewProducts');
+  await page.waitForTimeout(1000); // Wait for transition
+  expect(await canvasApp.isOnScreen('ProductsScreen')).toBe(true);
+
+  // Navigate to details
+  await canvasApp.clickGalleryItem('GalleryProducts', 0);
+  expect(await canvasApp.isOnScreen('DetailsScreen')).toBe(true);
+
+  // Go back
+  await canvasApp.clickControl('ButtonBack');
+  expect(await canvasApp.isOnScreen('ProductsScreen')).toBe(true);
+});
+```
+
+## Debugging Tips
+
+### Taking Screenshots
+
+```typescript
+// Take screenshot at specific point
+await page.screenshot({ path: 'canvas-app-state.png' });
+
+// Take screenshot on failure (automatic in Playwright config)
+```
+
+### Logging
+
+```typescript
+// Log control state
+const text = await canvasApp.getControlText('LabelStatus');
+console.log('Current status:', text);
+
+// Log page URL
+console.log('Current URL:', page.url());
+```
+
+### Inspecting Controls
+
+Use the browser DevTools to inspect Canvas App controls and understand their structure.
+
+## Next Steps
+
+- [Testing Model-Driven Apps](/guide/model-driven-apps) - Learn to test Model-Driven Apps and Dynamics 365
+- [Authentication](/guide/authentication) - Set up authentication for your tests
+- [Advanced Usage](/guide/advanced-usage) - Explore advanced patterns and optimization

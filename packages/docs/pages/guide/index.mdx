@@ -1,0 +1,56 @@
+---
+title: Guides
+---
+
+import { Cards, Card } from '../../components/Cards';
+import { BookOpen, Palette, BarChart3, Lock, Rocket } from 'lucide-react';
+
+# Guides
+
+Comprehensive guides to help you get started and master testing Power Platform applications with Playwright.
+
+## Getting Started
+
+<Cards>
+  <Card icon={<BookOpen />} title="Getting Started" href="/guide/getting-started">
+    Set up your project and write your first Power Platform test
+  </Card>
+  <Card icon={<Rocket />} title="Advanced Usage" href="/guide/advanced-usage">
+    Advanced patterns, best practices, and optimization techniques
+  </Card>
+</Cards>
+
+## App-Specific Guides
+
+<Cards>
+  <Card icon={<Palette />} title="Canvas Apps" href="/guide/canvas-apps">
+    Learn to test Canvas Apps with controls, galleries, and screens
+  </Card>
+  <Card icon={<BarChart3 />} title="Model-Driven Apps" href="/guide/model-driven-apps">
+    Learn to test Model-Driven Apps with entities, forms, and views
+  </Card>
+</Cards>
+
+## Configuration & Security
+
+<Cards>
+  <Card icon={<Lock />} title="Authentication" href="/guide/authentication">
+    Handle Microsoft authentication, sessions, and security
+  </Card>
+</Cards>
+
+## What You'll Learn
+
+- **Quick Setup** - Get your testing environment ready in minutes
+- **Core Concepts** - Understand the AppProvider pattern and page objects
+- **App Testing** - Master Canvas and Model-Driven app testing techniques
+- **Authentication** - Configure secure authentication flows
+- **Best Practices** - Write maintainable, scalable tests
+- **Advanced Topics** - API testing, accessibility, and performance
+
+## Related Resources
+
+- [Architecture Overview](/architecture/overview) - Understand the toolkit's design
+- [Quick Reference](/architecture/quick-reference) - Quick reference card for common tasks
+- [API Reference](/reference) - Complete API documentation
+- [Example Tests](https://github.com/deepakkamboj/playwright-power-platform-toolkit/tree/main/packages/e2e-tests/tests) - Real-world test examples

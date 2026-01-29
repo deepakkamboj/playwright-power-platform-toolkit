@@ -1,0 +1,294 @@
+name: Playwright Tests
+
+on:
+  schedule:
+    # Run nightly at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Test environment'
+        required: true
+        default: 'test'
+        type: choice
+        options:
+          - local
+          - dev
+          - test
+          - preview
+          - staging
+          - prod
+      pipeline:
+        description: 'Build pipeline type'
+        required: true
+        default: 'ci'
+        type: choice
+        options:
+          - local
+          - pr
+          - ci
+          - nightly
+          - smoke
+          - regression
+
+jobs:
+  test:
+    name: Run Playwright Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+
+    env:
+      # Test environment configuration
+      TEST_ENV: ${{ github.event.inputs.environment || 'test' }}
+      TEST_GEO: us
+      BUILD_PIPELINE: ${{ github.event.inputs.pipeline || 'ci' }}
+
+      # Authentication
+      MS_AUTH_EMAIL: ${{ secrets.MS_AUTH_EMAIL }}
+      MS_AUTH_CREDENTIAL_TYPE: certificate
+
+      # Power Apps URLs
+      POWER_APPS_BASE_URL: https://make.powerapps.com
+      BAP_API_URL: https://api.bap.microsoft.com
+
+      # Test app IDs (optional)
+      CANVAS_APP_ID: ${{ secrets.CANVAS_APP_ID }}
+      MODEL_APP_ID: ${{ secrets.MODEL_APP_ID }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+
+      - name: Install Rush
+        run: npm install -g @microsoft/rush
+
+      - name: Install dependencies
+        run: |
+          rush update
+          rush install
+
+      - name: Build packages
+        run: rush build
+
+      - name: Install Playwright browsers
+        run: |
+          cd packages/e2e-tests
+          npx playwright install --with-deps chromium
+
+      - name: Setup certificate authentication
+        env:
+          CERTIFICATE_BASE64: ${{ secrets.CERTIFICATE_BASE64 }}
+          CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
+        run: |
+          # Create .auth directory
+          mkdir -p ~/.auth
+
+          # Decode certificate from base64 and save to file
+          echo "$CERTIFICATE_BASE64" | base64 -d > ~/.auth/certificate.pfx
+
+          # Set certificate path for authentication
+          echo "MS_CERTIFICATE_PATH=$HOME/.auth/certificate.pfx" >> $GITHUB_ENV
+          echo "MS_CERTIFICATE_PASSWORD=$CERTIFICATE_PASSWORD" >> $GITHUB_ENV
+
+          # Verify certificate file exists
+          if [ -f ~/.auth/certificate.pfx ]; then
+            echo "✅ Certificate file created successfully"
+            ls -lh ~/.auth/certificate.pfx
+          else
+            echo "❌ Certificate file not found"
+            exit 1
+          fi
+
+      - name: Authenticate with Power Platform
+        run: |
+          cd packages/e2e-tests
+          npm run auth
+        env:
+          MS_AUTH_EMAIL: ${{ secrets.MS_AUTH_EMAIL }}
+          MS_CERTIFICATE_PATH: ${{ env.MS_CERTIFICATE_PATH }}
+          MS_CERTIFICATE_PASSWORD: ${{ env.MS_CERTIFICATE_PASSWORD }}
+          POWER_APPS_BASE_URL: ${{ env.POWER_APPS_BASE_URL }}
+          BAP_API_URL: ${{ env.BAP_API_URL }}
+        continue-on-error: false
+
+      - name: Verify authentication
+        run: |
+          cd packages/e2e-tests
+          if [ -f ~/.auth/storageState-*.json ]; then
+            echo "✅ Authentication successful - storage state file created"
+            ls -lh ~/.auth/storageState-*.json
+          else
+            echo "❌ Authentication failed - no storage state file found"
+            exit 1
+          fi
+
+      - name: Run Playwright tests (Shard ${{ matrix.shard }}/4)
+        run: |
+          cd packages/e2e-tests
+          npx playwright test --shard=${{ matrix.shard }}/4
+        env:
+          # CI flag
+          CI: true
+
+          # Authentication
+          MS_AUTH_EMAIL: ${{ secrets.MS_AUTH_EMAIL }}
+
+          # Environment configuration
+          TEST_ENV: ${{ env.TEST_ENV }}
+          TEST_GEO: ${{ env.TEST_GEO }}
+          BUILD_PIPELINE: ${{ env.BUILD_PIPELINE }}
+
+          # URLs
+          POWER_APPS_BASE_URL: ${{ env.POWER_APPS_BASE_URL }}
+          BAP_API_URL: ${{ env.BAP_API_URL }}
+
+          # Test app IDs
+          CANVAS_APP_ID: ${{ secrets.CANVAS_APP_ID }}
+          MODEL_APP_ID: ${{ secrets.MODEL_APP_ID }}
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.shard }}
+          path: packages/e2e-tests/test-results/
+          retention-days: 30
+          if-no-files-found: ignore
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ matrix.shard }}
+          path: packages/e2e-tests/playwright-report/
+          retention-days: 30
+          if-no-files-found: ignore
+
+      - name: Upload traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: traces-${{ matrix.shard }}
+          path: packages/e2e-tests/test-results/**/trace.zip
+          retention-days: 30
+          if-no-files-found: ignore
+
+      - name: Upload videos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: videos-${{ matrix.shard }}
+          path: packages/e2e-tests/test-results/**/video.webm
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-${{ matrix.shard }}
+          path: packages/e2e-tests/test-results/**/*.png
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Cleanup sensitive files
+        if: always()
+        run: |
+          rm -f ~/.auth/certificate.pfx
+          rm -f ~/.auth/storageState-*.json
+          echo "✅ Sensitive files cleaned up"
+
+  merge-reports:
+    name: Merge Test Reports
+    if: always()
+    needs: [test]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all-artifacts
+
+      - name: Merge Playwright reports
+        run: |
+          cd packages/e2e-tests
+
+          # Install Playwright
+          npm install
+
+          # Merge HTML reports from all shards
+          npx playwright merge-reports --reporter html ../../all-artifacts/playwright-report-*
+
+      - name: Upload merged HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-merged
+          path: packages/e2e-tests/playwright-report/
+          retention-days: 30
+
+      - name: Publish test results summary
+        if: always()
+        run: |
+          echo "## 🎭 Playwright Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Test Execution Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Environment**: ${{ env.TEST_ENV }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Geography**: ${{ env.TEST_GEO }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Pipeline**: ${{ env.BUILD_PIPELINE }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Shards**: 4" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Artifacts" >> $GITHUB_STEP_SUMMARY
+          echo "- 📊 [HTML Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY
+          echo "- 🎬 Traces available for failed tests" >> $GITHUB_STEP_SUMMARY
+          echo "- 📹 Videos available for all tests" >> $GITHUB_STEP_SUMMARY
+          echo "- 📸 Screenshots available for failures" >> $GITHUB_STEP_SUMMARY
+
+  notify:
+    name: Notify Results
+    if: always()
+    needs: [merge-reports]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check test results
+        id: test-results
+        run: |
+          if [ "${{ needs.test.result }}" == "success" ]; then
+            echo "status=✅ Success" >> $GITHUB_OUTPUT
+            echo "color=success" >> $GITHUB_OUTPUT
+          else
+            echo "status=❌ Failed" >> $GITHUB_OUTPUT
+            echo "color=danger" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Post results summary
+        run: |
+          echo "## Test Execution Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Status**: ${{ steps.test-results.outputs.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Run ID**: ${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Triggered by**: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "[View Full Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY
