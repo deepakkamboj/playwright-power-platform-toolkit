@@ -35,8 +35,15 @@ jobs:
       - name: Install Rush
         run: npm install -g @microsoft/rush
 
+      - name: Configure Git
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+
       - name: Install dependencies
-        run: rush update
+        run: |
+          rush update
+          rush install
 
       - name: Build toolkit
         run: rush build --to playwright-power-platform-toolkit
