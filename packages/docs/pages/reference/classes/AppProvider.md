@@ -110,7 +110,7 @@ Launch configuration
 
 > **getControl**(`options`): `Locator`
 
-Defined in: [core/app-provider.ts:159](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L159)
+Defined in: [core/app-provider.ts:170](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L170)
 
 Get a control in the current app
 
@@ -134,7 +134,7 @@ Locator for the control
 
 > **click**(`options`): `Promise`\<`void`\>
 
-Defined in: [core/app-provider.ts:168](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L168)
+Defined in: [core/app-provider.ts:179](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L179)
 
 Click a control in the current app
 
@@ -156,7 +156,7 @@ Control options
 
 > **fill**(`options`, `value`): `Promise`\<`void`\>
 
-Defined in: [core/app-provider.ts:178](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L178)
+Defined in: [core/app-provider.ts:189](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L189)
 
 Fill a text input control in the current app
 
@@ -184,7 +184,7 @@ Value to fill
 
 > **fillForm**(`formData`): `Promise`\<`void`\>
 
-Defined in: [core/app-provider.ts:187](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L187)
+Defined in: [core/app-provider.ts:198](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L198)
 
 Fill a form in the current app
 
@@ -206,7 +206,7 @@ Key-value pairs of field names and values
 
 > **assertVisible**(`options`): `Promise`\<`void`\>
 
-Defined in: [core/app-provider.ts:196](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L196)
+Defined in: [core/app-provider.ts:207](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L207)
 
 Assert control is visible
 
@@ -228,7 +228,7 @@ Control options
 
 > **assertText**(`options`, `expectedText`): `Promise`\<`void`\>
 
-Defined in: [core/app-provider.ts:206](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L206)
+Defined in: [core/app-provider.ts:217](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L217)
 
 Assert control text matches
 
@@ -256,7 +256,7 @@ Expected text
 
 > **close**(): `Promise`\<`void`\>
 
-Defined in: [core/app-provider.ts:214](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L214)
+Defined in: [core/app-provider.ts:225](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L225)
 
 Close the current app
 
@@ -270,7 +270,7 @@ Close the current app
 
 > **isReady**(): `boolean`
 
-Defined in: [core/app-provider.ts:225](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L225)
+Defined in: [core/app-provider.ts:236](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L236)
 
 Check if an app is currently launched and ready
 
@@ -286,7 +286,7 @@ true if app is ready
 
 > **getCurrentAppType**(): [`AppType`](../enumerations/AppType.md) \| `null`
 
-Defined in: [core/app-provider.ts:233](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L233)
+Defined in: [core/app-provider.ts:244](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L244)
 
 Get the current app type
 
@@ -302,7 +302,7 @@ Current app type or null
 
 > **getCurrentAppId**(): `string` \| `null`
 
-Defined in: [core/app-provider.ts:241](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L241)
+Defined in: [core/app-provider.ts:252](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L252)
 
 Get the current app ID
 
@@ -318,7 +318,7 @@ Current app ID or null
 
 > **getCurrentAppUrl**(): `string` \| `null`
 
-Defined in: [core/app-provider.ts:249](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L249)
+Defined in: [core/app-provider.ts:260](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L260)
 
 Get the current app URL
 
@@ -334,7 +334,7 @@ Current app URL or null
 
 > **getLaunchedApps**(): [`AppMetadata`](../interfaces/AppMetadata.md)[]
 
-Defined in: [core/app-provider.ts:257](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L257)
+Defined in: [core/app-provider.ts:268](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L268)
 
 Get metadata for all launched apps
 
@@ -350,7 +350,7 @@ Array of app metadata
 
 > **reset**(): `void`
 
-Defined in: [core/app-provider.ts:265](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L265)
+Defined in: [core/app-provider.ts:276](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L276)
 
 Reset the provider state
 Clears current launcher and app metadata

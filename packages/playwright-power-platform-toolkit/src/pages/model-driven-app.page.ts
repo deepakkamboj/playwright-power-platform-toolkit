@@ -609,4 +609,138 @@ export class ModelDrivenAppPage {
       this.page.locator(ModelDrivenAppLocators.Common.SuccessNotification)
     ).toBeVisible();
   }
+
+  // ========================================
+  // IAppLauncher Interface Implementation
+  // ========================================
+
+  readonly appType = 'ModelDriven';
+  private appId: string | null = null;
+  private appUrl: string | null = null;
+  private ready: boolean = false;
+
+  /**
+   * Launch app by ID (IAppLauncher interface)
+   */
+  async launchById(appId: string, baseUrl: string, _mode: any, _options?: any): Promise<void> {
+    this.appId = appId;
+    const url = `${baseUrl}/play/${appId}`;
+    this.appUrl = url;
+    await this.page.goto(url);
+    await this.page.waitForLoadState('networkidle');
+    this.ready = true;
+  }
+
+  /**
+   * Launch app by name (IAppLauncher interface)
+   */
+  async launchByName(
+    appName: string,
+    findAppCallback: (appName: string) => Promise<any>,
+    _mode: any,
+    _options?: any
+  ): Promise<void> {
+    const appLocator = await findAppCallback(appName);
+    await appLocator.click();
+    await this.page.waitForLoadState('networkidle');
+    this.ready = true;
+  }
+
+  /**
+   * Wait for app to load (IAppLauncher interface)
+   */
+  async waitForAppLoad(_options?: any): Promise<void> {
+    await this.page.waitForLoadState('networkidle');
+    this.ready = true;
+  }
+
+  /**
+   * Check if app is ready (IAppLauncher interface)
+   */
+  isAppReady(): boolean {
+    return this.ready;
+  }
+
+  /**
+   * Get app ID (IAppLauncher interface)
+   */
+  getAppId(): string | null {
+    return this.appId;
+  }
+
+  /**
+   * Get app URL (IAppLauncher interface)
+   */
+  getAppUrl(): string | null {
+    return this.appUrl;
+  }
+
+  /**
+   * Get control (IAppLauncher interface)
+   */
+  getControl(options: any): any {
+    if (options.name) {
+      return this.page.locator(`[aria-label="${options.name}"]`);
+    }
+    return this.page.locator('body');
+  }
+
+  /**
+   * Click control (IAppLauncher interface)
+   */
+  async clickControl(options: any): Promise<void> {
+    const control = this.getControl(options);
+    await control.click();
+  }
+
+  /**
+   * Fill control (IAppLauncher interface)
+   */
+  async fillControl(options: any, value: string): Promise<void> {
+    const control = this.getControl(options);
+    await control.fill(value);
+  }
+
+  /**
+   * Fill form (IAppLauncher interface)
+   */
+  async fillForm(formData: Record<string, string>): Promise<void> {
+    for (const [name, value] of Object.entries(formData)) {
+      await this.fillControl({ name }, value);
+    }
+  }
+
+  /**
+   * Assert control visible (IAppLauncher interface)
+   */
+  async assertControlVisible(options: any, _assertOptions?: any): Promise<void> {
+    const control = this.getControl(options);
+    await expect(control).toBeVisible();
+  }
+
+  /**
+   * Assert control text (IAppLauncher interface)
+   */
+  async assertControlText(options: any, expectedText: string, _assertOptions?: any): Promise<void> {
+    const control = this.getControl(options);
+    await expect(control).toHaveText(expectedText);
+  }
+
+  /**
+   * Close app (IAppLauncher interface)
+   */
+  async closeApp(): Promise<void> {
+    this.ready = false;
+    this.appId = null;
+    this.appUrl = null;
+  }
+
+  /**
+   * Reset launcher state (IAppLauncher interface)
+   */
+  reset(): void {
+    this.ready = false;
+    this.appId = null;
+    this.appUrl = null;
+  }
 }

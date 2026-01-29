@@ -34,6 +34,14 @@ Defined in: [pages/model-driven-app.page.ts:12](https://github.com/deepakkamboj/
 
 Defined in: [pages/model-driven-app.page.ts:10](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L10)
 
+---
+
+### appType
+
+> `readonly` **appType**: `"ModelDriven"` = `'ModelDriven'`
+
+Defined in: [pages/model-driven-app.page.ts:617](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L617)
+
 ## Methods
 
 ### navigateToHome()
@@ -917,3 +925,293 @@ Verify record saved in runtime
 #### Returns
 
 `Promise`\<`void`\>
+
+---
+
+### launchById()
+
+> **launchById**(`appId`, `baseUrl`, `_mode`, `_options?`): `Promise`\<`void`\>
+
+Defined in: [pages/model-driven-app.page.ts:625](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L625)
+
+Launch app by ID (IAppLauncher interface)
+
+#### Parameters
+
+##### appId
+
+`string`
+
+##### baseUrl
+
+`string`
+
+##### \_mode
+
+`any`
+
+##### \_options?
+
+`any`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### launchByName()
+
+> **launchByName**(`appName`, `findAppCallback`, `_mode`, `_options?`): `Promise`\<`void`\>
+
+Defined in: [pages/model-driven-app.page.ts:642](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L642)
+
+Launch app by name (IAppLauncher interface)
+
+#### Parameters
+
+##### appName
+
+`string`
+
+##### findAppCallback
+
+(`appName`) => `Promise`\<`any`\>
+
+##### \_mode
+
+`any`
+
+##### \_options?
+
+`any`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### waitForAppLoad()
+
+> **waitForAppLoad**(`_options?`): `Promise`\<`void`\>
+
+Defined in: [pages/model-driven-app.page.ts:657](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L657)
+
+Wait for app to load (IAppLauncher interface)
+
+#### Parameters
+
+##### \_options?
+
+`any`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### isAppReady()
+
+> **isAppReady**(): `boolean`
+
+Defined in: [pages/model-driven-app.page.ts:665](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L665)
+
+Check if app is ready (IAppLauncher interface)
+
+#### Returns
+
+`boolean`
+
+---
+
+### getAppId()
+
+> **getAppId**(): `string` \| `null`
+
+Defined in: [pages/model-driven-app.page.ts:672](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L672)
+
+Get app ID (IAppLauncher interface)
+
+#### Returns
+
+`string` \| `null`
+
+---
+
+### getAppUrl()
+
+> **getAppUrl**(): `string` \| `null`
+
+Defined in: [pages/model-driven-app.page.ts:679](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L679)
+
+Get app URL (IAppLauncher interface)
+
+#### Returns
+
+`string` \| `null`
+
+---
+
+### getControl()
+
+> **getControl**(`options`): `any`
+
+Defined in: [pages/model-driven-app.page.ts:686](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L686)
+
+Get control (IAppLauncher interface)
+
+#### Parameters
+
+##### options
+
+`any`
+
+#### Returns
+
+`any`
+
+---
+
+### clickControl()
+
+> **clickControl**(`options`): `Promise`\<`void`\>
+
+Defined in: [pages/model-driven-app.page.ts:696](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L696)
+
+Click control (IAppLauncher interface)
+
+#### Parameters
+
+##### options
+
+`any`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### fillControl()
+
+> **fillControl**(`options`, `value`): `Promise`\<`void`\>
+
+Defined in: [pages/model-driven-app.page.ts:704](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L704)
+
+Fill control (IAppLauncher interface)
+
+#### Parameters
+
+##### options
+
+`any`
+
+##### value
+
+`string`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### fillForm()
+
+> **fillForm**(`formData`): `Promise`\<`void`\>
+
+Defined in: [pages/model-driven-app.page.ts:712](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L712)
+
+Fill form (IAppLauncher interface)
+
+#### Parameters
+
+##### formData
+
+`Record`\<`string`, `string`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### assertControlVisible()
+
+> **assertControlVisible**(`options`, `_assertOptions?`): `Promise`\<`void`\>
+
+Defined in: [pages/model-driven-app.page.ts:721](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L721)
+
+Assert control visible (IAppLauncher interface)
+
+#### Parameters
+
+##### options
+
+`any`
+
+##### \_assertOptions?
+
+`any`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### assertControlText()
+
+> **assertControlText**(`options`, `expectedText`, `_assertOptions?`): `Promise`\<`void`\>
+
+Defined in: [pages/model-driven-app.page.ts:729](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L729)
+
+Assert control text (IAppLauncher interface)
+
+#### Parameters
+
+##### options
+
+`any`
+
+##### expectedText
+
+`string`
+
+##### \_assertOptions?
+
+`any`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### closeApp()
+
+> **closeApp**(): `Promise`\<`void`\>
+
+Defined in: [pages/model-driven-app.page.ts:741](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L741)
+
+Close app (IAppLauncher interface)
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### reset()
+
+> **reset**(): `void`
+
+Defined in: [pages/model-driven-app.page.ts:750](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L750)
+
+Reset launcher state (IAppLauncher interface)
+
+#### Returns
+
+`void`

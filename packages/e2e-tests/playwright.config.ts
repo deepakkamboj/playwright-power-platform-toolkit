@@ -7,7 +7,7 @@ import * as path from 'path';
 import { defineConfig } from '@playwright/test';
 import dotenv from 'dotenv';
 import {
-  storageStatePath,
+  getStorageStatePath,
   checkEnvironmentVariables,
   TimeOut,
   ConfigHelper,
@@ -45,7 +45,7 @@ function getGrepPattern(): RegExp | undefined {
 if (!process.argv.includes('list-files')) {
   checkEnvironmentVariables();
 
-  if (process.env.MS_AUTH_EMAIL && !existsSync(storageStatePath())) {
+  if (process.env.MS_AUTH_EMAIL && !existsSync(getStorageStatePath(process.env.MS_AUTH_EMAIL!))) {
     console.log('===========================================================');
     console.error(`${colors.fgRed}❌ Storage state file does not exist!${colors.reset}`);
     console.error(
@@ -53,8 +53,13 @@ if (!process.argv.includes('list-files')) {
     );
     console.log('===========================================================');
     process.exit(1);
-  } else if (process.env.MS_AUTH_EMAIL && existsSync(storageStatePath())) {
-    const expirationCheck = ConfigHelper.checkStorageStateExpiration(storageStatePath());
+  } else if (
+    process.env.MS_AUTH_EMAIL &&
+    existsSync(getStorageStatePath(process.env.MS_AUTH_EMAIL!))
+  ) {
+    const expirationCheck = ConfigHelper.checkStorageStateExpiration(
+      getStorageStatePath(process.env.MS_AUTH_EMAIL!)
+    );
 
     if (expirationCheck.expired) {
       console.log('===========================================================');
@@ -73,7 +78,7 @@ if (!process.argv.includes('list-files')) {
     }
 
     console.log(
-      `${colors.fgCyan}🔐 Storage state loaded: ${colors.fgGreen}${storageStatePath()}${colors.reset}`
+      `${colors.fgCyan}🔐 Storage state loaded: ${colors.fgGreen}${getStorageStatePath(process.env.MS_AUTH_EMAIL!)}${colors.reset}`
     );
 
     if (expirationCheck.expiresOn) {
@@ -111,6 +116,12 @@ export default defineConfig({
   testDir: getEnvironmentConfig().testDirectory,
   timeout: getEnvironmentConfig().testTimeout,
   testMatch: ['**/*.+(spec|test|setup).+(ts|js|mjs)'],
+  testIgnore: [
+    // Ignore example tests with missing dependencies (@paeng packages, fixtures, page objects)
+    '**/api-recorder.example.test.ts',
+    '**/canvas-app.example.test.ts',
+    '**/model-driven-app.example.test.ts',
+  ],
 
   /* Worker configuration */
   workers: getEnvironmentConfig().workers,
@@ -147,28 +158,28 @@ export default defineConfig({
         ),
       },
     ],
-    // AI Reporter configuration
+    // AI Reporter configuration - Temporarily disabled due to sqlite3 native binding issue
     // See: https://github.com/deepakkamboj/playwright-ai-reporter
-    [
-      'playwright-ai-reporter',
-      {
-        // Performance thresholds
-        slowTestThreshold: parseInt(process.env.SLOW_TEST_THRESHOLD || '3'),
-        maxSlowTestsToShow: parseInt(process.env.MAX_SLOW_TESTS_TO_SHOW || '5'),
-        timeoutWarningThreshold: parseInt(process.env.TIMEOUT_WARNING_THRESHOLD || '20'),
+    // [
+    //   'playwright-ai-reporter',
+    //   {
+    //     // Performance thresholds
+    //     slowTestThreshold: parseInt(process.env.SLOW_TEST_THRESHOLD || '3'),
+    //     maxSlowTestsToShow: parseInt(process.env.MAX_SLOW_TESTS_TO_SHOW || '5'),
+    //     timeoutWarningThreshold: parseInt(process.env.TIMEOUT_WARNING_THRESHOLD || '20'),
 
-        // Output configuration
-        showStackTrace: true,
-        outputDir: path.join(getEnvironmentConfig().outputDirectory, 'playwright-ai-reports'),
+    //     // Output configuration
+    //     showStackTrace: true,
+    //     outputDir: path.join(getEnvironmentConfig().outputDirectory, 'playwright-ai-reports'),
 
-        // AI & Automation features
-        generateFix: process.env.GENERATE_FIX === 'false',
-        createBug: process.env.CREATE_BUG === 'false',
-        generatePR: process.env.GENERATE_PR === 'false',
-        publishToDB: process.env.PUBLISH_TO_DB === 'false',
-        sendEmail: process.env.SEND_EMAIL === 'false',
-      },
-    ],
+    //     // AI & Automation features
+    //     generateFix: process.env.GENERATE_FIX === 'false',
+    //     createBug: process.env.CREATE_BUG === 'false',
+    //     generatePR: process.env.GENERATE_PR === 'false',
+    //     publishToDB: process.env.PUBLISH_TO_DB === 'false',
+    //     sendEmail: process.env.SEND_EMAIL === 'false',
+    //   },
+    // ],
   ],
 
   /* Shared settings for all projects */
@@ -200,7 +211,9 @@ export default defineConfig({
     permissions: ['clipboard-read', 'clipboard-write'],
 
     /* Storage state - conditionally load based on environment */
-    storageState: process.env.MS_AUTH_EMAIL ? storageStatePath() : undefined,
+    storageState: process.env.MS_AUTH_EMAIL
+      ? getStorageStatePath(process.env.MS_AUTH_EMAIL!)
+      : undefined,
 
     /* Launch options */
     launchOptions: {

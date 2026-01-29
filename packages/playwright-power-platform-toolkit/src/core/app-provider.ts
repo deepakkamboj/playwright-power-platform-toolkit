@@ -89,15 +89,26 @@ export class AppProvider {
     // Determine if launching by name or ID
     if (typeof app === 'string') {
       // Simple string - treat as name
+      if (!app || app.trim() === '') {
+        throw new Error('App name is empty or not set. Please provide a valid app name.');
+      }
       await this.launchByName(app, mode, options);
     } else if ('id' in app) {
       // Launch by ID
       if (!baseUrl) {
         throw new Error('baseUrl is required when launching by ID');
       }
+      if (!app.id || app.id.trim() === '') {
+        throw new Error(
+          'App ID is empty or not set. Please provide a valid app ID or set the appropriate environment variable (CANVAS_APP_ID or MODEL_APP_ID).'
+        );
+      }
       await this.launchById(app.id, baseUrl, mode, options);
     } else if ('name' in app) {
       // Launch by name
+      if (!app.name || app.name.trim() === '') {
+        throw new Error('App name is empty or not set. Please provide a valid app name.');
+      }
       await this.launchByName(app.name, mode, options);
     } else {
       throw new Error('Invalid app identifier. Use string, { id: "..." }, or { name: "..." }');

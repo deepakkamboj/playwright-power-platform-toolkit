@@ -37,6 +37,7 @@ Enhanced with production-tested components from legacy library
 
 ## Interfaces
 
+- [MsAuthConfig](interfaces/MsAuthConfig.md)
 - [IAppLauncher](interfaces/IAppLauncher.md)
 - [AppMetadata](interfaces/AppMetadata.md)
 - [LaunchAppConfig](interfaces/LaunchAppConfig.md)
@@ -68,6 +69,13 @@ Enhanced with production-tested components from legacy library
 
 ## Functions
 
+- [loadAuthConfig](functions/loadAuthConfig.md)
+- [getStorageStatePath](functions/getStorageStatePath.md)
+- [hasValidAuth](functions/hasValidAuth.md)
+- [clearAuthState](functions/clearAuthState.md)
+- [authenticateToMicrosoft](functions/authenticateToMicrosoft.md)
+- [getAuthState](functions/getAuthState.md)
+- [validateAuthConfig](functions/validateAuthConfig.md)
 - [getCanvasDataTestId](functions/getCanvasDataTestId.md)
 - [getCanvasControlByName](functions/getCanvasControlByName.md)
 - [getCanvasScreenByName](functions/getCanvasScreenByName.md)
@@ -113,7 +121,7 @@ Enhanced with production-tested components from legacy library
 - [pressKey](functions/pressKey.md)
 - [pressShortcut](functions/pressShortcut.md)
 - [storageStatePath](functions/storageStatePath.md)
-- [getStorageStatePath](functions/getStorageStatePath.md)
+- [getCustomStorageStatePath](functions/getCustomStorageStatePath.md)
 - [getAuthToken](functions/getAuthToken.md)
 - [checkStorageStateExpiration](functions/checkStorageStateExpiration.md)
 - [checkEnvironmentVariables](functions/checkEnvironmentVariables.md)
