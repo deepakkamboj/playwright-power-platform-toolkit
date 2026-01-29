@@ -26,6 +26,11 @@ jobs:
       - name: Install Rush
         run: npm install -g @microsoft/rush
 
+      - name: Configure Git
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+
       - name: Install dependencies
         run: |
           rush update
@@ -90,6 +95,11 @@ jobs:
       - name: Install Rush
         run: npm install -g @microsoft/rush
 
+      - name: Configure Git
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+
       - name: Install dependencies
         run: |
           rush update
@@ -132,6 +142,11 @@ jobs:
 
       - name: Install Rush
         run: npm install -g @microsoft/rush
+
+      - name: Configure Git
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
 
       - name: Check for dependency updates
         run: |
