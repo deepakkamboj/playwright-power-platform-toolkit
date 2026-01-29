@@ -8,11 +8,12 @@
 
 > **checkEnvironmentVariables**(): `void`
 
-Defined in: [utils/auth-helpers.ts:289](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/auth-helpers.ts#L289)
+Defined in: [utils/auth-helpers.ts:326](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/auth-helpers.ts#L326)
 
 Validate that required authentication environment variables are set
 
 Checks for the presence of required environment variables for authentication.
+Supports both password and certificate-based authentication.
 
 ## Returns
 

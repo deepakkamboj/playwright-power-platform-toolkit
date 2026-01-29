@@ -22,6 +22,8 @@ is passed in the x-ms-path-query header.
 
 `string`
 
+The x-ms-path-query value (API path and query params) - currently unused
+
 ## Returns
 
 `string`

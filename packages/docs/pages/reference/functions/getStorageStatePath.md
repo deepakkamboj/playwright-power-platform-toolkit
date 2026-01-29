@@ -6,32 +6,19 @@
 
 # Function: getStorageStatePath()
 
-> **getStorageStatePath**(`email`): `string`
+> **getStorageStatePath**(`email?`): `string`
 
-Defined in: [utils/auth-helpers.ts:59](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/auth-helpers.ts#L59)
+Defined in: [auth/MsAuthHelper.ts:43](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/auth/MsAuthHelper.ts#L43)
 
-Get the path to the storage state file for a specific user email
-
-Returns a user-specific storage state file path, useful when testing
-with multiple accounts.
+Get the storage state file path for authenticated session
+Uses playwright-ms-auth's getStorageStatePath function
 
 ## Parameters
 
-### email
+### email?
 
 `string`
-
-User email address to create storage path for
 
 ## Returns
 
 `string`
-
-Path to the user-specific storage state file
-
-## Example
-
-```typescript
-const storagePath = getStorageStatePath('user@example.com');
-// Returns: ~/.auth/storageState-user@example.com.json
-```

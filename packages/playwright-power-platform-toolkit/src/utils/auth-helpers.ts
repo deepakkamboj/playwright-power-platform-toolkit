@@ -126,7 +126,25 @@ export interface TokenExpirationCheck {
  * ```
  */
 export function getAuthToken(storagePath?: string, apiUrl?: string): string | undefined {
-  const storageFile = storagePath || storageStatePath();
+  let storageFile = storagePath;
+
+  // If no custom path provided, try playwright-ms-auth location first
+  if (!storageFile && process.env.MS_AUTH_EMAIL) {
+    try {
+      const { getStorageStatePath: getMsAuthStoragePath } = require('playwright-ms-auth');
+      const msAuthPath = getMsAuthStoragePath(process.env.MS_AUTH_EMAIL);
+      if (fs.existsSync(msAuthPath)) {
+        storageFile = msAuthPath;
+      }
+    } catch {
+      // playwright-ms-auth not available or path doesn't exist, fallback to default
+    }
+  }
+
+  // Fallback to default storage state path
+  if (!storageFile) {
+    storageFile = storageStatePath();
+  }
 
   if (!fs.existsSync(storageFile)) {
     return undefined;
@@ -198,7 +216,25 @@ export function getAuthToken(storagePath?: string, apiUrl?: string): string | un
  * ```
  */
 export function checkStorageStateExpiration(storagePath?: string): TokenExpirationCheck {
-  const storageFile = storagePath || storageStatePath();
+  let storageFile = storagePath;
+
+  // If no custom path provided, try playwright-ms-auth location first
+  if (!storageFile && process.env.MS_AUTH_EMAIL) {
+    try {
+      const { getStorageStatePath: getMsAuthStoragePath } = require('playwright-ms-auth');
+      const msAuthPath = getMsAuthStoragePath(process.env.MS_AUTH_EMAIL);
+      if (fs.existsSync(msAuthPath)) {
+        storageFile = msAuthPath;
+      }
+    } catch {
+      // playwright-ms-auth not available or path doesn't exist, fallback to default
+    }
+  }
+
+  // Fallback to default storage state path
+  if (!storageFile) {
+    storageFile = storageStatePath();
+  }
 
   if (!fs.existsSync(storageFile)) {
     return { expired: true };
@@ -273,6 +309,7 @@ export function checkStorageStateExpiration(storagePath?: string): TokenExpirati
  * Validate that required authentication environment variables are set
  *
  * Checks for the presence of required environment variables for authentication.
+ * Supports both password and certificate-based authentication.
  *
  * @throws {Error} If required environment variables are missing
  *
@@ -287,7 +324,21 @@ export function checkStorageStateExpiration(storagePath?: string): TokenExpirati
  * ```
  */
 export function checkEnvironmentVariables(): void {
-  const required = ['MS_AUTH_EMAIL', 'MS_USER_PASSWORD', 'AZURE_TENANT_ID'];
+  const credentialType = process.env.MS_AUTH_CREDENTIAL_TYPE || 'password';
+  const required: string[] = ['MS_AUTH_EMAIL'];
+
+  // Add credential-specific required variables
+  if (credentialType === 'certificate') {
+    required.push(
+      'MS_AUTH_CREDENTIAL_TYPE',
+      'MS_AUTH_CREDENTIAL_PROVIDER',
+      'MS_AUTH_LOCAL_FILE_PATH'
+    );
+  } else {
+    // Password authentication
+    required.push('MS_USER_PASSWORD');
+  }
+
   const missing = required.filter((varName) => !process.env[varName]);
 
   if (missing.length > 0) {

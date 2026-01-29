@@ -34,6 +34,14 @@ Defined in: [pages/canvas-app.page.ts:13](https://github.com/deepakkamboj/playwr
 
 Defined in: [pages/canvas-app.page.ts:10](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L10)
 
+---
+
+### appType
+
+> `readonly` **appType**: `"Canvas"` = `'Canvas'`
+
+Defined in: [pages/canvas-app.page.ts:490](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L490)
+
 ## Methods
 
 ### navigateToHome()
@@ -743,3 +751,293 @@ Verify error message is displayed
 #### Returns
 
 `Promise`\<`void`\>
+
+---
+
+### launchById()
+
+> **launchById**(`appId`, `baseUrl`, `_mode`, `_options?`): `Promise`\<`void`\>
+
+Defined in: [pages/canvas-app.page.ts:498](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L498)
+
+Launch app by ID (IAppLauncher interface)
+
+#### Parameters
+
+##### appId
+
+`string`
+
+##### baseUrl
+
+`string`
+
+##### \_mode
+
+`any`
+
+##### \_options?
+
+`any`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### launchByName()
+
+> **launchByName**(`appName`, `findAppCallback`, `_mode`, `_options?`): `Promise`\<`void`\>
+
+Defined in: [pages/canvas-app.page.ts:515](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L515)
+
+Launch app by name (IAppLauncher interface)
+
+#### Parameters
+
+##### appName
+
+`string`
+
+##### findAppCallback
+
+(`appName`) => `Promise`\<`any`\>
+
+##### \_mode
+
+`any`
+
+##### \_options?
+
+`any`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### waitForAppLoad()
+
+> **waitForAppLoad**(`_options?`): `Promise`\<`void`\>
+
+Defined in: [pages/canvas-app.page.ts:530](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L530)
+
+Wait for app to load (IAppLauncher interface)
+
+#### Parameters
+
+##### \_options?
+
+`any`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### isAppReady()
+
+> **isAppReady**(): `boolean`
+
+Defined in: [pages/canvas-app.page.ts:538](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L538)
+
+Check if app is ready (IAppLauncher interface)
+
+#### Returns
+
+`boolean`
+
+---
+
+### getAppId()
+
+> **getAppId**(): `string` \| `null`
+
+Defined in: [pages/canvas-app.page.ts:545](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L545)
+
+Get app ID (IAppLauncher interface)
+
+#### Returns
+
+`string` \| `null`
+
+---
+
+### getAppUrl()
+
+> **getAppUrl**(): `string` \| `null`
+
+Defined in: [pages/canvas-app.page.ts:552](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L552)
+
+Get app URL (IAppLauncher interface)
+
+#### Returns
+
+`string` \| `null`
+
+---
+
+### getControl()
+
+> **getControl**(`options`): `any`
+
+Defined in: [pages/canvas-app.page.ts:559](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L559)
+
+Get control (IAppLauncher interface)
+
+#### Parameters
+
+##### options
+
+`any`
+
+#### Returns
+
+`any`
+
+---
+
+### clickControl()
+
+> **clickControl**(`options`): `Promise`\<`void`\>
+
+Defined in: [pages/canvas-app.page.ts:569](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L569)
+
+Click control (IAppLauncher interface)
+
+#### Parameters
+
+##### options
+
+`any`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### fillControl()
+
+> **fillControl**(`options`, `value`): `Promise`\<`void`\>
+
+Defined in: [pages/canvas-app.page.ts:577](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L577)
+
+Fill control (IAppLauncher interface)
+
+#### Parameters
+
+##### options
+
+`any`
+
+##### value
+
+`string`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### fillForm()
+
+> **fillForm**(`formData`): `Promise`\<`void`\>
+
+Defined in: [pages/canvas-app.page.ts:585](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L585)
+
+Fill form (IAppLauncher interface)
+
+#### Parameters
+
+##### formData
+
+`Record`\<`string`, `string`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### assertControlVisible()
+
+> **assertControlVisible**(`options`, `_assertOptions?`): `Promise`\<`void`\>
+
+Defined in: [pages/canvas-app.page.ts:594](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L594)
+
+Assert control visible (IAppLauncher interface)
+
+#### Parameters
+
+##### options
+
+`any`
+
+##### \_assertOptions?
+
+`any`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### assertControlText()
+
+> **assertControlText**(`options`, `expectedText`, `_assertOptions?`): `Promise`\<`void`\>
+
+Defined in: [pages/canvas-app.page.ts:602](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L602)
+
+Assert control text (IAppLauncher interface)
+
+#### Parameters
+
+##### options
+
+`any`
+
+##### expectedText
+
+`string`
+
+##### \_assertOptions?
+
+`any`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### closeApp()
+
+> **closeApp**(): `Promise`\<`void`\>
+
+Defined in: [pages/canvas-app.page.ts:614](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L614)
+
+Close app (IAppLauncher interface)
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### reset()
+
+> **reset**(): `void`
+
+Defined in: [pages/canvas-app.page.ts:623](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L623)
+
+Reset launcher state (IAppLauncher interface)
+
+#### Returns
+
+`void`
