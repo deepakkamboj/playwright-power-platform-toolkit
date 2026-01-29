@@ -131,6 +131,7 @@ export function getAuthToken(storagePath?: string, apiUrl?: string): string | un
   // If no custom path provided, try playwright-ms-auth location first
   if (!storageFile && process.env.MS_AUTH_EMAIL) {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
       const { getStorageStatePath: getMsAuthStoragePath } = require('playwright-ms-auth');
       const msAuthPath = getMsAuthStoragePath(process.env.MS_AUTH_EMAIL);
       if (fs.existsSync(msAuthPath)) {
@@ -221,6 +222,7 @@ export function checkStorageStateExpiration(storagePath?: string): TokenExpirati
   // If no custom path provided, try playwright-ms-auth location first
   if (!storageFile && process.env.MS_AUTH_EMAIL) {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
       const { getStorageStatePath: getMsAuthStoragePath } = require('playwright-ms-auth');
       const msAuthPath = getMsAuthStoragePath(process.env.MS_AUTH_EMAIL);
       if (fs.existsSync(msAuthPath)) {
