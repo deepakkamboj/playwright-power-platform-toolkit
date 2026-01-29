@@ -26,7 +26,10 @@
       "Bash(timeout /t 10 /nobreak)",
       "Bash(ping:*)",
       "Bash(rush build:*)",
-      "Bash(rush rebuild:*)"
+      "Bash(rush rebuild:*)",
+      "Bash(tasklist:*)",
+      "Bash(rush lint:*)",
+      "Bash(npm run lint)"
     ]
   }
 }

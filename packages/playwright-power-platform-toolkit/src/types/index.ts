@@ -57,7 +57,6 @@ export enum EndPointURL {
   solutions = '/solutions',
   connectionEndPoint = '/connections',
   tablesEndPoint = '/entities',
-  appEndPoints = '/apps',
   discoverAll = '/discover',
   cards = '/cards',
   chatBot = '/bot/create',

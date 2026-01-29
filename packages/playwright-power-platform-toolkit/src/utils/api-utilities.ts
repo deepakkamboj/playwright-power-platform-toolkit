@@ -100,7 +100,7 @@ export async function createAuthenticatedApiContext(token: string, baseUrl?: str
  * // Returns: https://api.bap.microsoft.com/api/invoke
  * ```
  */
-export function buildBapApiEndpoint(pathQuery: string): string {
+export function buildBapApiEndpoint(_pathQuery: string): string {
   const baseUrl = ConfigHelper.getBapApiUrl();
   return `${baseUrl}/api/invoke`;
 }

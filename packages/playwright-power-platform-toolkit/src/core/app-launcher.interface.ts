@@ -4,7 +4,7 @@
  * Supports Canvas Apps, Model Driven Apps, Portal Apps, and future app types
  */
 
-import { Page, Locator } from '@playwright/test';
+import { Locator } from '@playwright/test';
 import { AppLaunchMode, AppPlayerOptions, ControlOptions, AssertionOptions } from '../types';
 
 /**

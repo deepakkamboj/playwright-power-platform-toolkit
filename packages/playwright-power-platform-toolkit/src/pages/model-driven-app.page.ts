@@ -3,7 +3,7 @@
  * Provides methods for creating, editing, and testing Model Driven Apps
  */
 
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, expect } from '@playwright/test';
 import { ModelDrivenAppLocators } from '../locators/model-driven-app.locators';
 
 export class ModelDrivenAppPage {
