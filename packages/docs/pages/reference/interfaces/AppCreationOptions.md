@@ -6,7 +6,7 @@
 
 # Interface: AppCreationOptions
 
-Defined in: types/index.ts:135
+Defined in: [types/index.ts:135](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L135)
 
 App Creation Options
 
@@ -16,7 +16,7 @@ App Creation Options
 
 > **name**: `string`
 
-Defined in: types/index.ts:137
+Defined in: [types/index.ts:137](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L137)
 
 App name
 
@@ -26,7 +26,7 @@ App name
 
 > `optional` **description**: `string`
 
-Defined in: types/index.ts:139
+Defined in: [types/index.ts:139](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L139)
 
 App description
 
@@ -36,7 +36,7 @@ App description
 
 > `optional` **environment**: `string`
 
-Defined in: types/index.ts:141
+Defined in: [types/index.ts:141](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L141)
 
 Environment to create in
 
@@ -46,7 +46,7 @@ Environment to create in
 
 > `optional` **waitForCreation**: `boolean`
 
-Defined in: types/index.ts:143
+Defined in: [types/index.ts:143](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L143)
 
 Wait for creation to complete (default: true)
 
@@ -56,6 +56,6 @@ Wait for creation to complete (default: true)
 
 > `optional` **timeout**: `number`
 
-Defined in: types/index.ts:145
+Defined in: [types/index.ts:145](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L145)
 
 Timeout in milliseconds (default: 60000)

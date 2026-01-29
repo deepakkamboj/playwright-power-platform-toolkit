@@ -8,7 +8,7 @@
 
 > **uploadFile**(`page`, `selector`, `filePath`): `Promise`\<`void`\>
 
-Defined in: utils/app-helpers.ts:235
+Defined in: [utils/app-helpers.ts:235](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/app-helpers.ts#L235)
 
 Upload file to input
 

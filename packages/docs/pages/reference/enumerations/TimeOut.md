@@ -6,7 +6,7 @@
 
 # Enumeration: TimeOut
 
-Defined in: utils/config.ts:23
+Defined in: [utils/config.ts:23](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L23)
 
 Timeout constants (in milliseconds)
 
@@ -24,7 +24,7 @@ await page.waitForSelector('.my-element', { timeout: TimeOut.DefaultWaitTime });
 
 > **DefaultLoopWaitTime**: `5000`
 
-Defined in: utils/config.ts:25
+Defined in: [utils/config.ts:25](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L25)
 
 5 seconds - Default loop wait time
 
@@ -34,7 +34,7 @@ Defined in: utils/config.ts:25
 
 > **DefaultWaitTime**: `30000`
 
-Defined in: utils/config.ts:27
+Defined in: [utils/config.ts:27](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L27)
 
 30 seconds - Default wait time
 
@@ -44,7 +44,7 @@ Defined in: utils/config.ts:27
 
 > **DefaultMaxWaitTime**: `180000`
 
-Defined in: utils/config.ts:29
+Defined in: [utils/config.ts:29](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L29)
 
 3 minutes - Default maximum wait time
 
@@ -54,7 +54,7 @@ Defined in: utils/config.ts:29
 
 > **DefaultWaitTimeForValidation**: `30000`
 
-Defined in: utils/config.ts:31
+Defined in: [utils/config.ts:31](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L31)
 
 30 seconds - Default wait time for validation
 
@@ -64,7 +64,7 @@ Defined in: utils/config.ts:31
 
 > **ElementWaitTime**: `2000`
 
-Defined in: utils/config.ts:33
+Defined in: [utils/config.ts:33](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L33)
 
 2 seconds - Element wait time
 
@@ -74,7 +74,7 @@ Defined in: utils/config.ts:33
 
 > **FiveMinutesTimeout**: `300000`
 
-Defined in: utils/config.ts:35
+Defined in: [utils/config.ts:35](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L35)
 
 5 minutes - Five minutes timeout
 
@@ -84,7 +84,7 @@ Defined in: utils/config.ts:35
 
 > **LoadTimeOut**: `60000`
 
-Defined in: utils/config.ts:37
+Defined in: [utils/config.ts:37](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L37)
 
 1 minute - Load timeout
 
@@ -94,7 +94,7 @@ Defined in: utils/config.ts:37
 
 > **NavigationTimeout**: `60000`
 
-Defined in: utils/config.ts:39
+Defined in: [utils/config.ts:39](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L39)
 
 1 minute - Navigation timeout
 
@@ -104,7 +104,7 @@ Defined in: utils/config.ts:39
 
 > **OneMinuteTimeOut**: `60000`
 
-Defined in: utils/config.ts:41
+Defined in: [utils/config.ts:41](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L41)
 
 1 minute - One minute timeout
 
@@ -114,7 +114,7 @@ Defined in: utils/config.ts:41
 
 > **OptionalElementTimeout**: `5000`
 
-Defined in: utils/config.ts:43
+Defined in: [utils/config.ts:43](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L43)
 
 5 seconds - Optional element timeout
 
@@ -124,7 +124,7 @@ Defined in: utils/config.ts:43
 
 > **PageLoadTimeOut**: `30000`
 
-Defined in: utils/config.ts:45
+Defined in: [utils/config.ts:45](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L45)
 
 30 seconds - Page load timeout
 
@@ -134,7 +134,7 @@ Defined in: utils/config.ts:45
 
 > **TestTimeout**: `360000`
 
-Defined in: utils/config.ts:47
+Defined in: [utils/config.ts:47](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L47)
 
 6 minutes - Test timeout
 
@@ -144,7 +144,7 @@ Defined in: utils/config.ts:47
 
 > **TestTimeoutMax**: `600000`
 
-Defined in: utils/config.ts:49
+Defined in: [utils/config.ts:49](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L49)
 
 10 minutes - Maximum test timeout
 
@@ -154,7 +154,7 @@ Defined in: utils/config.ts:49
 
 > **TwoMinutesTimeout**: `120000`
 
-Defined in: utils/config.ts:51
+Defined in: [utils/config.ts:51](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L51)
 
 2 minutes - Two minutes timeout
 
@@ -164,6 +164,6 @@ Defined in: utils/config.ts:51
 
 > **FifteenMinutesTimeout**: `900000`
 
-Defined in: utils/config.ts:53
+Defined in: [utils/config.ts:53](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L53)
 
 15 minutes - Fifteen minutes timeout

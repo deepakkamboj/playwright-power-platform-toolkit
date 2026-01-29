@@ -6,7 +6,7 @@
 
 # Class: ApiAssertions
 
-Defined in: utils/api-testing.ts:312
+Defined in: [utils/api-testing.ts:312](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L312)
 
 Common API test assertions
 
@@ -26,7 +26,7 @@ Common API test assertions
 
 > `static` **assertSuccess**(`response`): `Promise`\<`void`\>
 
-Defined in: utils/api-testing.ts:318
+Defined in: [utils/api-testing.ts:318](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L318)
 
 Assert successful response (2xx status code)
 
@@ -48,7 +48,7 @@ API response
 
 > `static` **assertStatusCode**(`response`, `statusCode`): `Promise`\<`void`\>
 
-Defined in: utils/api-testing.ts:328
+Defined in: [utils/api-testing.ts:328](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L328)
 
 Assert response status code
 
@@ -76,7 +76,7 @@ Expected HTTP status code
 
 > `static` **assertHeaders**(`response`, `headers`): `Promise`\<`void`\>
 
-Defined in: utils/api-testing.ts:338
+Defined in: [utils/api-testing.ts:338](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L338)
 
 Assert response has expected headers
 
@@ -104,7 +104,7 @@ Expected headers as key-value pairs
 
 > `static` **assertResponseTime**(`duration`, `maxMs`): `void`
 
-Defined in: utils/api-testing.ts:354
+Defined in: [utils/api-testing.ts:354](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L354)
 
 Assert response time is within threshold
 
@@ -132,7 +132,7 @@ Maximum allowed duration in milliseconds
 
 > `static` **assertJsonStructure**(`response`, `structure`): `Promise`\<`void`\>
 
-Defined in: utils/api-testing.ts:364
+Defined in: [utils/api-testing.ts:364](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L364)
 
 Assert JSON response structure
 

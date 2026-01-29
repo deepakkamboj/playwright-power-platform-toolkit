@@ -6,7 +6,7 @@
 
 # Interface: AppMetadata
 
-Defined in: core/app-launcher.interface.ts:134
+Defined in: [core/app-launcher.interface.ts:134](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L134)
 
 App metadata returned by the provider
 
@@ -16,7 +16,7 @@ App metadata returned by the provider
 
 > **id**: `string`
 
-Defined in: core/app-launcher.interface.ts:135
+Defined in: [core/app-launcher.interface.ts:135](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L135)
 
 ---
 
@@ -24,7 +24,7 @@ Defined in: core/app-launcher.interface.ts:135
 
 > **name**: `string`
 
-Defined in: core/app-launcher.interface.ts:136
+Defined in: [core/app-launcher.interface.ts:136](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L136)
 
 ---
 
@@ -32,7 +32,7 @@ Defined in: core/app-launcher.interface.ts:136
 
 > **type**: `string`
 
-Defined in: core/app-launcher.interface.ts:137
+Defined in: [core/app-launcher.interface.ts:137](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L137)
 
 ---
 
@@ -40,7 +40,7 @@ Defined in: core/app-launcher.interface.ts:137
 
 > **url**: `string` \| `null`
 
-Defined in: core/app-launcher.interface.ts:138
+Defined in: [core/app-launcher.interface.ts:138](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L138)
 
 ---
 
@@ -48,7 +48,7 @@ Defined in: core/app-launcher.interface.ts:138
 
 > **isReady**: `boolean`
 
-Defined in: core/app-launcher.interface.ts:139
+Defined in: [core/app-launcher.interface.ts:139](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L139)
 
 ---
 
@@ -56,4 +56,4 @@ Defined in: core/app-launcher.interface.ts:139
 
 > **launchedAt**: `Date`
 
-Defined in: core/app-launcher.interface.ts:140
+Defined in: [core/app-launcher.interface.ts:140](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L140)

@@ -8,7 +8,7 @@
 
 > `const` **ModelDrivenAppLocators**: `object`
 
-Defined in: locators/model-driven-app.locators.ts:7
+Defined in: [locators/model-driven-app.locators.ts:7](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/model-driven-app.locators.ts#L7)
 
 Model Driven App Locators
 Centralized selectors for Model Driven App creation, editing, and testing

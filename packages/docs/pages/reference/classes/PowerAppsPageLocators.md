@@ -6,7 +6,7 @@
 
 # Class: PowerAppsPageLocators
 
-Defined in: locators/power-apps.locators.ts:127
+Defined in: [locators/power-apps.locators.ts:127](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L127)
 
 Helper class to work with Power Apps selectors and return Playwright Locators
 Provides strongly-typed access to page elements for Canvas Apps, Model-Driven Apps, etc.
@@ -17,7 +17,7 @@ Provides strongly-typed access to page elements for Canvas Apps, Model-Driven Ap
 
 > **new PowerAppsPageLocators**(`page`): `PowerAppsPageLocators`
 
-Defined in: locators/power-apps.locators.ts:130
+Defined in: [locators/power-apps.locators.ts:130](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L130)
 
 #### Parameters
 
@@ -37,7 +37,7 @@ Defined in: locators/power-apps.locators.ts:130
 
 > **get** **root**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:142
+Defined in: [locators/power-apps.locators.ts:142](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L142)
 
 ##### Returns
 
@@ -51,7 +51,7 @@ Defined in: locators/power-apps.locators.ts:142
 
 > **get** **pageHeader**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:146
+Defined in: [locators/power-apps.locators.ts:146](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L146)
 
 ##### Returns
 
@@ -65,7 +65,7 @@ Defined in: locators/power-apps.locators.ts:146
 
 > **get** **mainNavigation**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:150
+Defined in: [locators/power-apps.locators.ts:150](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L150)
 
 ##### Returns
 
@@ -79,7 +79,7 @@ Defined in: locators/power-apps.locators.ts:150
 
 > **get** **homePageMainContainer**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:155
+Defined in: [locators/power-apps.locators.ts:155](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L155)
 
 ##### Returns
 
@@ -93,7 +93,7 @@ Defined in: locators/power-apps.locators.ts:155
 
 > **get** **homePageMainContent**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:159
+Defined in: [locators/power-apps.locators.ts:159](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L159)
 
 ##### Returns
 
@@ -107,7 +107,7 @@ Defined in: locators/power-apps.locators.ts:159
 
 > **get** **homePageContainer**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:163
+Defined in: [locators/power-apps.locators.ts:163](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L163)
 
 ##### Returns
 
@@ -121,7 +121,7 @@ Defined in: locators/power-apps.locators.ts:163
 
 > **get** **homePageHeaderRegion**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:167
+Defined in: [locators/power-apps.locators.ts:167](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L167)
 
 ##### Returns
 
@@ -135,7 +135,7 @@ Defined in: locators/power-apps.locators.ts:167
 
 > **get** **homePagePlansSection**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:171
+Defined in: [locators/power-apps.locators.ts:171](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L171)
 
 ##### Returns
 
@@ -149,7 +149,7 @@ Defined in: locators/power-apps.locators.ts:171
 
 > **get** **homePageAppsSection**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:175
+Defined in: [locators/power-apps.locators.ts:175](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L175)
 
 ##### Returns
 
@@ -163,7 +163,7 @@ Defined in: locators/power-apps.locators.ts:175
 
 > **get** **homePageLearningSection**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:179
+Defined in: [locators/power-apps.locators.ts:179](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L179)
 
 ##### Returns
 
@@ -177,7 +177,7 @@ Defined in: locators/power-apps.locators.ts:179
 
 > **get** **errorPageContainer**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:184
+Defined in: [locators/power-apps.locators.ts:184](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L184)
 
 ##### Returns
 
@@ -191,7 +191,7 @@ Defined in: locators/power-apps.locators.ts:184
 
 > **get** **errorPageTitle**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:188
+Defined in: [locators/power-apps.locators.ts:188](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L188)
 
 ##### Returns
 
@@ -205,7 +205,7 @@ Defined in: locators/power-apps.locators.ts:188
 
 > **get** **errorPageMessage**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:192
+Defined in: [locators/power-apps.locators.ts:192](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L192)
 
 ##### Returns
 
@@ -219,7 +219,7 @@ Defined in: locators/power-apps.locators.ts:192
 
 > **get** **errorPageHomeButton**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:196
+Defined in: [locators/power-apps.locators.ts:196](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L196)
 
 ##### Returns
 
@@ -233,7 +233,7 @@ Defined in: locators/power-apps.locators.ts:196
 
 > **get** **appsPageMainContainer**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:201
+Defined in: [locators/power-apps.locators.ts:201](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L201)
 
 ##### Returns
 
@@ -247,7 +247,7 @@ Defined in: locators/power-apps.locators.ts:201
 
 > **get** **appsPageContainer**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:205
+Defined in: [locators/power-apps.locators.ts:205](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L205)
 
 ##### Returns
 
@@ -261,7 +261,7 @@ Defined in: locators/power-apps.locators.ts:205
 
 > **get** **sidebar**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:209
+Defined in: [locators/power-apps.locators.ts:209](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L209)
 
 ##### Returns
 
@@ -275,7 +275,7 @@ Defined in: locators/power-apps.locators.ts:209
 
 > **get** **commandBar**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:213
+Defined in: [locators/power-apps.locators.ts:213](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L213)
 
 ##### Returns
 
@@ -289,7 +289,7 @@ Defined in: locators/power-apps.locators.ts:213
 
 > **get** **appsPageCommandBar**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:217
+Defined in: [locators/power-apps.locators.ts:217](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L217)
 
 ##### Returns
 
@@ -303,7 +303,7 @@ Defined in: locators/power-apps.locators.ts:217
 
 > **get** **appListsGridContainer**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:221
+Defined in: [locators/power-apps.locators.ts:221](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L221)
 
 ##### Returns
 
@@ -317,7 +317,7 @@ Defined in: locators/power-apps.locators.ts:221
 
 > **get** **newAppButton**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:225
+Defined in: [locators/power-apps.locators.ts:225](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L225)
 
 ##### Returns
 
@@ -331,7 +331,7 @@ Defined in: locators/power-apps.locators.ts:225
 
 > **get** **allAppsButton**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:229
+Defined in: [locators/power-apps.locators.ts:229](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L229)
 
 ##### Returns
 
@@ -345,7 +345,7 @@ Defined in: locators/power-apps.locators.ts:229
 
 > **get** **canvasAppButton**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:233
+Defined in: [locators/power-apps.locators.ts:233](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L233)
 
 ##### Returns
 
@@ -359,7 +359,7 @@ Defined in: locators/power-apps.locators.ts:233
 
 > **get** **modelAppButton**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:237
+Defined in: [locators/power-apps.locators.ts:237](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L237)
 
 ##### Returns
 
@@ -373,7 +373,7 @@ Defined in: locators/power-apps.locators.ts:237
 
 > **get** **editAppButton**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:241
+Defined in: [locators/power-apps.locators.ts:241](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L241)
 
 ##### Returns
 
@@ -387,7 +387,7 @@ Defined in: locators/power-apps.locators.ts:241
 
 > **get** **deleteAppButton**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:245
+Defined in: [locators/power-apps.locators.ts:245](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L245)
 
 ##### Returns
 
@@ -401,7 +401,7 @@ Defined in: locators/power-apps.locators.ts:245
 
 > **get** **appListGrid**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:249
+Defined in: [locators/power-apps.locators.ts:249](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L249)
 
 ##### Returns
 
@@ -415,7 +415,7 @@ Defined in: locators/power-apps.locators.ts:249
 
 > **get** **contextualMenu**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:253
+Defined in: [locators/power-apps.locators.ts:253](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L253)
 
 ##### Returns
 
@@ -429,7 +429,7 @@ Defined in: locators/power-apps.locators.ts:253
 
 > **get** **solutionsSidebar**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:274
+Defined in: [locators/power-apps.locators.ts:274](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L274)
 
 ##### Returns
 
@@ -443,7 +443,7 @@ Defined in: locators/power-apps.locators.ts:274
 
 > **get** **solutionsCommandBar**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:278
+Defined in: [locators/power-apps.locators.ts:278](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L278)
 
 ##### Returns
 
@@ -457,7 +457,7 @@ Defined in: locators/power-apps.locators.ts:278
 
 > **get** **solutionsSearchBox**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:282
+Defined in: [locators/power-apps.locators.ts:282](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L282)
 
 ##### Returns
 
@@ -471,7 +471,7 @@ Defined in: locators/power-apps.locators.ts:282
 
 > **get** **solutionsListContainer**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:286
+Defined in: [locators/power-apps.locators.ts:286](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L286)
 
 ##### Returns
 
@@ -485,7 +485,7 @@ Defined in: locators/power-apps.locators.ts:286
 
 > **get** **componentTypesList**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:290
+Defined in: [locators/power-apps.locators.ts:290](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L290)
 
 ##### Returns
 
@@ -499,7 +499,7 @@ Defined in: locators/power-apps.locators.ts:290
 
 > **get** **solutionsComponentTypesList**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:294
+Defined in: [locators/power-apps.locators.ts:294](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L294)
 
 ##### Returns
 
@@ -513,7 +513,7 @@ Defined in: locators/power-apps.locators.ts:294
 
 > **get** **defaultSolutionGrid**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:298
+Defined in: [locators/power-apps.locators.ts:298](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L298)
 
 ##### Returns
 
@@ -527,7 +527,7 @@ Defined in: locators/power-apps.locators.ts:298
 
 > **get** **solutionPreviewToggle**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:302
+Defined in: [locators/power-apps.locators.ts:302](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L302)
 
 ##### Returns
 
@@ -541,7 +541,7 @@ Defined in: locators/power-apps.locators.ts:302
 
 > **get** **canvasAndPanes**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:317
+Defined in: [locators/power-apps.locators.ts:317](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L317)
 
 ##### Returns
 
@@ -555,7 +555,7 @@ Defined in: locators/power-apps.locators.ts:317
 
 > **get** **canvasPlaceholderNewPage**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:321
+Defined in: [locators/power-apps.locators.ts:321](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L321)
 
 ##### Returns
 
@@ -569,7 +569,7 @@ Defined in: locators/power-apps.locators.ts:321
 
 > **get** **previewPlaceholder**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:325
+Defined in: [locators/power-apps.locators.ts:325](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L325)
 
 ##### Returns
 
@@ -583,7 +583,7 @@ Defined in: locators/power-apps.locators.ts:325
 
 > **get** **saveButton**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:329
+Defined in: [locators/power-apps.locators.ts:329](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L329)
 
 ##### Returns
 
@@ -597,7 +597,7 @@ Defined in: locators/power-apps.locators.ts:329
 
 > **get** **publishButton**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:333
+Defined in: [locators/power-apps.locators.ts:333](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L333)
 
 ##### Returns
 
@@ -611,7 +611,7 @@ Defined in: locators/power-apps.locators.ts:333
 
 > **get** **playButton**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:337
+Defined in: [locators/power-apps.locators.ts:337](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L337)
 
 ##### Returns
 
@@ -625,7 +625,7 @@ Defined in: locators/power-apps.locators.ts:337
 
 > **get** **closeButton**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:341
+Defined in: [locators/power-apps.locators.ts:341](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L341)
 
 ##### Returns
 
@@ -639,7 +639,7 @@ Defined in: locators/power-apps.locators.ts:341
 
 > **get** **canvasAppManagementPage**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:345
+Defined in: [locators/power-apps.locators.ts:345](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L345)
 
 ##### Returns
 
@@ -653,7 +653,7 @@ Defined in: locators/power-apps.locators.ts:345
 
 > **get** **backstageRootComponent**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:349
+Defined in: [locators/power-apps.locators.ts:349](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L349)
 
 ##### Returns
 
@@ -667,7 +667,7 @@ Defined in: locators/power-apps.locators.ts:349
 
 > **get** **applicationShell**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:354
+Defined in: [locators/power-apps.locators.ts:354](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L354)
 
 ##### Returns
 
@@ -681,7 +681,7 @@ Defined in: locators/power-apps.locators.ts:354
 
 > **get** **appTitle**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:358
+Defined in: [locators/power-apps.locators.ts:358](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L358)
 
 ##### Returns
 
@@ -695,7 +695,7 @@ Defined in: locators/power-apps.locators.ts:358
 
 > **get** **globalCommandBar**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:362
+Defined in: [locators/power-apps.locators.ts:362](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L362)
 
 ##### Returns
 
@@ -709,7 +709,7 @@ Defined in: locators/power-apps.locators.ts:362
 
 > **get** **mainContent**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:366
+Defined in: [locators/power-apps.locators.ts:366](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L366)
 
 ##### Returns
 
@@ -723,7 +723,7 @@ Defined in: locators/power-apps.locators.ts:366
 
 > **get** **teachingBubble**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:371
+Defined in: [locators/power-apps.locators.ts:371](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L371)
 
 ##### Returns
 
@@ -737,7 +737,7 @@ Defined in: locators/power-apps.locators.ts:371
 
 > **get** **teachingBubbleCloseButton**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:375
+Defined in: [locators/power-apps.locators.ts:375](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L375)
 
 ##### Returns
 
@@ -751,7 +751,7 @@ Defined in: locators/power-apps.locators.ts:375
 
 > **get** **teachingBubblePrimaryButton**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:379
+Defined in: [locators/power-apps.locators.ts:379](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L379)
 
 ##### Returns
 
@@ -765,7 +765,7 @@ Defined in: locators/power-apps.locators.ts:379
 
 > **get** **modalFocusTrapZone**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:384
+Defined in: [locators/power-apps.locators.ts:384](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L384)
 
 ##### Returns
 
@@ -779,7 +779,7 @@ Defined in: locators/power-apps.locators.ts:384
 
 > **get** **dialogAcceptButton**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:388
+Defined in: [locators/power-apps.locators.ts:388](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L388)
 
 ##### Returns
 
@@ -793,7 +793,7 @@ Defined in: locators/power-apps.locators.ts:388
 
 > **get** **dialogCancelButton**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:392
+Defined in: [locators/power-apps.locators.ts:392](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L392)
 
 ##### Returns
 
@@ -807,7 +807,7 @@ Defined in: locators/power-apps.locators.ts:392
 
 > **get** **canvasDesignerIframe**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:397
+Defined in: [locators/power-apps.locators.ts:397](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L397)
 
 ##### Returns
 
@@ -821,7 +821,7 @@ Defined in: locators/power-apps.locators.ts:397
 
 > **get** **canvasPlayerIframe**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:401
+Defined in: [locators/power-apps.locators.ts:401](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L401)
 
 ##### Returns
 
@@ -835,7 +835,7 @@ Defined in: locators/power-apps.locators.ts:401
 
 > **get** **meInitialsButton**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:406
+Defined in: [locators/power-apps.locators.ts:406](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L406)
 
 ##### Returns
 
@@ -849,7 +849,7 @@ Defined in: locators/power-apps.locators.ts:406
 
 > **get** **signOutButton**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:410
+Defined in: [locators/power-apps.locators.ts:410](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L410)
 
 ##### Returns
 
@@ -863,7 +863,7 @@ Defined in: locators/power-apps.locators.ts:410
 
 > **get** **signOutLink**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:414
+Defined in: [locators/power-apps.locators.ts:414](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L414)
 
 ##### Returns
 
@@ -877,7 +877,7 @@ Defined in: locators/power-apps.locators.ts:414
 
 > **get** **searchTextBox**(): `Locator`
 
-Defined in: locators/power-apps.locators.ts:419
+Defined in: [locators/power-apps.locators.ts:419](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L419)
 
 ##### Returns
 
@@ -889,7 +889,7 @@ Defined in: locators/power-apps.locators.ts:419
 
 > **getAppByName**(`appName`): `Locator`
 
-Defined in: locators/power-apps.locators.ts:260
+Defined in: [locators/power-apps.locators.ts:260](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L260)
 
 Get app by name using a link locator
 
@@ -909,7 +909,7 @@ Get app by name using a link locator
 
 > **getAppRowByName**(`appName`): `Locator`
 
-Defined in: locators/power-apps.locators.ts:267
+Defined in: [locators/power-apps.locators.ts:267](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L267)
 
 Get app row container by name
 
@@ -929,7 +929,7 @@ Get app row container by name
 
 > **getSolutionByName**(`solutionName`): `Locator`
 
-Defined in: locators/power-apps.locators.ts:306
+Defined in: [locators/power-apps.locators.ts:306](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L306)
 
 #### Parameters
 
@@ -947,7 +947,7 @@ Defined in: locators/power-apps.locators.ts:306
 
 > **getSitemapById**(`sitemapId`): `Locator`
 
-Defined in: locators/power-apps.locators.ts:310
+Defined in: [locators/power-apps.locators.ts:310](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L310)
 
 #### Parameters
 

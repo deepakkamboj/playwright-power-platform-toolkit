@@ -8,7 +8,7 @@
 
 > **createQueryPayload**(`options?`): `object`
 
-Defined in: utils/api-utilities.ts:201
+Defined in: [utils/api-utilities.ts:201](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-utilities.ts#L201)
 
 Create default payload for ResourceQuery API
 

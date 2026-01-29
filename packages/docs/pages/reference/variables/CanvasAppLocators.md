@@ -8,7 +8,7 @@
 
 > `const` **CanvasAppLocators**: `object`
 
-Defined in: locators/canvas-app.locators.ts:7
+Defined in: [locators/canvas-app.locators.ts:7](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/canvas-app.locators.ts#L7)
 
 Canvas App Locators
 Centralized selectors for Canvas App creation, editing, and testing

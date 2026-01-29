@@ -6,7 +6,7 @@
 
 # Interface: OperationResult
 
-Defined in: utils/api-utilities.ts:310
+Defined in: [utils/api-utilities.ts:310](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-utilities.ts#L310)
 
 Operation polling result
 
@@ -16,7 +16,7 @@ Operation polling result
 
 > **success**: `boolean`
 
-Defined in: utils/api-utilities.ts:312
+Defined in: [utils/api-utilities.ts:312](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-utilities.ts#L312)
 
 Whether the operation completed successfully
 
@@ -26,6 +26,6 @@ Whether the operation completed successfully
 
 > **data**: `any`
 
-Defined in: utils/api-utilities.ts:314
+Defined in: [utils/api-utilities.ts:314](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-utilities.ts#L314)
 
 Operation status data

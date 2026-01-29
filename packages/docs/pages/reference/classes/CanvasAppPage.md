@@ -6,7 +6,7 @@
 
 # Class: CanvasAppPage
 
-Defined in: pages/canvas-app.page.ts:9
+Defined in: [pages/canvas-app.page.ts:9](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L9)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: pages/canvas-app.page.ts:9
 
 > **new CanvasAppPage**(`page`): `CanvasAppPage`
 
-Defined in: pages/canvas-app.page.ts:13
+Defined in: [pages/canvas-app.page.ts:13](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L13)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: pages/canvas-app.page.ts:13
 
 > `readonly` **page**: `Page`
 
-Defined in: pages/canvas-app.page.ts:10
+Defined in: [pages/canvas-app.page.ts:10](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L10)
 
 ## Methods
 
@@ -40,7 +40,7 @@ Defined in: pages/canvas-app.page.ts:10
 
 > **navigateToHome**(): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:35
+Defined in: [pages/canvas-app.page.ts:35](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L35)
 
 Navigate to Power Apps home page
 
@@ -54,7 +54,7 @@ Navigate to Power Apps home page
 
 > **waitForHomePageLoad**(): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:43
+Defined in: [pages/canvas-app.page.ts:43](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L43)
 
 Wait for home page to load
 
@@ -68,7 +68,7 @@ Wait for home page to load
 
 > **waitForStudioLoad**(): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:53
+Defined in: [pages/canvas-app.page.ts:53](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L53)
 
 Wait for Canvas Studio to load
 
@@ -82,7 +82,7 @@ Wait for Canvas Studio to load
 
 > **waitForLoadingComplete**(): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:64
+Defined in: [pages/canvas-app.page.ts:64](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L64)
 
 Wait for loading spinner to disappear
 
@@ -96,7 +96,7 @@ Wait for loading spinner to disappear
 
 > **createBlankCanvasApp**(`appName?`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:79
+Defined in: [pages/canvas-app.page.ts:79](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L79)
 
 Create a blank Canvas app
 
@@ -118,7 +118,7 @@ Optional name for the app
 
 > **createFromTemplate**(`templateName`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:93
+Defined in: [pages/canvas-app.page.ts:93](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L93)
 
 Create Canvas app from template
 
@@ -140,7 +140,7 @@ Name of the template
 
 > **createFromData**(`dataSourceName`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:104
+Defined in: [pages/canvas-app.page.ts:104](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L104)
 
 Create Canvas app from data
 
@@ -162,7 +162,7 @@ Name of the data source
 
 > **setAppName**(`appName`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:119
+Defined in: [pages/canvas-app.page.ts:119](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L119)
 
 Set app name
 
@@ -184,7 +184,7 @@ Name for the app
 
 > **saveApp**(): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:130
+Defined in: [pages/canvas-app.page.ts:130](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L130)
 
 Save the Canvas app
 
@@ -198,7 +198,7 @@ Save the Canvas app
 
 > **saveAppWithName**(`appName`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:142
+Defined in: [pages/canvas-app.page.ts:142](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L142)
 
 Save app with specific name
 
@@ -220,7 +220,7 @@ Name to save the app as
 
 > **waitForSaveComplete**(): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:154
+Defined in: [pages/canvas-app.page.ts:154](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L154)
 
 Wait for save operation to complete
 
@@ -234,7 +234,7 @@ Wait for save operation to complete
 
 > **publishApp**(`comments?`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:165
+Defined in: [pages/canvas-app.page.ts:165](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L165)
 
 Publish the Canvas app
 
@@ -256,7 +256,7 @@ Optional version comments
 
 > **waitForPublishComplete**(): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:181
+Defined in: [pages/canvas-app.page.ts:181](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L181)
 
 Wait for publish operation to complete
 
@@ -270,7 +270,7 @@ Wait for publish operation to complete
 
 > **playApp**(): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:191
+Defined in: [pages/canvas-app.page.ts:191](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L191)
 
 Play/Preview the app
 
@@ -284,7 +284,7 @@ Play/Preview the app
 
 > **stopPlayingApp**(): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:203
+Defined in: [pages/canvas-app.page.ts:203](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L203)
 
 Stop playing the app
 
@@ -298,7 +298,7 @@ Stop playing the app
 
 > **addControl**(`controlType`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:215
+Defined in: [pages/canvas-app.page.ts:215](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L215)
 
 Add a control to the canvas
 
@@ -320,7 +320,7 @@ Type of control (e.g., 'Button', 'Label', 'TextInput')
 
 > **addButton**(): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:233
+Defined in: [pages/canvas-app.page.ts:233](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L233)
 
 Add a button control
 
@@ -334,7 +334,7 @@ Add a button control
 
 > **addTextLabel**(): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:240
+Defined in: [pages/canvas-app.page.ts:240](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L240)
 
 Add a text label control
 
@@ -348,7 +348,7 @@ Add a text label control
 
 > **addTextInput**(): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:247
+Defined in: [pages/canvas-app.page.ts:247](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L247)
 
 Add a text input control
 
@@ -362,7 +362,7 @@ Add a text input control
 
 > **addGallery**(): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:254
+Defined in: [pages/canvas-app.page.ts:254](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L254)
 
 Add a gallery control
 
@@ -376,7 +376,7 @@ Add a gallery control
 
 > **selectControl**(`controlName`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:262
+Defined in: [pages/canvas-app.page.ts:262](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L262)
 
 Select a control by name
 
@@ -398,7 +398,7 @@ Name of the control
 
 > **deleteSelectedControl**(): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:270
+Defined in: [pages/canvas-app.page.ts:270](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L270)
 
 Delete selected control
 
@@ -412,7 +412,7 @@ Delete selected control
 
 > **setControlProperty**(`propertyName`, `value`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:283
+Defined in: [pages/canvas-app.page.ts:283](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L283)
 
 Set control property
 
@@ -440,7 +440,7 @@ Value to set
 
 > **setControlText**(`text`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:296
+Defined in: [pages/canvas-app.page.ts:296](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L296)
 
 Set control text property
 
@@ -462,7 +462,7 @@ Text value
 
 > **setFormula**(`propertyName`, `formula`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:307
+Defined in: [pages/canvas-app.page.ts:307](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L307)
 
 Set formula for a property
 
@@ -490,7 +490,7 @@ Formula to set
 
 > **addDataSource**(`dataSourceName`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:327
+Defined in: [pages/canvas-app.page.ts:327](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L327)
 
 Add data source to the app
 
@@ -512,7 +512,7 @@ Name of the data source
 
 > **addScreen**(): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:353
+Defined in: [pages/canvas-app.page.ts:353](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L353)
 
 Add a new screen
 
@@ -526,7 +526,7 @@ Add a new screen
 
 > **selectScreen**(`screenName`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:362
+Defined in: [pages/canvas-app.page.ts:362](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L362)
 
 Select a screen by name
 
@@ -548,7 +548,7 @@ Name of the screen
 
 > **deleteScreen**(`screenName`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:371
+Defined in: [pages/canvas-app.page.ts:371](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L371)
 
 Delete a screen
 
@@ -570,7 +570,7 @@ Name of the screen to delete
 
 > **searchApp**(`appName`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:386
+Defined in: [pages/canvas-app.page.ts:386](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L386)
 
 Search for an app by name
 
@@ -592,7 +592,7 @@ Name of the app to search for
 
 > **openApp**(`appName`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:396
+Defined in: [pages/canvas-app.page.ts:396](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L396)
 
 Open an existing app
 
@@ -614,7 +614,7 @@ Name of the app to open
 
 > **deleteApp**(`appName`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:406
+Defined in: [pages/canvas-app.page.ts:406](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L406)
 
 Delete an app
 
@@ -636,7 +636,7 @@ Name of the app to delete
 
 > **shareApp**(`userEmail`, `permission`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:425
+Defined in: [pages/canvas-app.page.ts:425](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L425)
 
 Share app with a user
 
@@ -664,7 +664,7 @@ Permission level ('CanEdit' or 'CanView')
 
 > **verifyAppExists**(`appName`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:451
+Defined in: [pages/canvas-app.page.ts:451](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L451)
 
 Verify app exists in the list
 
@@ -686,7 +686,7 @@ Name of the app
 
 > **verifyAppSaved**(): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:459
+Defined in: [pages/canvas-app.page.ts:459](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L459)
 
 Verify app is saved
 
@@ -700,7 +700,7 @@ Verify app is saved
 
 > **verifyAppPublished**(): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:466
+Defined in: [pages/canvas-app.page.ts:466](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L466)
 
 Verify app is published
 
@@ -714,7 +714,7 @@ Verify app is published
 
 > **verifyControlExists**(`controlName`): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:474
+Defined in: [pages/canvas-app.page.ts:474](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L474)
 
 Verify control exists on canvas
 
@@ -736,7 +736,7 @@ Name of the control
 
 > **verifyErrorDisplayed**(): `Promise`\<`void`\>
 
-Defined in: pages/canvas-app.page.ts:482
+Defined in: [pages/canvas-app.page.ts:482](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L482)
 
 Verify error message is displayed
 

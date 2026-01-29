@@ -8,7 +8,7 @@
 
 > **getElementCount**(`page`, `selector`): `Promise`\<`number`\>
 
-Defined in: utils/app-helpers.ts:157
+Defined in: [utils/app-helpers.ts:157](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/app-helpers.ts#L157)
 
 Get element count
 

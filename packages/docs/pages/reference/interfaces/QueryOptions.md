@@ -6,7 +6,7 @@
 
 # Interface: QueryOptions
 
-Defined in: utils/api-utilities.ts:162
+Defined in: [utils/api-utilities.ts:162](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-utilities.ts#L162)
 
 Query options for ResourceQuery API
 
@@ -16,7 +16,7 @@ Query options for ResourceQuery API
 
 > `optional` **skip**: `number`
 
-Defined in: utils/api-utilities.ts:164
+Defined in: [utils/api-utilities.ts:164](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-utilities.ts#L164)
 
 Number of items to skip (for pagination)
 
@@ -26,7 +26,7 @@ Number of items to skip (for pagination)
 
 > `optional` **top**: `number`
 
-Defined in: utils/api-utilities.ts:166
+Defined in: [utils/api-utilities.ts:166](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-utilities.ts#L166)
 
 Maximum number of items to return
 
@@ -36,7 +36,7 @@ Maximum number of items to return
 
 > `optional` **filter**: `string`
 
-Defined in: utils/api-utilities.ts:168
+Defined in: [utils/api-utilities.ts:168](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-utilities.ts#L168)
 
 OData filter expression
 
@@ -46,6 +46,6 @@ OData filter expression
 
 > `optional` **orderBy**: `string`
 
-Defined in: utils/api-utilities.ts:170
+Defined in: [utils/api-utilities.ts:170](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-utilities.ts#L170)
 
 OData orderBy expression

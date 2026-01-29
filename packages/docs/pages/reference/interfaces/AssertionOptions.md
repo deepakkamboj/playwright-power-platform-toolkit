@@ -6,7 +6,7 @@
 
 # Interface: AssertionOptions
 
-Defined in: types/index.ts:99
+Defined in: [types/index.ts:99](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L99)
 
 Test Assertion Options
 
@@ -16,7 +16,7 @@ Test Assertion Options
 
 > `optional` **timeout**: `number`
 
-Defined in: types/index.ts:101
+Defined in: [types/index.ts:101](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L101)
 
 Timeout in milliseconds (default: 10000)
 
@@ -26,6 +26,6 @@ Timeout in milliseconds (default: 10000)
 
 > `optional` **message**: `string`
 
-Defined in: types/index.ts:103
+Defined in: [types/index.ts:103](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L103)
 
 Custom assertion message

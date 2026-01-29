@@ -6,7 +6,7 @@
 
 # Class: TestLogger
 
-Defined in: utils/logger.ts:26
+Defined in: [utils/logger.ts:26](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/logger.ts#L26)
 
 ## Constructors
 
@@ -24,7 +24,7 @@ Defined in: utils/logger.ts:26
 
 > `static` **info**(`message`): `void`
 
-Defined in: utils/logger.ts:41
+Defined in: [utils/logger.ts:41](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/logger.ts#L41)
 
 Log informational message in gray color
 
@@ -44,7 +44,7 @@ Log informational message in gray color
 
 > `static` **debug**(`message`): `void`
 
-Defined in: utils/logger.ts:48
+Defined in: [utils/logger.ts:48](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/logger.ts#L48)
 
 Log debug message in gray color
 
@@ -64,7 +64,7 @@ Log debug message in gray color
 
 > `static` **step**(`stepNumber`, `message`): `void`
 
-Defined in: utils/logger.ts:55
+Defined in: [utils/logger.ts:55](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/logger.ts#L55)
 
 Log test step in gray with step indicator
 
@@ -88,7 +88,7 @@ Log test step in gray with step indicator
 
 > `static` **success**(`message`): `void`
 
-Defined in: utils/logger.ts:62
+Defined in: [utils/logger.ts:62](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/logger.ts#L62)
 
 Log success message in gray
 
@@ -108,7 +108,7 @@ Log success message in gray
 
 > `static` **warning**(`message`): `void`
 
-Defined in: utils/logger.ts:69
+Defined in: [utils/logger.ts:69](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/logger.ts#L69)
 
 Log warning message in gray
 
@@ -128,7 +128,7 @@ Log warning message in gray
 
 > `static` **error**(`message`, `error?`): `void`
 
-Defined in: utils/logger.ts:76
+Defined in: [utils/logger.ts:76](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/logger.ts#L76)
 
 Log error message in red
 
@@ -152,7 +152,7 @@ Log error message in red
 
 > `static` **log**(`message`): `void`
 
-Defined in: utils/logger.ts:89
+Defined in: [utils/logger.ts:89](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/logger.ts#L89)
 
 Log a simple gray message without any prefix
 
@@ -172,7 +172,7 @@ Log a simple gray message without any prefix
 
 > `static` **section**(`title`): `void`
 
-Defined in: utils/logger.ts:96
+Defined in: [utils/logger.ts:96](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/logger.ts#L96)
 
 Log a test section header
 
@@ -192,7 +192,7 @@ Log a test section header
 
 > `static` **data**(`label`, `value`): `void`
 
-Defined in: utils/logger.ts:105
+Defined in: [utils/logger.ts:105](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/logger.ts#L105)
 
 Log data in a formatted way
 
@@ -216,7 +216,7 @@ Log data in a formatted way
 
 > `static` **timing**(`label`, `milliseconds`): `void`
 
-Defined in: utils/logger.ts:114
+Defined in: [utils/logger.ts:114](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/logger.ts#L114)
 
 Log timing information
 

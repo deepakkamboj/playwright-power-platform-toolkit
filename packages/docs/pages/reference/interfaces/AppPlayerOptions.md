@@ -6,7 +6,7 @@
 
 # Interface: AppPlayerOptions
 
-Defined in: types/index.ts:71
+Defined in: [types/index.ts:71](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L71)
 
 App Player Options
 
@@ -16,7 +16,7 @@ App Player Options
 
 > `optional` **waitForReady**: `boolean`
 
-Defined in: types/index.ts:73
+Defined in: [types/index.ts:73](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L73)
 
 Wait for app to be ready (default: true)
 
@@ -26,7 +26,7 @@ Wait for app to be ready (default: true)
 
 > `optional` **timeout**: `number`
 
-Defined in: types/index.ts:75
+Defined in: [types/index.ts:75](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L75)
 
 Timeout in milliseconds (default: 30000)
 
@@ -36,7 +36,7 @@ Timeout in milliseconds (default: 30000)
 
 > `optional` **hideHeader**: `boolean`
 
-Defined in: types/index.ts:77
+Defined in: [types/index.ts:77](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L77)
 
 Hide Power Apps header (default: false)
 
@@ -46,6 +46,6 @@ Hide Power Apps header (default: false)
 
 > `optional` **source**: `string`
 
-Defined in: types/index.ts:79
+Defined in: [types/index.ts:79](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L79)
 
 Source parameter for tracking

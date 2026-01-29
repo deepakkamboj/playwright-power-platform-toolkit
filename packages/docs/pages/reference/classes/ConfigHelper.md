@@ -6,7 +6,7 @@
 
 # Class: ConfigHelper
 
-Defined in: utils/config.ts:67
+Defined in: [utils/config.ts:67](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L67)
 
 Configuration helper for Power Platform testing
 
@@ -35,7 +35,7 @@ const tenantId = ConfigHelper.getTenantId();
 
 > `static` **getBaseUrl**(): `string`
 
-Defined in: utils/config.ts:74
+Defined in: [utils/config.ts:74](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L74)
 
 Get base URL for Power Apps
 
@@ -57,7 +57,7 @@ Base URL from environment variable or default
 
 > `static` **getBapApiUrl**(): `string`
 
-Defined in: utils/config.ts:85
+Defined in: [utils/config.ts:85](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L85)
 
 Get Business Application Platform (BAP) API base URL
 Used for environment, tenant, and settings management
@@ -80,7 +80,7 @@ BAP API URL from environment variable or default
 
 > `static` **getCanvasDesignerUrl**(): `string`
 
-Defined in: utils/config.ts:95
+Defined in: [utils/config.ts:95](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L95)
 
 Get canvas designer URL
 
@@ -102,7 +102,7 @@ Canvas designer URL from environment variable or default
 
 > `static` **getAuthEndpoint**(): `string`
 
-Defined in: utils/config.ts:105
+Defined in: [utils/config.ts:105](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L105)
 
 Get authentication endpoint
 
@@ -124,7 +124,7 @@ Auth endpoint from environment variable or default
 
 > `static` **getEnvironmentId**(): `string` \| `undefined`
 
-Defined in: utils/config.ts:114
+Defined in: [utils/config.ts:114](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L114)
 
 Get environment ID from environment variable
 
@@ -140,7 +140,7 @@ Environment ID or undefined if not set
 
 > `static` **getTenantId**(): `string`
 
-Defined in: utils/config.ts:124
+Defined in: [utils/config.ts:124](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L124)
 
 Get tenant ID from environment variable
 
@@ -160,7 +160,7 @@ If AZURE_TENANT_ID is not set
 
 > `static` **extractEnvironmentId**(`url`): `string` \| `null`
 
-Defined in: utils/config.ts:146
+Defined in: [utils/config.ts:146](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L146)
 
 Extract environment ID from a Power Apps URL
 
@@ -193,7 +193,7 @@ const envId = ConfigHelper.extractEnvironmentId(
 
 > `static` **buildUrl**(`path`, `environmentId?`): `string`
 
-Defined in: utils/config.ts:164
+Defined in: [utils/config.ts:164](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L164)
 
 Build full URL with optional environment ID
 
@@ -230,7 +230,7 @@ const url = ConfigHelper.buildUrl('/apps', 'env-123');
 
 > `static` **getAuthToken**(`storagePath?`, `apiUrl?`): `string` \| `undefined`
 
-Defined in: utils/config.ts:190
+Defined in: [utils/config.ts:190](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L190)
 
 Get authentication token from storage state
 
@@ -270,7 +270,7 @@ const bapToken = ConfigHelper.getAuthToken(undefined, 'https://api.bap.microsoft
 
 > `static` **checkStorageStateExpiration**(`storagePath?`): [`TokenExpirationCheck`](../interfaces/TokenExpirationCheck.md)
 
-Defined in: utils/config.ts:211
+Defined in: [utils/config.ts:211](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L211)
 
 Check storage state token expiration
 
@@ -306,7 +306,7 @@ if (check.expired) {
 
 > `static` **getDefaultUrl**(): `string`
 
-Defined in: utils/config.ts:221
+Defined in: [utils/config.ts:221](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L221)
 
 Get default URL path (home page)
 

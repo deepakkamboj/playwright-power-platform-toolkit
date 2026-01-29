@@ -6,7 +6,7 @@
 
 # Enumeration: AppType
 
-Defined in: types/index.ts:45
+Defined in: [types/index.ts:45](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L45)
 
 App Type
 
@@ -16,7 +16,7 @@ App Type
 
 > **Canvas**: `"Canvas"`
 
-Defined in: types/index.ts:46
+Defined in: [types/index.ts:46](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L46)
 
 ---
 
@@ -24,7 +24,7 @@ Defined in: types/index.ts:46
 
 > **ModelDriven**: `"Model-driven"`
 
-Defined in: types/index.ts:47
+Defined in: [types/index.ts:47](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L47)
 
 ---
 
@@ -32,4 +32,4 @@ Defined in: types/index.ts:47
 
 > **Portal**: `"Portal"`
 
-Defined in: types/index.ts:48
+Defined in: [types/index.ts:48](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L48)

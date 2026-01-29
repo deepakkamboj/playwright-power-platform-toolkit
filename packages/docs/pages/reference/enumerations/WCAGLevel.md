@@ -6,7 +6,7 @@
 
 # Enumeration: WCAGLevel
 
-Defined in: utils/accessibility.ts:12
+Defined in: [utils/accessibility.ts:12](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L12)
 
 WCAG Compliance Levels
 
@@ -16,7 +16,7 @@ WCAG Compliance Levels
 
 > **A**: `"wcag2a"`
 
-Defined in: utils/accessibility.ts:13
+Defined in: [utils/accessibility.ts:13](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L13)
 
 ---
 
@@ -24,7 +24,7 @@ Defined in: utils/accessibility.ts:13
 
 > **AA**: `"wcag2aa"`
 
-Defined in: utils/accessibility.ts:14
+Defined in: [utils/accessibility.ts:14](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L14)
 
 ---
 
@@ -32,4 +32,4 @@ Defined in: utils/accessibility.ts:14
 
 > **AAA**: `"wcag2aaa"`
 
-Defined in: utils/accessibility.ts:15
+Defined in: [utils/accessibility.ts:15](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L15)

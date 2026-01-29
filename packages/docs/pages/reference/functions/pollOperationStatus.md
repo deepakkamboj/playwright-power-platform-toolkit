@@ -8,7 +8,7 @@
 
 > **pollOperationStatus**(`operationUrl`, `token`, `maxAttempts`, `intervalMs`): `Promise`\<[`OperationResult`](../interfaces/OperationResult.md)\>
 
-Defined in: utils/api-utilities.ts:355
+Defined in: [utils/api-utilities.ts:355](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-utilities.ts#L355)
 
 Wait for API operation to complete with polling
 

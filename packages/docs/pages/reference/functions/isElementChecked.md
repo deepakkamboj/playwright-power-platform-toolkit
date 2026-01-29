@@ -8,7 +8,7 @@
 
 > **isElementChecked**(`page`, `selector`): `Promise`\<`boolean`\>
 
-Defined in: utils/app-helpers.ts:353
+Defined in: [utils/app-helpers.ts:353](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/app-helpers.ts#L353)
 
 Check if element is checked (checkbox/radio)
 

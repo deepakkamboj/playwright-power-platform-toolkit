@@ -8,7 +8,7 @@
 
 > **waitForElementHidden**(`page`, `selector`, `timeout`): `Promise`\<`void`\>
 
-Defined in: utils/app-helpers.ts:55
+Defined in: [utils/app-helpers.ts:55](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/app-helpers.ts#L55)
 
 Wait for element to be hidden
 

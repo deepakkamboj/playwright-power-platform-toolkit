@@ -6,7 +6,7 @@
 
 # Interface: RecordedApiCall
 
-Defined in: utils/api-recorder.ts:40
+Defined in: [utils/api-recorder.ts:40](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L40)
 
 Recorded API call data
 
@@ -16,7 +16,7 @@ Recorded API call data
 
 > **id**: `string`
 
-Defined in: utils/api-recorder.ts:42
+Defined in: [utils/api-recorder.ts:42](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L42)
 
 Unique identifier for this call
 
@@ -26,7 +26,7 @@ Unique identifier for this call
 
 > **timestamp**: `number`
 
-Defined in: utils/api-recorder.ts:44
+Defined in: [utils/api-recorder.ts:44](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L44)
 
 Request timestamp
 
@@ -36,7 +36,7 @@ Request timestamp
 
 > **method**: `string`
 
-Defined in: utils/api-recorder.ts:46
+Defined in: [utils/api-recorder.ts:46](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L46)
 
 HTTP method
 
@@ -46,7 +46,7 @@ HTTP method
 
 > **url**: `string`
 
-Defined in: utils/api-recorder.ts:48
+Defined in: [utils/api-recorder.ts:48](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L48)
 
 Request URL
 
@@ -56,7 +56,7 @@ Request URL
 
 > `optional` **requestHeaders**: `Record`\<`string`, `string`\>
 
-Defined in: utils/api-recorder.ts:50
+Defined in: [utils/api-recorder.ts:50](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L50)
 
 Request headers (if enabled)
 
@@ -66,7 +66,7 @@ Request headers (if enabled)
 
 > `optional` **requestBody**: `any`
 
-Defined in: utils/api-recorder.ts:52
+Defined in: [utils/api-recorder.ts:52](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L52)
 
 Request body (if enabled)
 
@@ -76,7 +76,7 @@ Request body (if enabled)
 
 > `optional` **status**: `number`
 
-Defined in: utils/api-recorder.ts:54
+Defined in: [utils/api-recorder.ts:54](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L54)
 
 Response status code
 
@@ -86,7 +86,7 @@ Response status code
 
 > `optional` **statusText**: `string`
 
-Defined in: utils/api-recorder.ts:56
+Defined in: [utils/api-recorder.ts:56](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L56)
 
 Response status text
 
@@ -96,7 +96,7 @@ Response status text
 
 > `optional` **responseHeaders**: `Record`\<`string`, `string`\>
 
-Defined in: utils/api-recorder.ts:58
+Defined in: [utils/api-recorder.ts:58](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L58)
 
 Response headers (if enabled)
 
@@ -106,7 +106,7 @@ Response headers (if enabled)
 
 > `optional` **responseBody**: `any`
 
-Defined in: utils/api-recorder.ts:60
+Defined in: [utils/api-recorder.ts:60](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L60)
 
 Response body (if enabled)
 
@@ -116,7 +116,7 @@ Response body (if enabled)
 
 > `optional` **contentType**: `string`
 
-Defined in: utils/api-recorder.ts:62
+Defined in: [utils/api-recorder.ts:62](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L62)
 
 Response content type
 
@@ -126,7 +126,7 @@ Response content type
 
 > `optional` **duration**: `number`
 
-Defined in: utils/api-recorder.ts:64
+Defined in: [utils/api-recorder.ts:64](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L64)
 
 Request duration in milliseconds
 
@@ -136,6 +136,6 @@ Request duration in milliseconds
 
 > `optional` **error**: `string`
 
-Defined in: utils/api-recorder.ts:66
+Defined in: [utils/api-recorder.ts:66](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L66)
 
 Error message if request failed

@@ -8,7 +8,7 @@
 
 > **clickWithRetry**(`page`, `selector`, `retries`): `Promise`\<`void`\>
 
-Defined in: utils/app-helpers.ts:89
+Defined in: [utils/app-helpers.ts:89](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/app-helpers.ts#L89)
 
 Click element with retry logic
 

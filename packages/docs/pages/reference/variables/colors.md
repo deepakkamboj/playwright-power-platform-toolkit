@@ -8,7 +8,7 @@
 
 > `const` **colors**: `object`
 
-Defined in: utils/colors.ts:29
+Defined in: [utils/colors.ts:29](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/colors.ts#L29)
 
 Colors.ts
 

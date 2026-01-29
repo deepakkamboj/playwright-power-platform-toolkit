@@ -8,7 +8,7 @@
 
 > **checkStorageStateExpiration**(`storagePath?`): [`TokenExpirationCheck`](../interfaces/TokenExpirationCheck.md)
 
-Defined in: utils/auth-helpers.ts:200
+Defined in: [utils/auth-helpers.ts:200](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/auth-helpers.ts#L200)
 
 Check storage state token expiration
 

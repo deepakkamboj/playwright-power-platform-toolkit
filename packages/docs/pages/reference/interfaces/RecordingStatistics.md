@@ -6,7 +6,7 @@
 
 # Interface: RecordingStatistics
 
-Defined in: utils/api-recorder.ts:72
+Defined in: [utils/api-recorder.ts:72](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L72)
 
 Recording statistics
 
@@ -16,7 +16,7 @@ Recording statistics
 
 > **totalCalls**: `number`
 
-Defined in: utils/api-recorder.ts:74
+Defined in: [utils/api-recorder.ts:74](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L74)
 
 Total number of API calls recorded
 
@@ -26,7 +26,7 @@ Total number of API calls recorded
 
 > **avgDuration**: `number`
 
-Defined in: utils/api-recorder.ts:76
+Defined in: [utils/api-recorder.ts:76](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L76)
 
 Average request duration
 
@@ -36,7 +36,7 @@ Average request duration
 
 > **totalDuration**: `number`
 
-Defined in: utils/api-recorder.ts:78
+Defined in: [utils/api-recorder.ts:78](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L78)
 
 Total duration of all requests
 
@@ -46,7 +46,7 @@ Total duration of all requests
 
 > **byMethod**: `Record`\<`string`, `number`\>
 
-Defined in: utils/api-recorder.ts:80
+Defined in: [utils/api-recorder.ts:80](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L80)
 
 Calls grouped by HTTP method
 
@@ -56,7 +56,7 @@ Calls grouped by HTTP method
 
 > **byStatus**: `Record`\<`string`, `number`\>
 
-Defined in: utils/api-recorder.ts:82
+Defined in: [utils/api-recorder.ts:82](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L82)
 
 Calls grouped by status code
 
@@ -66,6 +66,6 @@ Calls grouped by status code
 
 > **byUrl**: `Record`\<`string`, `number`\>
 
-Defined in: utils/api-recorder.ts:84
+Defined in: [utils/api-recorder.ts:84](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L84)
 
 Calls grouped by URL pattern

@@ -8,7 +8,7 @@
 
 > **takeScreenshot**(`page`, `screenshotName`, `path`): `Promise`\<`void`\>
 
-Defined in: utils/app-helpers.ts:185
+Defined in: [utils/app-helpers.ts:185](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/app-helpers.ts#L185)
 
 Take screenshot with timestamp
 

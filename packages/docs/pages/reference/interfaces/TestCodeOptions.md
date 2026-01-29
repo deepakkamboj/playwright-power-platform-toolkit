@@ -6,7 +6,7 @@
 
 # Interface: TestCodeOptions
 
-Defined in: utils/api-recorder.ts:90
+Defined in: [utils/api-recorder.ts:90](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L90)
 
 Test code generation options
 
@@ -16,7 +16,7 @@ Test code generation options
 
 > `optional` **testName**: `string`
 
-Defined in: utils/api-recorder.ts:92
+Defined in: [utils/api-recorder.ts:92](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L92)
 
 Name of the generated test
 
@@ -26,7 +26,7 @@ Name of the generated test
 
 > `optional` **includeAssertions**: `boolean`
 
-Defined in: utils/api-recorder.ts:94
+Defined in: [utils/api-recorder.ts:94](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L94)
 
 Include response assertions
 
@@ -36,7 +36,7 @@ Include response assertions
 
 > `optional` **useTestSteps**: `boolean`
 
-Defined in: utils/api-recorder.ts:96
+Defined in: [utils/api-recorder.ts:96](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L96)
 
 Use test.step() for each API call
 
@@ -46,6 +46,6 @@ Use test.step() for each API call
 
 > `optional` **includeTimingAssertions**: `boolean`
 
-Defined in: utils/api-recorder.ts:98
+Defined in: [utils/api-recorder.ts:98](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L98)
 
 Include timing assertions

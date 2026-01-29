@@ -8,7 +8,7 @@
 
 > `const` **PowerAppsApiEndpoints**: `object`
 
-Defined in: utils/api-testing.ts:14
+Defined in: [utils/api-testing.ts:14](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L14)
 
 Power Apps API endpoints
 

@@ -6,7 +6,7 @@
 
 # Class: AccessibilityAssertions
 
-Defined in: utils/accessibility.ts:251
+Defined in: [utils/accessibility.ts:251](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L251)
 
 Common accessibility assertions
 
@@ -26,7 +26,7 @@ Common accessibility assertions
 
 > `static` **assertKeyboardAccessible**(`locator`): `Promise`\<`void`\>
 
-Defined in: utils/accessibility.ts:255
+Defined in: [utils/accessibility.ts:255](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L255)
 
 Assert element is keyboard accessible
 
@@ -46,7 +46,7 @@ Assert element is keyboard accessible
 
 > `static` **assertAriaRole**(`locator`, `role`): `Promise`\<`void`\>
 
-Defined in: utils/accessibility.ts:263
+Defined in: [utils/accessibility.ts:263](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L263)
 
 Assert element has proper ARIA role
 
@@ -70,7 +70,7 @@ Assert element has proper ARIA role
 
 > `static` **assertNotInTabOrder**(`locator`): `Promise`\<`void`\>
 
-Defined in: utils/accessibility.ts:271
+Defined in: [utils/accessibility.ts:271](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L271)
 
 Assert element is not in tab order (tabindex=-1)
 
@@ -90,7 +90,7 @@ Assert element is not in tab order (tabindex=-1)
 
 > `static` **assertScreenReaderText**(`locator`): `Promise`\<`void`\>
 
-Defined in: utils/accessibility.ts:279
+Defined in: [utils/accessibility.ts:279](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L279)
 
 Assert element is announced to screen readers
 

@@ -8,7 +8,7 @@
 
 > **selectDropdownOption**(`page`, `selector`, `option`): `Promise`\<`void`\>
 
-Defined in: utils/app-helpers.ts:263
+Defined in: [utils/app-helpers.ts:263](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/app-helpers.ts#L263)
 
 Select option from dropdown
 

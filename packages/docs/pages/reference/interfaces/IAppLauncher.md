@@ -6,7 +6,7 @@
 
 # Interface: IAppLauncher
 
-Defined in: core/app-launcher.interface.ts:14
+Defined in: [core/app-launcher.interface.ts:14](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L14)
 
 Base interface that all app launchers must implement
 Provides a consistent API for launching and testing any Power Platform app type
@@ -17,7 +17,7 @@ Provides a consistent API for launching and testing any Power Platform app type
 
 > `readonly` **appType**: `string`
 
-Defined in: core/app-launcher.interface.ts:18
+Defined in: [core/app-launcher.interface.ts:18](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L18)
 
 The app type this launcher handles
 
@@ -27,7 +27,7 @@ The app type this launcher handles
 
 > **launchByName**(`appName`, `findAppCallback`, `mode`, `options?`): `Promise`\<`void`\>
 
-Defined in: core/app-launcher.interface.ts:28
+Defined in: [core/app-launcher.interface.ts:28](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L28)
 
 Launch app by name
 Finds the app in the apps list and launches it
@@ -68,7 +68,7 @@ Additional launch options
 
 > **launchById**(`appId`, `baseUrl`, `mode`, `options?`): `Promise`\<`void`\>
 
-Defined in: core/app-launcher.interface.ts:43
+Defined in: [core/app-launcher.interface.ts:43](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L43)
 
 Launch app by ID
 Directly navigates to the app using its ID
@@ -109,7 +109,7 @@ Additional launch options
 
 > **waitForAppLoad**(`options?`): `Promise`\<`void`\>
 
-Defined in: core/app-launcher.interface.ts:54
+Defined in: [core/app-launcher.interface.ts:54](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L54)
 
 Wait for app to fully load
 
@@ -131,7 +131,7 @@ Wait options
 
 > **isAppReady**(): `boolean`
 
-Defined in: core/app-launcher.interface.ts:60
+Defined in: [core/app-launcher.interface.ts:60](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L60)
 
 Check if app is ready for interaction
 
@@ -147,7 +147,7 @@ true if app is ready
 
 > **getAppId**(): `string` \| `null`
 
-Defined in: core/app-launcher.interface.ts:66
+Defined in: [core/app-launcher.interface.ts:66](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L66)
 
 Get the current app ID
 
@@ -163,7 +163,7 @@ App ID or null if not set
 
 > **getAppUrl**(): `string` \| `null`
 
-Defined in: core/app-launcher.interface.ts:72
+Defined in: [core/app-launcher.interface.ts:72](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L72)
 
 Get the current app URL
 
@@ -179,7 +179,7 @@ App URL or null if not set
 
 > **getControl**(`options`): `Locator`
 
-Defined in: core/app-launcher.interface.ts:79
+Defined in: [core/app-launcher.interface.ts:79](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L79)
 
 Get a control by name and type
 
@@ -203,7 +203,7 @@ Locator for the control
 
 > **clickControl**(`options`): `Promise`\<`void`\>
 
-Defined in: core/app-launcher.interface.ts:85
+Defined in: [core/app-launcher.interface.ts:85](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L85)
 
 Click a control
 
@@ -225,7 +225,7 @@ Control options
 
 > **fillControl**(`options`, `value`): `Promise`\<`void`\>
 
-Defined in: core/app-launcher.interface.ts:92
+Defined in: [core/app-launcher.interface.ts:92](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L92)
 
 Fill a text input control
 
@@ -253,7 +253,7 @@ Value to fill
 
 > **fillForm**(`formData`): `Promise`\<`void`\>
 
-Defined in: core/app-launcher.interface.ts:98
+Defined in: [core/app-launcher.interface.ts:98](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L98)
 
 Fill a form with multiple fields
 
@@ -275,7 +275,7 @@ Key-value pairs of field names and values
 
 > **assertControlVisible**(`options`, `assertOptions?`): `Promise`\<`void`\>
 
-Defined in: core/app-launcher.interface.ts:105
+Defined in: [core/app-launcher.interface.ts:105](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L105)
 
 Assert control is visible
 
@@ -303,7 +303,7 @@ Assertion options
 
 > **assertControlText**(`options`, `expectedText`, `assertOptions?`): `Promise`\<`void`\>
 
-Defined in: core/app-launcher.interface.ts:113
+Defined in: [core/app-launcher.interface.ts:113](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L113)
 
 Assert control text matches
 
@@ -337,7 +337,7 @@ Assertion options
 
 > **closeApp**(): `Promise`\<`void`\>
 
-Defined in: core/app-launcher.interface.ts:122
+Defined in: [core/app-launcher.interface.ts:122](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L122)
 
 Close the app
 
@@ -351,7 +351,7 @@ Close the app
 
 > **reset**(): `void`
 
-Defined in: core/app-launcher.interface.ts:128
+Defined in: [core/app-launcher.interface.ts:128](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.interface.ts#L128)
 
 Reset the launcher state
 Clears app ID, URL, and ready state

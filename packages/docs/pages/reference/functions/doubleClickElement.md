@@ -8,7 +8,7 @@
 
 > **doubleClickElement**(`page`, `selector`): `Promise`\<`void`\>
 
-Defined in: utils/app-helpers.ts:289
+Defined in: [utils/app-helpers.ts:289](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/app-helpers.ts#L289)
 
 Double click element
 

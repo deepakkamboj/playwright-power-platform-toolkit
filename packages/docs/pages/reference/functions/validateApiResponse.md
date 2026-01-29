@@ -8,7 +8,7 @@
 
 > **validateApiResponse**(`response`): `Promise`\<[`ApiResponseValidation`](../interfaces/ApiResponseValidation.md)\>
 
-Defined in: utils/api-utilities.ts:282
+Defined in: [utils/api-utilities.ts:282](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-utilities.ts#L282)
 
 Validate API response and extract common fields
 

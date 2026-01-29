@@ -6,7 +6,7 @@
 
 # Class: AccessibilityTestHelper
 
-Defined in: utils/accessibility.ts:48
+Defined in: [utils/accessibility.ts:48](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L48)
 
 Accessibility Test Helper
 
@@ -16,7 +16,7 @@ Accessibility Test Helper
 
 > **new AccessibilityTestHelper**(`page`): `AccessibilityTestHelper`
 
-Defined in: utils/accessibility.ts:51
+Defined in: [utils/accessibility.ts:51](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L51)
 
 #### Parameters
 
@@ -34,7 +34,7 @@ Defined in: utils/accessibility.ts:51
 
 > **scanPage**(`options?`): `Promise`\<`any`\>
 
-Defined in: utils/accessibility.ts:58
+Defined in: [utils/accessibility.ts:58](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L58)
 
 Run full accessibility scan on the page
 
@@ -64,7 +64,7 @@ Run full accessibility scan on the page
 
 > **scanElement**(`selector`, `options?`): `Promise`\<`any`\>
 
-Defined in: utils/accessibility.ts:84
+Defined in: [utils/accessibility.ts:84](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L84)
 
 Scan specific element for accessibility issues
 
@@ -90,7 +90,7 @@ Scan specific element for accessibility issues
 
 > **assertNoViolations**(`results`): `Promise`\<`void`\>
 
-Defined in: utils/accessibility.ts:103
+Defined in: [utils/accessibility.ts:103](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L103)
 
 Assert no accessibility violations
 
@@ -110,7 +110,7 @@ Assert no accessibility violations
 
 > **assertNoCriticalViolations**(`results`): `Promise`\<`void`\>
 
-Defined in: utils/accessibility.ts:110
+Defined in: [utils/accessibility.ts:110](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L110)
 
 Assert no critical violations (allows warnings)
 
@@ -130,7 +130,7 @@ Assert no critical violations (allows warnings)
 
 > **testKeyboardNavigation**(`elements`): `Promise`\<`void`\>
 
-Defined in: utils/accessibility.ts:120
+Defined in: [utils/accessibility.ts:120](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L120)
 
 Check keyboard navigation
 
@@ -150,7 +150,7 @@ Check keyboard navigation
 
 > **testTabOrder**(`expectedSelectors`): `Promise`\<`void`\>
 
-Defined in: utils/accessibility.ts:131
+Defined in: [utils/accessibility.ts:131](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L131)
 
 Test tab order
 
@@ -170,7 +170,7 @@ Test tab order
 
 > **assertAriaLabel**(`locator`, `expectedLabel`): `Promise`\<`void`\>
 
-Defined in: utils/accessibility.ts:146
+Defined in: [utils/accessibility.ts:146](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L146)
 
 Check ARIA labels
 
@@ -194,7 +194,7 @@ Check ARIA labels
 
 > **assertAccessibleName**(`locator`, `expectedName`): `Promise`\<`void`\>
 
-Defined in: utils/accessibility.ts:154
+Defined in: [utils/accessibility.ts:154](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L154)
 
 Check element is accessible by screen reader
 
@@ -218,7 +218,7 @@ Check element is accessible by screen reader
 
 > **checkColorContrast**(`selector`): `Promise`\<`void`\>
 
-Defined in: utils/accessibility.ts:165
+Defined in: [utils/accessibility.ts:165](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L165)
 
 Check color contrast ratio
 
@@ -238,7 +238,7 @@ Check color contrast ratio
 
 > **testKeyboardShortcut**(`keys`, `expectedAction`): `Promise`\<`void`\>
 
-Defined in: utils/accessibility.ts:177
+Defined in: [utils/accessibility.ts:177](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L177)
 
 Test keyboard shortcuts
 
@@ -262,7 +262,7 @@ Test keyboard shortcuts
 
 > **assertHeadingHierarchy**(): `Promise`\<`void`\>
 
-Defined in: utils/accessibility.ts:185
+Defined in: [utils/accessibility.ts:185](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L185)
 
 Check for proper heading hierarchy
 
@@ -276,7 +276,7 @@ Check for proper heading hierarchy
 
 > **assertImagesHaveAltText**(): `Promise`\<`void`\>
 
-Defined in: utils/accessibility.ts:196
+Defined in: [utils/accessibility.ts:196](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L196)
 
 Check all images have alt text
 
@@ -290,7 +290,7 @@ Check all images have alt text
 
 > **assertFormFieldsLabeled**(): `Promise`\<`void`\>
 
-Defined in: utils/accessibility.ts:207
+Defined in: [utils/accessibility.ts:207](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L207)
 
 Check form fields have labels
 
@@ -304,7 +304,7 @@ Check form fields have labels
 
 > **generateReport**(`results`): `string`
 
-Defined in: utils/accessibility.ts:218
+Defined in: [utils/accessibility.ts:218](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L218)
 
 Generate accessibility report
 
@@ -324,7 +324,7 @@ Generate accessibility report
 
 > **saveReport**(`results`, `filePath`): `Promise`\<`void`\>
 
-Defined in: utils/accessibility.ts:241
+Defined in: [utils/accessibility.ts:241](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L241)
 
 Save accessibility report to file
 

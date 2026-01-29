@@ -6,7 +6,7 @@
 
 # Class: ApiTestHelper
 
-Defined in: utils/api-testing.ts:62
+Defined in: [utils/api-testing.ts:62](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L62)
 
 API Test Helper for Power Apps and Power Platform
 
@@ -36,7 +36,7 @@ test('API test', async () => {
 
 > **new ApiTestHelper**(`request`, `baseUrl?`): `ApiTestHelper`
 
-Defined in: utils/api-testing.ts:72
+Defined in: [utils/api-testing.ts:72](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L72)
 
 Create a new API test helper
 
@@ -64,7 +64,7 @@ Optional base URL (defaults to ConfigHelper.getBaseUrl())
 
 > **get**(`endpoint`, `options?`): `Promise`\<`APIResponse`\>
 
-Defined in: utils/api-testing.ts:91
+Defined in: [utils/api-testing.ts:91](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L91)
 
 Make a GET request to Power Apps API
 
@@ -104,7 +104,7 @@ const response = await apiHelper.get('/api/apps', {
 
 > **post**(`endpoint`, `data`): `Promise`\<`APIResponse`\>
 
-Defined in: utils/api-testing.ts:103
+Defined in: [utils/api-testing.ts:103](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L103)
 
 Make a POST request to Power Apps API
 
@@ -134,7 +134,7 @@ API response
 
 > **patch**(`endpoint`, `data`): `Promise`\<`APIResponse`\>
 
-Defined in: utils/api-testing.ts:115
+Defined in: [utils/api-testing.ts:115](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L115)
 
 Make a PATCH request to Power Apps API
 
@@ -164,7 +164,7 @@ API response
 
 > **delete**(`endpoint`): `Promise`\<`APIResponse`\>
 
-Defined in: utils/api-testing.ts:126
+Defined in: [utils/api-testing.ts:126](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L126)
 
 Make a DELETE request to Power Apps API
 
@@ -188,7 +188,7 @@ API response
 
 > **assertStatus**(`response`, `expectedStatus`): `Promise`\<`void`\>
 
-Defined in: utils/api-testing.ts:151
+Defined in: [utils/api-testing.ts:151](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L151)
 
 Assert API response status
 
@@ -216,7 +216,7 @@ Expected HTTP status code
 
 > **assertResponseContains**(`response`, `expectedData`): `Promise`\<`void`\>
 
-Defined in: utils/api-testing.ts:161
+Defined in: [utils/api-testing.ts:161](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L161)
 
 Assert API response contains data
 
@@ -244,7 +244,7 @@ Expected data object
 
 > **getDataverseRecords**(`tableName`, `options?`): `Promise`\<`APIResponse`\>
 
-Defined in: utils/api-testing.ts:185
+Defined in: [utils/api-testing.ts:185](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L185)
 
 Get Dataverse table records with OData query options
 
@@ -300,7 +300,7 @@ const response = await apiHelper.getDataverseRecords('accounts', {
 
 > **createDataverseRecord**(`tableName`, `data`): `Promise`\<`APIResponse`\>
 
-Defined in: utils/api-testing.ts:223
+Defined in: [utils/api-testing.ts:223](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L223)
 
 Create a Dataverse record
 
@@ -339,7 +339,7 @@ const response = await apiHelper.createDataverseRecord('accounts', {
 
 > **updateDataverseRecord**(`tableName`, `recordId`, `data`): `Promise`\<`APIResponse`\>
 
-Defined in: utils/api-testing.ts:235
+Defined in: [utils/api-testing.ts:235](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L235)
 
 Update a Dataverse record
 
@@ -375,7 +375,7 @@ API response
 
 > **deleteDataverseRecord**(`tableName`, `recordId`): `Promise`\<`APIResponse`\>
 
-Defined in: utils/api-testing.ts:251
+Defined in: [utils/api-testing.ts:251](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L251)
 
 Delete a Dataverse record
 
@@ -405,7 +405,7 @@ API response
 
 > **validateSchema**(`response`, `schema`): `Promise`\<`void`\>
 
-Defined in: utils/api-testing.ts:262
+Defined in: [utils/api-testing.ts:262](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L262)
 
 Validate response schema
 
@@ -435,7 +435,7 @@ Expected schema with required fields
 
 > **measureResponseTime**(`apiCall`): `Promise`\<\{ `response`: `APIResponse`; `duration`: `number`; \}\>
 
-Defined in: utils/api-testing.ts:287
+Defined in: [utils/api-testing.ts:287](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L287)
 
 Measure API response time
 
@@ -468,7 +468,7 @@ console.log(`API call took ${duration}ms`);
 
 > **assertPerformance**(`duration`, `maxDuration`): `void`
 
-Defined in: utils/api-testing.ts:304
+Defined in: [utils/api-testing.ts:304](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-testing.ts#L304)
 
 Assert API performance is within threshold
 

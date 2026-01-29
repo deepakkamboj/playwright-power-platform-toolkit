@@ -8,7 +8,7 @@
 
 > **typeWithDelay**(`page`, `selector`, `text`, `delay`): `Promise`\<`void`\>
 
-Defined in: utils/app-helpers.ts:246
+Defined in: [utils/app-helpers.ts:246](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/app-helpers.ts#L246)
 
 Clear and type with delay (for better stability)
 

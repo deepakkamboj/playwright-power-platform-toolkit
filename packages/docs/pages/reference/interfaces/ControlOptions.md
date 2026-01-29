@@ -6,7 +6,7 @@
 
 # Interface: ControlOptions
 
-Defined in: types/index.ts:85
+Defined in: [types/index.ts:85](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L85)
 
 Control Locator Options
 
@@ -16,7 +16,7 @@ Control Locator Options
 
 > **name**: `string`
 
-Defined in: types/index.ts:87
+Defined in: [types/index.ts:87](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L87)
 
 Control name (aria-label or name attribute)
 
@@ -26,7 +26,7 @@ Control name (aria-label or name attribute)
 
 > `optional` **type**: [`CanvasControlType`](../enumerations/CanvasControlType.md)
 
-Defined in: types/index.ts:89
+Defined in: [types/index.ts:89](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L89)
 
 Control type (Button, TextInput, etc.)
 
@@ -36,7 +36,7 @@ Control type (Button, TextInput, etc.)
 
 > `optional` **timeout**: `number`
 
-Defined in: types/index.ts:91
+Defined in: [types/index.ts:91](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L91)
 
 Timeout in milliseconds (default: 10000)
 
@@ -46,6 +46,6 @@ Timeout in milliseconds (default: 10000)
 
 > `optional` **exact**: `boolean`
 
-Defined in: types/index.ts:93
+Defined in: [types/index.ts:93](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L93)
 
 Exact text match (default: false)

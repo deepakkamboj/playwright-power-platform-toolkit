@@ -6,7 +6,7 @@
 
 # Interface: ApiRecorderOptions
 
-Defined in: utils/api-recorder.ts:20
+Defined in: [utils/api-recorder.ts:20](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L20)
 
 Configuration options for API recording
 
@@ -16,7 +16,7 @@ Configuration options for API recording
 
 > `optional` **urlFilter**: `RegExp`
 
-Defined in: utils/api-recorder.ts:22
+Defined in: [utils/api-recorder.ts:22](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L22)
 
 URL filter pattern (RegExp) to match API endpoints
 
@@ -26,7 +26,7 @@ URL filter pattern (RegExp) to match API endpoints
 
 > `optional` **resourceTypes**: `string`[]
 
-Defined in: utils/api-recorder.ts:24
+Defined in: [utils/api-recorder.ts:24](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L24)
 
 Resource types to record (default: ['xhr', 'fetch'])
 
@@ -36,7 +36,7 @@ Resource types to record (default: ['xhr', 'fetch'])
 
 > `optional` **includeRequestHeaders**: `boolean`
 
-Defined in: utils/api-recorder.ts:26
+Defined in: [utils/api-recorder.ts:26](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L26)
 
 Include request headers in recording
 
@@ -46,7 +46,7 @@ Include request headers in recording
 
 > `optional` **includeResponseHeaders**: `boolean`
 
-Defined in: utils/api-recorder.ts:28
+Defined in: [utils/api-recorder.ts:28](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L28)
 
 Include response headers in recording
 
@@ -56,7 +56,7 @@ Include response headers in recording
 
 > `optional` **includeRequestBody**: `boolean`
 
-Defined in: utils/api-recorder.ts:30
+Defined in: [utils/api-recorder.ts:30](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L30)
 
 Include request body in recording
 
@@ -66,7 +66,7 @@ Include request body in recording
 
 > `optional` **includeResponseBody**: `boolean`
 
-Defined in: utils/api-recorder.ts:32
+Defined in: [utils/api-recorder.ts:32](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L32)
 
 Include response body in recording
 
@@ -76,6 +76,6 @@ Include response body in recording
 
 > `optional` **maxResponseBodySize**: `number`
 
-Defined in: utils/api-recorder.ts:34
+Defined in: [utils/api-recorder.ts:34](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L34)
 
 Maximum response body size to record in bytes (default: 500KB)

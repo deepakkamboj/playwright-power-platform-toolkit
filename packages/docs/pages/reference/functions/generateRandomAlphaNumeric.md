@@ -8,7 +8,7 @@
 
 > **generateRandomAlphaNumeric**(`length`): `string`
 
-Defined in: utils/app-helpers.ts:24
+Defined in: [utils/app-helpers.ts:24](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/app-helpers.ts#L24)
 
 Generate random alphanumeric string
 
