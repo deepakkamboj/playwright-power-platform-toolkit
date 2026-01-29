@@ -1,12 +1,12 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / AppProvider
 
 # Class: AppProvider
 
-Defined in: core/app-provider.ts:56
+Defined in: [core/app-provider.ts:56](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L56)
 
 App Provider - High-level API for app testing
 Provides simplified interface for customers to launch and test their apps
@@ -20,7 +20,7 @@ const provider = new AppProvider(page, findAppCallback);
 await provider.launch({
   app: { name: 'My Sales App' },
   type: AppType.Canvas,
-  mode: AppLaunchMode.Play
+  mode: AppLaunchMode.Play,
 });
 
 // Launch by ID
@@ -28,7 +28,7 @@ await provider.launch({
   app: { id: 'abc-123-def' },
   type: AppType.ModelDriven,
   mode: AppLaunchMode.Edit,
-  baseUrl: 'https://make.powerapps.com'
+  baseUrl: 'https://make.powerapps.com',
 });
 
 // Interact with app
@@ -42,7 +42,7 @@ await provider.fill({ name: 'Email' }, 'test@example.com');
 
 > **new AppProvider**(`page`, `findAppCallback?`): `AppProvider`
 
-Defined in: core/app-provider.ts:63
+Defined in: [core/app-provider.ts:63](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L63)
 
 #### Parameters
 
@@ -64,7 +64,7 @@ Defined in: core/app-provider.ts:63
 
 > **setFindAppCallback**(`callback`): `void`
 
-Defined in: core/app-provider.ts:73
+Defined in: [core/app-provider.ts:73](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L73)
 
 Set the callback for finding apps by name
 Required for launching apps by name
@@ -81,13 +81,13 @@ Function to find app by name
 
 `void`
 
-***
+---
 
 ### launch()
 
 > **launch**(`config`): `Promise`\<`void`\>
 
-Defined in: core/app-provider.ts:82
+Defined in: [core/app-provider.ts:82](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L82)
 
 Launch an app
 Supports launching by name or ID
@@ -104,13 +104,13 @@ Launch configuration
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### getControl()
 
 > **getControl**(`options`): `Locator`
 
-Defined in: core/app-provider.ts:159
+Defined in: [core/app-provider.ts:159](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L159)
 
 Get a control in the current app
 
@@ -128,13 +128,13 @@ Control options
 
 Locator for the control
 
-***
+---
 
 ### click()
 
 > **click**(`options`): `Promise`\<`void`\>
 
-Defined in: core/app-provider.ts:168
+Defined in: [core/app-provider.ts:168](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L168)
 
 Click a control in the current app
 
@@ -150,13 +150,13 @@ Control options
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### fill()
 
 > **fill**(`options`, `value`): `Promise`\<`void`\>
 
-Defined in: core/app-provider.ts:178
+Defined in: [core/app-provider.ts:178](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L178)
 
 Fill a text input control in the current app
 
@@ -178,13 +178,13 @@ Value to fill
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### fillForm()
 
 > **fillForm**(`formData`): `Promise`\<`void`\>
 
-Defined in: core/app-provider.ts:187
+Defined in: [core/app-provider.ts:187](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L187)
 
 Fill a form in the current app
 
@@ -200,13 +200,13 @@ Key-value pairs of field names and values
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### assertVisible()
 
 > **assertVisible**(`options`): `Promise`\<`void`\>
 
-Defined in: core/app-provider.ts:196
+Defined in: [core/app-provider.ts:196](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L196)
 
 Assert control is visible
 
@@ -222,13 +222,13 @@ Control options
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### assertText()
 
 > **assertText**(`options`, `expectedText`): `Promise`\<`void`\>
 
-Defined in: core/app-provider.ts:206
+Defined in: [core/app-provider.ts:206](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L206)
 
 Assert control text matches
 
@@ -250,13 +250,13 @@ Expected text
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### close()
 
 > **close**(): `Promise`\<`void`\>
 
-Defined in: core/app-provider.ts:214
+Defined in: [core/app-provider.ts:214](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L214)
 
 Close the current app
 
@@ -264,13 +264,13 @@ Close the current app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### isReady()
 
 > **isReady**(): `boolean`
 
-Defined in: core/app-provider.ts:225
+Defined in: [core/app-provider.ts:225](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L225)
 
 Check if an app is currently launched and ready
 
@@ -280,13 +280,13 @@ Check if an app is currently launched and ready
 
 true if app is ready
 
-***
+---
 
 ### getCurrentAppType()
 
 > **getCurrentAppType**(): [`AppType`](../enumerations/AppType.md) \| `null`
 
-Defined in: core/app-provider.ts:233
+Defined in: [core/app-provider.ts:233](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L233)
 
 Get the current app type
 
@@ -296,13 +296,13 @@ Get the current app type
 
 Current app type or null
 
-***
+---
 
 ### getCurrentAppId()
 
 > **getCurrentAppId**(): `string` \| `null`
 
-Defined in: core/app-provider.ts:241
+Defined in: [core/app-provider.ts:241](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L241)
 
 Get the current app ID
 
@@ -312,13 +312,13 @@ Get the current app ID
 
 Current app ID or null
 
-***
+---
 
 ### getCurrentAppUrl()
 
 > **getCurrentAppUrl**(): `string` \| `null`
 
-Defined in: core/app-provider.ts:249
+Defined in: [core/app-provider.ts:249](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L249)
 
 Get the current app URL
 
@@ -328,13 +328,13 @@ Get the current app URL
 
 Current app URL or null
 
-***
+---
 
 ### getLaunchedApps()
 
 > **getLaunchedApps**(): [`AppMetadata`](../interfaces/AppMetadata.md)[]
 
-Defined in: core/app-provider.ts:257
+Defined in: [core/app-provider.ts:257](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L257)
 
 Get metadata for all launched apps
 
@@ -344,13 +344,13 @@ Get metadata for all launched apps
 
 Array of app metadata
 
-***
+---
 
 ### reset()
 
 > **reset**(): `void`
 
-Defined in: core/app-provider.ts:265
+Defined in: [core/app-provider.ts:265](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-provider.ts#L265)
 
 Reset the provider state
 Clears current launcher and app metadata

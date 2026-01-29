@@ -1,12 +1,12 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / AppLauncherFactory
 
 # Class: AppLauncherFactory
 
-Defined in: core/app-launcher.factory.ts:17
+Defined in: [core/app-launcher.factory.ts:17](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.factory.ts#L17)
 
 Factory class to create app launchers
 Supports Canvas Apps, Model Driven Apps, and extensible for future app types
@@ -27,7 +27,7 @@ Supports Canvas Apps, Model Driven Apps, and extensible for future app types
 
 > `static` **createLauncher**(`page`, `appType`): [`IAppLauncher`](../interfaces/IAppLauncher.md)
 
-Defined in: core/app-launcher.factory.ts:27
+Defined in: [core/app-launcher.factory.ts:27](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.factory.ts#L27)
 
 Create an app launcher for the specified app type
 Returns a singleton instance for each page-appType combination
@@ -52,13 +52,13 @@ Type of app to launch
 
 App launcher instance
 
-***
+---
 
 ### getCanvasLauncher()
 
 > `static` **getCanvasLauncher**(`page`): [`IAppLauncher`](../interfaces/IAppLauncher.md)
 
-Defined in: core/app-launcher.factory.ts:66
+Defined in: [core/app-launcher.factory.ts:66](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.factory.ts#L66)
 
 Get launcher for Canvas Apps
 
@@ -76,13 +76,13 @@ Playwright page
 
 Canvas app launcher
 
-***
+---
 
 ### getModelDrivenLauncher()
 
 > `static` **getModelDrivenLauncher**(`page`): [`IAppLauncher`](../interfaces/IAppLauncher.md)
 
-Defined in: core/app-launcher.factory.ts:75
+Defined in: [core/app-launcher.factory.ts:75](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.factory.ts#L75)
 
 Get launcher for Model Driven Apps
 
@@ -100,13 +100,13 @@ Playwright page
 
 Model driven app launcher
 
-***
+---
 
 ### clearCache()
 
 > `static` **clearCache**(): `void`
 
-Defined in: core/app-launcher.factory.ts:83
+Defined in: [core/app-launcher.factory.ts:83](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.factory.ts#L83)
 
 Clear all cached launcher instances
 Use this when you need to reset state between tests
@@ -115,13 +115,13 @@ Use this when you need to reset state between tests
 
 `void`
 
-***
+---
 
 ### clearCacheForPage()
 
 > `static` **clearCacheForPage**(`page`): `void`
 
-Defined in: core/app-launcher.factory.ts:91
+Defined in: [core/app-launcher.factory.ts:91](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.factory.ts#L91)
 
 Clear launcher cache for a specific page
 
@@ -137,13 +137,13 @@ Playwright page
 
 `void`
 
-***
+---
 
 ### hasLauncher()
 
 > `static` **hasLauncher**(`page`, `appType`): `boolean`
 
-Defined in: core/app-launcher.factory.ts:120
+Defined in: [core/app-launcher.factory.ts:120](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/core/app-launcher.factory.ts#L120)
 
 Check if a launcher exists for the given page and app type
 

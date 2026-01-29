@@ -1,12 +1,12 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / PowerAppsPage
 
 # Class: PowerAppsPage
 
-Defined in: pages/power-apps.page.ts:15
+Defined in: [pages/power-apps.page.ts:15](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L15)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: pages/power-apps.page.ts:15
 
 > **new PowerAppsPage**(`page`): `PowerAppsPage`
 
-Defined in: pages/power-apps.page.ts:21
+Defined in: [pages/power-apps.page.ts:21](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L21)
 
 #### Parameters
 
@@ -32,31 +32,31 @@ Defined in: pages/power-apps.page.ts:21
 
 > `readonly` **page**: `Page`
 
-Defined in: pages/power-apps.page.ts:16
+Defined in: [pages/power-apps.page.ts:16](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L16)
 
-***
+---
 
 ### locators
 
 > `readonly` **locators**: [`PowerAppsPageLocators`](PowerAppsPageLocators.md)
 
-Defined in: pages/power-apps.page.ts:17
+Defined in: [pages/power-apps.page.ts:17](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L17)
 
-***
+---
 
 ### canvas
 
 > `readonly` **canvas**: [`CanvasAppPage`](CanvasAppPage.md)
 
-Defined in: pages/power-apps.page.ts:18
+Defined in: [pages/power-apps.page.ts:18](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L18)
 
-***
+---
 
 ### modelDriven
 
 > `readonly` **modelDriven**: [`ModelDrivenAppPage`](ModelDrivenAppPage.md)
 
-Defined in: pages/power-apps.page.ts:19
+Defined in: [pages/power-apps.page.ts:19](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L19)
 
 ## Methods
 
@@ -64,7 +64,7 @@ Defined in: pages/power-apps.page.ts:19
 
 > **navigateToHome**(`options`): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:36
+Defined in: [pages/power-apps.page.ts:36](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L36)
 
 Navigate to Power Apps home page
 
@@ -80,13 +80,13 @@ Navigation options
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### navigateToApps()
 
 > **navigateToApps**(`options`): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:51
+Defined in: [pages/power-apps.page.ts:51](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L51)
 
 Navigate to Apps page
 Uses direct URL navigation for reliability
@@ -103,13 +103,13 @@ Navigation options (url is treated as base URL, '/apps' will be appended)
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### navigateToSolutions()
 
 > **navigateToSolutions**(`options`): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:67
+Defined in: [pages/power-apps.page.ts:67](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L67)
 
 Navigate to Solutions page
 Uses direct URL navigation for reliability
@@ -126,13 +126,13 @@ Navigation options (url is treated as base URL, '/solutions' will be appended)
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### navigateToAppsViaMenu()
 
 > **navigateToAppsViaMenu**(`options`): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:84
+Defined in: [pages/power-apps.page.ts:84](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L84)
 
 Navigate to Apps page via menu
 First navigates to home page, then clicks the Apps menu item
@@ -150,13 +150,13 @@ Navigation options
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### navigateToSolutionsViaMenu()
 
 > **navigateToSolutionsViaMenu**(`options`): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:105
+Defined in: [pages/power-apps.page.ts:105](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L105)
 
 Navigate to Solutions page via menu
 First navigates to home page, then clicks the Solutions menu item
@@ -174,13 +174,13 @@ Navigation options
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForHomePageLoad()
 
 > **waitForHomePageLoad**(`timeout`): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:129
+Defined in: [pages/power-apps.page.ts:129](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L129)
 
 Wait for home page to fully load
 Waits for multiple elements to ensure page is ready
@@ -197,13 +197,13 @@ Timeout in milliseconds
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForAppsPageLoad()
 
 > **waitForAppsPageLoad**(`timeout`): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:154
+Defined in: [pages/power-apps.page.ts:154](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L154)
 
 Wait for Apps page to fully load
 
@@ -219,13 +219,13 @@ Timeout in milliseconds
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForSolutionsPageLoad()
 
 > **waitForSolutionsPageLoad**(`timeout`): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:175
+Defined in: [pages/power-apps.page.ts:175](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L175)
 
 Wait for Solutions page to fully load
 
@@ -241,13 +241,13 @@ Timeout in milliseconds
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### findApp()
 
 > **findApp**(`appName`, `options`): `Promise`\<`Locator`\>
 
-Defined in: pages/power-apps.page.ts:200
+Defined in: [pages/power-apps.page.ts:200](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L200)
 
 Find an app by name in the apps list
 Includes search and wait logic
@@ -272,13 +272,13 @@ Search options
 
 Locator for the app
 
-***
+---
 
 ### findSolution()
 
 > **findSolution**(`solutionName`, `options`): `Promise`\<`Locator`\>
 
-Defined in: pages/power-apps.page.ts:231
+Defined in: [pages/power-apps.page.ts:231](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L231)
 
 Find a solution by name
 
@@ -302,13 +302,13 @@ Search options
 
 Locator for the solution
 
-***
+---
 
 ### openDefaultSolution()
 
 > **openDefaultSolution**(): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:259
+Defined in: [pages/power-apps.page.ts:259](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L259)
 
 Open the default solution
 
@@ -316,13 +316,13 @@ Open the default solution
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### createApp()
 
 > **createApp**(`appType`, `appName`): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:275
+Defined in: [pages/power-apps.page.ts:275](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L275)
 
 Create a new app of specified type
 
@@ -344,13 +344,13 @@ Name for the new app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### deleteApp()
 
 > **deleteApp**(`appType`, `appName`): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:301
+Defined in: [pages/power-apps.page.ts:301](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L301)
 
 Delete an app by name
 
@@ -372,13 +372,13 @@ Name of the app to delete
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### openApp()
 
 > **openApp**(`appName`, `appType`, `mode`): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:327
+Defined in: [pages/power-apps.page.ts:327](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L327)
 
 Open an app for editing or playing
 
@@ -406,13 +406,13 @@ Type of app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### openModelDrivenAppInNewWindow()
 
 > **openModelDrivenAppInNewWindow**(`appName`): `Promise`\<`Page`\>
 
-Defined in: pages/power-apps.page.ts:362
+Defined in: [pages/power-apps.page.ts:362](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L362)
 
 Open Model Driven app in new window
 
@@ -430,13 +430,13 @@ Name of the app
 
 New page object
 
-***
+---
 
 ### dismissTeachingBubble()
 
 > **dismissTeachingBubble**(): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:381
+Defined in: [pages/power-apps.page.ts:381](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L381)
 
 Dismiss teaching bubble if present
 
@@ -444,13 +444,13 @@ Dismiss teaching bubble if present
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### isEnvironmentErrorPage()
 
 > **isEnvironmentErrorPage**(): `Promise`\<`boolean`\>
 
-Defined in: pages/power-apps.page.ts:402
+Defined in: [pages/power-apps.page.ts:402](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L402)
 
 Check if current page is an environment error page
 
@@ -460,13 +460,13 @@ Check if current page is an environment error page
 
 True if error page is detected
 
-***
+---
 
 ### isHomePage()
 
 > **isHomePage**(): `Promise`\<`boolean`\>
 
-Defined in: pages/power-apps.page.ts:410
+Defined in: [pages/power-apps.page.ts:410](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L410)
 
 Check if currently on home page
 
@@ -474,13 +474,13 @@ Check if currently on home page
 
 `Promise`\<`boolean`\>
 
-***
+---
 
 ### isAppsPage()
 
 > **isAppsPage**(): `Promise`\<`boolean`\>
 
-Defined in: pages/power-apps.page.ts:417
+Defined in: [pages/power-apps.page.ts:417](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L417)
 
 Check if currently on apps page
 
@@ -488,13 +488,13 @@ Check if currently on apps page
 
 `Promise`\<`boolean`\>
 
-***
+---
 
 ### isSolutionsPage()
 
 > **isSolutionsPage**(): `Promise`\<`boolean`\>
 
-Defined in: pages/power-apps.page.ts:424
+Defined in: [pages/power-apps.page.ts:424](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L424)
 
 Check if currently on solutions page
 
@@ -502,13 +502,13 @@ Check if currently on solutions page
 
 `Promise`\<`boolean`\>
 
-***
+---
 
 ### takeScreenshot()
 
 > **takeScreenshot**(`fileName`): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:432
+Defined in: [pages/power-apps.page.ts:432](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L432)
 
 Take screenshot
 
@@ -524,13 +524,13 @@ Name for the screenshot file
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### signOut()
 
 > **signOut**(): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:442
+Defined in: [pages/power-apps.page.ts:442](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L442)
 
 Sign out from Power Apps
 
@@ -538,13 +538,13 @@ Sign out from Power Apps
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### searchApps()
 
 > **searchApps**(`query`): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:466
+Defined in: [pages/power-apps.page.ts:466](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L466)
 
 Search for apps in the apps list
 
@@ -560,13 +560,13 @@ Search query
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### searchSolutions()
 
 > **searchSolutions**(`query`): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:480
+Defined in: [pages/power-apps.page.ts:480](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L480)
 
 Search for solutions
 
@@ -582,13 +582,13 @@ Search query
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyHomePageLoaded()
 
 > **verifyHomePageLoaded**(): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:497
+Defined in: [pages/power-apps.page.ts:497](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L497)
 
 Verify home page loaded successfully
 
@@ -596,13 +596,13 @@ Verify home page loaded successfully
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyAppsPageLoaded()
 
 > **verifyAppsPageLoaded**(): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:506
+Defined in: [pages/power-apps.page.ts:506](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L506)
 
 Verify apps page loaded successfully
 
@@ -610,13 +610,13 @@ Verify apps page loaded successfully
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifySolutionsPageLoaded()
 
 > **verifySolutionsPageLoaded**(): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:515
+Defined in: [pages/power-apps.page.ts:515](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L515)
 
 Verify solutions page loaded successfully
 
@@ -624,13 +624,13 @@ Verify solutions page loaded successfully
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyAppExists()
 
 > **verifyAppExists**(`appName`): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:525
+Defined in: [pages/power-apps.page.ts:525](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L525)
 
 Verify app exists in the list
 
@@ -646,13 +646,13 @@ Name of the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifySolutionExists()
 
 > **verifySolutionExists**(`solutionName`): `Promise`\<`void`\>
 
-Defined in: pages/power-apps.page.ts:534
+Defined in: [pages/power-apps.page.ts:534](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/power-apps.page.ts#L534)
 
 Verify solution exists in the list
 

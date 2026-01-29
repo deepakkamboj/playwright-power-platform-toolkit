@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / handleDialog
 
@@ -8,7 +8,7 @@
 
 > **handleDialog**(`page`, `accept`, `promptText?`): `Promise`\<`void`\>
 
-Defined in: utils/app-helpers.ts:203
+Defined in: [utils/app-helpers.ts:203](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/app-helpers.ts#L203)
 
 Handle dialog/popup
 

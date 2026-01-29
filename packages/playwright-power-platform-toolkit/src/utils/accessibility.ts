@@ -153,7 +153,7 @@ export class AccessibilityTestHelper {
    */
   async assertAccessibleName(locator: Locator, expectedName: string): Promise<void> {
     const accessibleName = await locator.evaluate((el) => {
-      // @ts-ignore
+      // @ts-expect-error - computedName is not in TypeScript DOM types yet
       return el.computedName || el.getAttribute('aria-label') || el.textContent;
     });
     expect(accessibleName?.trim()).toContain(expectedName);

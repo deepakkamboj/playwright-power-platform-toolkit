@@ -91,7 +91,7 @@ export async function createAuthenticatedApiContext(token: string, baseUrl?: str
  * The BAP API uses a special invoke pattern where the actual API path
  * is passed in the x-ms-path-query header.
  *
- * @param pathQuery - The x-ms-path-query value (API path and query params)
+ * @param _pathQuery - The x-ms-path-query value (API path and query params) - currently unused
  * @returns Full API endpoint URL for BAP invoke pattern
  *
  * @example
@@ -100,7 +100,7 @@ export async function createAuthenticatedApiContext(token: string, baseUrl?: str
  * // Returns: https://api.bap.microsoft.com/api/invoke
  * ```
  */
-export function buildBapApiEndpoint(pathQuery: string): string {
+export function buildBapApiEndpoint(_pathQuery: string): string {
   const baseUrl = ConfigHelper.getBapApiUrl();
   return `${baseUrl}/api/invoke`;
 }

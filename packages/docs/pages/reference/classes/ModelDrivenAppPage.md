@@ -1,12 +1,12 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / ModelDrivenAppPage
 
 # Class: ModelDrivenAppPage
 
-Defined in: pages/model-driven-app.page.ts:9
+Defined in: [pages/model-driven-app.page.ts:9](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L9)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: pages/model-driven-app.page.ts:9
 
 > **new ModelDrivenAppPage**(`page`): `ModelDrivenAppPage`
 
-Defined in: pages/model-driven-app.page.ts:12
+Defined in: [pages/model-driven-app.page.ts:12](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L12)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: pages/model-driven-app.page.ts:12
 
 > `readonly` **page**: `Page`
 
-Defined in: pages/model-driven-app.page.ts:10
+Defined in: [pages/model-driven-app.page.ts:10](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L10)
 
 ## Methods
 
@@ -40,7 +40,7 @@ Defined in: pages/model-driven-app.page.ts:10
 
 > **navigateToHome**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:23
+Defined in: [pages/model-driven-app.page.ts:23](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L23)
 
 Navigate to Power Apps home page
 
@@ -48,13 +48,13 @@ Navigate to Power Apps home page
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForHomePageLoad()
 
 > **waitForHomePageLoad**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:31
+Defined in: [pages/model-driven-app.page.ts:31](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L31)
 
 Wait for home page to load
 
@@ -62,13 +62,13 @@ Wait for home page to load
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForDesignerLoad()
 
 > **waitForDesignerLoad**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:41
+Defined in: [pages/model-driven-app.page.ts:41](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L41)
 
 Wait for App Designer to load
 
@@ -76,13 +76,13 @@ Wait for App Designer to load
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForLoadingComplete()
 
 > **waitForLoadingComplete**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:51
+Defined in: [pages/model-driven-app.page.ts:51](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L51)
 
 Wait for loading spinner to disappear
 
@@ -90,13 +90,13 @@ Wait for loading spinner to disappear
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForRuntimeLoad()
 
 > **waitForRuntimeLoad**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:61
+Defined in: [pages/model-driven-app.page.ts:61](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L61)
 
 Wait for app runtime to load
 
@@ -104,13 +104,13 @@ Wait for app runtime to load
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### createBlankModelDrivenApp()
 
 > **createBlankModelDrivenApp**(`appName`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:76
+Defined in: [pages/model-driven-app.page.ts:76](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L76)
 
 Create a blank Model Driven app
 
@@ -126,13 +126,13 @@ Name for the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### createFromSolution()
 
 > **createFromSolution**(`solutionName`, `appName`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:88
+Defined in: [pages/model-driven-app.page.ts:88](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L88)
 
 Create Model Driven app from solution
 
@@ -154,13 +154,13 @@ Name for the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### filterByModelDrivenApps()
 
 > **filterByModelDrivenApps**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:99
+Defined in: [pages/model-driven-app.page.ts:99](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L99)
 
 Filter apps by Model Driven type
 
@@ -168,13 +168,13 @@ Filter apps by Model Driven type
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### setAppName()
 
 > **setAppName**(`appName`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:112
+Defined in: [pages/model-driven-app.page.ts:112](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L112)
 
 Set app name
 
@@ -190,13 +190,13 @@ Name for the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### saveApp()
 
 > **saveApp**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:122
+Defined in: [pages/model-driven-app.page.ts:122](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L122)
 
 Save the Model Driven app
 
@@ -204,13 +204,13 @@ Save the Model Driven app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### publishApp()
 
 > **publishApp**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:130
+Defined in: [pages/model-driven-app.page.ts:130](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L130)
 
 Publish the Model Driven app
 
@@ -218,13 +218,13 @@ Publish the Model Driven app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForPublishComplete()
 
 > **waitForPublishComplete**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:142
+Defined in: [pages/model-driven-app.page.ts:142](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L142)
 
 Wait for publish operation to complete
 
@@ -232,13 +232,13 @@ Wait for publish operation to complete
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### playApp()
 
 > **playApp**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:152
+Defined in: [pages/model-driven-app.page.ts:152](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L152)
 
 Play/Open the app in runtime
 
@@ -246,13 +246,13 @@ Play/Open the app in runtime
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### validateApp()
 
 > **validateApp**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:166
+Defined in: [pages/model-driven-app.page.ts:166](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L166)
 
 Validate the app
 
@@ -260,13 +260,13 @@ Validate the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addTableBasedPage()
 
 > **addTableBasedPage**(`tableName`, `forms`, `views`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:183
+Defined in: [pages/model-driven-app.page.ts:183](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L183)
 
 Add a table-based page
 
@@ -294,13 +294,13 @@ Array of view names to include
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addDashboardPage()
 
 > **addDashboardPage**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:225
+Defined in: [pages/model-driven-app.page.ts:225](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L225)
 
 Add a dashboard page
 
@@ -308,13 +308,13 @@ Add a dashboard page
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addCustomPage()
 
 > **addCustomPage**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:235
+Defined in: [pages/model-driven-app.page.ts:235](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L235)
 
 Add a custom page
 
@@ -322,13 +322,13 @@ Add a custom page
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### deletePage()
 
 > **deletePage**(`pageName`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:246
+Defined in: [pages/model-driven-app.page.ts:246](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L246)
 
 Delete a page
 
@@ -344,13 +344,13 @@ Name of the page to delete
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addNavigationGroup()
 
 > **addNavigationGroup**(`groupName`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:261
+Defined in: [pages/model-driven-app.page.ts:261](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L261)
 
 Add navigation group
 
@@ -366,13 +366,13 @@ Name for the group
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addNavigationSubArea()
 
 > **addNavigationSubArea**(`groupName`, `subAreaTitle`, `tableName?`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:274
+Defined in: [pages/model-driven-app.page.ts:274](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L274)
 
 Add navigation subarea
 
@@ -400,13 +400,13 @@ Optional table to link to
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addTable()
 
 > **addTable**(`tableName`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:309
+Defined in: [pages/model-driven-app.page.ts:309](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L309)
 
 Add table to the app
 
@@ -422,13 +422,13 @@ Name of the table
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### createNewTable()
 
 > **createNewTable**(`displayName`, `pluralName`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:322
+Defined in: [pages/model-driven-app.page.ts:322](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L322)
 
 Create a new table
 
@@ -450,13 +450,13 @@ Plural name for the table
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### openSettings()
 
 > **openSettings**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:347
+Defined in: [pages/model-driven-app.page.ts:347](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L347)
 
 Open app settings
 
@@ -464,13 +464,13 @@ Open app settings
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### setAppDescription()
 
 > **setAppDescription**(`description`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:356
+Defined in: [pages/model-driven-app.page.ts:356](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L356)
 
 Set app description
 
@@ -486,13 +486,13 @@ Description for the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### enableMobile()
 
 > **enableMobile**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:365
+Defined in: [pages/model-driven-app.page.ts:365](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L365)
 
 Enable mobile for the app
 
@@ -500,13 +500,13 @@ Enable mobile for the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### enableOfflineMode()
 
 > **enableOfflineMode**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:375
+Defined in: [pages/model-driven-app.page.ts:375](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L375)
 
 Enable offline mode
 
@@ -514,13 +514,13 @@ Enable offline mode
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### navigateToRuntimeItem()
 
 > **navigateToRuntimeItem**(`itemName`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:390
+Defined in: [pages/model-driven-app.page.ts:390](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L390)
 
 Navigate to a navigation item in runtime
 
@@ -536,13 +536,13 @@ Name of the navigation item
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### expandNavigationGroup()
 
 > **expandNavigationGroup**(`groupName`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:399
+Defined in: [pages/model-driven-app.page.ts:399](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L399)
 
 Expand navigation group in runtime
 
@@ -558,13 +558,13 @@ Name of the group
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### createNewRecord()
 
 > **createNewRecord**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:406
+Defined in: [pages/model-driven-app.page.ts:406](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L406)
 
 Create new record in runtime
 
@@ -572,13 +572,13 @@ Create new record in runtime
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### saveRecord()
 
 > **saveRecord**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:416
+Defined in: [pages/model-driven-app.page.ts:416](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L416)
 
 Save record in runtime
 
@@ -586,13 +586,13 @@ Save record in runtime
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### fillFormField()
 
 > **fillFormField**(`fieldName`, `value`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:426
+Defined in: [pages/model-driven-app.page.ts:426](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L426)
 
 Fill form field in runtime
 
@@ -614,13 +614,13 @@ Value to fill
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### clickCommandButton()
 
 > **clickCommandButton**(`buttonLabel`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:437
+Defined in: [pages/model-driven-app.page.ts:437](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L437)
 
 Click command bar button in runtime
 
@@ -636,13 +636,13 @@ Label of the button
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### switchFormTab()
 
 > **switchFormTab**(`tabName`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:445
+Defined in: [pages/model-driven-app.page.ts:445](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L445)
 
 Switch form tab in runtime
 
@@ -658,13 +658,13 @@ Name of the tab
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### shareApp()
 
 > **shareApp**(`userEmail`, `securityRole`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:458
+Defined in: [pages/model-driven-app.page.ts:458](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L458)
 
 Share app with a user
 
@@ -686,13 +686,13 @@ Security role to assign
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### searchApp()
 
 > **searchApp**(`appName`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:485
+Defined in: [pages/model-driven-app.page.ts:485](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L485)
 
 Search for an app by name
 
@@ -708,13 +708,13 @@ Name of the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### openAppForEdit()
 
 > **openAppForEdit**(`appName`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:495
+Defined in: [pages/model-driven-app.page.ts:495](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L495)
 
 Open an existing app for editing
 
@@ -730,13 +730,13 @@ Name of the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### openAppForPlay()
 
 > **openAppForPlay**(`appName`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:508
+Defined in: [pages/model-driven-app.page.ts:508](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L508)
 
 Open an existing app in play mode
 
@@ -752,13 +752,13 @@ Name of the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### deleteApp()
 
 > **deleteApp**(`appName`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:519
+Defined in: [pages/model-driven-app.page.ts:519](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L519)
 
 Delete an app
 
@@ -774,13 +774,13 @@ Name of the app to delete
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyAppExists()
 
 > **verifyAppExists**(`appName`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:539
+Defined in: [pages/model-driven-app.page.ts:539](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L539)
 
 Verify app exists in the list
 
@@ -796,13 +796,13 @@ Name of the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyAppPublished()
 
 > **verifyAppPublished**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:547
+Defined in: [pages/model-driven-app.page.ts:547](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L547)
 
 Verify app is published
 
@@ -810,13 +810,13 @@ Verify app is published
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyPageExists()
 
 > **verifyPageExists**(`pageName`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:557
+Defined in: [pages/model-driven-app.page.ts:557](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L557)
 
 Verify page exists in designer
 
@@ -832,13 +832,13 @@ Name of the page
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyNavigationItemExists()
 
 > **verifyNavigationItemExists**(`itemName`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:567
+Defined in: [pages/model-driven-app.page.ts:567](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L567)
 
 Verify navigation item exists
 
@@ -854,13 +854,13 @@ Name of the navigation item
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyTableAdded()
 
 > **verifyTableAdded**(`tableName`): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:577
+Defined in: [pages/model-driven-app.page.ts:577](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L577)
 
 Verify table is added to app
 
@@ -876,13 +876,13 @@ Name of the table
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyNoValidationErrors()
 
 > **verifyNoValidationErrors**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:587
+Defined in: [pages/model-driven-app.page.ts:587](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L587)
 
 Verify validation has no errors
 
@@ -890,13 +890,13 @@ Verify validation has no errors
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyRuntimeLoaded()
 
 > **verifyRuntimeLoaded**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:595
+Defined in: [pages/model-driven-app.page.ts:595](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L595)
 
 Verify runtime loaded successfully
 
@@ -904,13 +904,13 @@ Verify runtime loaded successfully
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyRecordSaved()
 
 > **verifyRecordSaved**(): `Promise`\<`void`\>
 
-Defined in: pages/model-driven-app.page.ts:607
+Defined in: [pages/model-driven-app.page.ts:607](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L607)
 
 Verify record saved in runtime
 

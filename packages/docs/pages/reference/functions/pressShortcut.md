@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / pressShortcut
 
@@ -8,7 +8,7 @@
 
 > **pressShortcut**(`page`, `modifiers`, `key`): `Promise`\<`void`\>
 
-Defined in: utils/app-helpers.ts:395
+Defined in: [utils/app-helpers.ts:395](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/app-helpers.ts#L395)
 
 Press keyboard shortcut
 

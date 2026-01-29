@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / createAuthenticatedApiContext
 
@@ -8,7 +8,7 @@
 
 > **createAuthenticatedApiContext**(`token`, `baseUrl?`): `Promise`\<`APIRequestContext`\>
 
-Defined in: utils/api-utilities.ts:73
+Defined in: [utils/api-utilities.ts:73](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-utilities.ts#L73)
 
 Create an authenticated API request context
 
@@ -39,10 +39,7 @@ Playwright APIRequestContext configured with authentication
 
 ```typescript
 const token = extractTokenFromStorage();
-const apiContext = await createAuthenticatedApiContext(
-  token,
-  'https://api.bap.microsoft.com'
-);
+const apiContext = await createAuthenticatedApiContext(token, 'https://api.bap.microsoft.com');
 
 const response = await apiContext.get('/api/endpoint');
 await apiContext.dispose();

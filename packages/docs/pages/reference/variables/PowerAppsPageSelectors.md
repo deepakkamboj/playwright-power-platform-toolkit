@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / PowerAppsPageSelectors
 
@@ -8,7 +8,7 @@
 
 > `const` **PowerAppsPageSelectors**: `object`
 
-Defined in: locators/power-apps.locators.ts:15
+Defined in: [locators/power-apps.locators.ts:15](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/power-apps.locators.ts#L15)
 
 Power Apps Page Selectors - Constant object for easy management
 Organized by page/section for better maintainability

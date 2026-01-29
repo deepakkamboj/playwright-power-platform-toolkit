@@ -8,7 +8,7 @@ This is a Rush monorepo for Playwright Power Platform testing. The main package 
 
 ## Project Structure
 
-```
+````
 playwright-power-platform/
 ├── packages/
 │   ├── playwright-power-platform-toolkit/  # Main library package
@@ -47,14 +47,16 @@ playwright-power-platform/
 rush build          # Build all packages
 rush rebuild        # Clean and rebuild
 rushx build         # Build current package only
-```
+````
 
 ### Testing
+
 ```bash
 rush test           # Run all tests
 ```
 
 ### Documentation
+
 ```bash
 npm run docs        # Generate API documentation
 npm run docs:serve  # Serve documentation locally
@@ -73,6 +75,7 @@ npm run docs:serve  # Serve documentation locally
 ### JSDoc/TSDoc Comments
 
 All public APIs should include:
+
 - Description of the function/class
 - `@param` tags for parameters
 - `@returns` tag for return values
@@ -80,7 +83,8 @@ All public APIs should include:
 - `@throws` for possible exceptions
 
 Example:
-```typescript
+
+````typescript
 /**
  * Launches a Power Platform application
  *
@@ -98,11 +102,12 @@ Example:
  * });
  * ```
  */
-```
+````
 
 ## Common Tasks
 
 ### Adding a New Feature
+
 1. Create the implementation in `src/`
 2. Add JSDoc comments
 3. Export from `index.ts`
@@ -111,6 +116,7 @@ Example:
 6. Generate API docs: `npm run docs`
 
 ### Updating Dependencies
+
 ```bash
 rush update         # Update all dependencies
 rush install        # Install dependencies

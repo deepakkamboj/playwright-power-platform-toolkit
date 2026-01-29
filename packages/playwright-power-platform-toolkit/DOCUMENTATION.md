@@ -50,7 +50,7 @@ npm run dev
 
 ### Basic Structure
 
-```typescript
+````typescript
 /**
  * Brief one-line description
  *
@@ -66,7 +66,7 @@ npm run dev
  * const result = await myFunction('example');
  * ```
  */
-```
+````
 
 ### Essential Tags
 
@@ -129,7 +129,7 @@ async launchCanvasAppById(appId: string): Promise<void> {
 
 #### @example - Provide Usage Examples
 
-```typescript
+````typescript
 /**
  * Click a Canvas control
  *
@@ -158,7 +158,7 @@ async launchCanvasAppById(appId: string): Promise<void> {
 async clickControl(options: ControlOptions): Promise<void> {
   // Implementation
 }
-```
+````
 
 #### @see - Cross-reference Related Items
 
@@ -228,6 +228,7 @@ private internalHelper(): void {
 #### 1. Write Clear Descriptions
 
 **❌ Bad:**
+
 ```typescript
 /**
  * Clicks thing
@@ -236,6 +237,7 @@ async click(): Promise<void> {}
 ```
 
 **✅ Good:**
+
 ```typescript
 /**
  * Clicks a Canvas control by name and waits for it to be clickable
@@ -328,7 +330,7 @@ private async waitForCanvasAppReady(timeout: number = 30000): Promise<void> {}
 
 You can use markdown formatting in JSDoc comments:
 
-```typescript
+````typescript
 /**
  * Canvas App Helper
  *
@@ -351,7 +353,7 @@ You can use markdown formatting in JSDoc comments:
  * @see {@link PowerAppsPage}
  */
 export class CanvasAppHelper {}
-```
+````
 
 #### 7. Document Enums
 
@@ -509,7 +511,7 @@ npm run export
 
 ## Example: Well-Documented Class
 
-```typescript
+````typescript
 /**
  * Canvas App Helper
  *
@@ -570,7 +572,7 @@ export class CanvasAppHelper {
     // Implementation
   }
 }
-```
+````
 
 ## Troubleshooting
 

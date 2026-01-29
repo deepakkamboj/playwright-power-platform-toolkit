@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / waitForSpinnerToDisappear
 
@@ -8,7 +8,7 @@
 
 > **waitForSpinnerToDisappear**(`page`, `spinnerSelector`, `timeout`): `Promise`\<`void`\>
 
-Defined in: utils/app-helpers.ts:70
+Defined in: [utils/app-helpers.ts:70](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/app-helpers.ts#L70)
 
 Wait for spinner/loading indicator to disappear
 

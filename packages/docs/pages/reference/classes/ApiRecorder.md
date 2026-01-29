@@ -1,12 +1,12 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / ApiRecorder
 
 # Class: ApiRecorder
 
-Defined in: utils/api-recorder.ts:139
+Defined in: [utils/api-recorder.ts:139](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L139)
 
 API Recorder
 
@@ -25,7 +25,7 @@ const page = await browser.newPage();
 const recorder = new ApiRecorder(page, {
   urlFilter: /api\.powerapps\.com/,
   includeRequestBody: true,
-  includeResponseBody: true
+  includeResponseBody: true,
 });
 
 // Start recording
@@ -52,7 +52,7 @@ await recorder.saveTestCode('generated-test.spec.ts');
 
 > **new ApiRecorder**(`page`, `options`): `ApiRecorder`
 
-Defined in: utils/api-recorder.ts:152
+Defined in: [utils/api-recorder.ts:152](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L152)
 
 Create a new API recorder
 
@@ -80,7 +80,7 @@ Recording configuration options
 
 > **startRecording**(): `Promise`\<`void`\>
 
-Defined in: utils/api-recorder.ts:177
+Defined in: [utils/api-recorder.ts:177](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L177)
 
 Start recording API calls
 
@@ -98,13 +98,13 @@ await recorder.startRecording();
 await recorder.stopRecording();
 ```
 
-***
+---
 
 ### stopRecording()
 
 > **stopRecording**(): `Promise`\<`void`\>
 
-Defined in: utils/api-recorder.ts:203
+Defined in: [utils/api-recorder.ts:203](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L203)
 
 Stop recording API calls
 
@@ -121,13 +121,13 @@ await recorder.stopRecording();
 const recordings = recorder.getRecordings();
 ```
 
-***
+---
 
 ### getRecordings()
 
 > **getRecordings**(): [`RecordedApiCall`](../interfaces/RecordedApiCall.md)[]
 
-Defined in: utils/api-recorder.ts:414
+Defined in: [utils/api-recorder.ts:414](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L414)
 
 Get all recorded API calls
 
@@ -144,13 +144,13 @@ const recordings = recorder.getRecordings();
 console.log(`Captured ${recordings.length} API calls`);
 ```
 
-***
+---
 
 ### getStatistics()
 
 > **getStatistics**(): [`RecordingStatistics`](../interfaces/RecordingStatistics.md)
 
-Defined in: utils/api-recorder.ts:430
+Defined in: [utils/api-recorder.ts:430](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L430)
 
 Get recording statistics
 
@@ -168,13 +168,13 @@ console.log(`Total calls: ${stats.totalCalls}`);
 console.log(`Average duration: ${stats.avgDuration}ms`);
 ```
 
-***
+---
 
 ### saveToFile()
 
 > **saveToFile**(`filename`): `Promise`\<`string`\>
 
-Defined in: utils/api-recorder.ts:486
+Defined in: [utils/api-recorder.ts:486](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L486)
 
 Save recordings to JSON file
 
@@ -199,13 +199,13 @@ const filePath = await recorder.saveToFile('recordings/api-calls.json');
 console.log(`Saved to: ${filePath}`);
 ```
 
-***
+---
 
 ### saveTestCode()
 
 > **saveTestCode**(`filename`, `options`): `Promise`\<`string`\>
 
-Defined in: utils/api-recorder.ts:522
+Defined in: [utils/api-recorder.ts:522](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L522)
 
 Generate Playwright test code from recordings
 
@@ -235,17 +235,17 @@ Absolute path to the generated test file
 const testPath = await recorder.saveTestCode('generated.spec.ts', {
   testName: 'API test from recording',
   includeAssertions: true,
-  useTestSteps: true
+  useTestSteps: true,
 });
 ```
 
-***
+---
 
 ### clearRecordings()
 
 > **clearRecordings**(): `void`
 
-Defined in: utils/api-recorder.ts:641
+Defined in: [utils/api-recorder.ts:641](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-recorder.ts#L641)
 
 Clear all recordings
 

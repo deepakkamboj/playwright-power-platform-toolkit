@@ -28,7 +28,7 @@ export enum TimeOut {
   /** 3 minutes - Default maximum wait time */
   DefaultMaxWaitTime = 180000,
   /** 30 seconds - Default wait time for validation */
-  DefaultWaitTimeForValidation = 30000,
+  DefaultWaitTimeForValidation = DefaultWaitTime,
   /** 2 seconds - Element wait time */
   ElementWaitTime = 2000,
   /** 5 minutes - Five minutes timeout */
@@ -36,13 +36,13 @@ export enum TimeOut {
   /** 1 minute - Load timeout */
   LoadTimeOut = 60000,
   /** 1 minute - Navigation timeout */
-  NavigationTimeout = 60000,
+  NavigationTimeout = LoadTimeOut,
   /** 1 minute - One minute timeout */
-  OneMinuteTimeOut = 60000,
+  OneMinuteTimeOut = LoadTimeOut,
   /** 5 seconds - Optional element timeout */
-  OptionalElementTimeout = 5000,
+  OptionalElementTimeout = DefaultLoopWaitTime,
   /** 30 seconds - Page load timeout */
-  PageLoadTimeOut = 30000,
+  PageLoadTimeOut = DefaultWaitTime,
   /** 6 minutes - Test timeout */
   TestTimeout = 360000,
   /** 10 minutes - Maximum test timeout */

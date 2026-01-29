@@ -3,7 +3,7 @@
  * Provides methods for creating, editing, and testing Canvas Apps
  */
 
-import { Page, Locator, FrameLocator, expect } from '@playwright/test';
+import { Page, FrameLocator, expect } from '@playwright/test';
 import { CanvasAppLocators } from '../locators/canvas-app.locators';
 
 export class CanvasAppPage {
@@ -88,9 +88,9 @@ export class CanvasAppPage {
 
   /**
    * Create Canvas app from template
-   * @param templateName - Name of the template
+   * @param _templateName - Name of the template
    */
-  async createFromTemplate(templateName: string): Promise<void> {
+  async createFromTemplate(_templateName: string): Promise<void> {
     await this.page.locator(CanvasAppLocators.Home.CreateButton).click();
     await this.page.locator(CanvasAppLocators.Home.TemplateAppOption).click();
     // Template selection logic would go here
@@ -99,9 +99,9 @@ export class CanvasAppPage {
 
   /**
    * Create Canvas app from data
-   * @param dataSourceName - Name of the data source
+   * @param _dataSourceName - Name of the data source
    */
-  async createFromData(dataSourceName: string): Promise<void> {
+  async createFromData(_dataSourceName: string): Promise<void> {
     await this.page.locator(CanvasAppLocators.Home.CreateButton).click();
     await this.page.locator(CanvasAppLocators.Home.DataAppOption).click();
     // Data source selection logic would go here

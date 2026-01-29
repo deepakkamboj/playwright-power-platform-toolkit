@@ -24,13 +24,28 @@ jobs:
       - name: Install Rush
         run: npm install -g @microsoft/rush
 
+      - name: Configure Git
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+
       - name: Install dependencies
         run: |
           rush update
           rush install
 
+      - name: Install prettier
+        run: npm install --no-save prettier
+
       - name: Run format check
-        run: npm run format:check
+        run: |
+          npm run format
+          if ! git diff --quiet; then
+            echo "❌ Formatting issues found. Please run 'npm run format' locally and commit the changes."
+            git diff --name-only
+            exit 1
+          fi
+          echo "✅ No formatting issues found"
 
       - name: Run linting
         run: rush lint
@@ -38,9 +53,26 @@ jobs:
       - name: Build all packages
         run: rush build
 
+      - name: Check package sizes
+        run: |
+          echo "## 📦 Package Sizes" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ -d "packages/playwright-power-platform-toolkit/dist" ]; then
+            toolkit_size=$(du -sh packages/playwright-power-platform-toolkit/dist | cut -f1)
+            echo "- **playwright-power-platform-toolkit**: \`$toolkit_size\`" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ -d "packages/docs/.next" ]; then
+            docs_size=$(du -sh packages/docs/.next | cut -f1)
+            echo "- **docs**: \`$docs_size\`" >> $GITHUB_STEP_SUMMARY
+          fi
+
       - name: Build summary
         if: always()
         run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
           echo "## 🏗️ Build Results" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- **Branch**: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
@@ -50,6 +82,10 @@ jobs:
 
           if [ "${{ job.status }}" == "success" ]; then
             echo "✅ All checks passed successfully" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "- ✅ Code formatting" >> $GITHUB_STEP_SUMMARY
+            echo "- ✅ Linting" >> $GITHUB_STEP_SUMMARY
+            echo "- ✅ Build" >> $GITHUB_STEP_SUMMARY
           else
             echo "❌ Some checks failed" >> $GITHUB_STEP_SUMMARY
           fi

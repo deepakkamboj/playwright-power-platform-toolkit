@@ -1,12 +1,12 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / BaseLocators
 
 # Abstract Class: BaseLocators
 
-Defined in: locators/base.locators.ts:13
+Defined in: [locators/base.locators.ts:13](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L13)
 
 Base class for locator management using the builder pattern
 Promotes reusability and maintainability of selectors
@@ -17,7 +17,7 @@ Promotes reusability and maintainability of selectors
 
 > **new BaseLocators**(`page`): `BaseLocators`
 
-Defined in: locators/base.locators.ts:16
+Defined in: [locators/base.locators.ts:16](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L16)
 
 #### Parameters
 
@@ -35,7 +35,7 @@ Defined in: locators/base.locators.ts:16
 
 > `protected` **page**: `Page`
 
-Defined in: locators/base.locators.ts:14
+Defined in: [locators/base.locators.ts:14](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L14)
 
 ## Methods
 
@@ -43,7 +43,7 @@ Defined in: locators/base.locators.ts:14
 
 > `protected` **getByTestId**(`testId`): `Locator`
 
-Defined in: locators/base.locators.ts:25
+Defined in: [locators/base.locators.ts:25](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L25)
 
 Get a locator by data-test-id attribute (preferred method)
 
@@ -61,13 +61,13 @@ The data-test-id value
 
 Playwright Locator
 
-***
+---
 
 ### getByRole()
 
 > `protected` **getByRole**(`role`, `options?`): `Locator`
 
-Defined in: locators/base.locators.ts:35
+Defined in: [locators/base.locators.ts:35](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L35)
 
 Get a locator by role (accessible and semantic)
 
@@ -101,13 +101,13 @@ Additional options like name, exact, etc.
 
 Playwright Locator
 
-***
+---
 
 ### getByText()
 
 > `protected` **getByText**(`text`, `options?`): `Locator`
 
-Defined in: locators/base.locators.ts:70
+Defined in: [locators/base.locators.ts:70](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L70)
 
 Get a locator by text content
 
@@ -133,13 +133,13 @@ Additional options
 
 Playwright Locator
 
-***
+---
 
 ### getByLabel()
 
 > `protected` **getByLabel**(`label`, `options?`): `Locator`
 
-Defined in: locators/base.locators.ts:80
+Defined in: [locators/base.locators.ts:80](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L80)
 
 Get a locator by label (for form inputs)
 
@@ -165,13 +165,13 @@ Additional options
 
 Playwright Locator
 
-***
+---
 
 ### getByPlaceholder()
 
 > `protected` **getByPlaceholder**(`placeholder`): `Locator`
 
-Defined in: locators/base.locators.ts:89
+Defined in: [locators/base.locators.ts:89](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L89)
 
 Get a locator by placeholder
 
@@ -189,13 +189,13 @@ Placeholder text
 
 Playwright Locator
 
-***
+---
 
 ### getByAriaLabel()
 
 > `protected` **getByAriaLabel**(`label`): `Locator`
 
-Defined in: locators/base.locators.ts:98
+Defined in: [locators/base.locators.ts:98](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L98)
 
 Get a locator by aria-label
 
@@ -213,13 +213,13 @@ ARIA label text
 
 Playwright Locator
 
-***
+---
 
 ### locator()
 
 > `protected` **locator**(`selector`): `Locator`
 
-Defined in: locators/base.locators.ts:108
+Defined in: [locators/base.locators.ts:108](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L108)
 
 Fallback to CSS selector when semantic locators aren't available
 Use sparingly and document why semantic locators can't be used
@@ -238,13 +238,13 @@ CSS selector
 
 Playwright Locator
 
-***
+---
 
 ### chain()
 
 > `protected` **chain**(`parent`, `child`): `Locator`
 
-Defined in: locators/base.locators.ts:118
+Defined in: [locators/base.locators.ts:118](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L118)
 
 Chain locators for more specific targeting
 

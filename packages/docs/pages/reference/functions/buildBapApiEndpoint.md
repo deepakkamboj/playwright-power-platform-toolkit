@@ -1,14 +1,14 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / buildBapApiEndpoint
 
 # Function: buildBapApiEndpoint()
 
-> **buildBapApiEndpoint**(`pathQuery`): `string`
+> **buildBapApiEndpoint**(`_pathQuery`): `string`
 
-Defined in: utils/api-utilities.ts:103
+Defined in: [utils/api-utilities.ts:103](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-utilities.ts#L103)
 
 Build BAP API invoke endpoint
 
@@ -18,11 +18,9 @@ is passed in the x-ms-path-query header.
 
 ## Parameters
 
-### pathQuery
+### \_pathQuery
 
 `string`
-
-The x-ms-path-query value (API path and query params)
 
 ## Returns
 

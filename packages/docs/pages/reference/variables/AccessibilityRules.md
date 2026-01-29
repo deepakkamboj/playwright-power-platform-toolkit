@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / AccessibilityRules
 
@@ -8,7 +8,7 @@
 
 > `const` **AccessibilityRules**: `object`
 
-Defined in: utils/accessibility.ts:21
+Defined in: [utils/accessibility.ts:21](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/accessibility.ts#L21)
 
 Common accessibility rules to check
 

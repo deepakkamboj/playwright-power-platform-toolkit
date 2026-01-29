@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / getAuthToken
 
@@ -8,7 +8,7 @@
 
 > **getAuthToken**(`storagePath?`, `apiUrl?`): `string` \| `undefined`
 
-Defined in: utils/auth-helpers.ts:128
+Defined in: [utils/auth-helpers.ts:128](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/auth-helpers.ts#L128)
 
 Extract authentication token from storage state
 

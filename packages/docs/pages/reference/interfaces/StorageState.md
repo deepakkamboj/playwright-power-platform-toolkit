@@ -1,12 +1,12 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / StorageState
 
 # Interface: StorageState
 
-Defined in: utils/auth-helpers.ts:77
+Defined in: [utils/auth-helpers.ts:77](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/auth-helpers.ts#L77)
 
 Storage state structure
 
@@ -16,7 +16,7 @@ Storage state structure
 
 > **cookies**: `object`[]
 
-Defined in: utils/auth-helpers.ts:78
+Defined in: [utils/auth-helpers.ts:78](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/auth-helpers.ts#L78)
 
 #### name
 
@@ -50,13 +50,13 @@ Defined in: utils/auth-helpers.ts:78
 
 > **sameSite**: `"Strict"` \| `"Lax"` \| `"None"`
 
-***
+---
 
 ### origins
 
 > **origins**: `object`[]
 
-Defined in: utils/auth-helpers.ts:88
+Defined in: [utils/auth-helpers.ts:88](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/auth-helpers.ts#L88)
 
 #### origin
 

@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / extractRequestId
 
@@ -8,7 +8,7 @@
 
 > **extractRequestId**(`headers`): `string` \| `undefined`
 
-Defined in: utils/api-utilities.ts:232
+Defined in: [utils/api-utilities.ts:232](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-utilities.ts#L232)
 
 Extract request tracking ID from response headers
 

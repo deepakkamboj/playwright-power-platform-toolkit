@@ -24,7 +24,13 @@
       "Bash(npm outdated:*)",
       "WebFetch(domain:lucide.dev)",
       "Bash(timeout /t 10 /nobreak)",
-      "Bash(ping:*)"
+      "Bash(ping:*)",
+      "Bash(rush build:*)",
+      "Bash(rush rebuild:*)",
+      "Bash(tasklist:*)",
+      "Bash(rush lint:*)",
+      "Bash(npm run lint)",
+      "Bash(git rm:*)"
     ]
   }
 }

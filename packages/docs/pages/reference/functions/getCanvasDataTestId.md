@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / getCanvasDataTestId
 
@@ -8,7 +8,7 @@
 
 > **getCanvasDataTestId**(`testId`): `string`
 
-Defined in: locators/canvas-app.locators.ts:247
+Defined in: [locators/canvas-app.locators.ts:247](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/canvas-app.locators.ts#L247)
 
 Helper function to get data test id selector
 

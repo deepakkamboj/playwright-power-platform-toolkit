@@ -10,7 +10,7 @@ import { PowerAppsPageLocators } from '../locators/power-apps.locators';
 import { CanvasAppPage } from './canvas-app.page';
 import { ModelDrivenAppPage } from './model-driven-app.page';
 import { AppType, EndPointURL, NavigationOptions, SearchOptions } from '../types';
-import { waitForSpinnerToDisappear, waitForElement } from '../utils/app-helpers';
+import { waitForSpinnerToDisappear } from '../utils/app-helpers';
 
 export class PowerAppsPage {
   readonly page: Page;

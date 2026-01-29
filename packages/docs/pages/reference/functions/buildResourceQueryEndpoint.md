@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / buildResourceQueryEndpoint
 
@@ -8,7 +8,7 @@
 
 > **buildResourceQueryEndpoint**(): `string`
 
-Defined in: utils/api-utilities.ts:154
+Defined in: [utils/api-utilities.ts:154](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-utilities.ts#L154)
 
 Build ResourceQuery API endpoint
 

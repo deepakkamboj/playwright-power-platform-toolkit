@@ -1,12 +1,12 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / LocatorUtils
 
 # Class: LocatorUtils
 
-Defined in: locators/base.locators.ts:129
+Defined in: [locators/base.locators.ts:129](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L129)
 
 Locator utility functions
 
@@ -26,7 +26,7 @@ Locator utility functions
 
 > `static` **formatSelector**(`template`, ...`args`): `string`
 
-Defined in: locators/base.locators.ts:138
+Defined in: [locators/base.locators.ts:138](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L138)
 
 Format a selector string with parameters
 
@@ -53,16 +53,16 @@ Formatted string
 #### Example
 
 ```ts
-LocatorUtils.formatSelector('[data-id="{0}"]', 'myId') // => '[data-id="myId"]'
+LocatorUtils.formatSelector('[data-id="{0}"]', 'myId'); // => '[data-id="myId"]'
 ```
 
-***
+---
 
 ### dataTestId()
 
 > `static` **dataTestId**(`testId`): `string`
 
-Defined in: locators/base.locators.ts:149
+Defined in: [locators/base.locators.ts:149](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L149)
 
 Create a data-test-id selector
 
@@ -80,13 +80,13 @@ Test ID value
 
 CSS selector string
 
-***
+---
 
 ### id()
 
 > `static` **id**(`id`): `string`
 
-Defined in: locators/base.locators.ts:158
+Defined in: [locators/base.locators.ts:158](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L158)
 
 Create an ID selector
 
@@ -104,13 +104,13 @@ Element ID
 
 CSS selector string
 
-***
+---
 
 ### className()
 
 > `static` **className**(`className`): `string`
 
-Defined in: locators/base.locators.ts:170
+Defined in: [locators/base.locators.ts:170](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L170)
 
 Create a class selector
 
@@ -131,17 +131,17 @@ CSS selector string
 #### Example
 
 ```ts
-LocatorUtils.className('my-class') // => '.my-class'
-LocatorUtils.className('*-button') // => '[class*="-button"]'
+LocatorUtils.className('my-class'); // => '.my-class'
+LocatorUtils.className('*-button'); // => '[class*="-button"]'
 ```
 
-***
+---
 
 ### automationId()
 
 > `static` **automationId**(`automationId`): `string`
 
-Defined in: locators/base.locators.ts:182
+Defined in: [locators/base.locators.ts:182](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L182)
 
 Create an automation ID selector (for Microsoft Fluent UI)
 
@@ -159,13 +159,13 @@ Automation ID value
 
 CSS selector string
 
-***
+---
 
 ### automationKey()
 
 > `static` **automationKey**(`automationKey`): `string`
 
-Defined in: locators/base.locators.ts:191
+Defined in: [locators/base.locators.ts:191](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L191)
 
 Create a data-automation-key selector
 
@@ -183,13 +183,13 @@ Automation key value
 
 CSS selector string
 
-***
+---
 
 ### ariaLabel()
 
 > `static` **ariaLabel**(`label`): `string`
 
-Defined in: locators/base.locators.ts:200
+Defined in: [locators/base.locators.ts:200](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/locators/base.locators.ts#L200)
 
 Create an aria-label selector
 

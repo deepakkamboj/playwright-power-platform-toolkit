@@ -74,7 +74,7 @@ export async function waitForSpinnerToDisappear(
 ): Promise<void> {
   try {
     await page.locator(spinnerSelector).waitFor({ state: 'hidden', timeout });
-  } catch (error) {
+  } catch {
     // Spinner might not appear at all, which is fine
     console.log('Spinner did not appear or already disappeared');
   }

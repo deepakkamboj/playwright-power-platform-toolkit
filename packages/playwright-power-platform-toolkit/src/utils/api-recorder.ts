@@ -10,7 +10,7 @@
  * @module ApiRecorder
  */
 
-import { Page, Request, Response, Route } from '@playwright/test';
+import { Page, Request, Response } from '@playwright/test';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -268,7 +268,7 @@ export class ApiRecorder {
         if (postData) {
           recording.requestBody = this.parseRequestBody(postData, request.headers());
         }
-      } catch (error) {
+      } catch {
         // Ignore body parsing errors
       }
     }
@@ -285,7 +285,7 @@ export class ApiRecorder {
         if (body && body.length <= this.options.maxResponseBodySize) {
           recording.responseBody = this.parseResponseBody(body, response.headers());
         }
-      } catch (error) {
+      } catch {
         // Ignore body parsing errors
       }
     }
@@ -329,7 +329,7 @@ export class ApiRecorder {
         if (postData) {
           recording.requestBody = this.parseRequestBody(postData, request.headers());
         }
-      } catch (error) {
+      } catch {
         // Ignore body parsing errors
       }
     }

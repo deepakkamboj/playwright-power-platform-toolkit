@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / storageStatePath
 
@@ -8,7 +8,7 @@
 
 > **storageStatePath**(`customPath?`): `string`
 
-Defined in: utils/auth-helpers.ts:28
+Defined in: [utils/auth-helpers.ts:28](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/auth-helpers.ts#L28)
 
 Get the path to the storage state file
 

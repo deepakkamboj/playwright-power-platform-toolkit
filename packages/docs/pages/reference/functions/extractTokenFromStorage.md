@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / extractTokenFromStorage
 
@@ -8,7 +8,7 @@
 
 > **extractTokenFromStorage**(`apiUrl?`): `string`
 
-Defined in: utils/api-utilities.ts:37
+Defined in: [utils/api-utilities.ts:37](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-utilities.ts#L37)
 
 Extract authentication token from storage state
 

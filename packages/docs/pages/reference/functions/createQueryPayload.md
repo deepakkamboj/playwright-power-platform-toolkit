@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / createQueryPayload
 
@@ -8,7 +8,7 @@
 
 > **createQueryPayload**(`options?`): `object`
 
-Defined in: utils/api-utilities.ts:201
+Defined in: [utils/api-utilities.ts:201](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/api-utilities.ts#L201)
 
 Create default payload for ResourceQuery API
 
@@ -56,11 +56,8 @@ Query payload object
 const payload = createQueryPayload({
   top: 10,
   filter: "type eq 'Microsoft.PowerApps/apps'",
-  orderBy: 'properties/createdTime desc'
+  orderBy: 'properties/createdTime desc',
 });
 
-const response = await apiContext.post(
-  buildResourceQueryEndpoint(),
-  { data: payload }
-);
+const response = await apiContext.post(buildResourceQueryEndpoint(), { data: payload });
 ```
