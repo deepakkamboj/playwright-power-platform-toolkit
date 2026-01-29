@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / createBapApiHeaders
 
@@ -55,12 +55,9 @@ Headers object for BAP API request
 
 ```typescript
 const token = extractTokenFromStorage();
-const headers = createBapApiHeaders(
-  '/providers/Microsoft.PowerApps/apps?$top=10',
-  token
-);
+const headers = createBapApiHeaders('/providers/Microsoft.PowerApps/apps?$top=10', token);
 
 const response = await fetch(buildBapApiEndpoint(), {
-  headers
+  headers,
 });
 ```

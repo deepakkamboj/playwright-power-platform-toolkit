@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / CanvasAppPage
 
@@ -48,7 +48,7 @@ Navigate to Power Apps home page
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForHomePageLoad()
 
@@ -62,7 +62,7 @@ Wait for home page to load
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForStudioLoad()
 
@@ -76,7 +76,7 @@ Wait for Canvas Studio to load
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForLoadingComplete()
 
@@ -90,7 +90,7 @@ Wait for loading spinner to disappear
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### createBlankCanvasApp()
 
@@ -112,7 +112,7 @@ Optional name for the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### createFromTemplate()
 
@@ -134,7 +134,7 @@ Name of the template
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### createFromData()
 
@@ -156,7 +156,7 @@ Name of the data source
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### setAppName()
 
@@ -178,7 +178,7 @@ Name for the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### saveApp()
 
@@ -192,7 +192,7 @@ Save the Canvas app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### saveAppWithName()
 
@@ -214,7 +214,7 @@ Name to save the app as
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForSaveComplete()
 
@@ -228,7 +228,7 @@ Wait for save operation to complete
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### publishApp()
 
@@ -250,7 +250,7 @@ Optional version comments
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForPublishComplete()
 
@@ -264,7 +264,7 @@ Wait for publish operation to complete
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### playApp()
 
@@ -278,7 +278,7 @@ Play/Preview the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### stopPlayingApp()
 
@@ -292,7 +292,7 @@ Stop playing the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addControl()
 
@@ -314,7 +314,7 @@ Type of control (e.g., 'Button', 'Label', 'TextInput')
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addButton()
 
@@ -328,7 +328,7 @@ Add a button control
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addTextLabel()
 
@@ -342,7 +342,7 @@ Add a text label control
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addTextInput()
 
@@ -356,7 +356,7 @@ Add a text input control
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addGallery()
 
@@ -370,7 +370,7 @@ Add a gallery control
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### selectControl()
 
@@ -392,7 +392,7 @@ Name of the control
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### deleteSelectedControl()
 
@@ -406,7 +406,7 @@ Delete selected control
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### setControlProperty()
 
@@ -434,7 +434,7 @@ Value to set
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### setControlText()
 
@@ -456,7 +456,7 @@ Text value
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### setFormula()
 
@@ -484,7 +484,7 @@ Formula to set
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addDataSource()
 
@@ -506,7 +506,7 @@ Name of the data source
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addScreen()
 
@@ -520,7 +520,7 @@ Add a new screen
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### selectScreen()
 
@@ -542,7 +542,7 @@ Name of the screen
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### deleteScreen()
 
@@ -564,7 +564,7 @@ Name of the screen to delete
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### searchApp()
 
@@ -586,7 +586,7 @@ Name of the app to search for
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### openApp()
 
@@ -608,7 +608,7 @@ Name of the app to open
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### deleteApp()
 
@@ -630,7 +630,7 @@ Name of the app to delete
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### shareApp()
 
@@ -658,7 +658,7 @@ Permission level ('CanEdit' or 'CanView')
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyAppExists()
 
@@ -680,7 +680,7 @@ Name of the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyAppSaved()
 
@@ -694,7 +694,7 @@ Verify app is saved
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyAppPublished()
 
@@ -708,7 +708,7 @@ Verify app is published
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyControlExists()
 
@@ -730,7 +730,7 @@ Name of the control
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyErrorDisplayed()
 

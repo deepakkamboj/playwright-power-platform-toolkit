@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / AssertionOptions
 
@@ -20,7 +20,7 @@ Defined in: types/index.ts:101
 
 Timeout in milliseconds (default: 10000)
 
-***
+---
 
 ### message?
 

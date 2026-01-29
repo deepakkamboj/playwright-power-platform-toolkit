@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / TestLogger
 
@@ -38,7 +38,7 @@ Log informational message in gray color
 
 `void`
 
-***
+---
 
 ### debug()
 
@@ -58,7 +58,7 @@ Log debug message in gray color
 
 `void`
 
-***
+---
 
 ### step()
 
@@ -82,7 +82,7 @@ Log test step in gray with step indicator
 
 `void`
 
-***
+---
 
 ### success()
 
@@ -102,7 +102,7 @@ Log success message in gray
 
 `void`
 
-***
+---
 
 ### warning()
 
@@ -122,7 +122,7 @@ Log warning message in gray
 
 `void`
 
-***
+---
 
 ### error()
 
@@ -146,7 +146,7 @@ Log error message in red
 
 `void`
 
-***
+---
 
 ### log()
 
@@ -166,7 +166,7 @@ Log a simple gray message without any prefix
 
 `void`
 
-***
+---
 
 ### section()
 
@@ -186,7 +186,7 @@ Log a test section header
 
 `void`
 
-***
+---
 
 ### data()
 
@@ -210,7 +210,7 @@ Log data in a formatted way
 
 `void`
 
-***
+---
 
 ### timing()
 

@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / AppCreationOptions
 
@@ -20,7 +20,7 @@ Defined in: types/index.ts:137
 
 App name
 
-***
+---
 
 ### description?
 
@@ -30,7 +30,7 @@ Defined in: types/index.ts:139
 
 App description
 
-***
+---
 
 ### environment?
 
@@ -40,7 +40,7 @@ Defined in: types/index.ts:141
 
 Environment to create in
 
-***
+---
 
 ### waitForCreation?
 
@@ -50,7 +50,7 @@ Defined in: types/index.ts:143
 
 Wait for creation to complete (default: true)
 
-***
+---
 
 ### timeout?
 

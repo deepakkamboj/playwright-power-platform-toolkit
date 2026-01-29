@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / ControlOptions
 
@@ -20,7 +20,7 @@ Defined in: types/index.ts:87
 
 Control name (aria-label or name attribute)
 
-***
+---
 
 ### type?
 
@@ -30,7 +30,7 @@ Defined in: types/index.ts:89
 
 Control type (Button, TextInput, etc.)
 
-***
+---
 
 ### timeout?
 
@@ -40,7 +40,7 @@ Defined in: types/index.ts:91
 
 Timeout in milliseconds (default: 10000)
 
-***
+---
 
 ### exact?
 

@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / TestCodeOptions
 
@@ -20,7 +20,7 @@ Defined in: utils/api-recorder.ts:92
 
 Name of the generated test
 
-***
+---
 
 ### includeAssertions?
 
@@ -30,7 +30,7 @@ Defined in: utils/api-recorder.ts:94
 
 Include response assertions
 
-***
+---
 
 ### useTestSteps?
 
@@ -40,7 +40,7 @@ Defined in: utils/api-recorder.ts:96
 
 Use test.step() for each API call
 
-***
+---
 
 ### includeTimingAssertions?
 

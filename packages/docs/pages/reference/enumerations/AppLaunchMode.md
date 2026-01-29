@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / AppLaunchMode
 
@@ -18,7 +18,7 @@ App Launch Mode
 
 Defined in: types/index.ts:37
 
-***
+---
 
 ### Edit
 
@@ -26,7 +26,7 @@ Defined in: types/index.ts:37
 
 Defined in: types/index.ts:38
 
-***
+---
 
 ### Preview
 

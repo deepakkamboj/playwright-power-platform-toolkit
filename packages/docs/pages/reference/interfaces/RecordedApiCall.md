@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / RecordedApiCall
 
@@ -20,7 +20,7 @@ Defined in: utils/api-recorder.ts:42
 
 Unique identifier for this call
 
-***
+---
 
 ### timestamp
 
@@ -30,7 +30,7 @@ Defined in: utils/api-recorder.ts:44
 
 Request timestamp
 
-***
+---
 
 ### method
 
@@ -40,7 +40,7 @@ Defined in: utils/api-recorder.ts:46
 
 HTTP method
 
-***
+---
 
 ### url
 
@@ -50,7 +50,7 @@ Defined in: utils/api-recorder.ts:48
 
 Request URL
 
-***
+---
 
 ### requestHeaders?
 
@@ -60,7 +60,7 @@ Defined in: utils/api-recorder.ts:50
 
 Request headers (if enabled)
 
-***
+---
 
 ### requestBody?
 
@@ -70,7 +70,7 @@ Defined in: utils/api-recorder.ts:52
 
 Request body (if enabled)
 
-***
+---
 
 ### status?
 
@@ -80,7 +80,7 @@ Defined in: utils/api-recorder.ts:54
 
 Response status code
 
-***
+---
 
 ### statusText?
 
@@ -90,7 +90,7 @@ Defined in: utils/api-recorder.ts:56
 
 Response status text
 
-***
+---
 
 ### responseHeaders?
 
@@ -100,7 +100,7 @@ Defined in: utils/api-recorder.ts:58
 
 Response headers (if enabled)
 
-***
+---
 
 ### responseBody?
 
@@ -110,7 +110,7 @@ Defined in: utils/api-recorder.ts:60
 
 Response body (if enabled)
 
-***
+---
 
 ### contentType?
 
@@ -120,7 +120,7 @@ Defined in: utils/api-recorder.ts:62
 
 Response content type
 
-***
+---
 
 ### duration?
 
@@ -130,7 +130,7 @@ Defined in: utils/api-recorder.ts:64
 
 Request duration in milliseconds
 
-***
+---
 
 ### error?
 

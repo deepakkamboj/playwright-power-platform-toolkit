@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / ApiResponseValidation
 
@@ -20,7 +20,7 @@ Defined in: utils/api-utilities.ts:247
 
 Whether the response was successful (2xx status)
 
-***
+---
 
 ### status
 
@@ -30,7 +30,7 @@ Defined in: utils/api-utilities.ts:249
 
 HTTP status code
 
-***
+---
 
 ### requestId?
 
@@ -40,7 +40,7 @@ Defined in: utils/api-utilities.ts:251
 
 Request tracking ID if available
 
-***
+---
 
 ### contentType?
 
@@ -50,7 +50,7 @@ Defined in: utils/api-utilities.ts:253
 
 Content-Type header value
 
-***
+---
 
 ### headers
 
@@ -64,7 +64,7 @@ All response headers
 
 \[`key`: `string`\]: `string`
 
-***
+---
 
 ### data
 

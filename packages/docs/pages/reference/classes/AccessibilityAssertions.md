@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / AccessibilityAssertions
 
@@ -40,7 +40,7 @@ Assert element is keyboard accessible
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### assertAriaRole()
 
@@ -64,7 +64,7 @@ Assert element has proper ARIA role
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### assertNotInTabOrder()
 
@@ -84,7 +84,7 @@ Assert element is not in tab order (tabindex=-1)
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### assertScreenReaderText()
 

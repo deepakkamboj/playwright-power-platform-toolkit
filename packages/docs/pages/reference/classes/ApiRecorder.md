@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / ApiRecorder
 
@@ -25,7 +25,7 @@ const page = await browser.newPage();
 const recorder = new ApiRecorder(page, {
   urlFilter: /api\.powerapps\.com/,
   includeRequestBody: true,
-  includeResponseBody: true
+  includeResponseBody: true,
 });
 
 // Start recording
@@ -98,7 +98,7 @@ await recorder.startRecording();
 await recorder.stopRecording();
 ```
 
-***
+---
 
 ### stopRecording()
 
@@ -121,7 +121,7 @@ await recorder.stopRecording();
 const recordings = recorder.getRecordings();
 ```
 
-***
+---
 
 ### getRecordings()
 
@@ -144,7 +144,7 @@ const recordings = recorder.getRecordings();
 console.log(`Captured ${recordings.length} API calls`);
 ```
 
-***
+---
 
 ### getStatistics()
 
@@ -168,7 +168,7 @@ console.log(`Total calls: ${stats.totalCalls}`);
 console.log(`Average duration: ${stats.avgDuration}ms`);
 ```
 
-***
+---
 
 ### saveToFile()
 
@@ -199,7 +199,7 @@ const filePath = await recorder.saveToFile('recordings/api-calls.json');
 console.log(`Saved to: ${filePath}`);
 ```
 
-***
+---
 
 ### saveTestCode()
 
@@ -235,11 +235,11 @@ Absolute path to the generated test file
 const testPath = await recorder.saveTestCode('generated.spec.ts', {
   testName: 'API test from recording',
   includeAssertions: true,
-  useTestSteps: true
+  useTestSteps: true,
 });
 ```
 
-***
+---
 
 ### clearRecordings()
 

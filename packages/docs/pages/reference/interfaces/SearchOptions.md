@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / SearchOptions
 
@@ -20,7 +20,7 @@ Defined in: types/index.ts:125
 
 Search query
 
-***
+---
 
 ### exact?
 
@@ -30,7 +30,7 @@ Defined in: types/index.ts:127
 
 Exact match (default: false)
 
-***
+---
 
 ### timeout?
 

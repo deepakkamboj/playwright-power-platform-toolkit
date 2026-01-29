@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / AccessibilityTestHelper
 
@@ -58,7 +58,7 @@ Run full accessibility scan on the page
 
 `Promise`\<`any`\>
 
-***
+---
 
 ### scanElement()
 
@@ -84,7 +84,7 @@ Scan specific element for accessibility issues
 
 `Promise`\<`any`\>
 
-***
+---
 
 ### assertNoViolations()
 
@@ -104,7 +104,7 @@ Assert no accessibility violations
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### assertNoCriticalViolations()
 
@@ -124,7 +124,7 @@ Assert no critical violations (allows warnings)
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### testKeyboardNavigation()
 
@@ -144,7 +144,7 @@ Check keyboard navigation
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### testTabOrder()
 
@@ -164,7 +164,7 @@ Test tab order
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### assertAriaLabel()
 
@@ -188,7 +188,7 @@ Check ARIA labels
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### assertAccessibleName()
 
@@ -212,7 +212,7 @@ Check element is accessible by screen reader
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### checkColorContrast()
 
@@ -232,7 +232,7 @@ Check color contrast ratio
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### testKeyboardShortcut()
 
@@ -256,7 +256,7 @@ Test keyboard shortcuts
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### assertHeadingHierarchy()
 
@@ -270,7 +270,7 @@ Check for proper heading hierarchy
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### assertImagesHaveAltText()
 
@@ -284,7 +284,7 @@ Check all images have alt text
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### assertFormFieldsLabeled()
 
@@ -298,7 +298,7 @@ Check form fields have labels
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### generateReport()
 
@@ -318,7 +318,7 @@ Generate accessibility report
 
 `string`
 
-***
+---
 
 ### saveReport()
 

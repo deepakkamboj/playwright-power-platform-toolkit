@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / AppProvider
 
@@ -20,7 +20,7 @@ const provider = new AppProvider(page, findAppCallback);
 await provider.launch({
   app: { name: 'My Sales App' },
   type: AppType.Canvas,
-  mode: AppLaunchMode.Play
+  mode: AppLaunchMode.Play,
 });
 
 // Launch by ID
@@ -28,7 +28,7 @@ await provider.launch({
   app: { id: 'abc-123-def' },
   type: AppType.ModelDriven,
   mode: AppLaunchMode.Edit,
-  baseUrl: 'https://make.powerapps.com'
+  baseUrl: 'https://make.powerapps.com',
 });
 
 // Interact with app
@@ -81,7 +81,7 @@ Function to find app by name
 
 `void`
 
-***
+---
 
 ### launch()
 
@@ -104,7 +104,7 @@ Launch configuration
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### getControl()
 
@@ -128,7 +128,7 @@ Control options
 
 Locator for the control
 
-***
+---
 
 ### click()
 
@@ -150,7 +150,7 @@ Control options
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### fill()
 
@@ -178,7 +178,7 @@ Value to fill
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### fillForm()
 
@@ -200,7 +200,7 @@ Key-value pairs of field names and values
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### assertVisible()
 
@@ -222,7 +222,7 @@ Control options
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### assertText()
 
@@ -250,7 +250,7 @@ Expected text
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### close()
 
@@ -264,7 +264,7 @@ Close the current app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### isReady()
 
@@ -280,7 +280,7 @@ Check if an app is currently launched and ready
 
 true if app is ready
 
-***
+---
 
 ### getCurrentAppType()
 
@@ -296,7 +296,7 @@ Get the current app type
 
 Current app type or null
 
-***
+---
 
 ### getCurrentAppId()
 
@@ -312,7 +312,7 @@ Get the current app ID
 
 Current app ID or null
 
-***
+---
 
 ### getCurrentAppUrl()
 
@@ -328,7 +328,7 @@ Get the current app URL
 
 Current app URL or null
 
-***
+---
 
 ### getLaunchedApps()
 
@@ -344,7 +344,7 @@ Get metadata for all launched apps
 
 Array of app metadata
 
-***
+---
 
 ### reset()
 

@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / PowerAppsPage
 
@@ -34,7 +34,7 @@ Defined in: pages/power-apps.page.ts:21
 
 Defined in: pages/power-apps.page.ts:16
 
-***
+---
 
 ### locators
 
@@ -42,7 +42,7 @@ Defined in: pages/power-apps.page.ts:16
 
 Defined in: pages/power-apps.page.ts:17
 
-***
+---
 
 ### canvas
 
@@ -50,7 +50,7 @@ Defined in: pages/power-apps.page.ts:17
 
 Defined in: pages/power-apps.page.ts:18
 
-***
+---
 
 ### modelDriven
 
@@ -80,7 +80,7 @@ Navigation options
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### navigateToApps()
 
@@ -103,7 +103,7 @@ Navigation options (url is treated as base URL, '/apps' will be appended)
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### navigateToSolutions()
 
@@ -126,7 +126,7 @@ Navigation options (url is treated as base URL, '/solutions' will be appended)
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### navigateToAppsViaMenu()
 
@@ -150,7 +150,7 @@ Navigation options
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### navigateToSolutionsViaMenu()
 
@@ -174,7 +174,7 @@ Navigation options
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForHomePageLoad()
 
@@ -197,7 +197,7 @@ Timeout in milliseconds
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForAppsPageLoad()
 
@@ -219,7 +219,7 @@ Timeout in milliseconds
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForSolutionsPageLoad()
 
@@ -241,7 +241,7 @@ Timeout in milliseconds
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### findApp()
 
@@ -272,7 +272,7 @@ Search options
 
 Locator for the app
 
-***
+---
 
 ### findSolution()
 
@@ -302,7 +302,7 @@ Search options
 
 Locator for the solution
 
-***
+---
 
 ### openDefaultSolution()
 
@@ -316,7 +316,7 @@ Open the default solution
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### createApp()
 
@@ -344,7 +344,7 @@ Name for the new app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### deleteApp()
 
@@ -372,7 +372,7 @@ Name of the app to delete
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### openApp()
 
@@ -406,7 +406,7 @@ Type of app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### openModelDrivenAppInNewWindow()
 
@@ -430,7 +430,7 @@ Name of the app
 
 New page object
 
-***
+---
 
 ### dismissTeachingBubble()
 
@@ -444,7 +444,7 @@ Dismiss teaching bubble if present
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### isEnvironmentErrorPage()
 
@@ -460,7 +460,7 @@ Check if current page is an environment error page
 
 True if error page is detected
 
-***
+---
 
 ### isHomePage()
 
@@ -474,7 +474,7 @@ Check if currently on home page
 
 `Promise`\<`boolean`\>
 
-***
+---
 
 ### isAppsPage()
 
@@ -488,7 +488,7 @@ Check if currently on apps page
 
 `Promise`\<`boolean`\>
 
-***
+---
 
 ### isSolutionsPage()
 
@@ -502,7 +502,7 @@ Check if currently on solutions page
 
 `Promise`\<`boolean`\>
 
-***
+---
 
 ### takeScreenshot()
 
@@ -524,7 +524,7 @@ Name for the screenshot file
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### signOut()
 
@@ -538,7 +538,7 @@ Sign out from Power Apps
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### searchApps()
 
@@ -560,7 +560,7 @@ Search query
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### searchSolutions()
 
@@ -582,7 +582,7 @@ Search query
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyHomePageLoaded()
 
@@ -596,7 +596,7 @@ Verify home page loaded successfully
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyAppsPageLoaded()
 
@@ -610,7 +610,7 @@ Verify apps page loaded successfully
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifySolutionsPageLoaded()
 
@@ -624,7 +624,7 @@ Verify solutions page loaded successfully
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyAppExists()
 
@@ -646,7 +646,7 @@ Name of the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifySolutionExists()
 

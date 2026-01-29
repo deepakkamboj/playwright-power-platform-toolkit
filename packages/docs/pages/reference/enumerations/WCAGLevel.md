@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / WCAGLevel
 
@@ -18,7 +18,7 @@ WCAG Compliance Levels
 
 Defined in: utils/accessibility.ts:13
 
-***
+---
 
 ### AA
 
@@ -26,7 +26,7 @@ Defined in: utils/accessibility.ts:13
 
 Defined in: utils/accessibility.ts:14
 
-***
+---
 
 ### AAA
 

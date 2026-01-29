@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / pollOperationStatus
 
@@ -56,7 +56,7 @@ If operation times out
 ```typescript
 // Start a long-running operation
 const response = await apiContext.post('/api/operations', {
-  data: { action: 'deploy' }
+  data: { action: 'deploy' },
 });
 const data = await response.json();
 const operationUrl = data.operationUrl;
@@ -66,7 +66,7 @@ const token = extractTokenFromStorage();
 const result = await pollOperationStatus(
   operationUrl,
   token,
-  60,  // Wait up to 2 minutes
+  60, // Wait up to 2 minutes
   2000 // Check every 2 seconds
 );
 

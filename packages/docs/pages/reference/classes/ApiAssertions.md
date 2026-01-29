@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / ApiAssertions
 
@@ -42,7 +42,7 @@ API response
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### assertStatusCode()
 
@@ -70,7 +70,7 @@ Expected HTTP status code
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### assertHeaders()
 
@@ -98,7 +98,7 @@ Expected headers as key-value pairs
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### assertResponseTime()
 
@@ -126,7 +126,7 @@ Maximum allowed duration in milliseconds
 
 `void`
 
-***
+---
 
 ### assertJsonStructure()
 

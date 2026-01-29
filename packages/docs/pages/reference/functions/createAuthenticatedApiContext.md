@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / createAuthenticatedApiContext
 
@@ -39,10 +39,7 @@ Playwright APIRequestContext configured with authentication
 
 ```typescript
 const token = extractTokenFromStorage();
-const apiContext = await createAuthenticatedApiContext(
-  token,
-  'https://api.bap.microsoft.com'
-);
+const apiContext = await createAuthenticatedApiContext(token, 'https://api.bap.microsoft.com');
 
 const response = await apiContext.get('/api/endpoint');
 await apiContext.dispose();

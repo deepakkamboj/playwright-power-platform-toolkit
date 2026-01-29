@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / RecordingStatistics
 
@@ -20,7 +20,7 @@ Defined in: utils/api-recorder.ts:74
 
 Total number of API calls recorded
 
-***
+---
 
 ### avgDuration
 
@@ -30,7 +30,7 @@ Defined in: utils/api-recorder.ts:76
 
 Average request duration
 
-***
+---
 
 ### totalDuration
 
@@ -40,7 +40,7 @@ Defined in: utils/api-recorder.ts:78
 
 Total duration of all requests
 
-***
+---
 
 ### byMethod
 
@@ -50,7 +50,7 @@ Defined in: utils/api-recorder.ts:80
 
 Calls grouped by HTTP method
 
-***
+---
 
 ### byStatus
 
@@ -60,7 +60,7 @@ Defined in: utils/api-recorder.ts:82
 
 Calls grouped by status code
 
-***
+---
 
 ### byUrl
 

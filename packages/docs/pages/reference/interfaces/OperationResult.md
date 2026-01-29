@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / OperationResult
 
@@ -20,7 +20,7 @@ Defined in: utils/api-utilities.ts:312
 
 Whether the operation completed successfully
 
-***
+---
 
 ### data
 

@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / LaunchAppConfig
 
@@ -20,7 +20,7 @@ Defined in: core/app-provider.ts:17
 
 App identifier - either name or ID
 
-***
+---
 
 ### type
 
@@ -30,7 +30,7 @@ Defined in: core/app-provider.ts:19
 
 Type of app to launch
 
-***
+---
 
 ### mode?
 
@@ -40,7 +40,7 @@ Defined in: core/app-provider.ts:21
 
 Launch mode (play, edit, preview)
 
-***
+---
 
 ### baseUrl?
 
@@ -50,7 +50,7 @@ Defined in: core/app-provider.ts:23
 
 Base URL for direct ID-based launch
 
-***
+---
 
 ### options?
 

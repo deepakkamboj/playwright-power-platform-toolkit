@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / NavigationOptions
 
@@ -20,7 +20,7 @@ Defined in: types/index.ts:111
 
 URL to navigate to (default: base URL)
 
-***
+---
 
 ### waitForLoad?
 
@@ -30,7 +30,7 @@ Defined in: types/index.ts:113
 
 Wait for navigation to complete (default: true)
 
-***
+---
 
 ### timeout?
 
@@ -40,7 +40,7 @@ Defined in: types/index.ts:115
 
 Timeout in milliseconds (default: 60000)
 
-***
+---
 
 ### waitForURL?
 

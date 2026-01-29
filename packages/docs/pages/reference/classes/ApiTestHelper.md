@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / ApiTestHelper
 
@@ -20,7 +20,7 @@ test('API test', async () => {
   const apiContext = await request.newContext({
     baseURL: 'https://yourorg.crm.dynamics.com',
     extraHTTPHeaders: {
-      'Authorization': `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 
@@ -94,11 +94,11 @@ API response
 
 ```typescript
 const response = await apiHelper.get('/api/apps', {
-  params: { '$top': '10' }
+  params: { $top: '10' },
 });
 ```
 
-***
+---
 
 ### post()
 
@@ -128,7 +128,7 @@ Request body data
 
 API response
 
-***
+---
 
 ### patch()
 
@@ -158,7 +158,7 @@ Request body data
 
 API response
 
-***
+---
 
 ### delete()
 
@@ -182,7 +182,7 @@ API endpoint path
 
 API response
 
-***
+---
 
 ### assertStatus()
 
@@ -210,7 +210,7 @@ Expected HTTP status code
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### assertResponseContains()
 
@@ -238,7 +238,7 @@ Expected data object
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### getDataverseRecords()
 
@@ -290,11 +290,11 @@ API response
 const response = await apiHelper.getDataverseRecords('accounts', {
   select: ['name', 'accountid'],
   filter: "name eq 'Contoso'",
-  top: 10
+  top: 10,
 });
 ```
 
-***
+---
 
 ### createDataverseRecord()
 
@@ -329,11 +329,11 @@ API response
 ```typescript
 const response = await apiHelper.createDataverseRecord('accounts', {
   name: 'Contoso Ltd',
-  telephone1: '555-0100'
+  telephone1: '555-0100',
 });
 ```
 
-***
+---
 
 ### updateDataverseRecord()
 
@@ -369,7 +369,7 @@ Updated record data
 
 API response
 
-***
+---
 
 ### deleteDataverseRecord()
 
@@ -399,7 +399,7 @@ ID of the record to delete
 
 API response
 
-***
+---
 
 ### validateSchema()
 
@@ -429,7 +429,7 @@ Expected schema with required fields
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### measureResponseTime()
 
@@ -456,13 +456,13 @@ Response and duration in milliseconds
 #### Example
 
 ```typescript
-const { response, duration } = await apiHelper.measureResponseTime(
-  () => apiHelper.getDataverseRecords('accounts')
+const { response, duration } = await apiHelper.measureResponseTime(() =>
+  apiHelper.getDataverseRecords('accounts')
 );
 console.log(`API call took ${duration}ms`);
 ```
 
-***
+---
 
 ### assertPerformance()
 

@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / ApiRecorderOptions
 
@@ -20,7 +20,7 @@ Defined in: utils/api-recorder.ts:22
 
 URL filter pattern (RegExp) to match API endpoints
 
-***
+---
 
 ### resourceTypes?
 
@@ -30,7 +30,7 @@ Defined in: utils/api-recorder.ts:24
 
 Resource types to record (default: ['xhr', 'fetch'])
 
-***
+---
 
 ### includeRequestHeaders?
 
@@ -40,7 +40,7 @@ Defined in: utils/api-recorder.ts:26
 
 Include request headers in recording
 
-***
+---
 
 ### includeResponseHeaders?
 
@@ -50,7 +50,7 @@ Defined in: utils/api-recorder.ts:28
 
 Include response headers in recording
 
-***
+---
 
 ### includeRequestBody?
 
@@ -60,7 +60,7 @@ Defined in: utils/api-recorder.ts:30
 
 Include request body in recording
 
-***
+---
 
 ### includeResponseBody?
 
@@ -70,7 +70,7 @@ Defined in: utils/api-recorder.ts:32
 
 Include response body in recording
 
-***
+---
 
 ### maxResponseBodySize?
 

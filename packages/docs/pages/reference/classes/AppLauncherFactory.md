@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / AppLauncherFactory
 
@@ -52,7 +52,7 @@ Type of app to launch
 
 App launcher instance
 
-***
+---
 
 ### getCanvasLauncher()
 
@@ -76,7 +76,7 @@ Playwright page
 
 Canvas app launcher
 
-***
+---
 
 ### getModelDrivenLauncher()
 
@@ -100,7 +100,7 @@ Playwright page
 
 Model driven app launcher
 
-***
+---
 
 ### clearCache()
 
@@ -115,7 +115,7 @@ Use this when you need to reset state between tests
 
 `void`
 
-***
+---
 
 ### clearCacheForPage()
 
@@ -137,7 +137,7 @@ Playwright page
 
 `void`
 
-***
+---
 
 ### hasLauncher()
 

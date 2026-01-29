@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / colors
 
@@ -18,17 +18,20 @@ the readability of terminal output by distinguishing different types of log
 messages (e.g., info, warnings, errors, success).
 
 Purpose:
+
 - To centralize the ANSI color codes, making it easier to maintain and
   update the color scheme across the project.
 - To provide a consistent and readable way to format log messages.
 
 Usage:
+
 - Import the `Colors` object from this file wherever colored console logs are
   needed.
 - Use the defined properties in this object to apply color formatting to
   console.log statements.
 
 Example:
+
 ```
 import { Colors } from '@utils/Colors';
 

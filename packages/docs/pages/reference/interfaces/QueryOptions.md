@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / QueryOptions
 
@@ -20,7 +20,7 @@ Defined in: utils/api-utilities.ts:164
 
 Number of items to skip (for pagination)
 
-***
+---
 
 ### top?
 
@@ -30,7 +30,7 @@ Defined in: utils/api-utilities.ts:166
 
 Maximum number of items to return
 
-***
+---
 
 ### filter?
 
@@ -40,7 +40,7 @@ Defined in: utils/api-utilities.ts:168
 
 OData filter expression
 
-***
+---
 
 ### orderBy?
 

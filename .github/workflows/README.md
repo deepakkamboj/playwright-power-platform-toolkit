@@ -77,9 +77,9 @@ Automated pipeline for building and publishing the toolkit package to NPM regist
 
 **Required Secrets:**
 
-| Secret Name | Description                      |
-| ----------- | -------------------------------- |
-| `NPM_TOKEN` | NPM access token for publishing  |
+| Secret Name | Description                     |
+| ----------- | ------------------------------- |
+| `NPM_TOKEN` | NPM access token for publishing |
 
 **Usage:**
 
@@ -411,10 +411,12 @@ Reduce artifact retention days:
 ### Separate CI from Tests
 
 By default:
+
 - **CI/PR pipelines**: Run on every push/PR (fast, no tests)
 - **Playwright tests**: Run on schedule or manually (slow, with authentication)
 
 This separation provides:
+
 - Fast feedback on code quality for PRs
 - Lower GitHub Actions minutes usage
 - On-demand comprehensive testing
@@ -516,6 +518,7 @@ gh workflow run publish-npm.yml \
 ```
 
 When manually triggered, the workflow will:
+
 1. Update the version in `package.json`
 2. Build the package
 3. Verify build output
@@ -526,16 +529,19 @@ When manually triggered, the workflow will:
 ### Version Management
 
 **Semantic Versioning:**
+
 - **Major** (1.0.0 → 2.0.0): Breaking changes
 - **Minor** (1.0.0 → 1.1.0): New features, backward compatible
 - **Patch** (1.0.0 → 1.0.1): Bug fixes, backward compatible
 
 **Pre-release Tags:**
+
 - `1.0.0-alpha.1`: Early development version
 - `1.0.0-beta.1`: Feature-complete, needs testing
 - `1.0.0-rc.1`: Release candidate
 
 **NPM Dist-Tags:**
+
 - `latest`: Stable production release (default)
 - `beta`: Beta testing version
 - `alpha`: Alpha/development version

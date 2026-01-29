@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / AppMetadata
 
@@ -18,7 +18,7 @@ App metadata returned by the provider
 
 Defined in: core/app-launcher.interface.ts:135
 
-***
+---
 
 ### name
 
@@ -26,7 +26,7 @@ Defined in: core/app-launcher.interface.ts:135
 
 Defined in: core/app-launcher.interface.ts:136
 
-***
+---
 
 ### type
 
@@ -34,7 +34,7 @@ Defined in: core/app-launcher.interface.ts:136
 
 Defined in: core/app-launcher.interface.ts:137
 
-***
+---
 
 ### url
 
@@ -42,7 +42,7 @@ Defined in: core/app-launcher.interface.ts:137
 
 Defined in: core/app-launcher.interface.ts:138
 
-***
+---
 
 ### isReady
 
@@ -50,7 +50,7 @@ Defined in: core/app-launcher.interface.ts:138
 
 Defined in: core/app-launcher.interface.ts:139
 
-***
+---
 
 ### launchedAt
 

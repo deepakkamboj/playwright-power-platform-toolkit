@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / ModelDrivenAppPage
 
@@ -48,7 +48,7 @@ Navigate to Power Apps home page
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForHomePageLoad()
 
@@ -62,7 +62,7 @@ Wait for home page to load
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForDesignerLoad()
 
@@ -76,7 +76,7 @@ Wait for App Designer to load
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForLoadingComplete()
 
@@ -90,7 +90,7 @@ Wait for loading spinner to disappear
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForRuntimeLoad()
 
@@ -104,7 +104,7 @@ Wait for app runtime to load
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### createBlankModelDrivenApp()
 
@@ -126,7 +126,7 @@ Name for the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### createFromSolution()
 
@@ -154,7 +154,7 @@ Name for the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### filterByModelDrivenApps()
 
@@ -168,7 +168,7 @@ Filter apps by Model Driven type
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### setAppName()
 
@@ -190,7 +190,7 @@ Name for the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### saveApp()
 
@@ -204,7 +204,7 @@ Save the Model Driven app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### publishApp()
 
@@ -218,7 +218,7 @@ Publish the Model Driven app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### waitForPublishComplete()
 
@@ -232,7 +232,7 @@ Wait for publish operation to complete
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### playApp()
 
@@ -246,7 +246,7 @@ Play/Open the app in runtime
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### validateApp()
 
@@ -260,7 +260,7 @@ Validate the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addTableBasedPage()
 
@@ -294,7 +294,7 @@ Array of view names to include
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addDashboardPage()
 
@@ -308,7 +308,7 @@ Add a dashboard page
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addCustomPage()
 
@@ -322,7 +322,7 @@ Add a custom page
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### deletePage()
 
@@ -344,7 +344,7 @@ Name of the page to delete
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addNavigationGroup()
 
@@ -366,7 +366,7 @@ Name for the group
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addNavigationSubArea()
 
@@ -400,7 +400,7 @@ Optional table to link to
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### addTable()
 
@@ -422,7 +422,7 @@ Name of the table
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### createNewTable()
 
@@ -450,7 +450,7 @@ Plural name for the table
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### openSettings()
 
@@ -464,7 +464,7 @@ Open app settings
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### setAppDescription()
 
@@ -486,7 +486,7 @@ Description for the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### enableMobile()
 
@@ -500,7 +500,7 @@ Enable mobile for the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### enableOfflineMode()
 
@@ -514,7 +514,7 @@ Enable offline mode
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### navigateToRuntimeItem()
 
@@ -536,7 +536,7 @@ Name of the navigation item
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### expandNavigationGroup()
 
@@ -558,7 +558,7 @@ Name of the group
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### createNewRecord()
 
@@ -572,7 +572,7 @@ Create new record in runtime
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### saveRecord()
 
@@ -586,7 +586,7 @@ Save record in runtime
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### fillFormField()
 
@@ -614,7 +614,7 @@ Value to fill
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### clickCommandButton()
 
@@ -636,7 +636,7 @@ Label of the button
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### switchFormTab()
 
@@ -658,7 +658,7 @@ Name of the tab
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### shareApp()
 
@@ -686,7 +686,7 @@ Security role to assign
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### searchApp()
 
@@ -708,7 +708,7 @@ Name of the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### openAppForEdit()
 
@@ -730,7 +730,7 @@ Name of the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### openAppForPlay()
 
@@ -752,7 +752,7 @@ Name of the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### deleteApp()
 
@@ -774,7 +774,7 @@ Name of the app to delete
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyAppExists()
 
@@ -796,7 +796,7 @@ Name of the app
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyAppPublished()
 
@@ -810,7 +810,7 @@ Verify app is published
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyPageExists()
 
@@ -832,7 +832,7 @@ Name of the page
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyNavigationItemExists()
 
@@ -854,7 +854,7 @@ Name of the navigation item
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyTableAdded()
 
@@ -876,7 +876,7 @@ Name of the table
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyNoValidationErrors()
 
@@ -890,7 +890,7 @@ Verify validation has no errors
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyRuntimeLoaded()
 
@@ -904,7 +904,7 @@ Verify runtime loaded successfully
 
 `Promise`\<`void`\>
 
-***
+---
 
 ### verifyRecordSaved()
 

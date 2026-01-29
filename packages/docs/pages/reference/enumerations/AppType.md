@@ -1,6 +1,6 @@
 [**Playwright Power Platform Toolkit v0.0.4**](../README.md)
 
-***
+---
 
 [Playwright Power Platform Toolkit](../README.md) / AppType
 
@@ -18,7 +18,7 @@ App Type
 
 Defined in: types/index.ts:46
 
-***
+---
 
 ### ModelDriven
 
@@ -26,7 +26,7 @@ Defined in: types/index.ts:46
 
 Defined in: types/index.ts:47
 
-***
+---
 
 ### Portal
 
