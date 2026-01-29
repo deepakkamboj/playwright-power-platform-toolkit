@@ -7,8 +7,6 @@
     "dev": "next dev",
     "build": "npm run generate:api && next build",
     "build:github": "npm run generate:api && NEXT_PUBLIC_BASE_PATH=/playwright-power-platform next build",
-    "export": "next export",
-    "deploy": "npm run build:github && npm run export",
     "start": "next start",
     "generate:api": "cd ../playwright-power-platform-toolkit && npm run docs"
   },
