@@ -37,6 +37,7 @@ async function authenticate() {
     console.log('   - MS_USER_PASSWORD');
     console.log('');
     console.log('   For certificate authentication:');
+    console.log('   - MS_AUTH_CREDENTIAL_PROVIDER (e.g., local-file, azure-keyvault)');
     console.log('   - MS_AUTH_LOCAL_FILE_PATH (path to .pfx certificate)');
     console.log('   - MS_AUTH_CERTIFICATE_PASSWORD (optional, if cert is password-protected)');
     console.log('\n💡 Run with --headful to see the browser:');
