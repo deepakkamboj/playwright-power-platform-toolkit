@@ -42,3 +42,6 @@ export * from './types';
 
 // Export Utilities
 export * from './utils';
+
+// Export Authentication
+export * from './auth';

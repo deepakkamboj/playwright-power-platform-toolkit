@@ -42,21 +42,21 @@ export function storageStatePath(customPath?: string): string {
 }
 
 /**
- * Get the path to the storage state file for a specific user email
+ * Get a custom path to the storage state file for a specific user email
  *
- * Returns a user-specific storage state file path, useful when testing
- * with multiple accounts.
+ * Returns a user-specific storage state file path in the ~/.auth directory.
+ * This is an alternative to the default playwright-ms-auth storage location.
  *
  * @param email - User email address to create storage path for
  * @returns Path to the user-specific storage state file
  *
  * @example
  * ```typescript
- * const storagePath = getStorageStatePath('user@example.com');
+ * const storagePath = getCustomStorageStatePath('user@example.com');
  * // Returns: ~/.auth/storageState-user@example.com.json
  * ```
  */
-export function getStorageStatePath(email: string): string {
+export function getCustomStorageStatePath(email: string): string {
   const homeDir = os.homedir();
   const authDir = path.join(homeDir, '.auth');
 
