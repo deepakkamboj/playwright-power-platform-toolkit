@@ -30,9 +30,15 @@ async function authenticate() {
     console.error('\n❌ Authentication failed:', error.message);
     console.log('\n📋 Required environment variables:');
     console.log('   - MS_AUTH_EMAIL');
-    console.log('   - MS_USER_PASSWORD');
     console.log('   - POWER_APPS_BASE_URL');
-    console.log('   - AZURE_TENANT_ID');
+    console.log('   - MS_AUTH_CREDENTIAL_TYPE (password or certificate)');
+    console.log('');
+    console.log('   For password authentication:');
+    console.log('   - MS_USER_PASSWORD');
+    console.log('');
+    console.log('   For certificate authentication:');
+    console.log('   - MS_AUTH_LOCAL_FILE_PATH (path to .pfx certificate)');
+    console.log('   - MS_AUTH_CERTIFICATE_PASSWORD (optional, if cert is password-protected)');
     console.log('\n💡 Run with --headful to see the browser:');
     console.log('   npm run auth -- --headful');
     process.exit(1);

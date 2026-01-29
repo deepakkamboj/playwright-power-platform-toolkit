@@ -104,8 +104,15 @@ jobs:
           echo "$CERTIFICATE_BASE64" | base64 -d > ~/.auth/certificate.pfx
 
           # Set certificate path for authentication
-          echo "MS_CERTIFICATE_PATH=$HOME/.auth/certificate.pfx" >> $GITHUB_ENV
-          echo "MS_CERTIFICATE_PASSWORD=$CERTIFICATE_PASSWORD" >> $GITHUB_ENV
+          echo "MS_AUTH_LOCAL_FILE_PATH=$HOME/.auth/certificate.pfx" >> $GITHUB_ENV
+
+          # Set certificate password only if provided
+          if [ -n "$CERTIFICATE_PASSWORD" ]; then
+            echo "MS_AUTH_CERTIFICATE_PASSWORD=$CERTIFICATE_PASSWORD" >> $GITHUB_ENV
+            echo "🔒 Certificate password configured"
+          else
+            echo "ℹ️  No certificate password (cert is not password-protected)"
+          fi
 
           # Verify certificate file exists
           if [ -f ~/.auth/certificate.pfx ]; then
@@ -122,8 +129,9 @@ jobs:
           npm run auth
         env:
           MS_AUTH_EMAIL: ${{ secrets.MS_AUTH_EMAIL }}
-          MS_CERTIFICATE_PATH: ${{ env.MS_CERTIFICATE_PATH }}
-          MS_CERTIFICATE_PASSWORD: ${{ env.MS_CERTIFICATE_PASSWORD }}
+          MS_AUTH_CREDENTIAL_TYPE: certificate
+          MS_AUTH_LOCAL_FILE_PATH: ${{ env.MS_AUTH_LOCAL_FILE_PATH }}
+          MS_AUTH_CERTIFICATE_PASSWORD: ${{ env.MS_AUTH_CERTIFICATE_PASSWORD }}
           POWER_APPS_BASE_URL: ${{ env.POWER_APPS_BASE_URL }}
           BAP_API_URL: ${{ env.BAP_API_URL }}
         continue-on-error: false
@@ -131,11 +139,12 @@ jobs:
       - name: Verify authentication
         run: |
           cd packages/e2e-tests
-          if [ -f ~/.auth/storageState-*.json ]; then
+          if [ -f ~/.playwright-ms-auth/state-*.json ]; then
             echo "✅ Authentication successful - storage state file created"
-            ls -lh ~/.auth/storageState-*.json
+            ls -lh ~/.playwright-ms-auth/state-*.json
           else
             echo "❌ Authentication failed - no storage state file found"
+            ls -la ~/.playwright-ms-auth/ || echo "Directory does not exist"
             exit 1
           fi
 
@@ -212,7 +221,7 @@ jobs:
         if: always()
         run: |
           rm -f ~/.auth/certificate.pfx
-          rm -f ~/.auth/storageState-*.json
+          rm -f ~/.playwright-ms-auth/state-*.json
           echo "✅ Sensitive files cleaned up"
 
   merge-reports:
