@@ -116,7 +116,7 @@ Optional name for the app
 
 ### createFromTemplate()
 
-> **createFromTemplate**(`templateName`): `Promise`\<`void`\>
+> **createFromTemplate**(`_templateName`): `Promise`\<`void`\>
 
 Defined in: [pages/canvas-app.page.ts:93](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L93)
 
@@ -124,7 +124,7 @@ Create Canvas app from template
 
 #### Parameters
 
-##### templateName
+##### \_templateName
 
 `string`
 
@@ -138,7 +138,7 @@ Name of the template
 
 ### createFromData()
 
-> **createFromData**(`dataSourceName`): `Promise`\<`void`\>
+> **createFromData**(`_dataSourceName`): `Promise`\<`void`\>
 
 Defined in: [pages/canvas-app.page.ts:104](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/canvas-app.page.ts#L104)
 
@@ -146,7 +146,7 @@ Create Canvas app from data
 
 #### Parameters
 
-##### dataSourceName
+##### \_dataSourceName
 
 `string`
 

@@ -52,19 +52,11 @@ Defined in: [types/index.ts:59](https://github.com/deepakkamboj/playwright-power
 
 ---
 
-### appEndPoints
-
-> **appEndPoints**: `"/apps"`
-
-Defined in: [types/index.ts:60](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L60)
-
----
-
 ### discoverAll
 
 > **discoverAll**: `"/discover"`
 
-Defined in: [types/index.ts:61](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L61)
+Defined in: [types/index.ts:60](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L60)
 
 ---
 
@@ -72,7 +64,7 @@ Defined in: [types/index.ts:61](https://github.com/deepakkamboj/playwright-power
 
 > **cards**: `"/cards"`
 
-Defined in: [types/index.ts:62](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L62)
+Defined in: [types/index.ts:61](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L61)
 
 ---
 
@@ -80,7 +72,7 @@ Defined in: [types/index.ts:62](https://github.com/deepakkamboj/playwright-power
 
 > **chatBot**: `"/bot/create"`
 
-Defined in: [types/index.ts:63](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L63)
+Defined in: [types/index.ts:62](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L62)
 
 ---
 
@@ -88,7 +80,7 @@ Defined in: [types/index.ts:63](https://github.com/deepakkamboj/playwright-power
 
 > **aiBuilderHub**: `"/aibuilder/hub"`
 
-Defined in: [types/index.ts:64](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L64)
+Defined in: [types/index.ts:63](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L63)
 
 ---
 
@@ -96,4 +88,4 @@ Defined in: [types/index.ts:64](https://github.com/deepakkamboj/playwright-power
 
 > **websites**: `"/websites"`
 
-Defined in: [types/index.ts:65](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L65)
+Defined in: [types/index.ts:64](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L64)

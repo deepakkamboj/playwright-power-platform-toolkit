@@ -6,7 +6,7 @@
 
 # Interface: SearchOptions
 
-Defined in: [types/index.ts:123](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L123)
+Defined in: [types/index.ts:122](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L122)
 
 Search Options
 
@@ -16,7 +16,7 @@ Search Options
 
 > `optional` **query**: `string`
 
-Defined in: [types/index.ts:125](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L125)
+Defined in: [types/index.ts:124](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L124)
 
 Search query
 
@@ -26,7 +26,7 @@ Search query
 
 > `optional` **exact**: `boolean`
 
-Defined in: [types/index.ts:127](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L127)
+Defined in: [types/index.ts:126](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L126)
 
 Exact match (default: false)
 
@@ -36,6 +36,6 @@ Exact match (default: false)
 
 > `optional` **timeout**: `number`
 
-Defined in: [types/index.ts:129](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L129)
+Defined in: [types/index.ts:128](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L128)
 
 Timeout in milliseconds (default: 30000)

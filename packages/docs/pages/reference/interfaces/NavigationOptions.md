@@ -6,7 +6,7 @@
 
 # Interface: NavigationOptions
 
-Defined in: [types/index.ts:109](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L109)
+Defined in: [types/index.ts:108](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L108)
 
 Navigation Options
 
@@ -16,7 +16,7 @@ Navigation Options
 
 > `optional` **url**: `string`
 
-Defined in: [types/index.ts:111](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L111)
+Defined in: [types/index.ts:110](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L110)
 
 URL to navigate to (default: base URL)
 
@@ -26,7 +26,7 @@ URL to navigate to (default: base URL)
 
 > `optional` **waitForLoad**: `boolean`
 
-Defined in: [types/index.ts:113](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L113)
+Defined in: [types/index.ts:112](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L112)
 
 Wait for navigation to complete (default: true)
 
@@ -36,7 +36,7 @@ Wait for navigation to complete (default: true)
 
 > `optional` **timeout**: `number`
 
-Defined in: [types/index.ts:115](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L115)
+Defined in: [types/index.ts:114](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L114)
 
 Timeout in milliseconds (default: 60000)
 
@@ -46,6 +46,6 @@ Timeout in milliseconds (default: 60000)
 
 > `optional` **waitForURL**: `string` \| `RegExp`
 
-Defined in: [types/index.ts:117](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L117)
+Defined in: [types/index.ts:116](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/types/index.ts#L116)
 
 Wait for specific URL pattern
