@@ -36,8 +36,18 @@ jobs:
           rush update
           rush install
 
+      - name: Install prettier
+        run: npm install --no-save prettier
+
       - name: Run format check
-        run: npm run format:check
+        run: |
+          npm run format
+          if ! git diff --quiet; then
+            echo "❌ Formatting issues found. Please run 'npm run format' locally and commit the changes."
+            git diff --name-only
+            exit 1
+          fi
+          echo "✅ No formatting issues found"
 
       - name: Run linting
         run: rush lint
