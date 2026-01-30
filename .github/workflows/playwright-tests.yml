@@ -202,7 +202,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report-${{ matrix.shard }}
-          path: ${{ env.E2E_TESTS_DIR }}/test-results/shard-${{ matrix.shard }}/playwright-report/
+          path: ${{ env.E2E_TESTS_DIR }}/test-results/shard-${{ matrix.shard }}/html-report/
           retention-days: 30
           if-no-files-found: ignore
 
@@ -247,13 +247,7 @@ jobs:
     needs: [test]
     runs-on: ubuntu-latest
 
-    env:
-      E2E_TESTS_DIR: packages/e2e-tests
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -264,35 +258,18 @@ jobs:
         with:
           path: all-artifacts
 
-      - name: Install Rush
-        run: npm install -g @microsoft/rush
-
-      - name: Configure Git
-        run: |
-          git config --local user.name "GitHub Actions"
-          git config --local user.email "actions@github.com"
-
-      - name: Install dependencies
-        run: |
-          rush update
-          rush install
-
-      - name: Build packages
-        run: rush build
+      - name: Install Playwright
+        run: npm install -g playwright@1.57.0
 
       - name: Merge Playwright reports
-        run: |
-          cd ${{ env.E2E_TESTS_DIR }}
-
-          # Merge HTML reports from all shards
-          npx playwright merge-reports --reporter html ../../all-artifacts/playwright-report-*
+        run: npx playwright merge-reports --reporter html ./all-artifacts/playwright-report-*
 
       - name: Upload merged HTML report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report-merged
-          path: ${{ env.E2E_TESTS_DIR }}/playwright-report/
+          path: playwright-report/
           retention-days: 30
 
       - name: Publish test results summary
