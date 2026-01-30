@@ -172,6 +172,18 @@ jobs:
             exit 1
           fi
 
+      - name: Debug environment configuration
+        run: |
+          cd ${{ env.E2E_TESTS_DIR }}
+          echo "🔍 Environment Configuration:"
+          echo "CI=$CI"
+          echo "OUTPUT_DIRECTORY=$OUTPUT_DIRECTORY"
+          echo "E2E_TESTS_DIR=${{ env.E2E_TESTS_DIR }}"
+          echo "PWD=$(pwd)"
+          echo ""
+          echo "📋 Expected blob report location:"
+          echo "  $OUTPUT_DIRECTORY/blob-report"
+
       - name: Run Playwright tests (Shard ${{ matrix.shard }}/2)
         run: |
           cd ${{ env.E2E_TESTS_DIR }}
@@ -202,6 +214,27 @@ jobs:
           #Output directory for test results (relative to E2E_TESTS_DIR)
           OUTPUT_DIRECTORY: ./test-results/shard-${{ matrix.shard }}
 
+      - name: Debug test results directory structure
+        if: always()
+        run: |
+          cd ${{ env.E2E_TESTS_DIR }}
+          echo "🔍 Checking test results directory structure..."
+          echo ""
+          echo "📁 Contents of test-results/shard-${{ matrix.shard }}:"
+          ls -lah test-results/shard-${{ matrix.shard }}/ || echo "Directory does not exist"
+          echo ""
+          echo "🔍 Looking for blob-report directory:"
+          if [ -d test-results/shard-${{ matrix.shard }}/blob-report ]; then
+            echo "✅ blob-report directory exists"
+            echo "📄 Contents:"
+            ls -lah test-results/shard-${{ matrix.shard }}/blob-report/
+          else
+            echo "❌ blob-report directory NOT found"
+          fi
+          echo ""
+          echo "📁 Full tree view (max 3 levels):"
+          tree -L 3 test-results/shard-${{ matrix.shard }}/ 2>/dev/null || find test-results/shard-${{ matrix.shard }}/ -maxdepth 3 2>/dev/null || echo "Could not list directory structure"
+
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
@@ -218,7 +251,7 @@ jobs:
           name: blob-report-${{ matrix.shard }}
           path: ${{ env.E2E_TESTS_DIR }}/test-results/shard-${{ matrix.shard }}/blob-report/
           retention-days: 30
-          if-no-files-found: ignore
+          if-no-files-found: warn
 
       - name: Upload traces
         if: always()

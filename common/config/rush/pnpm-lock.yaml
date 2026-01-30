@@ -75,8 +75,8 @@ importers:
         specifier: ^16.4.7
         version: 16.6.1
       playwright-ms-auth:
-        specifier: ^0.0.16
-        version: 0.0.16(@playwright/test@1.57.0)
+        specifier: ^0.0.17
+        version: 0.0.17(@playwright/test@1.57.0)
     devDependencies:
       '@axe-core/playwright':
         specifier: ^4.10.0
@@ -3686,8 +3686,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  playwright-ms-auth@0.0.16:
-    resolution: {integrity: sha512-VLjHWpRaaqXeNGmyc07xr40j5o/g27bKmW93If8xJWcbNfSDEkxjIppeeXw+3XcmP0UXUUs+XoV8uY5txT+ghA==}
+  playwright-ms-auth@0.0.17:
+    resolution: {integrity: sha512-KTBL+5s9nPSk3ZiKfOeiCPjpE4xy+k6+fHmyC53LI/2hOsFgKIHPjxrx4GjKFroriC5yj3ILgiLGvnJyhRvJrg==}
     engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
@@ -9089,7 +9089,7 @@ snapshots:
 
   playwright-core@1.57.0: {}
 
-  playwright-ms-auth@0.0.16(@playwright/test@1.57.0):
+  playwright-ms-auth@0.0.17(@playwright/test@1.57.0):
     dependencies:
       '@azure/identity': 4.13.0
       '@azure/keyvault-secrets': 4.10.0
