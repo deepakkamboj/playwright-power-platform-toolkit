@@ -140,6 +140,8 @@ jobs:
           BAP_API_URL: ${{ env.BAP_API_URL }}
           AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
           AUTH_ENDPOINT: https://login.microsoftonline.com
+          MS_AUTH_WAIT_FOR_MSAL_TOKENS: true
+          MS_AUTH_MSAL_TOKEN_TIMEOUT: 30000
         continue-on-error: false
 
       - name: Verify authentication

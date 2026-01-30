@@ -20,7 +20,7 @@ async function authenticate() {
     // Check for headful mode
     const headless = !process.argv.includes('--headful');
 
-    // Perform authentication
+    // Perform authentication (now includes MSAL token waiting in playwright-ms-auth v0.0.16+)
     await authenticateToMicrosoft(powerAppsUrl, headless);
 
     console.log('\n✅ Authentication complete!');
@@ -42,6 +42,9 @@ async function authenticate() {
     console.log('   - MS_AUTH_CERTIFICATE_PASSWORD (optional, if cert is password-protected)');
     console.log('\n💡 Run with --headful to see the browser:');
     console.log('   npm run auth -- --headful');
+    console.log('\n📝 Optional MSAL token configuration:');
+    console.log('   - MS_AUTH_WAIT_FOR_MSAL_TOKENS=true (default)');
+    console.log('   - MS_AUTH_MSAL_TOKEN_TIMEOUT=30000 (default, in ms)');
     process.exit(1);
   }
 }
