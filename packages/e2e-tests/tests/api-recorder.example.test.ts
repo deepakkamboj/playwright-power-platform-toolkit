@@ -4,7 +4,7 @@
  * #PlaywrightMCP - Generated using Playwright MCP Server
  */
 
-import { test, expect } from '../fixtures/test-fixtures';
+import { test, expect } from '@playwright/test';
 import { ApiRecorder, PowerAppsPage } from 'playwright-power-platform-toolkit';
 import * as path from 'path';
 import * as fs from 'fs';
@@ -13,12 +13,12 @@ import * as fs from 'fs';
  * Example 1: Basic API Recording
  * Shows how to start recording, perform actions, and stop recording
  */
-test('Record API calls during app launch', async ({ page, powerAppsPage }) => {
+test('Record API calls during app launch', async ({ page }) => {
+  const powerAppsPage = new PowerAppsPage(page);
   const recorder = new ApiRecorder(page);
 
   await test.step('Start recording', async () => {
     await recorder.startRecording();
-    expect(recorder.isRecording()).toBeTruthy();
   });
 
   await test.step('Navigate to Power Apps', async () => {
@@ -28,7 +28,6 @@ test('Record API calls during app launch', async ({ page, powerAppsPage }) => {
 
   await test.step('Stop recording and verify', async () => {
     await recorder.stopRecording();
-    expect(recorder.isRecording()).toBeFalsy();
 
     const recordings = recorder.getRecordings();
     expect(recordings.length).toBeGreaterThan(0);
@@ -40,9 +39,10 @@ test('Record API calls during app launch', async ({ page, powerAppsPage }) => {
  * Example 2: Recording with URL Filtering
  * Shows how to filter recordings by URL patterns
  */
-test('Record only specific API endpoints', async ({ page, powerAppsPage }) => {
+test('Record only specific API endpoints', async ({ page }) => {
+  const powerAppsPage = new PowerAppsPage(page);
   const recorder = new ApiRecorder(page, {
-    urlPatterns: ['**/api/invoke**', '**/api/data/**'],
+    urlFilter: /\/api\/(invoke|data)\//,
   });
 
   await recorder.startRecording();
@@ -68,7 +68,8 @@ test('Record only specific API endpoints', async ({ page, powerAppsPage }) => {
  * Example 3: Recording Statistics
  * Shows how to get detailed statistics about recorded API calls
  */
-test('Analyze API call statistics', async ({ page, powerAppsPage }) => {
+test('Analyze API call statistics', async ({ page }) => {
+  const powerAppsPage = new PowerAppsPage(page);
   const recorder = new ApiRecorder(page);
 
   await recorder.startRecording();
@@ -86,13 +87,11 @@ test('Analyze API call statistics', async ({ page, powerAppsPage }) => {
 
     console.log('API Recording Statistics:');
     console.log(`  Total Calls: ${stats.totalCalls}`);
-    console.log(`  Success Rate: ${stats.successRate.toFixed(2)}%`);
-    console.log(`  Average Duration: ${stats.averageDuration.toFixed(2)}ms`);
+    console.log(`  Average Duration: ${stats.avgDuration.toFixed(2)}ms`);
     console.log(`  Total Duration: ${stats.totalDuration}ms`);
 
     expect(stats.totalCalls).toBeGreaterThan(0);
-    expect(stats.successRate).toBeGreaterThanOrEqual(0);
-    expect(stats.successRate).toBeLessThanOrEqual(100);
+    expect(stats.avgDuration).toBeGreaterThanOrEqual(0);
   });
 
   await test.step('Verify method breakdown', async () => {
@@ -122,7 +121,8 @@ test('Analyze API call statistics', async ({ page, powerAppsPage }) => {
  * Example 4: Save Recordings to File
  * Shows how to save recorded API calls to JSON file
  */
-test('Save API recordings to file', async ({ page, powerAppsPage }) => {
+test('Save API recordings to file', async ({ page }) => {
+  const powerAppsPage = new PowerAppsPage(page);
   const recorder = new ApiRecorder(page);
   const outputDir = path.join(__dirname, '../test-results/recordings');
   const outputFile = path.join(outputDir, 'api-calls.json');
@@ -161,9 +161,10 @@ test('Save API recordings to file', async ({ page, powerAppsPage }) => {
  * Example 5: Generate Test Code
  * Shows how to generate Playwright test code from recordings
  */
-test('Generate test code from recordings', async ({ page, powerAppsPage }) => {
+test('Generate test code from recordings', async ({ page }) => {
+  const powerAppsPage = new PowerAppsPage(page);
   const recorder = new ApiRecorder(page, {
-    urlPatterns: ['**/api/invoke**'],
+    urlFilter: /\/api\/invoke/,
   });
   const outputDir = path.join(__dirname, '../test-results/recordings');
   const testFile = path.join(outputDir, 'generated-test.ts');
@@ -184,8 +185,8 @@ test('Generate test code from recordings', async ({ page, powerAppsPage }) => {
   await test.step('Generate test code', async () => {
     const savedPath = await recorder.saveTestCode(testFile, {
       testName: 'Generated API Test',
-      includeHeaders: true,
-      includeBody: true,
+      includeAssertions: true,
+      useTestSteps: true,
     });
 
     expect(fs.existsSync(savedPath)).toBeTruthy();
@@ -205,9 +206,10 @@ test('Generate test code from recordings', async ({ page, powerAppsPage }) => {
  * Example 6: Recording with Response Body Filtering
  * Shows how to filter large response bodies
  */
-test('Record with response size limits', async ({ page, powerAppsPage }) => {
+test('Record with response size limits', async ({ page }) => {
+  const powerAppsPage = new PowerAppsPage(page);
   const recorder = new ApiRecorder(page, {
-    maxResponseSize: 10 * 1024, // 10KB limit
+    maxResponseBodySize: 10 * 1024, // 10KB limit
   });
 
   await recorder.startRecording();
@@ -234,12 +236,11 @@ test('Record with response size limits', async ({ page, powerAppsPage }) => {
 
 /**
  * Example 7: Filter by HTTP Methods
- * Shows how to record only specific HTTP methods
+ * Shows how to filter recorded calls by HTTP method
  */
-test('Record only POST and PUT requests', async ({ page, powerAppsPage }) => {
-  const recorder = new ApiRecorder(page, {
-    methods: ['POST', 'PUT'],
-  });
+test('Record and filter POST and PUT requests', async ({ page }) => {
+  const powerAppsPage = new PowerAppsPage(page);
+  const recorder = new ApiRecorder(page);
 
   await recorder.startRecording();
 
@@ -279,14 +280,13 @@ test.describe('API Recording Best Practices', () => {
   });
 
   test.afterEach(async () => {
-    if (recorder && recorder.isRecording()) {
-      await recorder.stopRecording();
-    }
+    // Cleanup after each test (recorder will be stopped automatically)
   });
 
-  test('Test with automatic recording - Example 1', async ({ powerAppsPage }) => {
+  test('Test with automatic recording - Example 1', async ({ page }) => {
+    const powerAppsPage = new PowerAppsPage(page);
     await powerAppsPage.navigateToHome();
-    await powerAppsPage.page.waitForTimeout(1000);
+    await page.waitForTimeout(1000);
 
     const recordings = recorder.getRecordings();
     expect(recordings.length).toBeGreaterThan(0);
@@ -296,15 +296,18 @@ test.describe('API Recording Best Practices', () => {
     await recorder.saveToFile(filename);
   });
 
-  test('Test with automatic recording - Example 2', async ({ powerAppsPage }) => {
+  test('Test with automatic recording - Example 2', async ({ page }) => {
+    const powerAppsPage = new PowerAppsPage(page);
     await powerAppsPage.navigateToApps();
-    await powerAppsPage.page.waitForTimeout(1000);
+    await page.waitForTimeout(1000);
 
     const recordings = recorder.getRecordings();
     expect(recordings.length).toBeGreaterThan(0);
 
     // Get statistics
     const stats = recorder.getStatistics();
-    console.log(`Success rate: ${stats.successRate.toFixed(2)}%`);
+    console.log(
+      `Total calls: ${stats.totalCalls}, Avg duration: ${stats.avgDuration.toFixed(2)}ms`
+    );
   });
 });

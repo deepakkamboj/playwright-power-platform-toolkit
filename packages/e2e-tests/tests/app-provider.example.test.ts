@@ -317,7 +317,7 @@ test('Complete workflow: Create, launch, and test app', async ({ page }) => {
   await test.step('Configure app', async () => {
     // Use composed canvas property for studio operations
     await powerApps.canvas.addButton();
-    await powerApps.canvas.setButtonText('Button1', 'Click Me');
+    await powerApps.canvas.setControlText('Click Me');
     await powerApps.canvas.saveApp();
   });
 
@@ -420,13 +420,9 @@ test('Launch app and verify backend API integration', async ({ page }) => {
   await test.step('Verify API was called correctly', async () => {
     // Create API helper with authenticated context
     const apiHelper = new ApiTestHelper(page.request);
-    const token = await apiHelper.getAuthToken(page);
 
-    // Make direct API call to verify data
-    const response = await apiHelper.makeAuthenticatedRequest(token, {
-      url: `${process.env.BASE_URL}/api/data/v9.2/accounts?$top=1`,
-      method: 'GET',
-    });
+    // Make direct API call to verify data using Dataverse endpoint
+    const response = await apiHelper.getDataverseRecords('accounts', { top: 1 });
 
     expect(response.ok()).toBeTruthy();
     const data = await response.json();
@@ -445,7 +441,7 @@ test('Launch app and record all API calls', async ({ page }) => {
   const { ApiRecorder } = await import('playwright-power-platform-toolkit');
 
   const recorder = new ApiRecorder(page, {
-    urlPatterns: ['**/api/**'],
+    urlFilter: /\/api\//,
   });
 
   await test.step('Start recording before launch', async () => {
@@ -474,8 +470,8 @@ test('Launch app and record all API calls', async ({ page }) => {
     const stats = recorder.getStatistics();
 
     console.log(`Recorded ${recordings.length} API calls`);
-    console.log(`Success Rate: ${stats.successRate.toFixed(2)}%`);
-    console.log(`Average Duration: ${stats.averageDuration.toFixed(2)}ms`);
+    console.log(`Average Duration: ${stats.avgDuration.toFixed(2)}ms`);
+    console.log(`Total Duration: ${stats.totalDuration}ms`);
 
     // Verify critical API calls were made
     const dataApiCalls = recordings.filter((r) => r.url.includes('/api/data/'));

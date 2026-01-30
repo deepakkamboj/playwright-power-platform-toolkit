@@ -323,7 +323,7 @@ export function test(
     category: testConfig.category,
   });
 
-  baseTest(title, testFn);
+  baseTest(title, testFn as any);
 }
 
 // Add test.describe, test.beforeEach, test.afterEach, etc.
