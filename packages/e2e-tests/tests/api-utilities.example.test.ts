@@ -17,6 +17,12 @@ import {
   ConfigHelper,
 } from 'playwright-power-platform-toolkit';
 
+// Skip all tests if authentication is not configured
+test.skip(
+  !process.env.MS_AUTH_EMAIL,
+  'Skipping: Authentication not configured (MS_AUTH_EMAIL required)'
+);
+
 /**
  * Example 1: Extract Authentication Token
  * Shows how to get the Bearer token from storage state
