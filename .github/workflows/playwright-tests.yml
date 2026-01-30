@@ -165,6 +165,9 @@ jobs:
 
           # Authentication
           MS_AUTH_EMAIL: ${{ secrets.MS_AUTH_EMAIL }}
+          MS_AUTH_CREDENTIAL_TYPE: certificate
+          MS_AUTH_CREDENTIAL_PROVIDER: local-file
+          MS_AUTH_LOCAL_FILE_PATH: ${{ env.MS_AUTH_LOCAL_FILE_PATH }}
 
           # Environment configuration
           TEST_ENV: ${{ env.TEST_ENV }}
