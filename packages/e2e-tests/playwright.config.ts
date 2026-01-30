@@ -137,49 +137,32 @@ export default defineConfig({
   },
 
   /* Reporters */
-  reporter: [
-    [process.env.CI ? 'dot' : 'list'],
-    [
-      'html',
-      {
-        outputFolder: path.join(getEnvironmentConfig().outputDirectory, 'html-report'),
-        open: 'never',
-      },
-    ],
-    [
-      'junit',
-      {
-        outputFile: path.join(
-          getEnvironmentConfig().outputDirectory,
-          'artifacts',
-          'testResults',
-          `test-results-${process.env.SHARD_INDEX ?? 1}.xml`
-        ),
-      },
-    ],
-    // AI Reporter configuration
-    // See: https://github.com/deepakkamboj/playwright-ai-reporter
-    [
-      'playwright-ai-reporter',
-      {
-        // Performance thresholds
-        slowTestThreshold: parseInt(process.env.SLOW_TEST_THRESHOLD || '3'),
-        maxSlowTestsToShow: parseInt(process.env.MAX_SLOW_TESTS_TO_SHOW || '5'),
-        timeoutWarningThreshold: parseInt(process.env.TIMEOUT_WARNING_THRESHOLD || '20'),
-
-        // Output configuration
-        showStackTrace: true,
-        outputDir: path.join(getEnvironmentConfig().outputDirectory, 'playwright-ai-reports'),
-
-        // AI & Automation features
-        generateFix: process.env.GENERATE_FIX === 'false',
-        createBug: process.env.CREATE_BUG === 'false',
-        generatePR: process.env.GENERATE_PR === 'false',
-        publishToDB: process.env.PUBLISH_TO_DB === 'false',
-        sendEmail: process.env.SEND_EMAIL === 'false',
-      },
-    ],
-  ],
+  reporter: process.env.CI
+    ? [
+        ['dot'],
+        ['blob', { outputDir: path.join(getEnvironmentConfig().outputDirectory, 'blob-report') }],
+        [
+          'junit',
+          {
+            outputFile: path.join(
+              getEnvironmentConfig().outputDirectory,
+              'artifacts',
+              'testResults',
+              `test-results-${process.env.SHARD_INDEX ?? 1}.xml`
+            ),
+          },
+        ],
+      ]
+    : [
+        ['list'],
+        [
+          'html',
+          {
+            outputFolder: path.join(getEnvironmentConfig().outputDirectory, 'html-report'),
+            open: 'never',
+          },
+        ],
+      ],
 
   /* Shared settings for all projects */
   use: {

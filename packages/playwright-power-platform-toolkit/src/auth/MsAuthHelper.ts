@@ -16,24 +16,50 @@ dotenv.config();
 
 /**
  * Microsoft Authentication configuration
+ *
+ * @remarks
+ * This interface extends the playwright-ms-auth configuration with additional
+ * MSAL token waiting options specific to Power Platform SPAs.
  */
 export interface MsAuthConfig {
   email: string;
   credentialType?: 'password' | 'token' | 'certificate';
   credentialProvider?: 'environment' | 'azure-keyvault' | 'local-file' | 'github-secrets';
+  providerConfig?: any; // Provider-specific configuration (required by playwright-ms-auth)
   envVariableName?: string;
   localFilePath?: string;
   certificatePassword?: string;
   headless?: boolean;
   timeout?: number;
+  /** Wait for MSAL tokens to be stored in localStorage (default: true) */
+  waitForMsalTokens?: boolean;
+  /** Timeout for waiting for MSAL tokens in milliseconds (default: 30000) */
+  msalTokenTimeout?: number;
 }
 
 /**
  * Load MS Auth configuration from environment variables
+ *
+ * @remarks
+ * Reads configuration from environment variables including:
+ * - MS_AUTH_EMAIL: Email address
+ * - MS_AUTH_CREDENTIAL_TYPE: password, token, or certificate
+ * - MS_AUTH_WAIT_FOR_MSAL_TOKENS: Wait for MSAL tokens (default: true)
+ * - MS_AUTH_MSAL_TOKEN_TIMEOUT: MSAL token timeout in ms (default: 30000)
  */
 export function loadAuthConfig(): MsAuthConfig {
-  const config = loadConfigFromEnv();
-  return config as MsAuthConfig;
+  const config = loadConfigFromEnv() as MsAuthConfig;
+
+  // Read MSAL token configuration from environment variables
+  if (process.env.MS_AUTH_WAIT_FOR_MSAL_TOKENS !== undefined) {
+    config.waitForMsalTokens = process.env.MS_AUTH_WAIT_FOR_MSAL_TOKENS === 'true';
+  }
+
+  if (process.env.MS_AUTH_MSAL_TOKEN_TIMEOUT) {
+    config.msalTokenTimeout = parseInt(process.env.MS_AUTH_MSAL_TOKEN_TIMEOUT, 10);
+  }
+
+  return config;
 }
 
 /**
@@ -80,6 +106,24 @@ export function clearAuthState(email?: string): void {
  *
  * @param url - URL to authenticate to (e.g., Power Apps maker portal)
  * @param headless - Whether to run browser in headless mode
+ *
+ * @remarks
+ * This function uses playwright-ms-auth v0.0.16+ which automatically waits for
+ * MSAL tokens to be stored in localStorage before saving the storage state.
+ *
+ * Configuration options:
+ * - MS_AUTH_WAIT_FOR_MSAL_TOKENS: Enable/disable MSAL token waiting (default: true)
+ * - MS_AUTH_MSAL_TOKEN_TIMEOUT: Timeout in milliseconds (default: 30000)
+ *
+ * @example
+ * ```typescript
+ * // Basic authentication
+ * await authenticateToMicrosoft('https://make.powerapps.com/home', false);
+ *
+ * // With custom MSAL timeout (via environment)
+ * process.env.MS_AUTH_MSAL_TOKEN_TIMEOUT = '60000'; // 60 seconds
+ * await authenticateToMicrosoft('https://make.powerapps.com/home', true);
+ * ```
  */
 export async function authenticateToMicrosoft(
   url: string,
@@ -90,15 +134,23 @@ export async function authenticateToMicrosoft(
   console.log(`👁️  Browser mode: ${headless ? 'headless' : 'headful'}`);
 
   try {
-    // Load configuration from environment variables
-    const config = loadConfigFromEnv();
+    // Load configuration from environment variables (includes MSAL settings)
+    const config = loadAuthConfig();
     config.headless = headless;
 
     console.log('📧 Email:', config.email);
     console.log('🔑 Credential Type:', config.credentialType || 'password');
 
+    // Log MSAL token configuration if debug mode
+    if (process.env.SYSTEM_DEBUG === 'true') {
+      console.log('🔧 MSAL Token Waiting:', config.waitForMsalTokens ?? 'true (default)');
+      console.log('⏱️  MSAL Token Timeout:', config.msalTokenTimeout ?? '30000 (default)');
+    }
+
     // Perform authentication - saves to ~/.playwright-ms-auth/state-{email}.json
-    await authenticate(config, url);
+    // Note: playwright-ms-auth v0.0.16+ automatically waits for MSAL tokens
+    // Cast to any to handle type differences between versions
+    await authenticate(config as any, url);
 
     const storagePath = getMsAuthStorageStatePath(config.email);
     console.log('✅ Authentication successful!');
