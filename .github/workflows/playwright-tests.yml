@@ -149,6 +149,18 @@ jobs:
           if [ -f ~/.playwright-ms-auth/state-*.json ] || [ -f .playwright-ms-auth/state-*.json ]; then
             echo "✅ Authentication successful - storage state file created"
             ls -lh ~/.playwright-ms-auth/state-*.json 2>/dev/null || ls -lh .playwright-ms-auth/state-*.json
+
+            # Debug: Check storage state content structure
+            echo ""
+            echo "🔍 Checking storage state structure..."
+            STORAGE_FILE=$(ls ~/.playwright-ms-auth/state-*.json 2>/dev/null || ls .playwright-ms-auth/state-*.json)
+            echo "File: $STORAGE_FILE"
+            echo "Origins count: $(jq '.origins | length' "$STORAGE_FILE")"
+            echo "Cookies count: $(jq '.cookies | length' "$STORAGE_FILE")"
+
+            # Check for tokens in localStorage
+            echo "LocalStorage keys containing 'token' or 'msal':"
+            jq -r '.origins[].localStorage[]? | select(.name | test("token|msal|access"; "i")) | .name' "$STORAGE_FILE" || echo "No matching keys found"
           else
             echo "❌ Authentication failed - no storage state file found"
             echo "Checking home directory:"
@@ -197,12 +209,12 @@ jobs:
           retention-days: 30
           if-no-files-found: ignore
 
-      - name: Upload Playwright report
+      - name: Upload blob report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report-${{ matrix.shard }}
-          path: ${{ env.E2E_TESTS_DIR }}/test-results/shard-${{ matrix.shard }}/html-report/
+          name: blob-report-${{ matrix.shard }}
+          path: ${{ env.E2E_TESTS_DIR }}/test-results/shard-${{ matrix.shard }}/blob-report/
           retention-days: 30
           if-no-files-found: ignore
 
@@ -262,7 +274,7 @@ jobs:
         run: npm install -g playwright@1.57.0
 
       - name: Merge Playwright reports
-        run: npx playwright merge-reports --reporter html ./all-artifacts/playwright-report-*
+        run: npx playwright merge-reports --reporter html ./all-artifacts
 
       - name: Upload merged HTML report
         if: always()

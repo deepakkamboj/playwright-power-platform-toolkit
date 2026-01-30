@@ -7,7 +7,7 @@ import { Page } from '@playwright/test';
 export function getEnvironmentConfig() {
   return {
     repeatEach: parseInt(process.env.REPEAT_EACH || '1', 5),
-    retries: process.env.CI ? 2 : parseInt(process.env.RETRIES || '0', 1),
+    retries: process.env.CI ? 1 : parseInt(process.env.RETRIES || '0', 1),
     testDirectory: process.env.TEST_DIRECTORY || './tests',
     testTimeout: parseInt(process.env.TEST_TIMEOUT || String(TimeOut.TestTimeout), 10),
     workers: process.env.CI ? 1 : parseInt(process.env.WORKERS || '4', 4),
