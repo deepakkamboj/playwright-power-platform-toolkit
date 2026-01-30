@@ -32,7 +32,7 @@ test('Extract token from storage state', async () => {
 
   await test.step('Extract token for specific API', async () => {
     // Get token with specific audience for BAP API
-    const bapToken = extractTokenFromStorage(undefined, 'https://api.bap.microsoft.com');
+    const bapToken = extractTokenFromStorage(ConfigHelper.getBapApiUrl());
 
     if (bapToken) {
       console.log('BAP-specific token extracted');
