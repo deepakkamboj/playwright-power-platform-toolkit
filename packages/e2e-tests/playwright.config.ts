@@ -7,7 +7,7 @@ import * as path from 'path';
 import { defineConfig } from '@playwright/test';
 import dotenv from 'dotenv';
 import {
-  getStorageStatePath,
+  getCustomStorageStatePath,
   checkEnvironmentVariables,
   TimeOut,
   ConfigHelper,
@@ -28,19 +28,19 @@ function getGrepPattern(): RegExp | undefined {
   return grepPattern ? new RegExp(grepPattern) : undefined;
 }
 
-// Check storage state and token expiration
+// Check all required environment variables
 if (!process.argv.includes('list-files')) {
-  // Only check environment variables if storage state doesn't exist
-  // If storage state exists, we don't need the credentials
-  const storageStateExists =
-    process.env.MS_AUTH_EMAIL && existsSync(getStorageStatePath(process.env.MS_AUTH_EMAIL!));
+  const email = process.env.MS_AUTH_EMAIL;
 
-  if (!storageStateExists) {
-    // Storage state missing - check if we have credentials to authenticate
-    checkEnvironmentVariables();
+  if (!email || email.length === 0) {
+    throw new Error(
+      `Missing required environment variables: MS_AUTH_EMAIL\n` +
+        'Please set these variables in your .env file or environment.'
+    );
   }
+  const storageStatePath = getCustomStorageStatePath(email);
 
-  if (process.env.MS_AUTH_EMAIL && !existsSync(getStorageStatePath(process.env.MS_AUTH_EMAIL!))) {
+  if (process.env.MS_AUTH_EMAIL && !existsSync(storageStatePath)) {
     console.log('===========================================================');
     console.error(`${colors.fgRed}❌ Storage state file does not exist!${colors.reset}`);
     console.error(
@@ -48,13 +48,8 @@ if (!process.argv.includes('list-files')) {
     );
     console.log('===========================================================');
     process.exit(1);
-  } else if (
-    process.env.MS_AUTH_EMAIL &&
-    existsSync(getStorageStatePath(process.env.MS_AUTH_EMAIL!))
-  ) {
-    const expirationCheck = ConfigHelper.checkStorageStateExpiration(
-      getStorageStatePath(process.env.MS_AUTH_EMAIL!)
-    );
+  } else if (process.env.MS_AUTH_EMAIL && existsSync(storageStatePath)) {
+    const expirationCheck = ConfigHelper.checkStorageStateExpiration(storageStatePath);
 
     if (expirationCheck.expired) {
       console.log('===========================================================');
@@ -73,7 +68,7 @@ if (!process.argv.includes('list-files')) {
     }
 
     console.log(
-      `${colors.fgCyan}🔐 Storage state loaded: ${colors.fgGreen}${getStorageStatePath(process.env.MS_AUTH_EMAIL!)}${colors.reset}`
+      `${colors.fgCyan}🔐 Storage state loaded: ${colors.fgGreen}${storageStatePath}${colors.reset}`
     );
 
     if (expirationCheck.expiresOn) {
@@ -207,7 +202,7 @@ export default defineConfig({
 
     /* Storage state - conditionally load based on environment */
     storageState: process.env.MS_AUTH_EMAIL
-      ? getStorageStatePath(process.env.MS_AUTH_EMAIL!)
+      ? getCustomStorageStatePath(process.env.MS_AUTH_EMAIL!)
       : undefined,
 
     /* Launch options */
