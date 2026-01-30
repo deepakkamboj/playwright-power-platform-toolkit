@@ -264,12 +264,20 @@ jobs:
         with:
           path: all-artifacts
 
+      - name: Install Rush
+        run: npm install -g @microsoft/rush
+
+      - name: Install dependencies
+        run: |
+          rush update
+          rush install
+
+      - name: Build packages
+        run: rush build
+
       - name: Merge Playwright reports
         run: |
           cd ${{ env.E2E_TESTS_DIR }}
-
-          # Install Playwright
-          npm install
 
           # Merge HTML reports from all shards
           npx playwright merge-reports --reporter html ../../all-artifacts/playwright-report-*
@@ -291,7 +299,7 @@ jobs:
           echo "- **Environment**: ${{ env.TEST_ENV }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Geography**: ${{ env.TEST_GEO }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Pipeline**: ${{ env.BUILD_PIPELINE }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Shards**: 4" >> $GITHUB_STEP_SUMMARY
+          echo "- **Shards**: 2" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Artifacts" >> $GITHUB_STEP_SUMMARY
           echo "- 📊 [HTML Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY
