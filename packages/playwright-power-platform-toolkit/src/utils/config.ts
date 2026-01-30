@@ -97,6 +97,20 @@ export class ConfigHelper {
   }
 
   /**
+   * Get Canvas app ID from environment
+   */
+  static getCanvasAppId(): string | undefined {
+    return process.env.CANVAS_APP_ID;
+  }
+
+  /**
+   * Get Model-Driven app ID from environment
+   */
+  static getModelAppId(): string | undefined {
+    return process.env.MODEL_APP_ID;
+  }
+
+  /**
    * Get authentication endpoint
    *
    * @returns Auth endpoint from environment variable or default

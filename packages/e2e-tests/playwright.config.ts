@@ -13,25 +13,12 @@ import {
   ConfigHelper,
   colors,
 } from 'playwright-power-platform-toolkit';
+import { getEnvironmentConfig } from './utils/common';
 
 // Load environment variables from .env file
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const playwrightTestRunName = 'Playwright Power Platform E2E Tests';
-
-/**
- * Helper function to get environment configuration values
- */
-function getEnvironmentConfig() {
-  return {
-    repeatEach: parseInt(process.env.REPEAT_EACH || '1', 10),
-    retries: process.env.CI ? 2 : parseInt(process.env.RETRIES || '0', 10),
-    testDirectory: process.env.TEST_DIRECTORY || './tests',
-    testTimeout: parseInt(process.env.TEST_TIMEOUT || String(TimeOut.TestTimeout), 10),
-    workers: process.env.CI ? 1 : parseInt(process.env.WORKERS || '4', 10),
-    outputDirectory: process.env.OUTPUT_DIRECTORY || './test-results',
-  };
-}
 
 /**
  * Helper function to get grep pattern from environment
@@ -41,9 +28,17 @@ function getGrepPattern(): RegExp | undefined {
   return grepPattern ? new RegExp(grepPattern) : undefined;
 }
 
-// Check all required environment variables
+// Check storage state and token expiration
 if (!process.argv.includes('list-files')) {
-  checkEnvironmentVariables();
+  // Only check environment variables if storage state doesn't exist
+  // If storage state exists, we don't need the credentials
+  const storageStateExists =
+    process.env.MS_AUTH_EMAIL && existsSync(getStorageStatePath(process.env.MS_AUTH_EMAIL!));
+
+  if (!storageStateExists) {
+    // Storage state missing - check if we have credentials to authenticate
+    checkEnvironmentVariables();
+  }
 
   if (process.env.MS_AUTH_EMAIL && !existsSync(getStorageStatePath(process.env.MS_AUTH_EMAIL!))) {
     console.log('===========================================================');
@@ -188,7 +183,7 @@ export default defineConfig({
     baseURL: ConfigHelper.getBaseUrl(),
 
     /* Browser options */
-    headless: process.env.HEADLESS === 'true',
+    headless: getEnvironmentConfig().headless,
     viewport: { width: 1920, height: 1080 },
 
     /* Capture options */
@@ -217,7 +212,7 @@ export default defineConfig({
 
     /* Launch options */
     launchOptions: {
-      slowMo: Number(process.env.SLOW_DOWN_MS) || 0,
+      slowMo: Number(getEnvironmentConfig().slowMo) || 0,
       args: [
         '--start-maximized',
         '--no-sandbox',

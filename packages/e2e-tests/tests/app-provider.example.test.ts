@@ -12,8 +12,8 @@ import {
   AppLaunchMode,
   CanvasControlType,
   PowerAppsPage,
+  ConfigHelper,
 } from 'playwright-power-platform-toolkit';
-import { getBaseUrl, getCanvasAppId, getModelAppId } from './test-constants';
 
 /**
  * Example 1: Launch Canvas App by ID
@@ -24,10 +24,10 @@ test('Launch Canvas app by ID and test form submission', async ({ page }) => {
 
   await test.step('Launch Canvas app', async () => {
     await provider.launch({
-      app: { id: getCanvasAppId() || '' },
+      app: { id: ConfigHelper.getCanvasAppId() || '' },
       type: AppType.Canvas,
       mode: AppLaunchMode.Play,
-      baseUrl: getBaseUrl(),
+      baseUrl: ConfigHelper.getBaseUrl(),
     });
 
     // Verify app launched successfully
@@ -82,10 +82,10 @@ test('Launch Model Driven app by ID and create record', async ({ page }) => {
 
   await test.step('Launch Model Driven app', async () => {
     await provider.launch({
-      app: { id: getModelAppId() || '' },
+      app: { id: ConfigHelper.getModelAppId() || '' },
       type: AppType.ModelDriven,
       mode: AppLaunchMode.Play,
-      baseUrl: getBaseUrl(),
+      baseUrl: ConfigHelper.getBaseUrl(),
     });
 
     expect(provider.isReady()).toBeTruthy();
@@ -166,10 +166,10 @@ test('Test multiple apps in sequence', async ({ page }) => {
 
   await test.step('Test Canvas app', async () => {
     await provider.launch({
-      app: { id: getCanvasAppId() || '' },
+      app: { id: ConfigHelper.getCanvasAppId() || '' },
       type: AppType.Canvas,
       mode: AppLaunchMode.Play,
-      baseUrl: getBaseUrl(),
+      baseUrl: ConfigHelper.getBaseUrl(),
     });
 
     await provider.click({ name: 'Button1' });
@@ -181,10 +181,10 @@ test('Test multiple apps in sequence', async ({ page }) => {
 
   await test.step('Test Model Driven app', async () => {
     await provider.launch({
-      app: { id: getModelAppId() || '' },
+      app: { id: ConfigHelper.getModelAppId() || '' },
       type: AppType.ModelDriven,
       mode: AppLaunchMode.Play,
-      baseUrl: getBaseUrl(),
+      baseUrl: ConfigHelper.getBaseUrl(),
     });
 
     await provider.click({ name: 'Accounts' });
@@ -210,10 +210,10 @@ test('Launch app with custom options', async ({ page }) => {
 
   await test.step('Launch with custom timeout', async () => {
     await provider.launch({
-      app: { id: getCanvasAppId() || '' },
+      app: { id: ConfigHelper.getCanvasAppId() || '' },
       type: AppType.Canvas,
       mode: AppLaunchMode.Edit,
-      baseUrl: getBaseUrl(),
+      baseUrl: ConfigHelper.getBaseUrl(),
       options: {
         timeout: 60000,
         waitForReady: true,
@@ -245,7 +245,7 @@ test('Handle app launch errors', async ({ page }) => {
         app: { id: 'non-existent-app-id' },
         type: AppType.Canvas,
         mode: AppLaunchMode.Play,
-        baseUrl: getBaseUrl(),
+        baseUrl: ConfigHelper.getBaseUrl(),
       });
     } catch (error) {
       console.log('Expected error caught:', error);
@@ -302,7 +302,7 @@ test('Complete workflow: Create, launch, and test app', async ({ page }) => {
   await test.step('Launch created app', async () => {
     await powerApps.navigateToApps();
     await provider.launch({
-      app: 'Test App',
+      app: ConfigHelper.getCanvasAppId() || '',
       type: AppType.Canvas,
       mode: AppLaunchMode.Edit,
     });
@@ -330,7 +330,7 @@ test('Use provider state management', async ({ page }) => {
       app: { id: 'app-1' },
       type: AppType.Canvas,
       mode: AppLaunchMode.Play,
-      baseUrl: getBaseUrl(),
+      baseUrl: ConfigHelper.getBaseUrl(),
     });
 
     // Get current state
@@ -374,10 +374,10 @@ test.describe('Best Practice Test Structure', () => {
 
   test('Test with proper setup and teardown', async () => {
     await provider.launch({
-      app: { id: getCanvasAppId() || '' },
+      app: { id: ConfigHelper.getCanvasAppId() || '' },
       type: AppType.Canvas,
       mode: AppLaunchMode.Play,
-      baseUrl: getBaseUrl(),
+      baseUrl: ConfigHelper.getBaseUrl(),
     });
 
     await provider.click({ name: 'TestButton' });
@@ -397,10 +397,10 @@ test('Launch app and verify backend API integration', async ({ page }) => {
 
   await test.step('Launch Canvas app', async () => {
     await provider.launch({
-      app: { id: getCanvasAppId() || '' },
+      app: { id: ConfigHelper.getCanvasAppId() || '' },
       type: AppType.Canvas,
       mode: AppLaunchMode.Play,
-      baseUrl: getBaseUrl(),
+      baseUrl: ConfigHelper.getBaseUrl(),
     });
 
     expect(provider.isReady()).toBeTruthy();
@@ -448,10 +448,10 @@ test('Launch app and record all API calls', async ({ page }) => {
 
   await test.step('Launch and use app', async () => {
     await provider.launch({
-      app: { id: getCanvasAppId() || '' },
+      app: { id: ConfigHelper.getCanvasAppId() || '' },
       type: AppType.Canvas,
       mode: AppLaunchMode.Play,
-      baseUrl: getBaseUrl(),
+      baseUrl: ConfigHelper.getBaseUrl(),
     });
 
     await provider.click({ name: 'Button1' });

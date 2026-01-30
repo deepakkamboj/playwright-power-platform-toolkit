@@ -98,11 +98,39 @@ Canvas designer URL from environment variable or default
 
 ---
 
+### getCanvasAppId()
+
+> `static` **getCanvasAppId**(): `string` \| `undefined`
+
+Defined in: [utils/config.ts:102](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L102)
+
+Get Canvas app ID from environment
+
+#### Returns
+
+`string` \| `undefined`
+
+---
+
+### getModelAppId()
+
+> `static` **getModelAppId**(): `string` \| `undefined`
+
+Defined in: [utils/config.ts:109](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L109)
+
+Get Model-Driven app ID from environment
+
+#### Returns
+
+`string` \| `undefined`
+
+---
+
 ### getAuthEndpoint()
 
 > `static` **getAuthEndpoint**(): `string`
 
-Defined in: [utils/config.ts:105](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L105)
+Defined in: [utils/config.ts:119](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L119)
 
 Get authentication endpoint
 
@@ -124,7 +152,7 @@ Auth endpoint from environment variable or default
 
 > `static` **getEnvironmentId**(): `string` \| `undefined`
 
-Defined in: [utils/config.ts:114](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L114)
+Defined in: [utils/config.ts:128](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L128)
 
 Get environment ID from environment variable
 
@@ -140,7 +168,7 @@ Environment ID or undefined if not set
 
 > `static` **getTenantId**(): `string`
 
-Defined in: [utils/config.ts:124](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L124)
+Defined in: [utils/config.ts:138](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L138)
 
 Get tenant ID from environment variable
 
@@ -160,7 +188,7 @@ If AZURE_TENANT_ID is not set
 
 > `static` **extractEnvironmentId**(`url`): `string` \| `null`
 
-Defined in: [utils/config.ts:146](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L146)
+Defined in: [utils/config.ts:160](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L160)
 
 Extract environment ID from a Power Apps URL
 
@@ -193,7 +221,7 @@ const envId = ConfigHelper.extractEnvironmentId(
 
 > `static` **buildUrl**(`path`, `environmentId?`): `string`
 
-Defined in: [utils/config.ts:164](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L164)
+Defined in: [utils/config.ts:178](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L178)
 
 Build full URL with optional environment ID
 
@@ -230,7 +258,7 @@ const url = ConfigHelper.buildUrl('/apps', 'env-123');
 
 > `static` **getAuthToken**(`storagePath?`, `apiUrl?`): `string` \| `undefined`
 
-Defined in: [utils/config.ts:190](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L190)
+Defined in: [utils/config.ts:204](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L204)
 
 Get authentication token from storage state
 
@@ -270,7 +298,7 @@ const bapToken = ConfigHelper.getAuthToken(undefined, 'https://api.bap.microsoft
 
 > `static` **checkStorageStateExpiration**(`storagePath?`): [`TokenExpirationCheck`](../interfaces/TokenExpirationCheck.md)
 
-Defined in: [utils/config.ts:211](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L211)
+Defined in: [utils/config.ts:225](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L225)
 
 Check storage state token expiration
 
@@ -306,7 +334,7 @@ if (check.expired) {
 
 > `static` **getDefaultUrl**(): `string`
 
-Defined in: [utils/config.ts:221](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L221)
+Defined in: [utils/config.ts:235](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/config.ts#L235)
 
 Get default URL path (home page)
 

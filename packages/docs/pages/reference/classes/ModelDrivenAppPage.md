@@ -964,7 +964,7 @@ Launch app by ID (IAppLauncher interface)
 
 > **launchByName**(`appName`, `findAppCallback`, `_mode`, `_options?`): `Promise`\<`void`\>
 
-Defined in: [pages/model-driven-app.page.ts:642](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L642)
+Defined in: [pages/model-driven-app.page.ts:637](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L637)
 
 Launch app by name (IAppLauncher interface)
 
@@ -996,7 +996,7 @@ Launch app by name (IAppLauncher interface)
 
 > **waitForAppLoad**(`_options?`): `Promise`\<`void`\>
 
-Defined in: [pages/model-driven-app.page.ts:657](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L657)
+Defined in: [pages/model-driven-app.page.ts:652](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L652)
 
 Wait for app to load (IAppLauncher interface)
 
@@ -1016,7 +1016,7 @@ Wait for app to load (IAppLauncher interface)
 
 > **isAppReady**(): `boolean`
 
-Defined in: [pages/model-driven-app.page.ts:665](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L665)
+Defined in: [pages/model-driven-app.page.ts:660](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L660)
 
 Check if app is ready (IAppLauncher interface)
 
@@ -1030,7 +1030,7 @@ Check if app is ready (IAppLauncher interface)
 
 > **getAppId**(): `string` \| `null`
 
-Defined in: [pages/model-driven-app.page.ts:672](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L672)
+Defined in: [pages/model-driven-app.page.ts:667](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L667)
 
 Get app ID (IAppLauncher interface)
 
@@ -1044,7 +1044,7 @@ Get app ID (IAppLauncher interface)
 
 > **getAppUrl**(): `string` \| `null`
 
-Defined in: [pages/model-driven-app.page.ts:679](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L679)
+Defined in: [pages/model-driven-app.page.ts:674](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L674)
 
 Get app URL (IAppLauncher interface)
 
@@ -1058,7 +1058,7 @@ Get app URL (IAppLauncher interface)
 
 > **getControl**(`options`): `any`
 
-Defined in: [pages/model-driven-app.page.ts:686](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L686)
+Defined in: [pages/model-driven-app.page.ts:681](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L681)
 
 Get control (IAppLauncher interface)
 
@@ -1078,7 +1078,7 @@ Get control (IAppLauncher interface)
 
 > **clickControl**(`options`): `Promise`\<`void`\>
 
-Defined in: [pages/model-driven-app.page.ts:696](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L696)
+Defined in: [pages/model-driven-app.page.ts:691](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L691)
 
 Click control (IAppLauncher interface)
 
@@ -1098,7 +1098,7 @@ Click control (IAppLauncher interface)
 
 > **fillControl**(`options`, `value`): `Promise`\<`void`\>
 
-Defined in: [pages/model-driven-app.page.ts:704](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L704)
+Defined in: [pages/model-driven-app.page.ts:699](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L699)
 
 Fill control (IAppLauncher interface)
 
@@ -1122,7 +1122,7 @@ Fill control (IAppLauncher interface)
 
 > **fillForm**(`formData`): `Promise`\<`void`\>
 
-Defined in: [pages/model-driven-app.page.ts:712](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L712)
+Defined in: [pages/model-driven-app.page.ts:707](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L707)
 
 Fill form (IAppLauncher interface)
 
@@ -1142,7 +1142,7 @@ Fill form (IAppLauncher interface)
 
 > **assertControlVisible**(`options`, `_assertOptions?`): `Promise`\<`void`\>
 
-Defined in: [pages/model-driven-app.page.ts:721](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L721)
+Defined in: [pages/model-driven-app.page.ts:716](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L716)
 
 Assert control visible (IAppLauncher interface)
 
@@ -1166,7 +1166,7 @@ Assert control visible (IAppLauncher interface)
 
 > **assertControlText**(`options`, `expectedText`, `_assertOptions?`): `Promise`\<`void`\>
 
-Defined in: [pages/model-driven-app.page.ts:729](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L729)
+Defined in: [pages/model-driven-app.page.ts:724](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L724)
 
 Assert control text (IAppLauncher interface)
 
@@ -1194,7 +1194,7 @@ Assert control text (IAppLauncher interface)
 
 > **closeApp**(): `Promise`\<`void`\>
 
-Defined in: [pages/model-driven-app.page.ts:741](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L741)
+Defined in: [pages/model-driven-app.page.ts:732](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L732)
 
 Close app (IAppLauncher interface)
 
@@ -1208,7 +1208,7 @@ Close app (IAppLauncher interface)
 
 > **reset**(): `void`
 
-Defined in: [pages/model-driven-app.page.ts:750](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L750)
+Defined in: [pages/model-driven-app.page.ts:741](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/pages/model-driven-app.page.ts#L741)
 
 Reset launcher state (IAppLauncher interface)
 
