@@ -11,7 +11,7 @@ export function getEnvironmentConfig() {
     testDirectory: process.env.TEST_DIRECTORY || './tests',
     testTimeout: parseInt(process.env.TEST_TIMEOUT || String(TimeOut.TestTimeout), 10),
     workers: process.env.CI ? 1 : parseInt(process.env.WORKERS || '4', 4),
-    outputDirectory: process.env.OUTPUT_DIRECTORY || './playwright-test-results',
+    outputDirectory: process.env.OUTPUT_DIRECTORY || './test-results',
     slowMo: parseInt(process.env.SLOW_MO || '0', 40),
     headless: process.env.HEADLESS === 'true',
   };

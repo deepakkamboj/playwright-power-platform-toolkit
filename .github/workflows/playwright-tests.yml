@@ -48,6 +48,9 @@ jobs:
       TEST_GEO: us
       BUILD_PIPELINE: ${{ github.event.inputs.pipeline || 'ci' }}
 
+      # Directory paths
+      E2E_TESTS_DIR: packages/e2e-tests
+
       # Authentication
       MS_AUTH_EMAIL: ${{ secrets.MS_AUTH_EMAIL }}
       MS_AUTH_CREDENTIAL_TYPE: certificate
@@ -89,7 +92,7 @@ jobs:
 
       - name: Install Playwright browsers
         run: |
-          cd packages/e2e-tests
+          cd ${{ env.E2E_TESTS_DIR }}
           npx playwright install --with-deps chromium
 
       - name: Setup certificate authentication
@@ -125,7 +128,7 @@ jobs:
 
       - name: Authenticate with Power Platform
         run: |
-          cd packages/e2e-tests
+          cd ${{ env.E2E_TESTS_DIR }}
           npm run auth
         env:
           MS_AUTH_EMAIL: ${{ secrets.MS_AUTH_EMAIL }}
@@ -141,7 +144,7 @@ jobs:
 
       - name: Verify authentication
         run: |
-          cd packages/e2e-tests
+          cd ${{ env.E2E_TESTS_DIR }}
           # Check both home directory and local directory for auth state
           if [ -f ~/.playwright-ms-auth/state-*.json ] || [ -f .playwright-ms-auth/state-*.json ]; then
             echo "✅ Authentication successful - storage state file created"
@@ -157,7 +160,7 @@ jobs:
 
       - name: Run Playwright tests (Shard ${{ matrix.shard }}/4)
         run: |
-          cd packages/e2e-tests
+          cd ${{ env.E2E_TESTS_DIR }}
           npx playwright test --shard=${{ matrix.shard }}/4
         env:
           # CI flag
@@ -182,12 +185,15 @@ jobs:
           CANVAS_APP_ID: ${{ secrets.CANVAS_APP_ID }}
           MODEL_APP_ID: ${{ secrets.MODEL_APP_ID }}
 
+          #Output directory for test results (relative to E2E_TESTS_DIR)
+          OUTPUT_DIRECTORY: ./test-results/shard-${{ matrix.shard }}
+
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: test-results-${{ matrix.shard }}
-          path: packages/e2e-tests/test-results/
+          path: ${{ env.E2E_TESTS_DIR }}/test-results/shard-${{ matrix.shard }}
           retention-days: 30
           if-no-files-found: ignore
 
@@ -196,7 +202,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report-${{ matrix.shard }}
-          path: packages/e2e-tests/playwright-report/
+          path: ${{ env.E2E_TESTS_DIR }}/test-results/shard-${{ matrix.shard }}/playwright-report/
           retention-days: 30
           if-no-files-found: ignore
 
@@ -205,7 +211,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: traces-${{ matrix.shard }}
-          path: packages/e2e-tests/test-results/**/trace.zip
+          path: ${{ env.E2E_TESTS_DIR }}/test-results/shard-${{ matrix.shard }}/**/trace.zip
           retention-days: 30
           if-no-files-found: ignore
 
@@ -214,7 +220,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: videos-${{ matrix.shard }}
-          path: packages/e2e-tests/test-results/**/video.webm
+          path: ${{ env.E2E_TESTS_DIR }}/test-results/shard-${{ matrix.shard }}/**/video.webm
           retention-days: 7
           if-no-files-found: ignore
 
@@ -223,7 +229,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: screenshots-${{ matrix.shard }}
-          path: packages/e2e-tests/test-results/**/*.png
+          path: ${{ env.E2E_TESTS_DIR }}/test-results/shard-${{ matrix.shard }}/**/*.png
           retention-days: 7
           if-no-files-found: ignore
 
@@ -241,6 +247,9 @@ jobs:
     needs: [test]
     runs-on: ubuntu-latest
 
+    env:
+      E2E_TESTS_DIR: packages/e2e-tests
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -257,7 +266,7 @@ jobs:
 
       - name: Merge Playwright reports
         run: |
-          cd packages/e2e-tests
+          cd ${{ env.E2E_TESTS_DIR }}
 
           # Install Playwright
           npm install
@@ -270,7 +279,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report-merged
-          path: packages/e2e-tests/playwright-report/
+          path: ${{ env.E2E_TESTS_DIR }}/playwright-report/
           retention-days: 30
 
       - name: Publish test results summary

@@ -36,7 +36,9 @@
       "Bash(else echo \"cert folder not found in current directory\")",
       "Bash(fi)",
       "Bash(npm run auth:*)",
-      "Bash(npm run auth:headful:*)"
+      "Bash(npm run auth:headful:*)",
+      "Bash(CI=true npm test)",
+      "Bash(CI=true npx playwright test:*)"
     ]
   }
 }

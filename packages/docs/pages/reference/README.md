@@ -120,8 +120,6 @@ Enhanced with production-tested components from legacy library
 - [waitForElementCount](functions/waitForElementCount.md)
 - [pressKey](functions/pressKey.md)
 - [pressShortcut](functions/pressShortcut.md)
-- [storageStatePath](functions/storageStatePath.md)
-- [getCustomStorageStatePath](functions/getCustomStorageStatePath.md)
 - [getAuthToken](functions/getAuthToken.md)
 - [checkStorageStateExpiration](functions/checkStorageStateExpiration.md)
 - [checkEnvironmentVariables](functions/checkEnvironmentVariables.md)
