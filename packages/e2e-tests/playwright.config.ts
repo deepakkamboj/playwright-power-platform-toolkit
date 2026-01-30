@@ -29,7 +29,9 @@ function getGrepPattern(): RegExp | undefined {
 }
 
 // Check all required environment variables
-if (!process.argv.includes('list-files')) {
+// Skip storage state validation in CI, when listing files, or in worker processes
+const isMainProcess = !process.env.TEST_WORKER_INDEX && !process.env.PLAYWRIGHT_WORKER;
+if (!process.argv.includes('list-files') && !process.env.CI && isMainProcess) {
   const email = process.env.MS_AUTH_EMAIL;
 
   if (!email || email.length === 0) {
@@ -38,48 +40,56 @@ if (!process.argv.includes('list-files')) {
         'Please set these variables in your .env file or environment.'
     );
   }
-  const storageStatePath = getStorageStatePath(email);
 
-  if (process.env.MS_AUTH_EMAIL && !existsSync(storageStatePath)) {
-    console.log('===========================================================');
-    console.error(
-      `${colors.fgRed}❌ Storage state file at ${storageStatePath} does not exist!${colors.reset}`
-    );
-    console.error(
-      `${colors.fgYellow}💡 Please run authentication first: npm run auth:headful${colors.reset}`
-    );
-    console.log('===========================================================');
-    process.exit(1);
-  } else if (process.env.MS_AUTH_EMAIL && existsSync(storageStatePath)) {
-    const expirationCheck = ConfigHelper.checkStorageStateExpiration(storageStatePath);
+  try {
+    const storageStatePath = getStorageStatePath(email);
 
-    if (expirationCheck.expired) {
+    if (process.env.MS_AUTH_EMAIL && !existsSync(storageStatePath)) {
       console.log('===========================================================');
-      console.error(`${colors.fgRed}❌ Authentication tokens have expired!${colors.reset}`);
-      if (expirationCheck.expiresOn) {
-        const expiryDate = new Date(expirationCheck.expiresOn * 1000);
-        console.error(
-          `${colors.fgYellow}   Token expired at: ${expiryDate.toLocaleString()}${colors.reset}`
-        );
-      }
       console.error(
-        `${colors.fgYellow}💡 Please re-authenticate: npm run auth:headful${colors.reset}`
+        `${colors.fgRed}❌ Storage state file at ${storageStatePath} does not exist!${colors.reset}`
+      );
+      console.error(
+        `${colors.fgYellow}💡 Please run authentication first: npm run auth:headful${colors.reset}`
       );
       console.log('===========================================================');
       process.exit(1);
-    }
+    } else if (process.env.MS_AUTH_EMAIL && existsSync(storageStatePath)) {
+      const expirationCheck = ConfigHelper.checkStorageStateExpiration(storageStatePath);
 
-    console.log(
-      `${colors.fgCyan}🔐 Storage state loaded: ${colors.fgGreen}${storageStatePath}${colors.reset}`
-    );
+      if (expirationCheck.expired) {
+        console.log('===========================================================');
+        console.error(`${colors.fgRed}❌ Authentication tokens have expired!${colors.reset}`);
+        if (expirationCheck.expiresOn) {
+          const expiryDate = new Date(expirationCheck.expiresOn * 1000);
+          console.error(
+            `${colors.fgYellow}   Token expired at: ${expiryDate.toLocaleString()}${colors.reset}`
+          );
+        }
+        console.error(
+          `${colors.fgYellow}💡 Please re-authenticate: npm run auth:headful${colors.reset}`
+        );
+        console.log('===========================================================');
+        process.exit(1);
+      }
 
-    if (expirationCheck.expiresOn) {
-      const expiryDate = new Date(expirationCheck.expiresOn * 1000);
-      const timeUntilExpiry = Math.floor((expirationCheck.expiresOn - Date.now() / 1000) / 60);
       console.log(
-        `${colors.fgCyan}⏰ Token expires: ${colors.fgYellow}${expiryDate.toLocaleString()} ${colors.fgGray}(in ${timeUntilExpiry} minutes)${colors.reset}`
+        `${colors.fgCyan}🔐 Storage state loaded: ${colors.fgGreen}${storageStatePath}${colors.reset}`
       );
+
+      if (expirationCheck.expiresOn) {
+        const expiryDate = new Date(expirationCheck.expiresOn * 1000);
+        const timeUntilExpiry = Math.floor((expirationCheck.expiresOn - Date.now() / 1000) / 60);
+        console.log(
+          `${colors.fgCyan}⏰ Token expires: ${colors.fgYellow}${expiryDate.toLocaleString()} ${colors.fgGray}(in ${timeUntilExpiry} minutes)${colors.reset}`
+        );
+      }
     }
+  } catch (error: any) {
+    // In case auth config is incomplete (e.g., missing KeyVault vars in CI), skip validation
+    console.log(
+      `${colors.fgYellow}⚠️  Skipping storage state validation (auth config incomplete): ${error.message}${colors.reset}`
+    );
   }
 }
 
@@ -111,6 +121,7 @@ export default defineConfig({
   testIgnore: [
     // Ignore example tests with missing dependencies (@paeng packages, fixtures, page objects)
     '**/api-recorder.example.test.ts',
+    '**/api-utilities.example.test.ts',
     '**/canvas-app.example.test.ts',
     '**/model-driven-app.example.test.ts',
   ],
