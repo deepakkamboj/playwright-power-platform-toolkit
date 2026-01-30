@@ -129,6 +129,11 @@ jobs:
       - name: Authenticate with Power Platform
         run: |
           cd ${{ env.E2E_TESTS_DIR }}
+          echo "🔧 Debug: MSAL Configuration"
+          echo "MS_AUTH_WAIT_FOR_MSAL_TOKENS=$MS_AUTH_WAIT_FOR_MSAL_TOKENS"
+          echo "MS_AUTH_MSAL_TOKEN_TIMEOUT=$MS_AUTH_MSAL_TOKEN_TIMEOUT"
+          echo "SYSTEM_DEBUG=$SYSTEM_DEBUG"
+          echo ""
           npm run auth
         env:
           MS_AUTH_EMAIL: ${{ secrets.MS_AUTH_EMAIL }}
@@ -140,8 +145,9 @@ jobs:
           BAP_API_URL: ${{ env.BAP_API_URL }}
           AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
           AUTH_ENDPOINT: https://login.microsoftonline.com
-          MS_AUTH_WAIT_FOR_MSAL_TOKENS: true
-          MS_AUTH_MSAL_TOKEN_TIMEOUT: 30000
+          MS_AUTH_WAIT_FOR_MSAL_TOKENS: 'true'
+          MS_AUTH_MSAL_TOKEN_TIMEOUT: '90000'
+          SYSTEM_DEBUG: 'true'
         continue-on-error: false
 
       - name: Verify authentication
