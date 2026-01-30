@@ -157,30 +157,28 @@ export default defineConfig({
         ),
       },
     ],
-    // AI Reporter configuration - Temporarily disabled due to sqlite3 native binding issue
+    // AI Reporter configuration
     // See: https://github.com/deepakkamboj/playwright-ai-reporter
-    // Issue: sqlite3 native bindings don't compile properly in CI
-    // TODO: Fix in playwright-ai-reporter by switching to better-sqlite3 or making DB optional
-    // [
-    //   'playwright-ai-reporter',
-    //   {
-    //     // Performance thresholds
-    //     slowTestThreshold: parseInt(process.env.SLOW_TEST_THRESHOLD || '3'),
-    //     maxSlowTestsToShow: parseInt(process.env.MAX_SLOW_TESTS_TO_SHOW || '5'),
-    //     timeoutWarningThreshold: parseInt(process.env.TIMEOUT_WARNING_THRESHOLD || '20'),
+    [
+      'playwright-ai-reporter',
+      {
+        // Performance thresholds
+        slowTestThreshold: parseInt(process.env.SLOW_TEST_THRESHOLD || '3'),
+        maxSlowTestsToShow: parseInt(process.env.MAX_SLOW_TESTS_TO_SHOW || '5'),
+        timeoutWarningThreshold: parseInt(process.env.TIMEOUT_WARNING_THRESHOLD || '20'),
 
-    //     // Output configuration
-    //     showStackTrace: true,
-    //     outputDir: path.join(getEnvironmentConfig().outputDirectory, 'playwright-ai-reports'),
+        // Output configuration
+        showStackTrace: true,
+        outputDir: path.join(getEnvironmentConfig().outputDirectory, 'playwright-ai-reports'),
 
-    //     // AI & Automation features
-    //     generateFix: process.env.GENERATE_FIX === 'false',
-    //     createBug: process.env.CREATE_BUG === 'false',
-    //     generatePR: process.env.GENERATE_PR === 'false',
-    //     publishToDB: process.env.PUBLISH_TO_DB === 'false',
-    //     sendEmail: process.env.SEND_EMAIL === 'false',
-    //   },
-    // ],
+        // AI & Automation features
+        generateFix: process.env.GENERATE_FIX === 'false',
+        createBug: process.env.CREATE_BUG === 'false',
+        generatePR: process.env.GENERATE_PR === 'false',
+        publishToDB: process.env.PUBLISH_TO_DB === 'false',
+        sendEmail: process.env.SEND_EMAIL === 'false',
+      },
+    ],
   ],
 
   /* Shared settings for all projects */
