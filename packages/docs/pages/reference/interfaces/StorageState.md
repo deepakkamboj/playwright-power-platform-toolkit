@@ -6,7 +6,7 @@
 
 # Interface: StorageState
 
-Defined in: [utils/auth-helpers.ts:77](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/auth-helpers.ts#L77)
+Defined in: [utils/auth-helpers.ts:15](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/auth-helpers.ts#L15)
 
 Storage state structure
 
@@ -16,7 +16,7 @@ Storage state structure
 
 > **cookies**: `object`[]
 
-Defined in: [utils/auth-helpers.ts:78](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/auth-helpers.ts#L78)
+Defined in: [utils/auth-helpers.ts:16](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/auth-helpers.ts#L16)
 
 #### name
 
@@ -56,7 +56,7 @@ Defined in: [utils/auth-helpers.ts:78](https://github.com/deepakkamboj/playwrigh
 
 > **origins**: `object`[]
 
-Defined in: [utils/auth-helpers.ts:88](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/auth-helpers.ts#L88)
+Defined in: [utils/auth-helpers.ts:26](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/utils/auth-helpers.ts#L26)
 
 #### origin
 

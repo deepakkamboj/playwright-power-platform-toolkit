@@ -7,7 +7,7 @@ import * as path from 'path';
 import { defineConfig } from '@playwright/test';
 import dotenv from 'dotenv';
 import {
-  getCustomStorageStatePath,
+  getStorageStatePath,
   checkEnvironmentVariables,
   TimeOut,
   ConfigHelper,
@@ -38,11 +38,13 @@ if (!process.argv.includes('list-files')) {
         'Please set these variables in your .env file or environment.'
     );
   }
-  const storageStatePath = getCustomStorageStatePath(email);
+  const storageStatePath = getStorageStatePath(email);
 
   if (process.env.MS_AUTH_EMAIL && !existsSync(storageStatePath)) {
     console.log('===========================================================');
-    console.error(`${colors.fgRed}❌ Storage state file does not exist!${colors.reset}`);
+    console.error(
+      `${colors.fgRed}❌ Storage state file at ${storageStatePath} does not exist!${colors.reset}`
+    );
     console.error(
       `${colors.fgYellow}💡 Please run authentication first: npm run auth:headful${colors.reset}`
     );
@@ -202,7 +204,7 @@ export default defineConfig({
 
     /* Storage state - conditionally load based on environment */
     storageState: process.env.MS_AUTH_EMAIL
-      ? getCustomStorageStatePath(process.env.MS_AUTH_EMAIL!)
+      ? getStorageStatePath(process.env.MS_AUTH_EMAIL!)
       : undefined,
 
     /* Launch options */

@@ -22,7 +22,7 @@ Defined in: [auth/MsAuthHelper.ts:21](https://github.com/deepakkamboj/playwright
 
 ### credentialType?
 
-> `optional` **credentialType**: `"token"` \| `"password"` \| `"certificate"`
+> `optional` **credentialType**: `"password"` \| `"token"` \| `"certificate"`
 
 Defined in: [auth/MsAuthHelper.ts:22](https://github.com/deepakkamboj/playwright-power-platform-toolkit/blob/main/packages/playwright-power-platform-toolkit/src/auth/MsAuthHelper.ts#L22)
 

@@ -7,69 +7,7 @@
  */
 
 import * as fs from 'fs';
-import * as path from 'path';
-import * as os from 'os';
-
-/**
- * Get the path to the storage state file
- *
- * Returns the default location for the Playwright storage state file
- * which contains authentication cookies and tokens.
- *
- * @param customPath - Optional custom path for storage state
- * @returns Path to the storage state file
- *
- * @example
- * ```typescript
- * const storagePath = storageStatePath();
- * // Returns: ~/.auth/storageState.json
- * ```
- */
-export function storageStatePath(customPath?: string): string {
-  if (customPath) {
-    return customPath;
-  }
-
-  const homeDir = os.homedir();
-  const authDir = path.join(homeDir, '.auth');
-
-  // Ensure .auth directory exists
-  if (!fs.existsSync(authDir)) {
-    fs.mkdirSync(authDir, { recursive: true });
-  }
-
-  return path.join(authDir, 'storageState.json');
-}
-
-/**
- * Get a custom path to the storage state file for a specific user email
- *
- * Returns a user-specific storage state file path in the ~/.auth directory.
- * This is an alternative to the default playwright-ms-auth storage location.
- *
- * @param email - User email address to create storage path for
- * @returns Path to the user-specific storage state file
- *
- * @example
- * ```typescript
- * const storagePath = getCustomStorageStatePath('user@example.com');
- * // Returns: ~/.auth/storageState-user@example.com.json
- * ```
- */
-export function getCustomStorageStatePath(email: string): string {
-  const homeDir = os.homedir();
-  const authDir = path.join(homeDir, '.auth');
-
-  // Ensure .auth directory exists
-  if (!fs.existsSync(authDir)) {
-    fs.mkdirSync(authDir, { recursive: true });
-  }
-
-  // Sanitize email for filename
-  const sanitizedEmail = email.replace(/[^a-zA-Z0-9@.-]/g, '_');
-
-  return path.join(authDir, `storageState-${sanitizedEmail}.json`);
-}
+import { getStorageStatePath } from '../auth/MsAuthHelper';
 
 /**
  * Storage state structure
@@ -128,26 +66,12 @@ export interface TokenExpirationCheck {
 export function getAuthToken(storagePath?: string, apiUrl?: string): string | undefined {
   let storageFile = storagePath;
 
-  // If no custom path provided, try playwright-ms-auth location first
-  if (!storageFile && process.env.MS_AUTH_EMAIL) {
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { getStorageStatePath: getMsAuthStoragePath } = require('playwright-ms-auth');
-      const msAuthPath = getMsAuthStoragePath(process.env.MS_AUTH_EMAIL);
-      if (fs.existsSync(msAuthPath)) {
-        storageFile = msAuthPath;
-      }
-    } catch {
-      // playwright-ms-auth not available or path doesn't exist, fallback to default
-    }
-  }
-
-  // Fallback to default storage state path
+  // If no custom path provided, try playwright-ms-auth location
   if (!storageFile) {
-    storageFile = storageStatePath();
+    storageFile = getStorageStatePath();
   }
 
-  if (!fs.existsSync(storageFile)) {
+  if (!storageFile || !fs.existsSync(storageFile)) {
     return undefined;
   }
 
@@ -219,26 +143,12 @@ export function getAuthToken(storagePath?: string, apiUrl?: string): string | un
 export function checkStorageStateExpiration(storagePath?: string): TokenExpirationCheck {
   let storageFile = storagePath;
 
-  // If no custom path provided, try playwright-ms-auth location first
-  if (!storageFile && process.env.MS_AUTH_EMAIL) {
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { getStorageStatePath: getMsAuthStoragePath } = require('playwright-ms-auth');
-      const msAuthPath = getMsAuthStoragePath(process.env.MS_AUTH_EMAIL);
-      if (fs.existsSync(msAuthPath)) {
-        storageFile = msAuthPath;
-      }
-    } catch {
-      // playwright-ms-auth not available or path doesn't exist, fallback to default
-    }
-  }
-
-  // Fallback to default storage state path
+  // If no custom path provided, try playwright-ms-auth location
   if (!storageFile) {
-    storageFile = storageStatePath();
+    storageFile = getStorageStatePath();
   }
 
-  if (!fs.existsSync(storageFile)) {
+  if (!storageFile || !fs.existsSync(storageFile)) {
     return { expired: true };
   }
 
