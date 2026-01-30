@@ -209,12 +209,12 @@ jobs:
           retention-days: 30
           if-no-files-found: ignore
 
-      - name: Upload Playwright report
+      - name: Upload blob report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report-${{ matrix.shard }}
-          path: ${{ env.E2E_TESTS_DIR }}/test-results/shard-${{ matrix.shard }}/html-report/
+          name: blob-report-${{ matrix.shard }}
+          path: ${{ env.E2E_TESTS_DIR }}/test-results/shard-${{ matrix.shard }}/blob-report/
           retention-days: 30
           if-no-files-found: ignore
 
@@ -274,7 +274,7 @@ jobs:
         run: npm install -g playwright@1.57.0
 
       - name: Merge Playwright reports
-        run: npx playwright merge-reports --reporter html ./all-artifacts/playwright-report-*
+        run: npx playwright merge-reports --reporter html ./all-artifacts
 
       - name: Upload merged HTML report
         if: always()
