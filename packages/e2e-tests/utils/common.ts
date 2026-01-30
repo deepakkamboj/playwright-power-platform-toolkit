@@ -13,7 +13,7 @@ export function getEnvironmentConfig() {
     workers: process.env.CI ? 1 : parseInt(process.env.WORKERS || '4', 4),
     outputDirectory: process.env.OUTPUT_DIRECTORY || './test-results',
     slowMo: parseInt(process.env.SLOW_MO || '0', 40),
-    headless: process.env.HEADLESS === 'true',
+    headless: process.env.CI ? true : process.env.HEADLESS === 'true',
   };
 }
 

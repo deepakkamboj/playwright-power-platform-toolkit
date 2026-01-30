@@ -119,11 +119,7 @@ export default defineConfig({
   timeout: getEnvironmentConfig().testTimeout,
   testMatch: ['**/*.+(spec|test|setup).+(ts|js|mjs)'],
   testIgnore: [
-    // Ignore example tests with missing dependencies (@paeng packages, fixtures, page objects)
-    '**/api-recorder.example.test.ts',
-    '**/api-utilities.example.test.ts',
-    '**/canvas-app.example.test.ts',
-    '**/model-driven-app.example.test.ts',
+    // All tests should run
   ],
 
   /* Worker configuration */
@@ -191,6 +187,7 @@ export default defineConfig({
     baseURL: ConfigHelper.getBaseUrl(),
 
     /* Browser options */
+    channel: 'msedge',
     headless: getEnvironmentConfig().headless,
     viewport: { width: 1920, height: 1080 },
 

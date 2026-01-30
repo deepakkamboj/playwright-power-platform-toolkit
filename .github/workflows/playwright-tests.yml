@@ -40,7 +40,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: [1, 2, 3, 4]
+        shard: [1, 2]
 
     env:
       # Test environment configuration
@@ -158,10 +158,10 @@ jobs:
             exit 1
           fi
 
-      - name: Run Playwright tests (Shard ${{ matrix.shard }}/4)
+      - name: Run Playwright tests (Shard ${{ matrix.shard }}/2)
         run: |
           cd ${{ env.E2E_TESTS_DIR }}
-          npx playwright test --shard=${{ matrix.shard }}/4
+          npx playwright test --shard=${{ matrix.shard }}/2
         env:
           # CI flag
           CI: true

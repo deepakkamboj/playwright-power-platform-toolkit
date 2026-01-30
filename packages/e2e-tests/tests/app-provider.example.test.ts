@@ -15,6 +15,12 @@ import {
   ConfigHelper,
 } from 'playwright-power-platform-toolkit';
 
+// Skip all tests if required app IDs are not configured
+test.skip(
+  !process.env.CANVAS_APP_ID && !process.env.MODEL_APP_ID,
+  'Skipping: Power Apps not configured (CANVAS_APP_ID or MODEL_APP_ID required)'
+);
+
 /**
  * Example 1: Launch Canvas App by ID
  * This is the fastest and most common approach
