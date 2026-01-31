@@ -103,6 +103,14 @@ jobs:
           # Create .auth directory
           mkdir -p ~/.auth
 
+          # Check if CERTIFICATE_BASE64 secret is set
+          if [ -z "$CERTIFICATE_BASE64" ]; then
+            echo "❌ CERTIFICATE_BASE64 secret is not set or empty"
+            exit 1
+          fi
+
+          echo "📝 CERTIFICATE_BASE64 length: ${#CERTIFICATE_BASE64} characters"
+
           # Decode certificate from base64 and save to file
           echo "$CERTIFICATE_BASE64" | base64 -d > ~/.auth/certificate.pfx
 
@@ -117,10 +125,20 @@ jobs:
             echo "ℹ️  No certificate password (cert is not password-protected)"
           fi
 
-          # Verify certificate file exists
+          # Verify certificate file exists and has content
           if [ -f ~/.auth/certificate.pfx ]; then
-            echo "✅ Certificate file created successfully"
+            CERT_SIZE=$(stat -c%s ~/.auth/certificate.pfx 2>/dev/null || stat -f%z ~/.auth/certificate.pfx)
+            echo "📁 Certificate file info:"
             ls -lh ~/.auth/certificate.pfx
+
+            if [ "$CERT_SIZE" -eq 0 ]; then
+              echo "❌ Certificate file is 0 bytes - base64 decoding may have failed"
+              echo "🔍 Checking if base64 command works:"
+              echo "test" | base64 | base64 -d
+              exit 1
+            else
+              echo "✅ Certificate file created successfully ($CERT_SIZE bytes)"
+            fi
           else
             echo "❌ Certificate file not found"
             exit 1
