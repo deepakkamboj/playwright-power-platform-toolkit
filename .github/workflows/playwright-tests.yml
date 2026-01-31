@@ -129,12 +129,39 @@ jobs:
       - name: Authenticate with Power Platform
         run: |
           cd ${{ env.E2E_TESTS_DIR }}
+
+          # Temporarily move .env to prevent it from overriding CI environment variables
+          if [ -f .env ]; then
+            mv .env .env.ci-backup
+            echo "📝 Moved .env to .env.ci-backup to prevent override"
+          fi
+
           echo "🔧 Debug: MSAL Configuration"
           echo "MS_AUTH_WAIT_FOR_MSAL_TOKENS=$MS_AUTH_WAIT_FOR_MSAL_TOKENS"
           echo "MS_AUTH_MSAL_TOKEN_TIMEOUT=$MS_AUTH_MSAL_TOKEN_TIMEOUT"
           echo "SYSTEM_DEBUG=$SYSTEM_DEBUG"
           echo ""
+          echo "🔧 Debug: Certificate Configuration"
+          echo "MS_AUTH_LOCAL_FILE_PATH=$MS_AUTH_LOCAL_FILE_PATH"
+          echo "MS_AUTH_CREDENTIAL_PROVIDER=$MS_AUTH_CREDENTIAL_PROVIDER"
+          echo ""
+          echo "🔍 Checking certificate file:"
+          if [ -f "$MS_AUTH_LOCAL_FILE_PATH" ]; then
+            echo "✅ Certificate file exists"
+            ls -lh "$MS_AUTH_LOCAL_FILE_PATH"
+          else
+            echo "❌ Certificate file NOT found at: $MS_AUTH_LOCAL_FILE_PATH"
+            echo "Checking ~/.auth directory:"
+            ls -la ~/.auth/ || echo "~/.auth/ directory does not exist"
+          fi
+          echo ""
           npm run auth
+
+          # Restore .env
+          if [ -f .env.ci-backup ]; then
+            mv .env.ci-backup .env
+            echo "📝 Restored .env from backup"
+          fi
         env:
           MS_AUTH_EMAIL: ${{ secrets.MS_AUTH_EMAIL }}
           MS_AUTH_CREDENTIAL_TYPE: certificate
