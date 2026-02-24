@@ -265,9 +265,11 @@ export class PowerAppsPageLocators {
    * Get app row container by name
    */
   getAppRowByName(appName: string): Locator {
-    return this.loc(PowerAppsPageSelectors.AppsPage.AppNameContainerSelector).filter({
-      hasText: appName,
-    });
+    return this.loc(PowerAppsPageSelectors.AppsPage.AppNameContainerSelector)
+      .filter({
+        hasText: appName,
+      })
+      .first();
   }
 
   // ============ Solutions Page Locators ============

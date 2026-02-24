@@ -20,11 +20,11 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
-  timeout: 60000,
+  timeout: 120000,
   use: {
     headless: false,
     viewport: { width: 1280, height: 720 },
-    actionTimeout: 10000,
+    actionTimeout: 30000,
   },
 });
 ```
@@ -34,13 +34,46 @@ export default defineConfig({
 Create a `.env` file in your project root:
 
 ```env
-# Power Platform App URLs
-CANVAS_APP_URL=https://apps.powerapps.com/play/...
-MODEL_DRIVEN_APP_URL=https://yourorg.crm.dynamics.com/...
+# Direct App URLs (recommended for fastest execution)
+CANVAS_APP_URL=https://apps.powerapps.com/play/e/YOUR-ENV-ID/a/YOUR-APP-ID?tenantId=YOUR-TENANT-ID
+MODEL_DRIVEN_APP_URL=https://yourorg.crm.dynamics.com/main.aspx?appid=YOUR-APP-ID
 
-# Authentication (if needed)
-POWER_PLATFORM_USERNAME=your.email@domain.com
-POWER_PLATFORM_PASSWORD=your-password
+# Power Apps Environment
+POWER_APPS_ENVIRONMENT_ID=your-environment-id
+AZURE_TENANT_ID=your-tenant-id
+
+# Authentication (using playwright-ms-auth)
+MS_AUTH_EMAIL=your.email@domain.com
+MS_USER_PASSWORD=your-password
+# OR certificate-based auth
+MS_AUTH_CREDENTIAL_TYPE=certificate
+MS_AUTH_CREDENTIAL_PROVIDER=local
+MS_AUTH_LOCAL_FILE_PATH=path/to/cert.pfx
+```
+
+## Core Architecture
+
+The toolkit uses **AppProvider** as the single entry point for all Power Platform app testing:
+
+```typescript
+import { AppProvider, AppType, AppLaunchMode } from 'playwright-power-platform-toolkit';
+
+// Create AppProvider with page and context
+const appProvider = new AppProvider(page, context);
+
+// Launch app with direct URL (fastest approach)
+await appProvider.launch({
+  app: 'My App Name',
+  type: AppType.Canvas, // or AppType.ModelDriven
+  mode: AppLaunchMode.Play, // or AppLaunchMode.Edit
+  skipMakerPortal: true, // Skip maker portal navigation
+  directUrl: process.env.CANVAS_APP_URL,
+});
+
+// Get the appropriate page object
+const canvasApp = appProvider.getCanvasAppPage();
+// or
+const modelDrivenApp = appProvider.getModelDrivenAppPage();
 ```
 
 ## Writing Your First Test
@@ -51,29 +84,45 @@ Create a test file `tests/canvas-app.test.ts`:
 
 ```typescript
 import { test, expect } from '@playwright/test';
-import { AppProvider } from 'playwright-power-platform-toolkit';
+import {
+  AppProvider,
+  AppType,
+  AppLaunchMode,
+  CanvasAppPage,
+  buildCanvasAppUrlFromEnv,
+} from 'playwright-power-platform-toolkit';
+
+const CANVAS_APP_URL = buildCanvasAppUrlFromEnv();
 
 test.describe('Canvas App Tests', () => {
-  test('should launch and interact with canvas app', async ({ page }) => {
-    // Create an app provider instance
-    const appProvider = new AppProvider(page);
+  let appProvider: AppProvider;
+  let canvasApp: CanvasAppPage;
 
-    // Launch the canvas app
-    const canvasApp = await appProvider.launchApp({
-      appUrl: process.env.CANVAS_APP_URL!,
-      appType: 'canvas',
+  test.beforeEach(async ({ page, context }) => {
+    appProvider = new AppProvider(page, context);
+
+    await appProvider.launch({
+      app: 'My Canvas App',
+      type: AppType.Canvas,
+      mode: AppLaunchMode.Play,
+      skipMakerPortal: true,
+      directUrl: CANVAS_APP_URL,
     });
 
-    // Wait for the app to load
-    await canvasApp.waitForAppToLoad();
+    canvasApp = appProvider.getCanvasAppPage();
+  });
 
-    // Interact with canvas controls
-    await canvasApp.clickControl('ButtonSubmit');
-    await canvasApp.fillTextInput('TextInputName', 'John Doe');
+  test('should interact with canvas controls', async () => {
+    // Interact with canvas controls using data-test-id
+    const textInput = canvasApp.getControl({ dataTestId: 'txtOrderNumber' });
+    await textInput.fill('ORD-12345');
+
+    const submitButton = canvasApp.getControl({ dataTestId: 'btnSubmit' });
+    await submitButton.click();
 
     // Verify results
-    const labelText = await canvasApp.getControlText('LabelWelcome');
-    expect(labelText).toContain('Welcome, John Doe');
+    const statusLabel = canvasApp.getControl({ dataTestId: 'lblStatus' });
+    await expect(statusLabel).toContainText('Order Created');
   });
 });
 ```
@@ -84,31 +133,122 @@ Create a test file `tests/model-driven-app.test.ts`:
 
 ```typescript
 import { test, expect } from '@playwright/test';
-import { AppProvider } from 'playwright-power-platform-toolkit';
+import {
+  AppProvider,
+  AppType,
+  AppLaunchMode,
+  ModelDrivenAppPage,
+} from 'playwright-power-platform-toolkit';
+
+const MODEL_APP_URL = process.env.MODEL_DRIVEN_APP_URL!;
 
 test.describe('Model-Driven App Tests', () => {
-  test('should navigate and create a record', async ({ page }) => {
-    // Create an app provider instance
-    const appProvider = new AppProvider(page);
+  let appProvider: AppProvider;
+  let modelDrivenApp: ModelDrivenAppPage;
 
-    // Launch the model-driven app
-    const modelDrivenApp = await appProvider.launchApp({
-      appUrl: process.env.MODEL_DRIVEN_APP_URL!,
-      appType: 'model-driven',
+  test.beforeEach(async ({ page, context }) => {
+    appProvider = new AppProvider(page, context);
+
+    await appProvider.launch({
+      app: 'My Model-Driven App',
+      type: AppType.ModelDriven,
+      mode: AppLaunchMode.Play,
+      skipMakerPortal: true,
+      directUrl: MODEL_APP_URL,
     });
 
-    // Navigate to an entity
-    await modelDrivenApp.navigateToEntity('Accounts');
-
-    // Create a new record
-    await modelDrivenApp.clickNewButton();
-    await modelDrivenApp.fillFormField('name', 'Contoso Ltd');
-    await modelDrivenApp.saveRecord();
-
-    // Verify the record was created
-    const accountName = await modelDrivenApp.getFieldValue('name');
-    expect(accountName).toBe('Contoso Ltd');
+    modelDrivenApp = appProvider.getModelDrivenAppPage();
   });
+
+  test('should open record from grid', async () => {
+    // Wait for grid to load
+    await modelDrivenApp.grid.waitForGridLoad();
+
+    // Open first record
+    await modelDrivenApp.grid.openRecord({ rowNumber: 0 });
+
+    // Interact with form using FormComponent
+    await modelDrivenApp.form.setAttribute('name', 'Contoso Ltd');
+    await modelDrivenApp.form.save();
+
+    // Verify
+    const name = await modelDrivenApp.form.getAttribute('name');
+    expect(name).toBe('Contoso Ltd');
+  });
+
+  test('should work with grid data', async () => {
+    // Get cell value from grid
+    const orderNumber = await modelDrivenApp.grid.getCellValue(0, 'Order Number');
+    console.log('Order Number:', orderNumber);
+
+    // Select multiple rows
+    await modelDrivenApp.grid.selectRows([0, 1, 2]);
+
+    // Check row count
+    const rowCount = await modelDrivenApp.grid.getRowCount();
+    expect(rowCount).toBeGreaterThan(0);
+  });
+});
+```
+
+## Component-Based Architecture
+
+The toolkit provides reusable components for common UI patterns:
+
+### GridComponent
+
+```typescript
+// Access GridComponent via ModelDrivenAppPage
+const grid = modelDrivenApp.grid;
+
+// Open records
+await grid.openRecord({ rowNumber: 0 });
+await grid.openRecord({ columnValue: 'ORD-123', columnName: 'Order Number' });
+
+// Get data
+const cellValue = await grid.getCellValue(0, 'Order Number');
+const rowCount = await grid.getRowCount();
+
+// Select rows
+await grid.selectRow(0);
+await grid.selectRows([0, 1, 2]);
+
+// Sort and wait
+await grid.sortByColumn('Order Date', 'desc');
+await grid.waitForGridLoad();
+```
+
+### FormComponent
+
+```typescript
+// Access FormComponent via ModelDrivenAppPage
+const form = modelDrivenApp.form;
+
+// Get/Set attributes
+const name = await form.getAttribute('name');
+await form.setAttribute('name', 'New Value');
+
+// Form operations
+await form.save();
+const isDirty = await form.isDirty();
+const isValid = await form.isValid();
+
+// Navigation
+await form.navigateToTab({ tabName: 'Details' });
+await form.navigateToSection({ sectionName: 'Address' });
+
+// Field controls
+await form.setFieldVisibility('telephone1', false);
+await form.setFieldDisabled('name', true);
+await form.setFieldRequiredLevel('email', 'required');
+
+// Notifications
+await form.showNotification('Record saved', 'success', 'save-msg');
+await form.clearNotification('save-msg');
+
+// Execute custom FormContext code
+const formType = await form.execute((Xrm) => {
+  return Xrm.Page.ui.getFormType();
 });
 ```
 
@@ -128,32 +268,112 @@ npx playwright test tests/canvas-app.test.ts
 
 # Run with UI mode
 npx playwright test --ui
+
+# Debug mode
+npx playwright test --debug
 ```
 
 ## Understanding the Architecture
 
-The toolkit uses three main patterns:
+### 1. AppProvider Pattern (Mandatory)
 
-1. **AppProvider**: Factory for creating app-specific page objects
-2. **Page Objects**: Specialized classes for Canvas and Model-Driven apps
-3. **Locators**: Reusable locator strategies for Power Platform controls
+**AppProvider is the ONLY entry point for all Power Platform testing.** Never directly instantiate page objects.
+
+✅ **CORRECT:**
 
 ```typescript
-// The AppProvider creates the appropriate page object
-const appProvider = new AppProvider(page);
+const appProvider = new AppProvider(page, context);
+await appProvider.launch({...});
+const app = appProvider.getCanvasAppPage();
+```
 
-// Returns either CanvasAppPage or ModelDrivenAppPage
-const app = await appProvider.launchApp({...});
+❌ **INCORRECT:**
 
-// Each page object has app-specific methods
-await app.waitForAppToLoad();
+```typescript
+// NEVER do this
+const app = new CanvasAppPage(page);
+```
+
+### 2. Direct URL Launch (Recommended)
+
+For fastest test execution, use direct URLs with `skipMakerPortal: true`:
+
+```typescript
+await appProvider.launch({
+  app: 'My App',
+  type: AppType.Canvas,
+  mode: AppLaunchMode.Play,
+  skipMakerPortal: true, // Skip maker portal
+  directUrl: process.env.APP_URL, // Direct URL
+});
+```
+
+### 3. Component-Based Testing
+
+Use GridComponent and FormComponent for Model-Driven Apps:
+
+```typescript
+// Grid operations
+await modelDrivenApp.grid.openRecord({ rowNumber: 0 });
+const value = await modelDrivenApp.grid.getCellValue(0, 'Column Name');
+
+// Form operations
+await modelDrivenApp.form.setAttribute('name', 'Value');
+await modelDrivenApp.form.save();
+```
+
+## Utility Functions
+
+### Test Data Generation
+
+```typescript
+import {
+  generateUniqueOrderNumber,
+  generateUniqueTestId,
+  generateRandomAlphaNumeric,
+} from 'playwright-power-platform-toolkit';
+
+const orderNumber = generateUniqueOrderNumber(); // ORD-12345
+const testId = generateUniqueTestId('USER'); // USER-ABC123
+const randomString = generateRandomAlphaNumeric(8); // X7K9M2P4
+```
+
+### Canvas App URL Building
+
+```typescript
+import { buildCanvasAppUrl, buildCanvasAppUrlFromEnv } from 'playwright-power-platform-toolkit';
+
+// Build from environment variables
+const url = buildCanvasAppUrlFromEnv();
+
+// Build from specific values
+const url = buildCanvasAppUrl({
+  environmentId: 'env-id',
+  appId: 'app-id',
+  tenantId: 'tenant-id',
+});
+```
+
+### Authentication Token Management
+
+```typescript
+import { ConfigHelper } from 'playwright-power-platform-toolkit';
+
+// Get auth token from storage state
+const token = ConfigHelper.getAuthToken();
+
+// Check token expiration
+const check = ConfigHelper.checkStorageStateExpiration();
+if (check.expired) {
+  console.log('Token expired, re-authenticate');
+}
 ```
 
 ## Next Steps
 
 - [Testing Canvas Apps](./02-canvas-apps.md) - Deep dive into Canvas App testing
 - [Testing Model-Driven Apps](./03-model-driven-apps.md) - Deep dive into Model-Driven App testing
-- [Authentication](./04-authentication.md) - Setting up authentication
+- [Authentication](./04-authentication.md) - Setting up authentication with playwright-ms-auth
 - [Advanced Usage](./05-advanced-usage.md) - Advanced patterns and techniques
 
 ## Troubleshooting
@@ -162,22 +382,34 @@ await app.waitForAppToLoad();
 
 If your app doesn't load, check:
 
-- The app URL is correct and accessible
-- Authentication is properly configured
-- Timeouts are sufficient (Power Apps can be slow to load)
+- The direct URL is correct and accessible
+- Authentication is properly configured (storage state exists)
+- Timeouts are sufficient (use 60-120 seconds for initial load)
+- Environment variables are set correctly
 
 ### Control Not Found
 
 If controls aren't found:
 
-- Verify the control name matches exactly (case-sensitive)
-- Wait for the app to fully load before interacting
+- Verify the data-test-id or control name matches exactly (case-sensitive)
+- Use `await grid.waitForGridLoad()` before interacting with grid
+- Wait for app to fully load before interacting
 - Use browser DevTools to inspect the control selectors
 
 ### Authentication Issues
 
 For authentication problems:
 
-- Ensure credentials are correct in `.env`
-- Check if MFA is required (may need manual intervention)
+- Ensure `playwright-ms-auth` is configured (see [Authentication Guide](./04-authentication.md))
+- Check that storage state file exists and is not expired
 - Verify your account has access to the app
+- Run authentication script separately: `npx ts-node scripts/authenticate.ts`
+
+### Grid/Form Issues
+
+If grid or form operations fail:
+
+- Wait for grid to load: `await modelDrivenApp.grid.waitForGridLoad()`
+- Check if form is loaded: `await modelDrivenApp.form.getContext()`
+- Verify column names match exactly (case-sensitive)
+- Use FormContext API for complex form operations

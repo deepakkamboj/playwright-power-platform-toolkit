@@ -3,13 +3,7 @@
  */
 
 import { test as base } from '@playwright/test';
-import {
-  PowerAppsPage,
-  ApiTestHelper,
-  AccessibilityTestHelper,
-  ConfigHelper,
-  TestLogger,
-} from 'playwright-power-platform-toolkit';
+import { PowerAppsPage, ConfigHelper } from 'playwright-power-platform-toolkit';
 
 /**
  * Environment types for test filtering
@@ -131,10 +125,7 @@ export type BaseTestOptions = {
  */
 export type ExtendedFixtures = {
   powerAppsPage: PowerAppsPage;
-  apiHelper: ApiTestHelper;
-  a11yHelper: AccessibilityTestHelper;
   config: typeof ConfigHelper;
-  testLogger: typeof TestLogger;
   baseUrl: string;
 };
 
@@ -196,26 +187,9 @@ const baseTest = testWithOptions.extend<ExtendedFixtures>({
     await use(powerAppsPage);
   },
 
-  // ApiTestHelper fixture - automatically initialized with config
-  apiHelper: async ({ request }, use) => {
-    const apiHelper = new ApiTestHelper(request);
-    await use(apiHelper);
-  },
-
-  // AccessibilityTestHelper fixture - automatically initialized
-  a11yHelper: async ({ page }, use) => {
-    const a11yHelper = new AccessibilityTestHelper(page);
-    await use(a11yHelper);
-  },
-
   // ConfigHelper fixture - provides static class
   config: async ({}, use) => {
     await use(ConfigHelper);
-  },
-
-  // TestLogger fixture - static utility
-  testLogger: async ({}, use) => {
-    await use(TestLogger);
   },
 
   // Base URL fixture - dynamically computed based on environment and geography
@@ -372,28 +346,28 @@ export function logTestMetadata(
     category?: TestCategory;
   }
 ) {
-  TestLogger.info(`Test: ${testInfo.title}`);
-  if (options?.owner) TestLogger.info(`  Owner: ${options.owner}`);
+  console.log(`Test: ${testInfo.title}`);
+  if (options?.owner) console.log(`  Owner: ${options.owner}`);
   if (options?.environment) {
     const envStr = Array.isArray(options.environment)
       ? options.environment.join(', ')
       : options.environment;
-    TestLogger.info(`  Environment: ${envStr}`);
+    console.log(`  Environment: ${envStr}`);
   }
   if (options?.geography) {
     const geoStr = Array.isArray(options.geography)
       ? options.geography.join(', ')
       : options.geography;
-    TestLogger.info(`  Geography: ${geoStr}`);
+    console.log(`  Geography: ${geoStr}`);
   }
   if (options?.buildPipeline) {
     const pipelineStr = Array.isArray(options.buildPipeline)
       ? options.buildPipeline.join(', ')
       : options.buildPipeline;
-    TestLogger.info(`  Pipeline: ${pipelineStr}`);
+    console.log(`  Pipeline: ${pipelineStr}`);
   }
-  if (options?.priority) TestLogger.info(`  Priority: ${options.priority}`);
-  if (options?.category) TestLogger.info(`  Category: ${options.category}`);
+  if (options?.priority) console.log(`  Priority: ${options.priority}`);
+  if (options?.category) console.log(`  Category: ${options.category}`);
 }
 
 /**

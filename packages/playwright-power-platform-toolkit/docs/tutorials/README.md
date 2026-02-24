@@ -4,25 +4,37 @@ Welcome to the Playwright Power Platform Toolkit tutorials! This guide will help
 
 ## Table of Contents
 
+### Core Tutorials
+
 1. [Getting Started](./01-getting-started.md)
 2. [Testing Canvas Apps](./02-canvas-apps.md)
 3. [Testing Model-Driven Apps](./03-model-driven-apps.md)
 4. [Authentication](./04-authentication.md)
 5. [Advanced Usage](./05-advanced-usage.md)
 
+### Component Guides
+
+6. [Model-Driven Components API](./MODEL-DRIVEN-COMPONENTS.md) - Complete API reference for GridComponent, FormComponent, and CommandingComponent
+7. [FormContext API](./FORMCONTEXT.md) - Deep dive into Dynamics 365 FormContext API
+
 ## Quick Start
 
 ```typescript
 import { test } from '@playwright/test';
-import { AppProvider } from 'playwright-power-platform-toolkit';
+import { AppProvider, AppType, AppLaunchMode } from 'playwright-power-platform-toolkit';
 
-test('my first power apps test', async ({ page }) => {
-  const appProvider = new AppProvider(page);
+test('my first power apps test', async ({ page, context }) => {
+  const appProvider = new AppProvider(page, context);
 
-  await appProvider.launchApp({
-    appUrl: 'https://apps.powerapps.com/...',
-    appType: 'canvas',
+  await appProvider.launch({
+    app: 'My Canvas App',
+    type: AppType.Canvas,
+    mode: AppLaunchMode.Play,
+    skipMakerPortal: true,
+    directUrl: process.env.CANVAS_APP_URL,
   });
+
+  const canvasApp = appProvider.getCanvasAppPage();
 
   // Your test code here
 });

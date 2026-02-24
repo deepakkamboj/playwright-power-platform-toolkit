@@ -10,6 +10,13 @@
 export { IAppLauncher, AppMetadata } from './core/app-launcher.interface';
 export { AppLauncherFactory } from './core/app-launcher.factory';
 export { AppProvider, LaunchAppConfig } from './core/app-provider';
+export { URLBuilder } from './core/url-builder';
+export {
+  PowerPlatformNavigator,
+  NavigatorOptions,
+  NavigationOptions,
+} from './core/power-platform-navigator';
+export * from './core/page-waiters';
 
 // Export Page Object Models
 export { PowerAppsPage } from './pages/power-apps.page';
@@ -45,3 +52,6 @@ export * from './utils';
 
 // Export Authentication
 export * from './auth';
+
+// Export Model-Driven Components
+export * from './components/model-driven';

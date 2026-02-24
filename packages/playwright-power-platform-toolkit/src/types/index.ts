@@ -55,6 +55,7 @@ export enum EndPointURL {
   home = '/home',
   apps = '/apps',
   solutions = '/solutions',
+  flows = '/flows',
   connectionEndPoint = '/connections',
   tablesEndPoint = '/entities',
   discoverAll = '/discover',

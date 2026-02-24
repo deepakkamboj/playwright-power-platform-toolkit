@@ -39,7 +39,12 @@
       "Bash(npm run auth:headful:*)",
       "Bash(CI=true npm test)",
       "Bash(CI=true npx playwright test:*)",
-      "Bash(npx playwright test:*)"
+      "Bash(npx playwright test:*)",
+      "Bash(SYSTEM_DEBUG=true npm run auth:*)",
+      "Bash(cat:*)",
+      "Bash(grep:*)",
+      "Bash(npm test:*)",
+      "Bash(CI=true npm test -- model-driven-direct-url.test.ts --project=model-driven-app)"
     ]
   }
 }

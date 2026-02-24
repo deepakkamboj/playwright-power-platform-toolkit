@@ -1,205 +1,434 @@
 # Authentication
 
-This guide covers authentication strategies for testing Power Platform applications with Playwright.
+This guide covers authentication for Power Platform applications using the `playwright-ms-auth` package.
 
 ## Overview
 
-Power Platform applications use Microsoft 365 authentication. This toolkit provides helpers for authenticating with Microsoft accounts.
+The Playwright Power Platform Toolkit uses **playwright-ms-auth** for handling Microsoft authentication. This package manages:
 
-## Authentication Helper
+- Username/password authentication
+- Certificate-based authentication
+- Storage state management
+- Token refresh and expiration handling
 
-The toolkit uses `playwright-ms-auth` for Microsoft authentication.
+## Installation
 
-```typescript
-import { MsAuthHelper } from 'playwright-power-platform-toolkit';
+Install the authentication package:
+
+```bash
+npm install playwright-ms-auth
 ```
 
-## Basic Authentication Setup
+## Setup
 
-### Using Environment Variables
+### 1. Configure Environment Variables
 
-The most common approach is to use environment variables for credentials.
-
-Create a `.env` file:
+Create a `.env` file in your project root:
 
 ```env
-MS_USERNAME=your.email@domain.com
-MS_PASSWORD=your-password
-MS_TENANT_ID=your-tenant-id
+# User credentials
+MS_AUTH_EMAIL=your.email@domain.com
+MS_USER_PASSWORD=your-password
+
+# Power Platform configuration
+POWER_APPS_ENVIRONMENT_ID=your-environment-id
+AZURE_TENANT_ID=your-tenant-id
+
+# App URLs
+CANVAS_APP_URL=https://apps.powerapps.com/play/e/ENV-ID/a/APP-ID?tenantId=TENANT-ID
+MODEL_DRIVEN_APP_URL=https://yourorg.crm.dynamics.com/main.aspx?appid=APP-ID
 ```
 
-### Authenticating Before Tests
+### 2. Certificate-Based Authentication (Optional)
+
+For certificate-based auth:
+
+```env
+MS_AUTH_CREDENTIAL_TYPE=certificate
+MS_AUTH_CREDENTIAL_PROVIDER=local
+MS_AUTH_LOCAL_FILE_PATH=path/to/certificate.pfx
+```
+
+### 3. Create Authentication Script
+
+Create `scripts/authenticate.ts`:
 
 ```typescript
-import { test } from '@playwright/test';
-import { MsAuthHelper, AppProvider } from 'playwright-power-platform-toolkit';
+import { authenticate } from 'playwright-ms-auth';
+import * as dotenv from 'dotenv';
 
-test('authenticated test', async ({ page }) => {
-  // Authenticate
-  const authHelper = new MsAuthHelper(page);
-  await authHelper.login({
-    username: process.env.MS_USERNAME!,
-    password: process.env.MS_PASSWORD!,
-  });
+dotenv.config();
 
-  // Launch app (already authenticated)
-  const appProvider = new AppProvider(page);
-  const app = await appProvider.launchApp({
-    appUrl: process.env.CANVAS_APP_URL!,
-    appType: 'canvas',
-  });
+async function runAuth() {
+  console.log('Starting authentication...');
 
-  // Test code...
-});
+  try {
+    await authenticate({
+      headless: false,
+      timeout: 120000,
+    });
+
+    console.log('✅ Authentication successful');
+    console.log('Storage state saved to: .auth/storageState.json');
+  } catch (error) {
+    console.error('❌ Authentication failed:', error);
+    process.exit(1);
+  }
+}
+
+runAuth();
 ```
 
-## Reusing Authentication State
+### 4. Run Authentication
 
-For faster test execution, reuse authentication state across tests.
+```bash
+# Run authentication script
+npx ts-node scripts/authenticate.ts
 
-### Setup Authentication Once
-
-Create a setup script `tests/setup/auth.setup.ts`:
-
-```typescript
-import { test as setup } from '@playwright/test';
-import { MsAuthHelper } from 'playwright-power-platform-toolkit';
-
-const authFile = 'playwright/.auth/user.json';
-
-setup('authenticate', async ({ page }) => {
-  const authHelper = new MsAuthHelper(page);
-
-  await authHelper.login({
-    username: process.env.MS_USERNAME!,
-    password: process.env.MS_PASSWORD!,
-  });
-
-  // Save authentication state
-  await page.context().storageState({ path: authFile });
-});
+# Or using Node.js
+node --loader ts-node/esm scripts/authenticate.ts
 ```
 
-### Configure Playwright to Use Saved State
+This creates `.auth/storageState.json` with authentication tokens.
 
-Update `playwright.config.ts`:
+## Playwright Configuration
+
+Update `playwright.config.ts` to use storage state:
 
 ```typescript
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
+  testDir: './tests',
+  timeout: 120000,
+
+  use: {
+    headless: false,
+    viewport: { width: 1280, height: 720 },
+    actionTimeout: 30000,
+
+    // Use storage state for all tests
+    storageState: '.auth/storageState.json',
+  },
+
+  // Separate projects for different auth scenarios
   projects: [
     {
-      name: 'setup',
-      testMatch: /.*\.setup\.ts/,
-    },
-    {
-      name: 'chromium',
-      dependencies: ['setup'],
+      name: 'authenticated',
       use: {
-        storageState: 'playwright/.auth/user.json',
+        storageState: '.auth/storageState.json',
       },
     },
   ],
 });
 ```
 
-### Using Saved State in Tests
+## Using Authentication in Tests
+
+### Basic Test with Authentication
 
 ```typescript
-import { test } from '@playwright/test';
-import { AppProvider } from 'playwright-power-platform-toolkit';
+import { test, expect } from '@playwright/test';
+import {
+  AppProvider,
+  AppType,
+  AppLaunchMode,
+  ModelDrivenAppPage,
+} from 'playwright-power-platform-toolkit';
 
-test('authenticated test with saved state', async ({ page }) => {
-  // No need to authenticate - using saved state
-  const appProvider = new AppProvider(page);
-  const app = await appProvider.launchApp({
-    appUrl: process.env.CANVAS_APP_URL!,
-    appType: 'canvas',
+const MODEL_APP_URL = process.env.MODEL_DRIVEN_APP_URL!;
+
+test.describe('Authenticated Tests', () => {
+  test('should access app with authentication', async ({ page, context }) => {
+    // AppProvider automatically uses storage state from Playwright config
+    const appProvider = new AppProvider(page, context);
+
+    await appProvider.launch({
+      app: 'My App',
+      type: AppType.ModelDriven,
+      mode: AppLaunchMode.Play,
+      skipMakerPortal: true,
+      directUrl: MODEL_APP_URL,
+    });
+
+    const modelDrivenApp = appProvider.getModelDrivenAppPage();
+
+    // Wait for grid to verify authentication worked
+    await modelDrivenApp.grid.waitForGridLoad();
+
+    console.log('✅ Authenticated and app loaded');
   });
-
-  // Test code...
 });
 ```
 
-## Multi-Factor Authentication (MFA)
-
-### Interactive MFA
-
-For accounts with MFA, you may need to authenticate interactively:
+### Checking Token Expiration
 
 ```typescript
-test('interactive MFA authentication', async ({ page }) => {
-  const authHelper = new MsAuthHelper(page);
+import { ConfigHelper } from 'playwright-power-platform-toolkit';
 
-  await authHelper.login({
-    username: process.env.MS_USERNAME!,
-    password: process.env.MS_PASSWORD!,
-    waitForManualMfa: true, // Wait for user to complete MFA
-    mfaTimeout: 60000, // 60 seconds to complete MFA
-  });
+test.beforeAll(async () => {
+  // Check if authentication token is expired
+  const check = ConfigHelper.checkStorageStateExpiration('.auth/storageState.json');
 
-  // Continue with test...
+  if (check.expired) {
+    console.error('❌ Authentication token has expired');
+    console.log('Please run: npx ts-node scripts/authenticate.ts');
+    process.exit(1);
+  }
+
+  if (check.expiresOn) {
+    const expiryDate = new Date(check.expiresOn * 1000);
+    console.log(`✅ Token expires at: ${expiryDate.toLocaleString()}`);
+  }
 });
 ```
 
-### SMS/App-based MFA
+### Getting Authentication Token
 
 ```typescript
-test('SMS MFA authentication', async ({ page }) => {
-  const authHelper = new MsAuthHelper(page);
+import { ConfigHelper } from 'playwright-power-platform-toolkit';
 
-  await authHelper.login({
-    username: process.env.MS_USERNAME!,
-    password: process.env.MS_PASSWORD!,
-    mfaCode: process.env.MS_MFA_CODE, // One-time code from SMS/app
-  });
+test('use auth token for API calls', async ({ page }) => {
+  // Get authentication token from storage state
+  const token = ConfigHelper.getAuthToken('.auth/storageState.json');
 
-  // Continue with test...
+  if (!token) {
+    throw new Error('Authentication token not found');
+  }
+
+  // Use token for API calls
+  const response = await page.request.get(
+    'https://api.bap.microsoft.com/providers/Microsoft.BusinessAppPlatform/environments',
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+
+  expect(response.ok()).toBeTruthy();
 });
 ```
 
-## Service Principal Authentication
+## Authentication Best Practices
 
-For CI/CD pipelines, use service principal authentication.
-
-### Setting Up Service Principal
-
-1. Register an Azure AD application
-2. Grant it appropriate permissions to Power Platform
-3. Create a client secret
-4. Note the Application (Client) ID and Tenant ID
-
-### Using Service Principal
+### 1. Re-authenticate When Needed
 
 ```typescript
-import { test } from '@playwright/test';
-import { MsAuthHelper } from 'playwright-power-platform-toolkit';
+test.beforeAll(async () => {
+  const check = ConfigHelper.checkStorageStateExpiration();
 
-test('service principal auth', async ({ page }) => {
-  const authHelper = new MsAuthHelper(page);
-
-  await authHelper.loginWithServicePrincipal({
-    tenantId: process.env.MS_TENANT_ID!,
-    clientId: process.env.MS_CLIENT_ID!,
-    clientSecret: process.env.MS_CLIENT_SECRET!,
-  });
-
-  // Continue with test...
+  if (check.expired) {
+    console.log('Token expired, re-authenticating...');
+    // Re-run authentication script or fail the test
+    throw new Error('Please re-authenticate: npx ts-node scripts/authenticate.ts');
+  }
 });
 ```
 
-### Environment Variables for Service Principal
+### 2. Use Separate Storage States
 
-```env
-MS_TENANT_ID=your-tenant-id
-MS_CLIENT_ID=your-client-id
-MS_CLIENT_SECRET=your-client-secret
+For testing with different users:
+
+```typescript
+// playwright.config.ts
+export default defineConfig({
+  projects: [
+    {
+      name: 'admin-user',
+      use: {
+        storageState: '.auth/admin-storageState.json',
+      },
+    },
+    {
+      name: 'regular-user',
+      use: {
+        storageState: '.auth/user-storageState.json',
+      },
+    },
+  ],
+});
+```
+
+### 3. Keep Tokens Secure
+
+- Add `.auth/` to `.gitignore`
+- Don't commit storage state files
+- Use environment variables for sensitive data
+- Rotate credentials regularly
+
+```gitignore
+# .gitignore
+.auth/
+.env
+*.json
+```
+
+### 4. Validate Authentication
+
+```typescript
+import { checkEnvironmentVariables } from 'playwright-power-platform-toolkit';
+
+test.beforeAll(() => {
+  // Validate required environment variables are set
+  try {
+    checkEnvironmentVariables();
+    console.log('✅ All required environment variables are set');
+  } catch (error) {
+    console.error('❌ Missing environment variables:', error.message);
+    process.exit(1);
+  }
+});
+```
+
+## Troubleshooting
+
+### Token Expired
+
+If tests fail with authentication errors:
+
+```bash
+# Re-run authentication
+npx ts-node scripts/authenticate.ts
+
+# Verify storage state exists
+ls -la .auth/storageState.json
+
+# Check token expiration
+npx ts-node -e "
+import { ConfigHelper } from 'playwright-power-platform-toolkit';
+const check = ConfigHelper.checkStorageStateExpiration();
+console.log('Expired:', check.expired);
+console.log('Expires On:', check.expiresOn ? new Date(check.expiresOn * 1000) : 'Unknown');
+"
+```
+
+### MFA Required
+
+If your account requires MFA (Multi-Factor Authentication):
+
+1. Run authentication in headed mode
+2. Complete MFA challenge manually
+3. Storage state will be saved after successful auth
+
+```typescript
+await authenticate({
+  headless: false, // Must be false for MFA
+  timeout: 300000, // Longer timeout for manual MFA
+});
+```
+
+### Certificate Authentication Issues
+
+If certificate auth fails:
+
+- Verify certificate file path is correct
+- Ensure certificate is not expired
+- Check certificate has required permissions
+- Verify `MS_AUTH_CREDENTIAL_TYPE=certificate` is set
+
+### Storage State Not Found
+
+If Playwright can't find storage state:
+
+```bash
+# Check if file exists
+ls .auth/storageState.json
+
+# Re-run authentication
+npx ts-node scripts/authenticate.ts
+
+# Verify Playwright config path is correct
+# storageState: '.auth/storageState.json'
+```
+
+## Advanced Authentication Scenarios
+
+### Multiple Environments
+
+```typescript
+// authenticate-dev.ts
+await authenticate({
+  outputFile: '.auth/dev-storageState.json',
+});
+
+// authenticate-prod.ts
+await authenticate({
+  outputFile: '.auth/prod-storageState.json',
+});
+
+// playwright.config.ts
+export default defineConfig({
+  projects: [
+    {
+      name: 'dev',
+      use: {
+        storageState: '.auth/dev-storageState.json',
+      },
+    },
+    {
+      name: 'prod',
+      use: {
+        storageState: '.auth/prod-storageState.json',
+      },
+    },
+  ],
+});
+```
+
+### Conditional Authentication
+
+```typescript
+test.beforeEach(async ({ page, context }) => {
+  // Check if storage state exists
+  const fs = require('fs');
+  const storageStatePath = '.auth/storageState.json';
+
+  if (!fs.existsSync(storageStatePath)) {
+    console.log('Storage state not found, running authentication...');
+    await authenticate({
+      outputFile: storageStatePath,
+      headless: false
+    });
+  }
+
+  // Proceed with test
+  const appProvider = new AppProvider(page, context);
+  await appProvider.launch({...});
+});
+```
+
+### Token Refresh
+
+```typescript
+test.beforeAll(async () => {
+  const check = ConfigHelper.checkStorageStateExpiration();
+
+  if (check.expired) {
+    console.log('Token expired, refreshing...');
+    await authenticate({
+      outputFile: '.auth/storageState.json',
+      headless: true,
+    });
+  } else if (check.expiresOn) {
+    const hoursUntilExpiry = (check.expiresOn - Date.now() / 1000) / 3600;
+    console.log(`Token expires in ${hoursUntilExpiry.toFixed(1)} hours`);
+
+    if (hoursUntilExpiry < 1) {
+      console.log('Token expiring soon, refreshing...');
+      await authenticate({
+        outputFile: '.auth/storageState.json',
+        headless: true,
+      });
+    }
+  }
+});
 ```
 
 ## CI/CD Integration
 
-### GitHub Actions
+### GitHub Actions Example
 
 ```yaml
 name: E2E Tests
@@ -209,6 +438,7 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
@@ -220,14 +450,20 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Playwright browsers
+      - name: Install Playwright
         run: npx playwright install --with-deps
+
+      - name: Authenticate
+        env:
+          MS_AUTH_EMAIL: ${{ secrets.MS_AUTH_EMAIL }}
+          MS_USER_PASSWORD: ${{ secrets.MS_USER_PASSWORD }}
+          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+        run: npx ts-node scripts/authenticate.ts
 
       - name: Run tests
         env:
-          MS_USERNAME: ${{ secrets.MS_USERNAME }}
-          MS_PASSWORD: ${{ secrets.MS_PASSWORD }}
           CANVAS_APP_URL: ${{ secrets.CANVAS_APP_URL }}
+          MODEL_DRIVEN_APP_URL: ${{ secrets.MODEL_DRIVEN_APP_URL }}
         run: npx playwright test
 
       - name: Upload test results
@@ -238,142 +474,39 @@ jobs:
           path: playwright-report/
 ```
 
-## Best Practices
+## Environment Variable Reference
 
-### 1. Never Commit Credentials
+### Required Variables
 
-Always use environment variables or secrets management:
+```env
+# Authentication
+MS_AUTH_EMAIL=user@domain.com
+MS_USER_PASSWORD=password
 
-```typescript
-// Good
-const username = process.env.MS_USERNAME;
+# Azure/Power Platform
+AZURE_TENANT_ID=your-tenant-id
+POWER_APPS_ENVIRONMENT_ID=your-environment-id
 
-// Bad - NEVER do this
-const username = 'user@example.com';
-const password = 'password123';
+# App URLs
+CANVAS_APP_URL=https://apps.powerapps.com/play/...
+MODEL_DRIVEN_APP_URL=https://org.crm.dynamics.com/...
 ```
 
-### 2. Use Dedicated Test Accounts
+### Optional Variables
 
-Create dedicated test accounts for automation:
+```env
+# Certificate authentication
+MS_AUTH_CREDENTIAL_TYPE=certificate
+MS_AUTH_CREDENTIAL_PROVIDER=local
+MS_AUTH_LOCAL_FILE_PATH=path/to/cert.pfx
 
-- Separate from production accounts
-- No MFA (for easier automation)
-- Limited permissions (security best practice)
-
-### 3. Rotate Credentials Regularly
-
-For CI/CD:
-
-- Rotate client secrets regularly
-- Use Azure Key Vault or similar for secret management
-- Monitor for unusual authentication activity
-
-### 4. Handle Authentication Failures Gracefully
-
-```typescript
-test('handle auth failure', async ({ page }) => {
-  const authHelper = new MsAuthHelper(page);
-
-  try {
-    await authHelper.login({
-      username: process.env.MS_USERNAME!,
-      password: process.env.MS_PASSWORD!,
-    });
-  } catch (error) {
-    console.error('Authentication failed:', error);
-    // Take screenshot for debugging
-    await page.screenshot({ path: 'auth-failure.png' });
-    throw error;
-  }
-});
-```
-
-### 5. Separate Authentication from Test Logic
-
-```typescript
-// Create a test fixture
-import { test as base } from '@playwright/test';
-import { AppProvider } from 'playwright-power-platform-toolkit';
-
-type Fixtures = {
-  authenticatedPage: Page;
-  appProvider: AppProvider;
-};
-
-export const test = base.extend<Fixtures>({
-  authenticatedPage: async ({ page }, use) => {
-    // Authenticate once per test
-    const authHelper = new MsAuthHelper(page);
-    await authHelper.login({
-      username: process.env.MS_USERNAME!,
-      password: process.env.MS_PASSWORD!
-    });
-    await use(page);
-  },
-
-  appProvider: async ({ authenticatedPage }, use) => {
-    const provider = new AppProvider(authenticatedPage);
-    await use(provider);
-  }
-});
-
-// Use in tests
-test('my test', async ({ appProvider }) => {
-  const app = await appProvider.launchApp({...});
-  // Test code...
-});
-```
-
-## Troubleshooting
-
-### Authentication Timeout
-
-Increase timeout if authentication is slow:
-
-```typescript
-await authHelper.login({
-  username: process.env.MS_USERNAME!,
-  password: process.env.MS_PASSWORD!,
-  timeout: 60000, // 60 seconds
-});
-```
-
-### Conditional Access Policies
-
-If your organization uses conditional access:
-
-- Whitelist CI/CD IP addresses
-- Use device-based authentication
-- Configure trusted locations
-
-### Session Expiration
-
-If sessions expire during long test runs:
-
-```typescript
-test('long running test', async ({ page }) => {
-  // Re-authenticate if session expires
-  const authHelper = new MsAuthHelper(page);
-
-  async function ensureAuthenticated() {
-    const isAuthenticated = await authHelper.isAuthenticated();
-    if (!isAuthenticated) {
-      await authHelper.login({...});
-    }
-  }
-
-  await ensureAuthenticated();
-
-  // Test code...
-
-  // Re-check authentication after long operation
-  await page.waitForTimeout(300000); // 5 minutes
-  await ensureAuthenticated();
-});
+# Custom URLs
+POWER_APPS_BASE_URL=https://make.powerapps.com
+BAP_API_URL=https://api.bap.microsoft.com
+AUTH_ENDPOINT=https://login.microsoftonline.com
 ```
 
 ## Next Steps
 
-- [Advanced Usage](./05-advanced-usage.md)
-- [API Reference](../api/)
+- [Advanced Usage](./05-advanced-usage.md) - Advanced patterns and techniques
+- [playwright-ms-auth Documentation](https://github.com/microsoft/playwright-ms-auth) - Official authentication package docs

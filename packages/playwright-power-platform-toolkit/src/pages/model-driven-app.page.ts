@@ -5,12 +5,180 @@
 
 import { Page, expect } from '@playwright/test';
 import { ModelDrivenAppLocators } from '../locators/model-driven-app.locators';
+import { GridComponent } from '../components/model-driven/grid.component';
+import { FormComponent } from '../components/model-driven/form.component';
+import { CommandingComponent } from '../components/model-driven/commanding.component';
+import { GridRecordOptions } from '../components/model-driven/types';
+import { addCertAuthRoute } from '../auth';
+import * as fs from 'fs';
 
 export class ModelDrivenAppPage {
   readonly page: Page;
 
-  constructor(page: Page) {
+  // Base URL for the Model-Driven App
+  private _baseAppUrl?: string;
+
+  // GridComponent (lazy-initialized)
+  private _grid?: GridComponent;
+
+  // FormComponent (lazy-initialized)
+  private _form?: FormComponent;
+
+  // CommandingComponent (lazy-initialized)
+  private _commanding?: CommandingComponent;
+
+  // Promise to track certificate auth setup
+  private _certAuthSetup?: Promise<void>;
+
+  constructor(page: Page, baseAppUrl?: string) {
     this.page = page;
+    this._baseAppUrl = baseAppUrl;
+
+    // Start certificate authentication setup (don't await - will be awaited on first navigation)
+    this._certAuthSetup = this.setupCertificateAuth();
+  }
+
+  /**
+   * Set up certificate authentication if configured in environment variables
+   * This is automatically called in the constructor
+   * @private
+   */
+  private async setupCertificateAuth(): Promise<void> {
+    const credentialType = process.env.MS_AUTH_CREDENTIAL_TYPE;
+    const certPath = process.env.MS_AUTH_LOCAL_FILE_PATH;
+
+    if (credentialType === 'certificate' && certPath) {
+      try {
+        console.log('[ModelDrivenAppPage] Enabling certificate authentication...');
+        const pfxBuffer = fs.readFileSync(certPath);
+        const certPassword = process.env.MS_AUTH_CERTIFICATE_PASSWORD;
+        const authEndpoint =
+          process.env.AUTH_ENDPOINT?.replace('https://', '') || 'login.microsoftonline.com';
+
+        await addCertAuthRoute(this.page, {
+          pfx: pfxBuffer,
+          passphrase: certPassword,
+          authEndpoint: authEndpoint,
+        });
+
+        console.log('[ModelDrivenAppPage] ✅ Certificate authentication enabled');
+      } catch (error: any) {
+        console.error(
+          '[ModelDrivenAppPage] ⚠️ Failed to enable certificate authentication:',
+          error.message
+        );
+        console.error('[ModelDrivenAppPage] Tests may fail if certificate auth is required');
+      }
+    }
+  }
+
+  /**
+   * Ensure certificate authentication is set up before navigation
+   * @private
+   */
+  private async ensureCertAuth(): Promise<void> {
+    if (this._certAuthSetup) {
+      await this._certAuthSetup;
+    }
+  }
+
+  /**
+   * Set the base app URL for navigation
+   * @param url - Base URL of the Model-Driven App (e.g., 'https://org.crm.dynamics.com/main.aspx?appid=abc-123')
+   */
+  setBaseAppUrl(url: string): void {
+    this._baseAppUrl = url;
+  }
+
+  /**
+   * Get the base app URL
+   * Falls back to current page URL origin if not set
+   */
+  getBaseAppUrl(): string {
+    if (this._baseAppUrl && this._baseAppUrl.trim()) {
+      return this._baseAppUrl;
+    }
+
+    // Fallback to current page URL
+    const currentUrl = this.page.url();
+
+    // Check if current URL is valid (not about:blank, data:, etc.)
+    if (!currentUrl || currentUrl.startsWith('about:') || currentUrl.startsWith('data:')) {
+      throw new Error(
+        'Base URL is not set. Please provide baseAppUrl in the ModelDrivenAppPage constructor, ' +
+          'or ensure BASE_APP_URL environment variable is set. ' +
+          'Example: new ModelDrivenAppPage(page, "https://org.crm.dynamics.com/main.aspx?appid=abc-123")'
+      );
+    }
+
+    try {
+      return new URL(currentUrl).origin;
+    } catch (error) {
+      throw new Error(
+        `Failed to extract base URL from current page URL "${currentUrl}". ` +
+          'Please provide a valid baseAppUrl in the constructor.'
+      );
+    }
+  }
+
+  /**
+   * Get GridComponent for advanced grid operations
+   * Lazily initialized on first access
+   *
+   * @example
+   * ```typescript
+   * // Use grid component directly
+   * await modelDrivenApp.grid.openRecord({ rowNumber: 0 });
+   * await modelDrivenApp.grid.selectRow(1);
+   * const value = await modelDrivenApp.grid.getCellValue(0, 'Order Number');
+   * ```
+   */
+  get grid(): GridComponent {
+    if (!this._grid) {
+      this._grid = new GridComponent(this.page, ModelDrivenAppLocators.Runtime.Content.Grid);
+    }
+    return this._grid;
+  }
+
+  /**
+   * Get FormComponent for advanced form operations
+   * Lazily initialized on first access
+   *
+   * @example
+   * ```typescript
+   * // Use form component directly
+   * const context = await modelDrivenApp.form.getContext();
+   * console.log('Entity:', context.entityName);
+   *
+   * const orderNumber = await modelDrivenApp.form.getAttribute('nwind_ordernumber');
+   * await modelDrivenApp.form.setAttribute('nwind_ordernumber', 'TEST-12345');
+   * await modelDrivenApp.form.save();
+   * ```
+   */
+  get form(): FormComponent {
+    if (!this._form) {
+      this._form = new FormComponent(this.page);
+    }
+    return this._form;
+  }
+
+  /**
+   * Get CommandingComponent for command bar operations
+   * Lazily initialized on first access
+   *
+   * @example
+   * ```typescript
+   * // Use commanding component directly
+   * await modelDrivenApp.commanding.clickButton('New');
+   * await modelDrivenApp.commanding.refresh();
+   * await modelDrivenApp.commanding.save();
+   * ```
+   */
+  get commanding(): CommandingComponent {
+    if (!this._commanding) {
+      this._commanding = new CommandingComponent(this.page);
+    }
+    return this._commanding;
   }
 
   // ========================================
@@ -23,6 +191,161 @@ export class ModelDrivenAppPage {
   async navigateToHome(): Promise<void> {
     await this.page.goto('');
     await this.waitForHomePageLoad();
+  }
+
+  /**
+   * Navigate to grid/list view for a specific entity
+   * Constructs URL to navigate directly to entity grid view
+   *
+   * @param entityName - Logical name of the entity (e.g., 'account', 'contact', 'nwind_order')
+   * @param options - Navigation options
+   * @param options.appId - Optional app ID to include in URL
+   * @param options.viewId - Optional view ID to load specific view
+   *
+   * @example
+   * // Navigate to accounts grid
+   * await modelDrivenApp.navigateToGridView('account');
+   *
+   * // Navigate to custom entity grid
+   * await modelDrivenApp.navigateToGridView('nwind_order');
+   *
+   * // Navigate to specific view
+   * await modelDrivenApp.navigateToGridView('account', { viewId: 'view-guid' });
+   */
+  async navigateToGridView(
+    entityName: string,
+    options?: { appId?: string; viewId?: string }
+  ): Promise<void> {
+    // Ensure certificate authentication is set up before navigation
+    await this.ensureCertAuth();
+
+    const baseAppUrl = this.getBaseAppUrl();
+
+    // Parse the base URL to extract origin (protocol + hostname only)
+    let url: URL;
+    try {
+      url = new URL(baseAppUrl);
+    } catch (error) {
+      throw new Error(
+        `Invalid base URL: "${baseAppUrl}". Please check your BASE_APP_URL environment variable or constructor parameter.`
+      );
+    }
+    const origin = url.origin; // e.g., https://ltimautomation.crm.dynamics.com
+
+    // Try to get appId from: 1) options, 2) baseAppUrl, 3) current page URL
+    let appId = options?.appId;
+    if (!appId) {
+      // Extract appId from baseAppUrl if present
+      appId = url.searchParams.get('appid') || undefined;
+
+      // Fallback to current page URL if still not found
+      if (!appId) {
+        const currentUrlParams = new URLSearchParams(new URL(this.page.url()).search);
+        appId = currentUrlParams.get('appid') || '';
+      }
+    }
+
+    // Build grid view URL using origin only
+    let gridUrl = `${origin}/main.aspx?pagetype=entitylist&etn=${entityName}`;
+    if (appId) {
+      gridUrl += `&appid=${appId}`;
+    }
+    if (options?.viewId) {
+      gridUrl += `&viewid=${options.viewId}`;
+    }
+
+    console.log(`[ModelDrivenAppPage] Navigating to grid view: ${entityName}`);
+    console.log(`[ModelDrivenAppPage] Grid URL: ${gridUrl}`);
+    await this.page.goto(gridUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
+
+    // Wait for page to stabilize after navigation
+    await this.page.waitForTimeout(3000);
+
+    // Wait for grid to load (with extended timeout for slow-loading grids)
+    await this.grid.waitForGridLoad();
+    console.log(`[ModelDrivenAppPage] Grid view loaded for ${entityName}`);
+  }
+
+  /**
+   * Navigate to form view for a specific entity
+   * Can navigate to create new record or edit existing record
+   *
+   * @param entityName - Logical name of the entity (e.g., 'account', 'contact', 'nwind_order')
+   * @param options - Navigation options
+   * @param options.recordId - Optional record ID to edit existing record (if omitted, opens new record form)
+   * @param options.appId - Optional app ID to include in URL
+   * @param options.formId - Optional form ID to load specific form
+   *
+   * @example
+   * // Navigate to new record form
+   * await modelDrivenApp.navigateToFormView('account');
+   *
+   * // Navigate to existing record form
+   * await modelDrivenApp.navigateToFormView('account', { recordId: 'record-guid' });
+   *
+   * // Navigate to specific form
+   * await modelDrivenApp.navigateToFormView('contact', { formId: 'form-guid' });
+   */
+  async navigateToFormView(
+    entityName: string,
+    options?: { recordId?: string; appId?: string; formId?: string }
+  ): Promise<void> {
+    // Ensure certificate authentication is set up before navigation
+    await this.ensureCertAuth();
+
+    const baseAppUrl = this.getBaseAppUrl();
+
+    // Parse the base URL to extract origin (protocol + hostname only)
+    let url: URL;
+    try {
+      url = new URL(baseAppUrl);
+    } catch (error) {
+      throw new Error(
+        `Invalid base URL: "${baseAppUrl}". Please check your BASE_APP_URL environment variable or constructor parameter.`
+      );
+    }
+    const origin = url.origin; // e.g., https://ltimautomation.crm.dynamics.com
+
+    // Try to get appId from: 1) options, 2) baseAppUrl, 3) current page URL
+    let appId = options?.appId;
+    if (!appId) {
+      // Extract appId from baseAppUrl if present
+      appId = url.searchParams.get('appid') || undefined;
+
+      // Fallback to current page URL if still not found
+      if (!appId) {
+        const currentUrlParams = new URLSearchParams(new URL(this.page.url()).search);
+        appId = currentUrlParams.get('appid') || '';
+      }
+    }
+
+    // Build form view URL using origin only
+    let formUrl = `${origin}/main.aspx?pagetype=entityrecord&etn=${entityName}`;
+    if (appId) {
+      formUrl += `&appid=${appId}`;
+    }
+    if (options?.recordId) {
+      formUrl += `&id=${options.recordId}`;
+    }
+    if (options?.formId) {
+      formUrl += `&formid=${options.formId}`;
+    }
+
+    const action = options?.recordId ? 'edit' : 'create new';
+    console.log(`[ModelDrivenAppPage] Navigating to form view (${action}): ${entityName}`);
+    console.log(`[ModelDrivenAppPage] Form URL: ${formUrl}`);
+    await this.page.goto(formUrl, { waitUntil: 'domcontentloaded' });
+
+    // Wait for form to load
+    await this.page.waitForTimeout(3000);
+    await this.page
+      .locator(ModelDrivenAppLocators.Runtime.Content.Form)
+      .waitFor({ state: 'visible', timeout: 30000 })
+      .catch(() => {
+        console.log('[ModelDrivenAppPage] Form locator timeout, continuing...');
+      });
+
+    console.log(`[ModelDrivenAppPage] Form view loaded for ${entityName}`);
   }
 
   /**
@@ -63,6 +386,53 @@ export class ModelDrivenAppPage {
       state: 'visible',
       timeout: 60000,
     });
+  }
+
+  // ========================================
+  // Grid Convenience Methods
+  // Delegate to GridComponent for common operations
+  // ========================================
+
+  /**
+   * Open a record from the grid view
+   * Convenience method that delegates to GridComponent
+   *
+   * @param options - Record selection options
+   *
+   * @example
+   * // Open first record
+   * await modelDrivenApp.openRecordFromGrid({ rowNumber: 0 });
+   *
+   * // Open record by column value
+   * await modelDrivenApp.openRecordFromGrid({
+   *   columnValue: 'TEST-123',
+   *   columnName: 'Order Number'
+   * });
+   */
+  async openRecordFromGrid(options: GridRecordOptions): Promise<void> {
+    return this.grid.openRecord(options);
+  }
+
+  /**
+   * Select a row in the grid
+   * Convenience method that delegates to GridComponent
+   *
+   * @param rowNumber - Row index (0-based)
+   */
+  async selectGridRow(rowNumber: number): Promise<void> {
+    return this.grid.selectRow(rowNumber);
+  }
+
+  /**
+   * Get cell value from grid
+   * Convenience method that delegates to GridComponent
+   *
+   * @param row - Row index (0-based)
+   * @param column - Column name
+   * @returns Cell text content
+   */
+  async getGridCellValue(row: number, column: string): Promise<string> {
+    return this.grid.getCellValue(row, column);
   }
 
   // ========================================
@@ -634,15 +1004,18 @@ export class ModelDrivenAppPage {
   /**
    * Launch app by name (IAppLauncher interface)
    */
+  /**
+   * Launch app by name (IAppLauncher interface)
+   * Note: Navigation is handled by AppProvider, this just marks the launcher as ready
+   */
   async launchByName(
-    appName: string,
-    findAppCallback: (appName: string) => Promise<any>,
+    _appName: string,
+    _findAppCallback: (appName: string) => Promise<any>,
     _mode: any,
     _options?: any
   ): Promise<void> {
-    const appLocator = await findAppCallback(appName);
-    await appLocator.click();
-    await this.page.waitForLoadState('networkidle');
+    // Navigation is handled by AppProvider
+    // Just mark as ready
     this.ready = true;
   }
 

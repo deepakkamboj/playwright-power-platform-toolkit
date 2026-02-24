@@ -2,18 +2,12 @@
  * Playwright Configuration for Power Platform E2E Tests
  */
 
-import { existsSync } from 'fs';
 import * as path from 'path';
 import { defineConfig } from '@playwright/test';
 import dotenv from 'dotenv';
-import {
-  getStorageStatePath,
-  checkEnvironmentVariables,
-  TimeOut,
-  ConfigHelper,
-  colors,
-} from 'playwright-power-platform-toolkit';
+import { getStorageStatePath, TimeOut, ConfigHelper } from 'playwright-power-platform-toolkit';
 import { getEnvironmentConfig } from './utils/common';
+import { validateAuthState } from './utils/validate-auth-state';
 
 // Load environment variables from .env file
 dotenv.config({ path: path.resolve(__dirname, '.env') });
@@ -32,64 +26,18 @@ function getGrepPattern(): RegExp | undefined {
 // Skip storage state validation in CI, when listing files, or in worker processes
 const isMainProcess = !process.env.TEST_WORKER_INDEX && !process.env.PLAYWRIGHT_WORKER;
 if (!process.argv.includes('list-files') && !process.env.CI && isMainProcess) {
-  const email = process.env.MS_AUTH_EMAIL;
-
-  if (!email || email.length === 0) {
-    throw new Error(
-      `Missing required environment variables: MS_AUTH_EMAIL\n` +
-        'Please set these variables in your .env file or environment.'
-    );
-  }
-
   try {
-    const storageStatePath = getStorageStatePath(email);
+    const validationResult = validateAuthState();
 
-    if (process.env.MS_AUTH_EMAIL && !existsSync(storageStatePath)) {
+    if (!validationResult.valid) {
       console.log('===========================================================');
-      console.error(
-        `${colors.fgRed}❌ Storage state file at ${storageStatePath} does not exist!${colors.reset}`
-      );
-      console.error(
-        `${colors.fgYellow}💡 Please run authentication first: npm run auth:headful${colors.reset}`
-      );
+      console.error(`❌ ${validationResult.message}`);
       console.log('===========================================================');
       process.exit(1);
-    } else if (process.env.MS_AUTH_EMAIL && existsSync(storageStatePath)) {
-      const expirationCheck = ConfigHelper.checkStorageStateExpiration(storageStatePath);
-
-      if (expirationCheck.expired) {
-        console.log('===========================================================');
-        console.error(`${colors.fgRed}❌ Authentication tokens have expired!${colors.reset}`);
-        if (expirationCheck.expiresOn) {
-          const expiryDate = new Date(expirationCheck.expiresOn * 1000);
-          console.error(
-            `${colors.fgYellow}   Token expired at: ${expiryDate.toLocaleString()}${colors.reset}`
-          );
-        }
-        console.error(
-          `${colors.fgYellow}💡 Please re-authenticate: npm run auth:headful${colors.reset}`
-        );
-        console.log('===========================================================');
-        process.exit(1);
-      }
-
-      console.log(
-        `${colors.fgCyan}🔐 Storage state loaded: ${colors.fgGreen}${storageStatePath}${colors.reset}`
-      );
-
-      if (expirationCheck.expiresOn) {
-        const expiryDate = new Date(expirationCheck.expiresOn * 1000);
-        const timeUntilExpiry = Math.floor((expirationCheck.expiresOn - Date.now() / 1000) / 60);
-        console.log(
-          `${colors.fgCyan}⏰ Token expires: ${colors.fgYellow}${expiryDate.toLocaleString()} ${colors.fgGray}(in ${timeUntilExpiry} minutes)${colors.reset}`
-        );
-      }
     }
   } catch (error: any) {
     // In case auth config is incomplete (e.g., missing KeyVault vars in CI), skip validation
-    console.log(
-      `${colors.fgYellow}⚠️  Skipping storage state validation (auth config incomplete): ${error.message}${colors.reset}`
-    );
+    console.log(`⚠️  Skipping storage state validation (auth config incomplete): ${error.message}`);
   }
 }
 
@@ -115,7 +63,7 @@ export default defineConfig({
   retries: getEnvironmentConfig().retries,
 
   /* Test directory and matching */
-  testDir: getEnvironmentConfig().testDirectory,
+  testDir: getEnvironmentConfig().testDirectory + '/northwind',
   timeout: getEnvironmentConfig().testTimeout,
   testMatch: ['**/*.+(spec|test|setup).+(ts|js|mjs)'],
   testIgnore: [
@@ -193,25 +141,39 @@ export default defineConfig({
     /* Permissions */
     permissions: ['clipboard-read', 'clipboard-write'],
 
-    /* Storage state - conditionally load based on environment */
-    storageState: process.env.MS_AUTH_EMAIL
-      ? getStorageStatePath(process.env.MS_AUTH_EMAIL!)
-      : undefined,
-
     /* Launch options */
     launchOptions: {
-      slowMo: Number(getEnvironmentConfig().slowMo) || 0,
-      args: [
-        '--start-maximized',
-        '--no-sandbox',
-        '--disable-web-security',
-        '--disable-features=IsolateOrigins',
-        '--disable-site-isolation-trials',
-        '--window-size=1920,1080',
-      ],
+      args: ['--start-maximized', '--window-size=1920,1080'],
     },
   },
 
   /* Test filtering */
   grep: getGrepPattern(),
+
+  /* Projects for different test types */
+  projects: [
+    {
+      name: 'model-driven-app',
+      testMatch: '**/mda/**/*.test.ts',
+      use: {
+        // Use MDA-specific storage state
+        storageState: process.env.MS_AUTH_EMAIL
+          ? path.join(
+              path.dirname(getStorageStatePath(process.env.MS_AUTH_EMAIL!)),
+              `state-mda-${process.env.MS_AUTH_EMAIL}.json`
+            )
+          : undefined,
+      },
+    },
+    {
+      name: 'default',
+      testIgnore: '**/mda/**/*.test.ts',
+      use: {
+        // Use default storage state
+        storageState: process.env.MS_AUTH_EMAIL
+          ? getStorageStatePath(process.env.MS_AUTH_EMAIL!)
+          : undefined,
+      },
+    },
+  ],
 });
