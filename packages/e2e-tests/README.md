@@ -118,9 +118,51 @@ BUILD_PIPELINE=local|pr|ci|nightly|smoke|regression|performance
 
 ### 3. Authenticate
 
+#### Power Apps & Canvas Apps
+
 ```bash
+# Authenticate to Power Apps maker portal and Canvas Apps
 npm run auth:headful
 ```
+
+**Storage Location**: `.playwright-ms-auth/state-{email}.json`
+
+#### Model-Driven Apps (Dynamics 365)
+
+Model-Driven Apps require **separate certificate-based authentication** because they run on a different domain (\*.crm.dynamics.com):
+
+```bash
+# Authenticate to Model-Driven Apps with certificate
+npm run auth:mda:headful
+```
+
+**Storage Location**: `.playwright-ms-auth/state-mda-{email}.json`
+
+**Required Environment Variables**:
+
+```bash
+MODEL_DRIVEN_APP_URL=https://org.crm.dynamics.com/main.aspx?appid=xxx
+MS_AUTH_CREDENTIAL_TYPE=certificate
+MS_AUTH_LOCAL_FILE_PATH=./cert/your-cert.pfx
+MS_AUTH_CERTIFICATE_PASSWORD=cert-password  # Optional
+```
+
+#### Why Separate Authentication?
+
+| App Type          | Domain               | Auth Method           | Command                    |
+| ----------------- | -------------------- | --------------------- | -------------------------- |
+| Power Apps Maker  | `make.powerapps.com` | MSAL + OAuth          | `npm run auth:headful`     |
+| Canvas Apps       | `apps.powerapps.com` | MSAL + OAuth (shared) | `npm run auth:headful`     |
+| Model-Driven Apps | `*.crm.dynamics.com` | **Certificate Auth**  | `npm run auth:mda:headful` |
+
+**Key Differences**:
+
+- Power Apps and Canvas Apps **share authentication** (same domain family)
+- Model-Driven Apps require **separate certificate-based authentication** (different domain)
+- Certificate authentication is **automatic** in `ModelDrivenAppPage` constructor
+
+📚 **For detailed authentication documentation, see:**
+[`docs/tutorials/AUTHENTICATION.md`](../playwright-power-platform-toolkit/docs/tutorials/AUTHENTICATION.md)
 
 ### 4. Record API Calls (Optional)
 
@@ -152,6 +194,12 @@ npm run test:ui
 
 # Run specific test
 npm test -- tests/powerapps-page.spec.ts
+
+# Run Model-Driven App tests only
+npm test -- --project=model-driven-app
+
+# Run CRUD test specifically
+npm test -- model-driven-crud.test.ts --project=model-driven-app
 
 # Run with environment filter
 TEST_ENV=test npm test
@@ -441,6 +489,83 @@ e2eTest('Complete app lifecycle', async ({ powerAppsPage, apiHelper, a11yHelper,
   await apiHelper.delete(`/api/apps/${appId}`);
 });
 ```
+
+### Model-Driven App CRUD Test
+
+The comprehensive CRUD workflow test demonstrates all data operations in Model-Driven Apps:
+
+**Test Location**: [`tests/northwind/mda/model-driven-crud.test.ts`](tests/northwind/mda/model-driven-crud.test.ts)
+
+**Workflow**:
+
+1. **CREATE**: Navigate to form, fill fields, save new record
+2. **READ**: Navigate to grid, search for created record, verify it exists
+3. **UPDATE**: Open record from grid, modify fields, save changes
+4. **VERIFY UPDATE**: Refresh grid, confirm updated values
+5. **DELETE**: Select record in grid, delete it, confirm deletion dialog
+6. **VERIFY DELETE**: Refresh grid, confirm record is removed
+
+```typescript
+import { test, expect } from '@playwright/test';
+import { ModelDrivenAppPage } from 'playwright-power-platform-toolkit';
+
+test('should perform complete CRUD workflow', async ({ page }) => {
+  const MODEL_DRIVEN_APP_URL = process.env.MODEL_DRIVEN_APP_URL;
+  const modelDrivenApp = new ModelDrivenAppPage(page, MODEL_DRIVEN_APP_URL);
+  const testOrderNumber = `TEST-${Date.now()}`;
+
+  // CREATE
+  await modelDrivenApp.navigateToFormView('nwind_orders');
+  await page
+    .locator('input[data-id="nwind_ordernumber.fieldControl-text-box-text"]')
+    .fill(testOrderNumber);
+  await page.locator('button[aria-label*="Save"]').click();
+
+  // READ
+  await modelDrivenApp.navigateToGridView('nwind_orders');
+  const rowCount = await modelDrivenApp.grid.getRowCount();
+  let foundRow = -1;
+  for (let i = 0; i < rowCount; i++) {
+    const cellValue = await modelDrivenApp.grid.getCellValue(i, 'Order Number');
+    if (cellValue === testOrderNumber) {
+      foundRow = i;
+      break;
+    }
+  }
+  expect(foundRow).toBeGreaterThanOrEqual(0);
+
+  // UPDATE
+  await modelDrivenApp.grid.openRecord({ rowNumber: foundRow });
+  await page
+    .locator('input[data-id="nwind_ordernumber.fieldControl-text-box-text"]')
+    .fill(`${testOrderNumber}-UPDATED`);
+  await page.locator('button[aria-label*="Save"]').click();
+
+  // DELETE
+  await modelDrivenApp.navigateToGridView('nwind_orders');
+  await modelDrivenApp.grid.selectRow(foundRow);
+  await page.locator('button[aria-label*="Delete"]').click();
+  await page.locator('button[data-id="confirmButton"]').click();
+});
+```
+
+**Run the CRUD test**:
+
+```bash
+# Make sure you're authenticated for Model-Driven Apps
+npm run auth:mda:headful
+
+# Run the CRUD test
+npm test -- model-driven-crud.test.ts --project=model-driven-app
+```
+
+**Key Features**:
+
+- Generates unique test data per run to avoid conflicts
+- Comprehensive logging at each step
+- Handles field visibility gracefully (skips if not found)
+- Verifies each operation completed successfully
+- Cleans up test data (deletes created record)
 
 ## 📋 Available Commands
 

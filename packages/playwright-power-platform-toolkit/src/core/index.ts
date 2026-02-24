@@ -11,3 +11,16 @@ export { AppLauncherFactory } from './app-launcher.factory';
 
 // App Provider
 export { AppProvider, LaunchAppConfig } from './app-provider';
+
+// URL Builder
+export { URLBuilder } from './url-builder';
+
+// Power Platform Navigator
+export {
+  PowerPlatformNavigator,
+  NavigatorOptions,
+  NavigationOptions,
+} from './power-platform-navigator';
+
+// Page Waiters
+export * from './page-waiters';

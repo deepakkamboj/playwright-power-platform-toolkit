@@ -31,6 +31,166 @@ export function generateRandomAlphaNumeric(length: number = 8): string {
 }
 
 /**
+ * Generate random number within a range
+ * @param min - Minimum value (inclusive)
+ * @param max - Maximum value (inclusive)
+ * @returns Random number between min and max
+ *
+ * @example
+ * ```typescript
+ * // Generate number between 1 and 100
+ * const num = generateRandomNumber(1, 100);
+ *
+ * // Generate 5-digit number (10000-99999)
+ * const orderNum = generateRandomNumber(10000, 99999);
+ * ```
+ */
+export function generateRandomNumber(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/**
+ * Generate unique order number (5-digit random number)
+ * Useful for test data generation in Model-Driven Apps and Canvas Apps
+ *
+ * @param digits - Number of digits (default: 5)
+ * @returns Random number as string with specified digits
+ *
+ * @example
+ * ```typescript
+ * // Generate 5-digit order number
+ * const orderNumber = generateUniqueOrderNumber(); // "12345"
+ *
+ * // Generate 6-digit order number
+ * const orderNumber = generateUniqueOrderNumber(6); // "123456"
+ * ```
+ */
+export function generateUniqueOrderNumber(digits: number = 5): string {
+  const min = Math.pow(10, digits - 1);
+  const max = Math.pow(10, digits) - 1;
+  return generateRandomNumber(min, max).toString();
+}
+
+/**
+ * Generate unique test ID with timestamp and random component
+ * Useful for generating unique identifiers in tests
+ *
+ * @param prefix - Prefix for the ID (default: 'TEST')
+ * @returns Unique test ID
+ *
+ * @example
+ * ```typescript
+ * const testId = generateUniqueTestId(); // "TEST-1234567890-123"
+ * const testId = generateUniqueTestId('ORDER'); // "ORDER-1234567890-123"
+ * ```
+ */
+export function generateUniqueTestId(prefix: string = 'TEST'): string {
+  const timestamp = Date.now();
+  const random = Math.floor(Math.random() * 1000);
+  return `${prefix}-${timestamp}-${random}`;
+}
+
+/**
+ * Options for building Canvas App URL
+ */
+export interface CanvasAppUrlOptions {
+  /** Direct Canvas App URL (if provided, other options are ignored) */
+  directUrl?: string;
+  /** Power Apps environment ID */
+  environmentId?: string;
+  /** Canvas App ID */
+  appId?: string;
+  /** Tenant ID */
+  tenantId?: string;
+}
+
+/**
+ * Build Canvas App Play URL from direct URL or component IDs
+ * Supports two modes:
+ * 1. Direct URL: Use directUrl if provided
+ * 2. Build from IDs: Use environmentId + appId + tenantId
+ *
+ * @param options - Canvas App URL options or environment variable prefix
+ * @returns Canvas App play URL
+ * @throws {Error} If neither direct URL nor required component IDs are provided
+ *
+ * @example
+ * ```typescript
+ * // Option 1: Using direct URL
+ * const url = buildCanvasAppUrl({
+ *   directUrl: 'https://apps.powerapps.com/play/e/env-id/a/app-id?tenantId=tenant-id'
+ * });
+ *
+ * // Option 2: Building from component IDs
+ * const url = buildCanvasAppUrl({
+ *   environmentId: 'd413c445-44c5-ed7c-be0f-761eaeee1919',
+ *   appId: '8f6e67b9-93af-4cf4-b1f0-b6b25c20e2dc',
+ *   tenantId: '91bee3d9-0c15-4f17-8624-c92bb8b36ead'
+ * });
+ *
+ * // Option 3: From environment variables
+ * const url = buildCanvasAppUrlFromEnv();
+ * // Reads from: CANVAS_APP_URL, POWER_APPS_ENVIRONMENT_ID, CANVAS_APP_ID, CANVAS_APP_TENANT_ID
+ * ```
+ */
+export function buildCanvasAppUrl(options: CanvasAppUrlOptions): string {
+  // Option 1: Use direct URL if provided
+  if (options.directUrl) {
+    return options.directUrl;
+  }
+
+  // Option 2: Build URL from component IDs
+  const { environmentId, appId, tenantId } = options;
+
+  if (!environmentId || !appId || !tenantId) {
+    throw new Error(
+      'Canvas App configuration is missing. Please provide one of the following:\n' +
+        '1. directUrl (direct Canvas App URL), OR\n' +
+        '2. environmentId + appId + tenantId (component IDs to build URL)\n\n' +
+        'Example:\n' +
+        'buildCanvasAppUrl({\n' +
+        '  environmentId: "d413c445-44c5-ed7c-be0f-761eaeee1919",\n' +
+        '  appId: "8f6e67b9-93af-4cf4-b1f0-b6b25c20e2dc",\n' +
+        '  tenantId: "91bee3d9-0c15-4f17-8624-c92bb8b36ead"\n' +
+        '})'
+    );
+  }
+
+  // Build the play URL
+  return `https://apps.powerapps.com/play/e/${environmentId}/a/${appId}?tenantId=${tenantId}`;
+}
+
+/**
+ * Build Canvas App Play URL from environment variables
+ * Reads from process.env:
+ * - CANVAS_APP_URL (direct URL), OR
+ * - POWER_APPS_ENVIRONMENT_ID + CANVAS_APP_ID + CANVAS_APP_TENANT_ID
+ *
+ * @returns Canvas App play URL
+ * @throws {Error} If required environment variables are not set
+ *
+ * @example
+ * ```typescript
+ * // Set environment variables in .env file:
+ * // CANVAS_APP_URL=https://apps.powerapps.com/play/e/env-id/a/app-id?tenantId=tenant-id
+ * // OR
+ * // POWER_APPS_ENVIRONMENT_ID=d413c445-44c5-ed7c-be0f-761eaeee1919
+ * // CANVAS_APP_ID=8f6e67b9-93af-4cf4-b1f0-b6b25c20e2dc
+ * // CANVAS_APP_TENANT_ID=91bee3d9-0c15-4f17-8624-c92bb8b36ead
+ *
+ * const url = buildCanvasAppUrlFromEnv();
+ * ```
+ */
+export function buildCanvasAppUrlFromEnv(): string {
+  return buildCanvasAppUrl({
+    directUrl: process.env.CANVAS_APP_URL,
+    environmentId: process.env.POWER_APPS_ENVIRONMENT_ID,
+    appId: process.env.CANVAS_APP_ID,
+    tenantId: process.env.CANVAS_APP_TENANT_ID,
+  });
+}
+
+/**
  * Wait for element to be visible with custom timeout
  * @param page - Playwright page object
  * @param selector - Element selector

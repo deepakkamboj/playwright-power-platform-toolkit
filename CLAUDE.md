@@ -40,6 +40,137 @@ playwright-power-platform/
 - `CanvasAppPage`: Canvas-specific page interactions
 - `ModelDrivenAppPage`: Model-Driven-specific page interactions
 
+## **CRITICAL: AppProvider Pattern for All Tests**
+
+### Mandatory Entry Point
+
+**AppProvider is the ONLY entry point for all Power Platform app testing.** Never directly instantiate page objects.
+
+### ✅ CORRECT Pattern
+
+```typescript
+import {
+  AppProvider,
+  AppType,
+  AppLaunchMode,
+  ModelDrivenAppPage,
+  CanvasAppPage
+} from 'playwright-power-platform-toolkit';
+
+test.beforeEach(async ({ page, context }) => {
+  // 1. Create AppProvider (single entry point)
+  const appProvider = new AppProvider(page, context);
+
+  // 2. Launch app using AppProvider
+  await appProvider.launch({
+    app: 'My App Name',
+    type: AppType.ModelDriven,  // or AppType.Canvas
+    mode: AppLaunchMode.Play,
+    skipMakerPortal: true,
+    directUrl: process.env.APP_URL
+  });
+
+  // 3. Get page object from AppProvider
+  const modelDrivenApp = appProvider.getModelDrivenAppPage();
+  // or
+  const canvasApp = appProvider.getCanvasAppPage();
+});
+```
+
+### ❌ INCORRECT Pattern (Never Do This)
+
+```typescript
+// ❌ WRONG: Direct instantiation is not allowed
+const modelDrivenApp = new ModelDrivenAppPage(page, appUrl);
+const canvasApp = new CanvasAppPage(page);
+
+// ❌ WRONG: Direct page navigation without AppProvider
+await page.goto(appUrl);
+```
+
+### Why AppProvider is Mandatory
+
+1. **Unified API**: Consistent pattern across all app types (Model-Driven, Canvas, Power Apps)
+2. **Type Safety**: Validates app type before returning page object
+3. **Better Encapsulation**: Implementation details hidden from test code
+4. **Centralized Lifecycle Management**: Authentication, navigation, and app initialization
+5. **Easier Maintenance**: Single place to update app launching logic
+
+### AppProvider Methods
+
+#### For Model-Driven Apps
+```typescript
+appProvider.launch({
+  app: 'App Name',
+  type: AppType.ModelDriven,
+  mode: AppLaunchMode.Play,
+  skipMakerPortal: true,
+  directUrl: 'https://org.crm.dynamics.com/main.aspx?appid=...'
+});
+
+const modelDrivenApp = appProvider.getModelDrivenAppPage();
+```
+
+#### For Canvas Apps
+```typescript
+appProvider.launch({
+  app: 'Canvas App Name',
+  type: AppType.Canvas,
+  mode: AppLaunchMode.Play,
+  skipMakerPortal: true,
+  directUrl: 'https://apps.powerapps.com/play/e/env-id/a/app-id?tenantId=...'
+});
+
+const canvasApp = appProvider.getCanvasAppPage();
+```
+
+#### For Power Apps Maker Portal
+```typescript
+appProvider.launch({
+  app: 'App Name',
+  type: AppType.ModelDriven,
+  mode: AppLaunchMode.Edit,
+  baseUrl: 'https://make.powerapps.com',
+  context: context  // Required for Play mode (handles new tab)
+});
+
+const powerAppsPage = appProvider.getPowerAppsPage();
+```
+
+### Migration Guide
+
+If you have existing tests using direct instantiation, update them:
+
+**Before (Old Pattern)**:
+```typescript
+const modelDrivenApp = new ModelDrivenAppPage(page, APP_URL);
+await page.goto(APP_URL);
+```
+
+**After (AppProvider Pattern)**:
+```typescript
+const appProvider = new AppProvider(page, context);
+await appProvider.launch({
+  app: 'App Name',
+  type: AppType.ModelDriven,
+  mode: AppLaunchMode.Play,
+  skipMakerPortal: true,
+  directUrl: APP_URL
+});
+const modelDrivenApp = appProvider.getModelDrivenAppPage();
+```
+
+### Example Test Files
+
+- Model-Driven App Test: `packages/e2e-tests/tests/northwind/mda/model-driven-crud.test.ts`
+- Canvas App Test: `packages/e2e-tests/tests/northwind/canvas/canvas-app-crud.test.ts`
+- Form Context Test: `packages/e2e-tests/tests/northwind/mda/form-context.test.ts`
+
+### Additional Resources
+
+- [APP-PROVIDER-UPDATE.md](APP-PROVIDER-UPDATE.md) - Detailed architecture update documentation
+- [AppProvider API Reference](packages/playwright-power-platform-toolkit/src/core/app-provider.ts)
+
 ## Development Workflow
 
 ### Building

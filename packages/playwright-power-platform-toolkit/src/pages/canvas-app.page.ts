@@ -52,6 +52,38 @@ export class CanvasAppPage {
    */
   async waitForStudioLoad(): Promise<void> {
     const frame = await this.getStudioFrame();
+
+    // Check for and dismiss the "Welcome to Power Apps Studio" dialog if it appears
+    try {
+      const welcomeDialog = frame.locator('dialog:has-text("Welcome to Power Apps Studio")');
+      const isWelcomeVisible = await welcomeDialog.isVisible({ timeout: 5000 }).catch(() => false);
+
+      if (isWelcomeVisible) {
+        console.log('[CanvasAppPage] Welcome dialog detected, dismissing...');
+        // Try to find and click close button (X), Skip button, or click outside dialog
+        const closeButton = frame
+          .locator(
+            '[aria-label="Close"], button:has-text("Skip"), button:has-text("Got it"), button:has-text("Close")'
+          )
+          .first();
+        const hasCloseButton = await closeButton.isVisible({ timeout: 2000 }).catch(() => false);
+
+        if (hasCloseButton) {
+          await closeButton.click();
+          console.log('[CanvasAppPage] Welcome dialog dismissed');
+        } else {
+          // Click outside the dialog to dismiss it
+          await frame.locator('application').click({ position: { x: 10, y: 10 } });
+          console.log('[CanvasAppPage] Welcome dialog dismissed by clicking outside');
+        }
+
+        await welcomeDialog.waitFor({ state: 'hidden', timeout: 5000 }).catch(() => {});
+      }
+    } catch {
+      // Welcome dialog not present or already dismissed, continue
+      console.log('[CanvasAppPage] No welcome dialog detected or already dismissed');
+    }
+
     await frame.locator(CanvasAppLocators.Studio.Canvas.CanvasArea).waitFor({
       state: 'visible',
       timeout: 90000,
@@ -506,16 +538,16 @@ export class CanvasAppPage {
 
   /**
    * Launch app by name (IAppLauncher interface)
+   * Note: Navigation is handled by AppProvider, this just marks the launcher as ready
    */
   async launchByName(
-    appName: string,
-    findAppCallback: (appName: string) => Promise<any>,
+    _appName: string,
+    _findAppCallback: (appName: string) => Promise<any>,
     _mode: any,
     _options?: any
   ): Promise<void> {
-    const appLocator = await findAppCallback(appName);
-    await appLocator.click();
-    await this.page.waitForLoadState('networkidle');
+    // Navigation is handled by AppProvider
+    // Just mark as ready
     this.ready = true;
   }
 

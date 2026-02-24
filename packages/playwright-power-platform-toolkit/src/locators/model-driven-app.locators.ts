@@ -214,10 +214,46 @@ export const ModelDrivenAppLocators = {
       PageTitle: '[data-automation-id="page-title"]',
       CommandBar: '[data-automation-id="command-bar"]',
 
-      // Grid View
-      Grid: '[role="grid"][aria-label="Data grid"]',
-      GridRow: '[role="row"]',
-      GridCell: '[role="gridcell"]',
+      // Grid View - Enhanced with comprehensive locators
+      Grid: {
+        // Container (supports both grid and treegrid roles)
+        Container: '[role="grid"], [role="treegrid"]',
+        Header: '[role="row"]:first-child',
+        Body: '[role="rowgroup"]',
+
+        // Rows
+        Row: '[role="row"]',
+        RowByIndex: (index: number) => `[role="row"]:nth-child(${index + 2})`, // +2 for header
+
+        // Cells
+        Cell: '[role="gridcell"]',
+        CellByRowAndColumn: (row: number, col: number) =>
+          `[role="row"]:nth-child(${row + 2}) [role="gridcell"]:nth-child(${col + 1})`,
+        LinkCell: '[role="gridcell"] a',
+        CheckboxCell: '[role="gridcell"] input[type="checkbox"]',
+
+        // Headers
+        ColumnHeader: (name: string) => `[role="columnheader"][aria-label*="${name}"]`,
+
+        // States
+        EmptyMessage: '[data-id="no-records"]',
+        LoadingIndicator: '[data-id="grid-loading"]',
+
+        // Pagination
+        Pagination: {
+          Container: '[data-id="pagination"]',
+          NextPage: 'button[aria-label*="Next page"]',
+          PreviousPage: 'button[aria-label*="Previous page"]',
+          PageInput: 'input[aria-label*="Page number"]',
+          RecordCount: '[data-id="record-count"]',
+        },
+
+        // View Selector
+        ViewSelector: {
+          Dropdown: '[data-id="viewSelector"]',
+          Option: (viewName: string) => `[role="option"]:has-text("${viewName}")`,
+        },
+      },
 
       // Form View
       Form: '[data-automation-id="form"]',
